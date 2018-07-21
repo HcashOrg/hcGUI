@@ -1,0 +1,76 @@
+@import (reference) "./main.less";
+
+.input-and-unit {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  border-bottom: 1px @stroke-color-default solid;
+  font-family: @font-family-regular;
+  font-size: 16px;
+  color: #000;
+  border-radius: 5px;
+  background: #fff;
+  padding: 3px 4px 3px 10px;
+  border: 2px solid transparent;
+
+  &.input-and-unit--with-error {
+    border: 2px solid @error-text-color;
+  }
+}
+
+.input-and-unit.numeric-input {
+  font-family: @font-family-monospaced;
+}
+
+.input-and-unit:hover:not(.disabled):not(.active) {
+  color: @input-color-hovered;
+  // border: 1px @purple solid;
+}
+
+.input-and-unit.active:not(.disabled) {
+  color: @input-color-focused;
+  // border: 1px @purple solid;
+  outline: none;
+}
+
+.inverted-colors .input-and-unit,
+.inverted-colors .input-and-unit:hover:not(.disabled):not(.active),
+.inverted-colors .input-and-unit.active:not(.disabled),
+.inverted-colors .input {
+  // color: @white;
+}
+
+.input-and-unit.disabled {
+  background-color: @disabled-background-color;
+}
+
+.input {
+  border-style: none;
+  cursor: text;
+  background: transparent;
+  flex-grow: 1;
+  width: 100%;
+  outline: none;
+  color: @darkGrey;
+  padding: 5px;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.input-errors-area {
+  text-align: left;
+  color: @error-text-color;
+  font-size: 13px;
+  font-weight: 600;
+  padding-top: 4px;
+  min-height: 2em;
+  letter-spacing: 1.2px;
+}
+
+.unit-area {
+  .inline-block-mixin;
+
+  margin: 0;
+  line-height: normal;
+  padding: 0px 0px 3px 0px;
+}

@@ -1,0 +1,193 @@
+@import (reference) "./main.less";
+@import (reference) "./Icons.less";
+
+.agenda-card {
+  position: relative;
+  overflow: hidden;
+  width: 180px;
+  height: 190px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  float: left;
+  background-color: @darkGrey;
+  background-image: @agenda-card-kebab;
+  background-position: 93% 27px;
+  background-size: 10px;
+  background-repeat: no-repeat;
+  box-shadow: 0 3px 6px 0 rgba(9, 24, 45, 0.1);
+  color: @white;
+  cursor: pointer;
+}
+
+.agenda-card:hover {
+  background-image: @agenda-card-kebab-hover;
+  background-size: 10px;
+  box-shadow: 0 2px 2px 0 rgba(9, 24, 45, 0.1);
+}
+
+.agenda-card-disabled {
+  position: relative;
+  overflow: hidden;
+  width: 180px;
+  height: 190px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  float: left;
+  background-color: @disabled-background-color;
+  background-image: @agenda-card-kebab-disabled;
+  background-size: 10px;
+  background-position: 93% 27px;
+  background-repeat: no-repeat;
+  color: @disabled-color;
+  box-shadow: 0px 3px 6px 0px @disabled-box-shadow-color;
+  cursor: default;
+}
+
+.agenda-card-disabled:hover {
+  box-shadow: 0 2px 2px 0 @disabled-box-shadow-color;
+}
+
+.agenda-card-bottom {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 20px;
+}
+
+.agenda-card-indicator-pending {
+  float: right;
+  padding: 5px 8px 5px 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 8px;
+  text-align: right;
+  text-transform: capitalize;
+  border-color: @blue;
+  background-image: @agenda-indicator-pending;
+  background-position: 6px 50%;
+  background-size: 10px;
+  background-repeat: no-repeat;
+  color: @blue;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.agenda-card-indicator-finished {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border-color: @grey;
+  background-image: @agenda-indicator-finished;
+  background-position: 6px 50%;
+  background-size: 10px;
+  background-repeat: no-repeat;
+  color: @grey;
+  display: inline-block;
+  padding: 5px 8px 5px 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 8px;
+  text-align: right;
+  text-transform: capitalize;
+}
+
+.agenda-card-bottom-cfg {
+  height: 80px;
+  margin-bottom: 55px;
+  float: left;
+  color: @grey;
+}
+
+.agenda-card-bottom-cfg-last {
+  float: left;
+  color: @white;
+}
+
+.agenda-card-bottom-cfg-disabled {
+  height: 80px;
+  margin-bottom: 20px;
+  float: left;
+  color: @disabled-color;
+}
+
+.agenda-card-bottom-cfg-last-disabled {
+  color: @disabled-color;
+}
+
+.agenda-card-bottom-cfg-last-bold {
+  font-weight: 600;
+}
+
+.agenda-card-percent {
+  float: left;
+  font-size: 19px;
+}
+
+.agenda-card-top {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.agenda-percent-number {
+  font-size: 45px;
+  font-weight: 600;
+}
+
+.agenda-card-name {
+  padding-right: 10px;
+  float: left;
+  font-size: 19px;
+}
+
+.agenda-card-top-preference {
+  margin-top: 6px;
+  float: left;
+  width: 186px;
+}
+
+.agenda-card-text-highlight-small {
+  padding-right: 2px;
+  padding-left: 2px;
+  border-radius: 3px;
+  background-color: @darkGrey;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.agenda-overview-title-close {
+  position: absolute;
+  top: 7px;
+  right: 0px;
+  width: 11px;
+  height: 11px;
+  float: right;
+  background-image: @agenda-close-icon;
+  background-position: 50% 50%;
+  background-size: 11px;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.agenda-overview-title-close:hover {
+  opacity: 0.7;
+}

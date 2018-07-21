@@ -1,0 +1,222 @@
+@import (reference) "./main.less";
+
+.new-seed {
+  background-color: @darkGrey;
+  padding-top: 24px;
+  padding-right: 40px;
+}
+
+.help-text {
+  margin-bottom: 30px;
+}
+
+.help-text::after {
+  .clearfloat-mixin;
+}
+
+.paragraph {
+  width: 300px;
+  color: @white;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.paragraph.right {
+  white-space: pre-line;
+}
+
+.cyan-bold {
+  color: @blue;
+  font-weight: 700;
+}
+
+.cyan-regular {
+  color: @blue;
+}
+
+.orange-warning {
+  color: #fd714b;
+}
+
+.seed {
+  min-height: 140px;
+  margin-bottom: 20px;
+  padding: 14px 20px;
+  border: 2px solid @purple;
+  border-radius: 5px;
+  background-color: #282c34;
+  font-family: Inconsolata, monospace;
+  color: @white;
+  font-size: 16px;
+  line-height: 29px;
+  position: relative;
+}
+
+.seed > p {
+  margin: 0px;
+}
+
+.seed > .copy-to-clipboard-icon {
+  width: auto;
+  height: auto;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-position: 7px 8px;
+  background-size: 23px auto;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-color: #181a1f;
+  border-radius: 5px;
+  padding: 5px 20px 5px 40px;
+
+  &:hover {
+    color: @blue;
+  }
+}
+
+.wallet-key-blue-button {
+  margin-top: 12px;
+  float: left;
+}
+
+.confirm-seed {
+  .create-wallet-field {
+    height: 215px;
+  }
+}
+
+.confirm-seed-label-text {
+  line-height: normal;
+}
+
+.confirm-seed-label-remaining-words {
+  font-size: 13px;
+  color: @white;
+  line-height: normal;
+}
+
+.create-wallet-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .create-wallet-field {
+    text-align: right;
+    .wallet-key-blue-button {
+      float: none;
+      margin: 0;
+    }
+  }
+}
+
+.create-wallet-label {
+  color: #9da5b5;
+  font-size: 19px;
+  letter-spacing: -0.1px;
+  line-height: 41px;
+}
+
+.create-wallet-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.seed-type-label {
+  color: @grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-wallet-field {
+  width: 100%;
+  margin: 10px 0;
+  min-height: 75px;
+}
+
+.input-private-password {
+  min-height: 44px;
+}
+
+.input-seed-text-area {
+  width: 100%;
+  min-height: 108px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-style: none none solid;
+  border-width: 0px 0px 1px;
+  border-color: @blue @blue @blue;
+  font-family: Inconsolata, monospace;
+  color: @blue;
+  font-size: 13px;
+  overflow: auto;
+  margin: 0px;
+}
+
+.input-form {
+  -moz-appearance: none !important;
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 44px;
+}
+
+.input-form-confirm-seed {
+  -moz-appearance: none !important;
+  position: relative;
+  min-height: 140px;
+  margin-bottom: 20px;
+  padding: 14px 20px;
+  border: 2px solid #8539dd;
+  border-radius: 5px;
+  background-color: #282c34;
+
+  .words-input {
+    height: 155px;
+    min-height: 44px;
+  }
+
+  .input-and-unit {
+    color: #fff;
+    border: none;
+    background: none;
+
+    .input {
+      color: #fff;
+    }
+  }
+
+  .Select-control {
+    border: 1px solid #862ee0;
+    padding: 5px;
+    border-radius: 6px;
+
+    input,
+    .Select-value-label,
+    .Select-value-icon {
+      color: @white;
+    }
+
+    .Select-arrow {
+      border-style: none;
+    }
+  }
+}
+
+.input-form-error {
+  color: @error-text-color;
+}
+
+.passphrase-info-modal {
+  height: 202px;
+}

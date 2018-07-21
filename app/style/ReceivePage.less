@@ -1,0 +1,84 @@
+@import (reference) "./main.less";
+@import (reference) "./Icons.less";
+
+.receive-content-nest {
+  background-color: @darkGrey;
+  padding: 1em;
+}
+
+// .receive-content-nest-for-address {
+// }
+
+.receive-content-nest-prefix {
+  .inline-block-mixin;
+
+  margin-left: 0.5em;
+  font-size: 19px;
+  text-transform: capitalize;
+}
+
+.receive-select-account-input {
+  .inline-block-mixin;
+
+  width: 50%;
+}
+
+.receive-content-nest-qr {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.receive-content-nest-qrhash {
+  .inline-block-mixin;
+
+  padding: 2.5em 1em 2.5em 1em;
+  border: 1px solid @white;
+  border-radius: 5px;
+  background-color: @white;
+  font-family: Inconsolata, monospace;
+  color: @darkGrey;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.receive-content-nest-qrimage {
+
+  .inline-block-mixin;
+  fill: @white;
+  width: 140px;
+  height: 140px;
+  float: right;
+  background-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.receive-toolbar {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.receive-header-title {
+  height: 54px;
+  line-height: 49px;
+  color: @grey;
+  font-size: 27px;
+  text-transform: capitalize;
+  padding-left: 50px;
+  background-image: @plus-big-icon;
+  background-position: 0px 50%;
+  background-size: 30px;
+  background-repeat: no-repeat;
+}
+
+.receive-header-meta {
+  height: 54px;
+  width: 480px;
+  padding-left: 50px;
+  color: @white;
+  font-size: 14px;
+}
+
+.receive-content-nest-copy-to-clipboard-icon {
+  margin-left: 16px;
+}

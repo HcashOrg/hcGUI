@@ -1,0 +1,438 @@
+@import (reference) "./main.less";
+@import (reference) "./Icons.less";
+
+.accounts-button-icon {
+  display: inline-block;
+  width: 20px;
+  height: 18px;
+  background-image: @accounts-button-icon;
+  background-position: 0 0;
+  background-size: 20px auto;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.accounts-button-icon:hover {
+  background-image: @accounts-button-hover-icon;
+}
+
+.clipboard-box {
+  position: relative;
+  display: inline-block;
+}
+
+.copy-to-clipboard-icon {
+  display: inline-block;
+  width: 20px;
+  height: 18px;
+  background-image: @copy-to-clipboard-icon;
+  background-position: 0 0;
+  background-size: 20px auto;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.copy-to-clipboard-icon:hover {
+  background-image: @copy-to-clipboard-hover-icon;
+}
+
+.copy-to-clipboard-success {
+  font-size: 12px;
+  color: #fff;
+  background-color: #69d3f5;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  padding: 5px 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, -4px);
+  min-width: 4em;
+}
+
+.copy-to-clipboard-success.hidden {
+  display: none;
+}
+
+.key-destruction-button {
+  cursor: pointer;
+  display: inline-block;
+  padding: 16px;
+  border-radius: 5px;
+  background-color: @lightPurple;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid transparent;
+  color: @white;
+  font-size: 13px;
+  line-height: 9px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 100ms cubic-bezier(0.86, 0, 0.07, 1) 0s;
+}
+
+.key-blue-button:hover {
+  background-color: @purple;
+}
+
+.key-blue-button:active {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+  background-color: @purple;
+}
+
+.key-blue-button {
+  cursor: pointer;
+  display: inline-block;
+  padding: 16px;
+  border-radius: 5px;
+  background-color: @purple;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid transparent;
+  color: @white;
+  font-size: 13px;
+  line-height: 9px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 100ms cubic-bezier(0.86, 0, 0.07, 1) 0s;
+}
+
+.key-blue-button:hover {
+  background-color: @lightPurple;
+}
+
+.key-blue-button:active {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+  background-color: @lightPurple;
+}
+
+.key-blue-button-disabled, .key-blue-button[disabled],
+  .danger-button-disabled, .danger-button[disabled] {
+  cursor: default;
+  display: inline-block;
+  padding: 16px;
+  border-radius: 5px;
+  background-color: @disabled-background-color;
+  box-shadow: none;
+  color: @disabled-color;
+  font-size: 13px;
+  line-height: 9px;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.slate-gray-button {
+  cursor: pointer;
+  display: inline-block;
+  padding: 17px 18px 18px;
+  border-radius: 5px;
+  background-color: @purple;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  color: @white;
+  font-size: 13px;
+  line-height: 9px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 100ms cubic-bezier(0.86, 0, 0.07, 1) 0s;
+}
+
+.slate-gray-button:hover {
+  background-color: @lightPurple;
+}
+
+.slate-gray-button:active {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.22);
+}
+
+.danger-button {
+  cursor: pointer;
+  display: inline-block;
+  padding: 17px 18px 18px;
+  border-radius: 5px;
+  background-color: #b12d2d;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 13px;
+  line-height: 9px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all 100ms cubic-bezier(0.86, 0, 0.07, 1) 0s;
+}
+
+.danger-button:hover {
+  background-color: #c73434;
+}
+
+.manage-pools-button {
+  float: left;
+  background-color: @blue;
+  background-image: @manage-pools-icon;
+  background-position: 50% 50%;
+  background-size: 12px;
+  background-repeat: no-repeat;
+  outline: 0;
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  color: @white;
+  border: 0;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.manage-pools-button:hover {
+  background-color: @grey;
+}
+
+.manage-pools-button:active {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.menu-link {
+  display: flex;
+  position: relative;
+  z-index: 1;
+  align-items: center;
+  cursor: pointer;
+  height: 52px;
+  padding-left: 40px;
+  color: @grey;
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: color 0.13s ease-in-out;
+}
+
+.menu-link:hover,
+.menu-link-active {
+  color: @white;
+}
+
+.menu-link-active {
+  cursor: default;
+}
+
+.menu-caret {
+  position: absolute;
+  height: 52px;
+  width: 100%;
+  border-left: 5px solid #8539dd;
+  background-color: #121823;
+}
+
+.sidebar-mainnet .menu-caret {
+  background-color: @white;
+}
+
+.sidebar-testnet .menu-caret {
+}
+
+.info-modal-button {
+  border-radius: 0px;
+  background-image: @tickets-info-icon;
+  background-position: 50% 50%;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  box-shadow: none;
+  outline: 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  background-color: transparent;
+  color: @white;
+  border: 0;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.info-modal-button:hover {
+  opacity: 0.7;
+}
+
+.path-input-and-button {
+  display: flex;
+  flex: 1;
+}
+
+.path-button {
+  width: 16px;
+  height: 16px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  background-image: @search-icon;
+  background-size: 16px 16px;
+  display: flex;
+  flex: auto;
+}
+
+.path-button:hover {
+  opacity: 0.7;
+}
+
+.path-input {
+  border-style: none;
+  cursor: text;
+  background: transparent;
+  outline: none;
+  align-items: center;
+  border-bottom: 1px @stroke-color-default solid;
+  font-family: @font-family-regular;
+  font-size: 13px;
+  color: @white;
+  padding: 3px 4px 1px 10px;
+  display: flex;
+  flex: auto;
+  flex-grow: 1;
+}
+
+.path-input:hover {
+  opacity: 0.7;
+}
+
+.ticket-cogs-opened,
+.ticket-cogs-closed {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 0px;
+  background-position: 50% 50%;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  box-shadow: none;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  color: @white;
+  border: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ticket-cogs-opened {
+  background-image: @tickets-cogs-opened-icon;
+}
+
+.ticket-cogs-closed {
+  background-image: @tickets-cogs-closed-icon;
+}
+
+.ticket-cogs-opened:hover,
+.ticket-cogs-closed:hover {
+  opacity: 0.7;
+}
+
+.rescan-progress-area {
+  color: @blue;
+  font-size: 13px;
+}
+
+.rescan-progress-percent {
+  color: @accent-color;
+}
+
+.rescan-progress-fraction {
+  color: @accent-color;
+  margin: 0px 4px 0px 4px;
+}
+
+.rescan-progress-indicator {
+  margin: -14px 0px 10px -20px;
+  width: @sidebar-width;
+}
+
+.rescan-button-area {
+  padding-top: 2px;
+  padding-right: 10px;
+  float: left;
+}
+
+.rescan-button {
+  width: 16px;
+  height: 16px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  background-image: @menu-rescan-icon;
+  background-size: 16px 16px;
+  cursor: pointer;
+}
+
+.rescan-button:hover {
+  opacity: 0.7;
+}
+
+@keyframes spin {
+  100% { transform: rotate(0deg); }
+}
+
+.rescan-button.spin {
+  animation: spin 1s linear infinite;
+}
+
+.rescan-button.spin:hover {
+  opacity: 1;
+}
+
+.rescan-cancel-button-area {
+  padding-top: 2px;
+  float: right;
+}
+
+.rescan-cancel-button {
+  width: 16px;
+  height: 16px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  background-image: @menu-cancel-rescan-icon;
+  background-size: 16px 16px;
+  cursor: pointer;
+}
+
+.rescan-cancel-button:hover {
+  opacity: 0.7;
+}
+
+.context-menu-item {
+  font-size: 13px;
+  line-height: 2em;
+  min-width: 10em;
+  padding-left: 8px;
+}
+
+.context-menu-item.selected::before {
+  content: "✓";
+  position: absolute;
+  margin-left: 2px;
+}
+
+.transaction-link {
+  cursor: pointer;
+  color: @link-color;
+}
+
+.transaction-link:hover {
+  color: @link-hover-color;
+}
+
+[data-pseudo-content]::before,
+[data-pseudo-content--before]::before,
+[data-pseudo-content--after]::after {
+  content: attr(data-pseudo-content);
+}

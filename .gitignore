@@ -1,0 +1,15 @@
+*~
+app/dist/
+app/main.js
+app/main.js.map
+node_modules/
+npm-debug.log
+public/js/bundle.js
+release/
+jsconfig.json
+bin/
+.DS_Store
+.vagrant
+dist/
+app/i18n/extracted/app
+/*.node

@@ -1,0 +1,96 @@
+@import (reference) "./main.less";
+@import (reference) "./Icons.less";
+
+.settings-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 740px;
+  background: @darkGrey;
+  margin-bottom: 20px;
+  padding: 26px 0 26px 40px;
+}
+
+.settings-security {
+  padding-left: 100px;
+}
+
+.settings-column-title {
+  font-size: 19px;
+  text-transform: capitalize;
+  margin-bottom: 32px;
+}
+
+.settings-column-content {
+  margin-left: 60px;
+}
+
+.settings-restart {
+  font-weight: bold;
+}
+
+.settings-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.settings-label {
+  .inline-block-mixin;
+
+  text-align: right;
+  margin: -1px 10px 20px 0;
+}
+
+.change-password-default-icon {
+  background: @change-password-default-icon no-repeat center;
+  background-color: @blue;
+  background-size: 16px;
+  cursor: pointer;
+  width: 19px;
+  height: 19px;
+  margin-left: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.13);
+}
+
+.change-password-default-icon:hover {
+  background-color: @blue;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+}
+
+.settings-input {
+  .inline-block-mixin;
+
+  width: 150px;
+}
+
+.settings-input-error {
+  width: 290px;
+  float: right;
+  height: 100%;
+  text-align: left;
+  color: red;
+  padding-top: 5px;
+}
+
+.settings-action-buttons {
+  margin-top: 1em;
+}
+
+.settings-save-button {
+  .inline-block-mixin;
+}
+
+.settings-update-passphrase-button {
+  float: right;
+}
+
+.inverted-colors .settings-general {
+  color: @white;
+}
+
+.get-started-content-new-seed .settings-general {
+  max-width: 400px;
+}

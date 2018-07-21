@@ -1,0 +1,193 @@
+@import (reference) "./main.less";
+@import (reference) "./Icons.less";
+
+.overview-wrapper {
+  background: @darkGrey;
+  height: 100%;
+}
+
+.overview-content-wrapper {
+  height: 194px;
+  background: @darkGrey;
+  padding: 56px 0px 0px 72px;
+  display: flex;
+}
+
+.overview-chart-wrapper {
+  position: relative;
+  top: -115px;
+  left: 300px;
+}
+
+.overview-ticket-chart-wrapper {
+  position: relative;
+  top: -115px;
+  left: 180px;
+}
+
+.overview-header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  background: @darkGrey;
+  height: 95px;
+  padding: 56px 0px 0px 72px;
+}
+
+.overview-balance-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-right: 30%;
+}
+
+.overview-balance {
+  font-size: 42px;
+  color: @white;
+  font-family: Inconsolata;
+}
+
+.overview-balance-label {
+  margin-top: 15px;
+  line-height: 0px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 13px;
+  color: @white;
+}
+
+.overview-balance-unit {
+  font-size: 17px;
+  color: @white;
+}
+
+.overview-spendable-locked-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.overview-spendable-locked {
+  margin-bottom: 40px;
+}
+
+.overview-ticket {
+  margin-bottom: 40px;
+  display: flex;
+}
+
+.overview-ticket-column {
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.overview-ticket-column-right {
+  margin-right: 10px;
+}
+
+.overview-balance-spendable-locked {
+  font-size: 17px;
+  color: @white;
+  font-family: Inconsolata;
+  line-height: 1;
+}
+
+.overview-balance-spendable-locked-unit {
+  font-size: 11px;
+  color: @white;
+  font-family: Inconsolata;
+  line-height: 1;
+}
+
+.overview-balance-spendable-locked-label {
+  font-size: 11px;
+  color: @white;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.overview-transactions-ticket-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 56px 32px;
+  position: absolute;
+  top: 376px;
+  height: 200px;
+}
+
+.recent-transactions {
+  margin-right: 40px;
+}
+
+.home-content-title {
+  border-bottom: 1px solid transparent;
+  color: @white;
+  font-size: 16px;
+  font-family: "Source Sans Pro", sans-serif;
+  margin: 0px 0px 8px 16px;
+}
+
+.home-content-nest {
+  padding-top: 1px;
+}
+
+.home-content-title-text {
+  margin-bottom: 1em;
+}
+
+.home-content-title-button-search {
+  width: 60px;
+  height: 100%;
+  cursor: pointer;
+  padding-right: 20px;
+  padding-left: 20px;
+  float: right;
+  background-image: @search-icon;
+  background-position: 50% 50%;
+  background-size: 20px;
+  background-repeat: no-repeat;
+}
+
+.home-content-title-button-search:hover {
+  opacity: 0.8;
+}
+
+.home-content-title-button-search-transition1 {
+  width: 60px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.home-content-title-text-active {
+  color: @white;
+}
+
+.home-content-title-active {
+  border-bottom: 1px solid #2971ff;
+}
+
+.home-header-meta-currency {
+  font-size: 23px;
+}
+
+.home-loading {
+  margin-top: 110px;
+  margin-left: 268px;
+}
+
+.tickets-to-revoke-warning {
+  position: absolute;
+  width: calc(100% - 40px);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  top: 0px;
+  left: 20px;
+  background-color: rgba(9, 24, 45, 0.8);
+  transition: all 100ms cubic-bezier(0.86, 0, 0.07, 1);
+  height: 55px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  font-size: 12pt;
+  color: #fff;
+
+  .key-blue-button {
+    margin: 5px;
+  }
+}

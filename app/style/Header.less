@@ -1,0 +1,227 @@
+@import (reference) "./main.less";
+@import (reference) "./Icons.less";
+
+.small-balance {
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 0px 5px;
+  color: @white;
+  background-color: @darkGrey;
+  margin-left: 5px;
+  margin-right: auto;
+  margin-top: -4px;
+  border-radius: 5px;
+}
+
+.header-get-started {
+  padding-right: 42px;
+  padding-left: 80px;
+  background-color: @darkGrey;
+}
+
+.header-top-get-started {
+  height: 34px;
+  padding-top: 5px;
+  text-align: center;
+}
+
+.header-title-overview-get-started {
+  height: 54px;
+  padding-top: 13px;
+  color: @white;
+  font-size: 27px;
+}
+
+.header-meta-overview-get-started {
+  padding-top: 5px;
+  font-size: 18px;
+  color: @white;
+  font-family: Inconsolata, monospace;
+}
+
+.header {
+  position: relative;
+  margin-right: 60px;
+  margin-left: 100px;
+  margin-top: 53px;
+  padding-bottom: 30px;
+  background-color: @darkGrey;
+  height: 77px;
+}
+
+.header-top {
+  text-align: center;
+}
+
+.tabbedheader-top {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  margin-top: -44px;
+  width: 100%;
+}
+
+.header-title-overview {
+  padding-top: 14px;
+  color: @white;
+  font-size: 27px;
+}
+
+.header-meta-overview {
+  height: 54px;
+  padding-top: 5px;
+  font-size: 53px;
+}
+
+.tabbedheader-title {
+  margin-bottom: 14px;
+  color: @white;
+  font-size: 27px;
+}
+
+.tabbedheader-icon {
+  position: absolute;
+  top: -4px;
+  left: -40px;
+}
+
+.tabbedheader-content {
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tabbedheader-description {
+  align-self: flex-start;
+  margin-top: -3px;
+  white-space: pre-wrap;
+  color: @grey;
+  font-size: 13px;
+  line-height: 17px;
+}
+
+.tabbedheader-ref {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-left: 4px;
+  margin-bottom: 2px;
+}
+
+.tabbedheader-tab {
+  vertical-align: middle;
+  text-align: center;
+  font-size: 18px;
+  margin: 0px 11px 3px 11px;
+  text-decoration: none;
+  color: @grey;
+  transition: color 0.13s ease-in-out;
+}
+
+.tabbedheader-tab:hover,
+.tabbedheader-tab-active {
+  color: @white;
+}
+
+.tabbedheader-tabs {
+  position: absolute;
+  bottom: 0;
+}
+
+.tabbedheader-active-tab-caret {
+  height: 5px;
+  width: 15px;
+  background-color: @purple;
+  position: relative;
+}
+
+.header-icon-mixin {
+  height: 30px;
+  width: 30px;
+  background-size: 30px;
+  background-repeat: no-repeat;
+}
+
+.accounts {
+  .header-icon-mixin;
+
+  background-image: @accounts-page-icon;
+}
+
+.help {
+  .header-icon-mixin;
+
+  background-image: @help-page-icon;
+}
+
+.history {
+  .header-icon-mixin;
+
+  background-image: @wallet-white-icon;
+}
+
+.mainnet {
+  height: 115px;
+  background-size: 168px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-image: @menu-logo;
+}
+
+.minusBig {
+  .header-icon-mixin;
+
+  height: 60px;
+  background-image: @minus-big-icon;
+}
+
+.plusBig {
+  .header-icon-mixin;
+
+  height: 60px;
+  background-image: @plus-big-icon;
+}
+
+.security {
+  .header-icon-mixin;
+
+  background-image: @security-center-icon;
+}
+
+.settings {
+  .header-icon-mixin;
+
+  background-image: @settings-page-icon;
+}
+
+.testnet {
+  height: 130px;
+  background-repeat: no-repeat;
+  background-image: @testnet-logo;
+}
+
+.tickets {
+  .header-icon-mixin;
+
+  background-image: @tickets-page-icon;
+}
+
+.ticketSmall {
+  .header-icon-mixin;
+
+  background-image: @ticket-small-icon;
+}
+
+.transactions {
+  .header-icon-mixin;
+
+  background-image: @transactions-page-icon;
+}
+
+.walletGray {
+  .header-icon-mixin;
+
+  background-image: @wallet-white-icon;
+}

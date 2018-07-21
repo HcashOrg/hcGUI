@@ -1,0 +1,49 @@
+@import (reference) "./main.less";
+@import (reference) "./Icons.less";
+
+@keyframes spin {
+  30% { transform: rotate(182deg); }
+  40% { transform: rotate(180deg); }
+  50% { transform: rotate(180deg); }
+  80% { transform: rotate(362deg); }
+  90% { transform: rotate(360deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading {
+  text-align: center;
+}
+
+.logo {
+  display: inline-block;
+  height: 300px;
+  width: 300px;
+  background-image: @logo;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+}
+
+.spin {
+  animation: spin 3s ease-in-out infinite;
+}
+
+.loading-more-transactions-indicator {
+  padding: 17px 18px 18px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  margin-top: 2em;
+}
+
+.new-logo-animation {
+  margin-top: 120px;
+  margin-left: 45%;
+  margin-bottom: 40px;
+  display: inline-block;
+  height: 120px;
+  width: 120px;
+  background-image: @new-loader;
+  background-position: 0px 0px;
+  background-size: 120px;
+  background-repeat: no-repeat;
+}
