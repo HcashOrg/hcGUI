@@ -168,7 +168,7 @@ export const txURLBuilder = createSelector(
       return (txHash) => `${MainNetParams.Url}explorer/tx/${txHash}`
     }
     return (txHash) => `${TestNetParams.Url}explorer/tx/${txHash}`
-    //return (txHash) => `http://47.75.110.87:7788/explorer/tx/${txHash}` 
+   
   }
   // (txHash) => `https://${network !== "testnet" ? "explorer" : network}.hcdata.org/${network == "testnet" ? "explorer/" : ""}tx/${txHash}`
 );
@@ -180,7 +180,7 @@ export const blockURLBuilder = createSelector(
       return (txHash) => `${MainNetParams.Url}explorer/block/${txHash}`
     }
     return (txHash) => `${TestNetParams.Url}explorer/block/${txHash}`
-    //return (txHash) => `http://47.75.110.87:7788/explorer/block/${txHash}`
+  
   }
   // (txHash) => `https://${network !== "testnet" ? "explorer" : network}.hcdata.org/${network == "testnet" ? "explorer/" : ""}block/${txHash}`
 );

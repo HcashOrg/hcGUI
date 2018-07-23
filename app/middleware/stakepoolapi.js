@@ -1,6 +1,7 @@
 // @flow
 import axios from "axios";
 import querystring from "querystring";
+import { MainNetParams, TestNetParams } from "../wallet/constants";
 
 // stakepPoolInfoResponseToConfig converts a response object for the
 // stakePoolInfo call into an object array of available stakepool configs.
@@ -15,8 +16,13 @@ function stakepPoolInfoResponseToConfig(response) {
   }).filter(v => v);
 }
 
-export function stakePoolInfo(cb) {
-  axios.get("http://47.75.110.87:7788/api/pool/list")
+export function stakePoolInfo(testnet,cb) {
+
+  let url = `${MainNetParams.Url}api/pool/list`
+  if (testnet){
+      url = `${TestNetParams.Url}api/pool/list`
+  }
+  axios.get(url)
     .then(function (response) {
       cb(stakepPoolInfoResponseToConfig(response));
     })

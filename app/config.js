@@ -61,7 +61,7 @@ export function initWalletCfg(testnet, walletPath) {
   if (!config.has("appdata_path")) {
     config.set("appdata_path","");
   }
-  stakePoolInfo(function(foundStakePoolConfigs) {
+  stakePoolInfo(testnet,function(foundStakePoolConfigs) {
     if (foundStakePoolConfigs !== null) {
       updateStakePoolConfig(config, foundStakePoolConfigs);
     }

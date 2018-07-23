@@ -279,7 +279,7 @@ export function clearStakePoolConfigNewWallet() {
     let config = getWalletCfg(isTestNet(getState()), walletName);
     config.delete("stakepools");
 
-    getStakePoolInfo()
+    getStakePoolInfo(isTestNet(getState()))
       .then(foundStakePoolConfigs => {
         if (foundStakePoolConfigs) {
           let config = getWalletCfg(isTestNet(getState()), walletName);
@@ -298,7 +298,7 @@ export function determineNeededBlocks() {
 
     
     const explorerInfoURL = TestNet ? `${TestNetParams.Url}api/status`:`${MainNetParams.Url}api/status`
-    //const explorerInfoURL =  `http://47.75.110.87:7788/api/status`;
+    
     axios.get(explorerInfoURL, {timeout: 5000})
       .then(function (response) {
         const neededBlocks = response.data.node_height;

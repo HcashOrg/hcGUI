@@ -35,7 +35,7 @@ class StakePools extends React.Component {
           link: (<a className="stakepool-link" onClick={() => {
             if (this.props.isTestNet){
               return shell.openExternal(`${TestNetParams.Url}api/pool/list`)
-             // shell.openExternal("http://47.75.110.87:7788/api/pool/list")
+      
             }
             return shell.openExternal(`${MainNetParams.Url}api/pool/list`)  
           }}><T id="stake.discoverStakeOoolsAPILink" m="this link" /></a>)

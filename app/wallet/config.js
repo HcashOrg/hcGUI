@@ -2,7 +2,7 @@ import Promise from "promise";
 import { stakePoolInfo } from "middleware/stakepoolapi";
 import { withLogNoData  } from "./index";
 
-export const getStakePoolInfo = withLogNoData(() =>
+export const getStakePoolInfo = withLogNoData((testnet) =>
   new Promise((resolve, reject) =>
-    stakePoolInfo((response, error) => !response ? reject(error) : resolve(response))),
+    stakePoolInfo(testnet,(response, error) => !response ? reject(error) : resolve(response))),
 "Get Stakepool Info");

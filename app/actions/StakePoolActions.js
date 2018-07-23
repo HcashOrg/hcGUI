@@ -144,7 +144,7 @@ export const setStakePoolVoteChoices = (stakePool, voteChoices) => (dispatch) =>
 
 export const DISCOVERAVAILABLESTAKEPOOLS_SUCCESS = "DISCOVERAVAILABLESTAKEPOOLS_SUCCESS";
 export const discoverAvailableStakepools = () => (dispatch, getState) =>
-  getStakePoolInfo()
+  getStakePoolInfo(sel.isTestNet(getState()))
     .then((foundStakepoolConfigs) => {
       if (foundStakepoolConfigs) {
         const { daemon: { walletName }} = getState();
