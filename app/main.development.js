@@ -899,7 +899,7 @@ app.on("ready", async () => {
       submenu: [{
         label: locale.messages["appMenu.learnMore"],
         click() {
-          shell.openExternal("http://HcashOrg.network/");
+          shell.openExternal("http://wiki.h.cash/");
         }
       },
       // {
