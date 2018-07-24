@@ -1720,7 +1720,7 @@ msgstr "加载更多交易"
 #: app/i18n/extracted/app/components/views/SettingsPage/GeneralSettings.json
 msgctxt "settings.locale"
 msgid "Locale"
-msgstr "现场"
+msgstr "语言"
 
 #. [home.currentTotalLockedBalanceLabel]
 #. defaultMessage is:
