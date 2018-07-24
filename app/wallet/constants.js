@@ -5,6 +5,7 @@ export const TestNetParams = {
   TicketExpiry:            6144, // 6*TicketPoolSize
   CoinbaseMaturity:        16,
   SStxChangeMaturity:      1,
+  HDCoinType:171,
   Url:"http://testnet-explorer.h.cash/"
 };
 
@@ -13,5 +14,6 @@ export const MainNetParams = {
   TicketExpiry:            40960, // 5*TicketPoolSize
   CoinbaseMaturity:        256,
   SStxChangeMaturity:      1,
+  HDCoinType:171,
   Url:"http://hc-explorer.h.cash/"
 };

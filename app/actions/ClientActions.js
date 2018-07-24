@@ -183,15 +183,15 @@ export const getAccountNumbersBalances = (accountNumbers) => (dispatch, getState
 const getAccountsBalances = (accounts) => (dispatch, getState) => {
   var balances = new Array();
   const { daemon: { hiddenAccounts } } = getState();
-
+  const chainParams = sel.chainParams(getState());
   accounts.forEach(account => {
     let hidden = false;
     let HDPath = "";
     if (hiddenAccounts.find(eq(account.getAccountNumber()))) hidden = true;
     if (sel.isMainNet(getState())) {
-      HDPath = "m / 44' / 20' / " + account.getAccountNumber() + "'";
+      HDPath = "m / 44' / " + chainParams.HDCoinType + "' / " + account.getAccountNumber() + "'";
     } else if (sel.isTestNet(getState())) {
-      HDPath = "m / 44' / 11' / " + account.getAccountNumber() + "'";
+      HDPath = "m / 44' / " + chainParams.HDCoinType + "' / " + account.getAccountNumber() + "'";
     }
     wallet.getBalance(sel.walletService(getState()), account.getAccountNumber(), 0)
       .then(resp => {
