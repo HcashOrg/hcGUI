@@ -696,7 +696,7 @@ app.on("ready", async () => {
   } else {
     await installExtensions();
   }
-  windowOpts.title = "HcGui - " + app.getVersion();
+  windowOpts.title = "hcGUI - " + app.getVersion();
 
   mainWindow = new BrowserWindow(windowOpts);
   mainWindow.loadURL(`file://${__dirname}/${windowOpts.page}`);

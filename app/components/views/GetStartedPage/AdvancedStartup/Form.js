@@ -8,7 +8,7 @@ import "style/LoginForm.less";
 export const AdvancedHeader = () => (
   <Header getStarted
     headerTitleOverview={<T id="getStarted.advanced.title" m="Advanced Start Up" />}
-    headerMetaOverview={<T id="getStarted.advanced.meta" m="Please complete one of the following forms to start HcGui according to your local setup." />} />
+    headerMetaOverview={<T id="getStarted.advanced.meta" m="Please complete one of the following forms to start hcGUI according to your local setup." />} />
 );
 
 const AdvancedBodyBase = ({

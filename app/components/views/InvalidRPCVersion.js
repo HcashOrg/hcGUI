@@ -10,7 +10,7 @@ const InvalidRPCVersion = ({ requiredWalletRPCVersion, walletRPCVersion, routes 
       <div className="invalid-rpc-info">
         <T
           id="invalidRPCVersion.info"
-          m={`The API of the currently running wallet ({walletRPCVersion}) is not compatible with HcGui (required version {requiredWalletRPCVersion}).
+          m={`The API of the currently running wallet ({walletRPCVersion}) is not compatible with hcGUI (required version {requiredWalletRPCVersion}).
 
           Please update the daemon (Hcd) and wallet (Hcwallet) to the latest version, then try again.
 

@@ -228,8 +228,8 @@ msgstr "Sobre"
 #. About HcGui
 #: app/i18n/extracted/static/menus.json
 msgctxt "appMenu.aboutHcgui"
-msgid "About HcGui"
-msgstr "Sobre HcGui"
+msgid "About hcGUI"
+msgstr "Sobre hcGUI"
 
 #. [tickets.info.account.header]
 #. defaultMessage is:
@@ -853,12 +853,12 @@ msgstr "Constituição HC"
 #. HcGUI
 #: app/i18n/extracted/static/menus.json
 msgctxt "appMenu.hcgui"
-msgid "HcGUI"
-msgstr "HcGui"
+msgid "hcGUI"
+msgstr "hcGUI"
 
 #. [tickets.info.txFee.message]
 #. defaultMessage is:
-#. HcGui uses a "split" transaction to avoid blocking your balance,
+#. hcGUI uses a "split" transaction to avoid blocking your balance,
 #. spliting the exact amount needed for the ticket from the balance in your
 #. wallet. The "split" transaction needs to be confirmed at least once before
 #. you can reuse your balance. This can block your whole balance for several
@@ -869,7 +869,7 @@ msgstr "HcGui"
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 msgctxt "tickets.info.txFee.message"
 msgid ""
-"HcGui uses a \"split\" transaction to avoid blocking your balance, "
+"hcGUI uses a \"split\" transaction to avoid blocking your balance, "
 "spliting the exact amount needed for the ticket from the balance in your "
 "wallet. The \"split\" transaction needs to be confirmed at least once before"
 " you can reuse your balance. This can block your whole balance for several "
@@ -878,7 +878,7 @@ msgid ""
 "several hours. This can be left at 0.01. It does not affect your chances of "
 "buying tickets or voting with them."
 msgstr ""
-"HcGui usa uma transação \"split\" para evitar bloquear o seu saldo, "
+"hcGUI usa uma transação \"split\" para evitar bloquear o seu saldo, "
 "dividindo o valor exato necessário para a compra do ticket do saldo da sua "
 "carteira. Essa transação \"split\" precisa ser confirmada pelo menos uma vez"
 " para que você possa reutilizar o seu saldo. Isso pode bloquear o seu saldo "
@@ -1001,13 +1001,13 @@ msgstr "Digite a Senha para Revogar Tickets"
 #. Enter the passphrase you just created to scan the blockchain for additional
 #. accounts you may have previously created with your wallet.
 #.           Your account names aren't stored on the blockchain, so you will
-#. have to rename them after setting up HcGUI.
+#. have to rename them after setting up hcGUI.
 #: app/i18n/extracted/app/components/views/GetStartedPage/DiscoverAddresses/Form.json
 msgctxt "getStarted.discoverAccountsInfo"
 msgid ""
 "Enter the passphrase you just created to scan the blockchain for additional accounts you may have previously created with your wallet.\n"
 "\n"
-"          Your account names aren't stored on the blockchain, so you will have to rename them after setting up HcGUI."
+"          Your account names aren't stored on the blockchain, so you will have to rename them after setting up hcGUI."
 msgstr ""
 "Digite a senha particular que você acabou de criar para escanear a blockchain por contas adicionais que você pode ter criado em sua carteira.\n"
 "\n"
@@ -1324,8 +1324,8 @@ msgstr "Ajuda"
 #. Hide HcGUI
 #: app/i18n/extracted/static/menus.json
 msgctxt "appMenu.hideHcgui"
-msgid "Hide HcGUI"
-msgstr "Esconder HcGUI"
+msgid "Hide hcGUI"
+msgstr "Esconder hcGUI"
 
 #. [appMenu.hideOthers]
 #. defaultMessage is:
@@ -1358,13 +1358,13 @@ msgstr ""
 
 #. [getStarted.chainLoadingDelayReminder]
 #. defaultMessage is:
-#. If you are starting hcgui for the first time, this may take a while.
+#. If you are starting hcGUI for the first time, this may take a while.
 #: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
 msgctxt "getStarted.chainLoadingDelayReminder"
 msgid ""
-"If you are starting hcgui for the first time, this may take a while."
+"If you are starting hcGUI for the first time, this may take a while."
 msgstr ""
-"Se está iniciando o HcGUI pela primeira vez isso pode demorar um tempo."
+"Se está iniciando o hcGUI pela primeira vez isso pode demorar um tempo."
 
 #. [getStarted.firstTimeSyncDelayReminder]
 #. defaultMessage is:
@@ -1380,15 +1380,15 @@ msgstr ""
 
 #. [help.description]
 #. defaultMessage is:
-#. If you have any difficulty with hcgui, please use the following links
+#. If you have any difficulty with hcGUI, please use the following links
 #. to help find a solution.
 #: app/i18n/extracted/app/messages.json
 msgctxt "help.description"
 msgid ""
-"If you have any difficulty with hcgui, please use the following links "
+"If you have any difficulty with hcGUI, please use the following links "
 "to help find a solution."
 msgstr ""
-"Se você tiver qualquer dificuldade ao utilizar o hcgui, por favor "
+"Se você tiver qualquer dificuldade ao utilizar o hcGUI, por favor "
 "utilize os links abaixo para tentar encontrar uma solução."
 
 #. [ticketAutoBuyer.info.balanceToMaintain.message]
@@ -2005,15 +2005,15 @@ msgstr "Pendente"
 
 #. [getStarted.advanced.meta]
 #. defaultMessage is:
-#. Please complete one of the following forms to start HcGUI according to
+#. Please complete one of the following forms to start hcGUI according to
 #. your local setup.
 #: app/i18n/extracted/app/components/views/GetStartedPage/AdvancedStartup/Form.json
 msgctxt "getStarted.advanced.meta"
 msgid ""
-"Please complete one of the following forms to start HcGUI according to "
+"Please complete one of the following forms to start hcGUI according to "
 "your local setup."
 msgstr ""
-"Por favor complete um dos formulários para iniciar o HcGUI de acordo "
+"Por favor complete um dos formulários para iniciar o hcGUI de acordo "
 "com sua configuração"
 
 #. [send.confirmAmountLabel]
@@ -2642,8 +2642,8 @@ msgstr "Serviços"
 #. Setting up HcGUI
 #: app/i18n/extracted/app/components/views/GetStartedPage/DefaultHeader.json
 msgctxt "getStarted.header.title"
-msgid "Setting up HcGUI"
-msgstr "Configurando HcGUI"
+msgid "Setting up hcGUI"
+msgstr "Configurando hcGUI"
 
 #. [purchaseTickets.settings]
 #. defaultMessage is:
@@ -2714,8 +2714,8 @@ msgstr "Exibir arquivos de logs da Carteira"
 #. Shutting down HcGUI
 #: app/i18n/extracted/app/components/views/ShutdownAppPage.json
 msgctxt "shutdown.header.title"
-msgid "Shutting down HcGUI"
-msgstr "Desligando o HcGUI"
+msgid "Shutting down hcGUI"
+msgstr "Desligando o hcGUI"
 
 #. [shutdown.header.meta]
 #. defaultMessage is:
@@ -2992,7 +2992,7 @@ msgstr ""
 #. [invalidRPCVersion.info]
 #. defaultMessage is:
 #. The API of the currently running wallet ({walletRPCVersion}) is not
-#. compatible with HcGUI (required version {requiredWalletRPCVersion}).
+#. compatible with hcGUI (required version {requiredWalletRPCVersion}).
 #.           Please update the daemon (Hcd) and wallet (Hcwallet) to the
 #. latest version, then try again.
 #.           See the "Help ⮕ About" menu for the current version of the
@@ -3000,13 +3000,13 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/InvalidRPCVersion.json
 msgctxt "invalidRPCVersion.info"
 msgid ""
-"The API of the currently running wallet ({walletRPCVersion}) is not compatible with HcGUI (required version {requiredWalletRPCVersion}).\n"
+"The API of the currently running wallet ({walletRPCVersion}) is not compatible with hcGUI (required version {requiredWalletRPCVersion}).\n"
 "\n"
 "          Please update the daemon (Hcd) and wallet (Hcwallet) to the latest version, then try again.\n"
 "\n"
 "          See the \"Help ⮕ About\" menu for the current version of the executables."
 msgstr ""
-"A API da carteira em execução ({walletRPCVersion}) não é compatível com o HcGUI (versão requerida {requiredWalletRPCVersion}).\n"
+"A API da carteira em execução ({walletRPCVersion}) não é compatível com o hcGUI (versão requerida {requiredWalletRPCVersion}).\n"
 "\n"
 "          Por favor atualize o daemon (Hcd) e a carteira (Hcwallet) para suas versões mais recentes, e então tente novamente.\n"
 "\n"

@@ -4,5 +4,5 @@ import { FormattedMessage as T } from "react-intl";
 export default ({...props}) =>
   <Header
     getStarted
-    headerTitleOverview={<T id="getStarted.header.title" m="Setting up HcGui" />}
+    headerTitleOverview={<T id="getStarted.header.title" m="Setting up hcGUI" />}
     {...props} />;
