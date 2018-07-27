@@ -234,8 +234,8 @@ msgstr "关于"
 #. About HcGui
 #: app/i18n/extracted/static/menus.json
 msgctxt "appMenu.aboutHcgui"
-msgid "About HcGui"
-msgstr "关于HcGui"
+msgid "About hcGUI"
+msgstr "关于hcGUI"
 
 #. [tickets.info.account.header]
 #. defaultMessage is:
@@ -563,7 +563,7 @@ msgstr "余额信息"
 #: app/i18n/extracted/app/components/modals/TicketAutoBuyerInfoModalContent.json
 msgctxt "ticketAutoBuyer.info.balanceToMaintain.header"
 msgid "Balance to Maintain"
-msgstr "维护金额"
+msgstr "保留数量"
 
 #. [autobuyer.balanceToMaintain]
 #. defaultMessage is:
@@ -575,7 +575,7 @@ msgstr "维护金额"
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/TicketAutoBuyer/Form.json
 msgctxt "autobuyer.balanceToMaintain"
 msgid "Balance to Maintain"
-msgstr "维护金额"
+msgstr "保留数量"
 
 #. [accounts.balances]
 #. defaultMessage is:
@@ -959,7 +959,7 @@ msgid ""
 "means buy one ticket every n blocks. e.g. -2 would mean buy a ticket every "
 "second block."
 msgstr ""
-"每个区块购买的票数不要超过这个数量。 负数意味着每n个街区购买一张票。 例如 -2"
+"每个区块购买的票数不要超过这个数量。 负数意味着每n个区块购买一张票。 例如 -2"
 "意味着每两个区块买一张票。"
 
 #. [stakepools.list.confirmRemove]
@@ -1354,16 +1354,16 @@ msgstr "HD 路劲"
 #. HcGui
 #: app/i18n/extracted/static/menus.json
 msgctxt "appMenu.hcgui"
-msgid "HcGui"
-msgstr "HcGui"
+msgid "hcGUI"
+msgstr "hcGUI"
 
 #. [tickets.info.txFee.message]
 #. defaultMessage is:
-#. HcGui uses a "split" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The "split" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them.
+#. hcGUI uses a "split" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The "split" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them.
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 msgctxt "tickets.info.txFee.message"
 msgid ""
-"HcGui uses a \"split\" transaction to avoid blocking your balance, spliting "
+"hcGUI uses a \"split\" transaction to avoid blocking your balance, spliting "
 "the exact amount needed for the ticket from the balance in your wallet. The "
 "\"split\" transaction needs to be confirmed at least once before you can "
 "reuse your balance. This can block your whole balance for several minutes "
@@ -1372,7 +1372,7 @@ msgid ""
 "hours. This can be left at 0.01. It does not affect your chances of buying "
 "tickets or voting with them."
 msgstr ""
-"HcGui使用“拆分”交易来避免阻塞您的余额，将票证所需的确切金额与钱包中的余额分"
+"hcGUI使用“拆分”交易来避免阻塞您的余额，将票证所需的确切金额与钱包中的余额分"
 "开。 在您重新使用余额之前，需要至少确认一次“拆分”交易。 在确认进行时，这可能"
 "会阻止您的整个余额几分钟。 如果没有拆分，您将不得不等待票证交易的确认，这可能"
 "需要几个小时。 这可以留在0.01。 它不会影响您购票或与他们一起投票的机会。"
@@ -1414,8 +1414,8 @@ msgstr "帮助"
 #. Hide HcGui
 #: app/i18n/extracted/static/menus.json
 msgctxt "appMenu.hideHcgui"
-msgid "Hide HcGui"
-msgstr "隐藏HcGui"
+msgid "Hide hcGUI"
+msgstr "隐藏hcGUI"
 
 #. [help.logs.hide.hcd]
 #. defaultMessage is:
@@ -1469,11 +1469,11 @@ msgstr "如果选票价格高于此值，您将不会购买更多选票。 默�
 
 #. [getStarted.chainLoadingDelayReminder]
 #. defaultMessage is:
-#. If you are starting HcGui for the first time, this may take a while.
+#. If you are starting hcGUI for the first time, this may take a while.
 #: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
 msgctxt "getStarted.chainLoadingDelayReminder"
-msgid "If you are starting HcGui for the first time, this may take a while."
-msgstr "如果是第一次启动HcGui,可能需要等待一段时间"
+msgid "If you are starting hcGUI for the first time, this may take a while."
+msgstr "如果是第一次启动hcGUI,可能需要等待一段时间"
 
 #. [getStarted.firstTimeSyncDelayReminder]
 #. defaultMessage is:
@@ -1486,14 +1486,14 @@ msgstr "如果您是第一次同步区块链，可能需要一段时间。"
 
 #. [help.description.links]
 #. defaultMessage is:
-#. If you have any difficulty with HcGui, please use the following links to help find a solution.
+#. If you have any difficulty with hcGUI, please use the following links to help find a solution.
 #: app/i18n/extracted/app/messages.json
 msgctxt "help.description.links"
 msgid ""
-"If you have any difficulty with HcGui, please use the following links to "
+"If you have any difficulty with hcGUI, please use the following links to "
 "help find a solution."
 msgstr ""
-"如果您在使用HcGui的过程中遇到任何困难，请使用以下链接来帮助找到解决方法。"
+"如果您在使用hcGUI的过程中遇到任何困难，请使用以下链接来帮助找到解决方法。"
 
 #. [ticketAutoBuyer.info.balanceToMaintain.message]
 #. defaultMessage is:
@@ -1720,7 +1720,7 @@ msgstr "加载更多交易"
 #: app/i18n/extracted/app/components/views/SettingsPage/GeneralSettings.json
 msgctxt "settings.locale"
 msgid "Locale"
-msgstr "现场"
+msgstr "语言"
 
 #. [home.currentTotalLockedBalanceLabel]
 #. defaultMessage is:
@@ -2150,13 +2150,13 @@ msgstr "等待中"
 
 #. [getStarted.advanced.meta]
 #. defaultMessage is:
-#. Please complete one of the following forms to start HcGui according to your local setup.
+#. Please complete one of the following forms to start hcGUI according to your local setup.
 #: app/i18n/extracted/app/components/views/GetStartedPage/AdvancedStartup/Form.json
 msgctxt "getStarted.advanced.meta"
 msgid ""
-"Please complete one of the following forms to start HcGui according to your "
+"Please complete one of the following forms to start hcGUI according to your "
 "local setup."
-msgstr "请根据您的本地设置完成下列表单中的一个以启动HcGui。"
+msgstr "请根据您的本地设置完成下列表单中的一个以启动hcGUI。"
 
 #. [send.confirmAmountLabel]
 #. defaultMessage is:
@@ -2946,8 +2946,8 @@ msgstr "服务"
 #. Setting up HcGui
 #: app/i18n/extracted/app/components/views/GetStartedPage/DefaultHeader.json
 msgctxt "getStarted.header.title"
-msgid "Setting up HcGui"
-msgstr "设置HCGUI"
+msgid "Setting up hcGUI"
+msgstr "设置hcGUI"
 
 #. [getStarted.header.settings.meta]
 #. defaultMessage is:
@@ -3026,8 +3026,8 @@ msgstr "显示钱包日志文件"
 #. Shutting down HcGui
 #: app/i18n/extracted/app/components/views/ShutdownAppPage.json
 msgctxt "shutdown.header.title"
-msgid "Shutting down HcGui"
-msgstr "关闭HcGui"
+msgid "Shutting down hcGUI"
+msgstr "关闭hcGUI"
 
 #. [shutdown.header.meta]
 #. defaultMessage is:
@@ -3315,7 +3315,7 @@ msgstr ""
 
 #. [invalidRPCVersion.info]
 #. defaultMessage is:
-#. The API of the currently running wallet ({walletRPCVersion}) is not compatible with HcGui (required version {requiredWalletRPCVersion}).
+#. The API of the currently running wallet ({walletRPCVersion}) is not compatible with hcGUI (required version {requiredWalletRPCVersion}).
 #.
 #. Please update the daemon (Hcd) and wallet (Hcwallet) to the latest version, then try again.
 #.
@@ -3324,7 +3324,7 @@ msgstr ""
 msgctxt "invalidRPCVersion.info"
 msgid ""
 "The API of the currently running wallet ({walletRPCVersion}) is not "
-"compatible with HcGui (required version {requiredWalletRPCVersion}).\n"
+"compatible with hcGUI (required version {requiredWalletRPCVersion}).\n"
 "\n"
 "          Please update the daemon (Hcd) and wallet (Hcwallet) to the latest "
 "version, then try again.\n"
@@ -3332,7 +3332,7 @@ msgid ""
 "          See the \"Help ⮕ About\" menu for the current version of the "
 "executables."
 msgstr ""
-"当前运行的钱包的API（{ WaleReTrpVest}）与HcGui（要求的版本"
+"当前运行的钱包的API（{ WaleReTrpVest}）与hcGUI（要求的版本"
 "{RealdWaleReTrpVest}）不兼容。请将守护进程（HCD）和钱包（Hcwallet）更新到最新"
 "版本，然后再试一次。请参阅当前版本的可执行文件的“帮助”菜单。"
 

@@ -40,10 +40,10 @@ export const getWalletRPCVersionAttempt = () => (dispatch, getState) => {
         versionErr = "Unable to obtain Hcwallet API version";
       } else {
         if (!semverCompatible(requiredVersion, walletVersion)) {
-          versionErr = "API versions not compatible..  HcGui requires "
+          versionErr = "API versions not compatible..  hcGUI requires "
             + requiredVersion + " but wallet " + walletVersion
             + " does not satisfy the requirement. Please check your"
-            + " installation, HcGui and Hcwallet versions should match.";
+            + " installation, hcGUI and Hcwallet versions should match.";
         }
       }
       if (versionErr) {

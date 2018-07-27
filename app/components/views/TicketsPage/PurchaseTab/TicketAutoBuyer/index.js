@@ -65,10 +65,11 @@ class TicketAutoBuyer extends React.Component {
     const changeMaxPriceRelative = e => this.onChangeMaxPriceRelative(v(e));
     const changeMaxPerBlock = e => this.onChangeMaxPerBlock(v(e));
 
-    const { isTicketAutoBuyerConfigDirty,
+    const { 
       getTicketBuyerConfigResponse,
       intl : { formatMessage }
     } = this.props;
+    let isTicketAutoBuyerConfigDirty = this.getIsDirty()
     const { onUpdateTicketAutoBuyerConfig } = this;
     return [{
       data: <Details {...{
@@ -201,6 +202,7 @@ class TicketAutoBuyer extends React.Component {
 
   onChangeMaxPerBlock(maxPerBlock) {
     const maxPerBlockError = !maxPerBlock;
+    console.log("what happen??????")
     this.setState({
       maxPerBlock: maxPerBlock.replace(/[^\d.]/g, ""),
       maxPerBlockError: maxPerBlockError

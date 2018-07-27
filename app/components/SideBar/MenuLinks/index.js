@@ -13,7 +13,7 @@ const linkList = [
   "tickets",
   //// hide for now
   // "security",
-  // "settings",
+   "settings",
   // "help"
 ];
 

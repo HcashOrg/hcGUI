@@ -97,11 +97,11 @@
   },
   {
     "id": "appMenu.hcgui",
-    "defaultMessage": "HcGui"
+    "defaultMessage": "hcGUI"
   },
   {
     "id": "appMenu.aboutHcgui",
-    "defaultMessage": "About HcGui"
+    "defaultMessage": "About hcGUI"
   },
   {
     "id": "appMenu.services",
@@ -109,7 +109,7 @@
   },
   {
     "id": "appMenu.hideHcgui",
-    "defaultMessage": "Hide HcGui"
+    "defaultMessage": "Hide hcGUI"
   },
   {
     "id": "appMenu.hideOthers",

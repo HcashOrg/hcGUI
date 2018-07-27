@@ -22,7 +22,7 @@ const WalletError = ({ getNetworkError, routes }) => (
       { getNetworkError ?
         <p>{getNetworkError} Please verify that your Hcd is configured correctly and restart.</p> :
         <p> We have detected that your wallet has disconnected.
-          Please reload HcGui to fix this problem. </p>
+          Please reload hcGUI to fix this problem. </p>
       }
     </div>
   </div>

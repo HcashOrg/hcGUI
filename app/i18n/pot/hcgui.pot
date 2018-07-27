@@ -228,7 +228,7 @@ msgstr ""
 #. defaultMessage is:
 #. About HcGui
 msgctxt "appMenu.aboutHcgui"
-msgid "About HcGui"
+msgid "About hcGUI"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
@@ -1333,15 +1333,15 @@ msgstr ""
 #. defaultMessage is:
 #. HcGui
 msgctxt "appMenu.hcgui"
-msgid "HcGui"
+msgid "hcGUI"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 #. [tickets.info.txFee.message]
 #. defaultMessage is:
-#. HcGui uses a "split" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The "split" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them.
+#. hcGUI uses a "split" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The "split" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them.
 msgctxt "tickets.info.txFee.message"
-msgid "HcGui uses a \"split\" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The \"split\" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them."
+msgid "hcGUI uses a \"split\" transaction to avoid blocking your balance, spliting the exact amount needed for the ticket from the balance in your wallet. The \"split\" transaction needs to be confirmed at least once before you can reuse your balance. This can block your whole balance for several minutes while this confirmation occurs. Without the split, you would have to wait for the confirmation of the ticket transaction, which could take several hours. This can be left at 0.01. It does not affect your chances of buying tickets or voting with them."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TxDetails.json
@@ -1381,7 +1381,7 @@ msgstr ""
 #. defaultMessage is:
 #. Hide HcGui
 msgctxt "appMenu.hideHcgui"
-msgid "Hide HcGui"
+msgid "Hide hcGUI"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/HelpPage/LogsTab/Page.json
@@ -1435,9 +1435,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
 #. [getStarted.chainLoadingDelayReminder]
 #. defaultMessage is:
-#. If you are starting HcGui for the first time, this may take a while.
+#. If you are starting hcGUI for the first time, this may take a while.
 msgctxt "getStarted.chainLoadingDelayReminder"
-msgid "If you are starting HcGui for the first time, this may take a while."
+msgid "If you are starting hcGUI for the first time, this may take a while."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/FetchBlockHeaders/Form.json
@@ -1451,9 +1451,9 @@ msgstr ""
 #: app/i18n/extracted/app/messages.json
 #. [help.description.links]
 #. defaultMessage is:
-#. If you have any difficulty with HcGui, please use the following links to help find a solution.
+#. If you have any difficulty with hcGUI, please use the following links to help find a solution.
 msgctxt "help.description.links"
-msgid "If you have any difficulty with HcGui, please use the following links to help find a solution."
+msgid "If you have any difficulty with hcGUI, please use the following links to help find a solution."
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/TicketAutoBuyerInfoModalContent.json
@@ -2065,9 +2065,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/GetStartedPage/AdvancedStartup/Form.json
 #. [getStarted.advanced.meta]
 #. defaultMessage is:
-#. Please complete one of the following forms to start HcGui according to your local setup.
+#. Please complete one of the following forms to start hcGUI according to your local setup.
 msgctxt "getStarted.advanced.meta"
-msgid "Please complete one of the following forms to start HcGui according to your local setup."
+msgid "Please complete one of the following forms to start hcGUI according to your local setup."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TransactionsPage/SendTab/Page.json
@@ -2794,7 +2794,7 @@ msgstr ""
 #. defaultMessage is:
 #. Setting up HcGui
 msgctxt "getStarted.header.title"
-msgid "Setting up HcGui"
+msgid "Setting up hcGUI"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/Settings/Header.json
@@ -2874,7 +2874,7 @@ msgstr ""
 #. defaultMessage is:
 #. Shutting down HcGui
 msgctxt "shutdown.header.title"
-msgid "Shutting down HcGui"
+msgid "Shutting down hcGUI"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/ShutdownAppPage.json
@@ -3145,13 +3145,13 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/InvalidRPCVersion.json
 #. [invalidRPCVersion.info]
 #. defaultMessage is:
-#. The API of the currently running wallet ({walletRPCVersion}) is not compatible with HcGui (required version {requiredWalletRPCVersion}).
+#. The API of the currently running wallet ({walletRPCVersion}) is not compatible with hcGUI (required version {requiredWalletRPCVersion}).
 #. 
 #.           Please update the daemon (Hcd) and wallet (Hcwallet) to the latest version, then try again.
 #. 
 #.           See the "Help ⮕ About" menu for the current version of the executables.
 msgctxt "invalidRPCVersion.info"
-msgid "The API of the currently running wallet ({walletRPCVersion}) is not compatible with HcGui (required version {requiredWalletRPCVersion}).\n\n          Please update the daemon (Hcd) and wallet (Hcwallet) to the latest version, then try again.\n\n          See the \"Help ⮕ About\" menu for the current version of the executables."
+msgid "The API of the currently running wallet ({walletRPCVersion}) is not compatible with hcGUI (required version {requiredWalletRPCVersion}).\n\n          Please update the daemon (Hcd) and wallet (Hcwallet) to the latest version, then try again.\n\n          See the \"Help ⮕ About\" menu for the current version of the executables."
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
