@@ -74,6 +74,9 @@ class WalletSelectionBody extends React.Component {
     this.setState({ selectedWallet });
   }
   onChangeCreateWalletName(newWalletName) {
+    if ( newWalletName && newWalletName.length > 20) {
+      return
+    }
     this.setState({ newWalletName });
   }
   onChangeCreateWalletNetwork() {
