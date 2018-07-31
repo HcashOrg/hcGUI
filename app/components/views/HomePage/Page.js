@@ -24,7 +24,7 @@ const HomePage = ({
         <div className="recent-transactions">
           <RecentTransactions {...{ routes, transactions, getTransactionsRequestAttempt, getAccountsResponse }} />
         </div>
-        <div className="ticket-activity">
+        <div className="ticket-activity clearfix">
           <TicketActivity {...{ routes, transactions, getTransactionsRequestAttempt, getAccountsResponse }} />
         </div>
       </div>

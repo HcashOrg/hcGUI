@@ -19,5 +19,39 @@
 }
 
 .mono {
-  font-family: Inconsolata, monospace;
+  font-family: @font-family-JuraBold;
+}
+
+
+.tabbed-page {
+  color: #220f2a;
+  .accounts-select {
+    margin-right: 0;
+  }
+  .Select-control {
+    border: 1px solid transparent !important;
+    background-color: #fff;
+    color: #220f2a !important;
+  }
+  .input-and-unit {
+    border: 1px solid transparent !important;
+    background-color: #fff;
+    color: #220f2a !important;
+  }
+  select,
+  input {
+    color: #220f2a !important;
+  }
+  ::-webkit-input-placeholder { /* WebKit browsers */
+  color:#220f2a !important;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:#220f2a !important;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:#220f2a !important;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+  color:#220f2a !important;
+  }
 }

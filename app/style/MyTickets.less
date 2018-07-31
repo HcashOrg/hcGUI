@@ -9,16 +9,17 @@
 
 .ticket-card {
   height: 90px;
-  width: 270px;
-  padding-left: 62px;
-  background-color: @darkGrey;
+  width: 50%;
+  // padding-left: 62px;
+  // background-color: @darkGrey;
   background-repeat: no-repeat;
   background-size: 31px 43px;
-  background-position: 20px 26px;
+  background-position: center top;
   margin-bottom: 20px;
-  justify-content: space-between;
-  flex-grow: 1;
-  margin-right: 20px;
+  padding: 10px;
+  // justify-content: space-between;
+  // flex-grow: 1;
+  // margin-right: 20px;
   overflow: hidden;
   transition: all 125ms ease-in-out;
   cursor: pointer;
@@ -30,6 +31,9 @@
 
 .ticket-card:hover {
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.16);
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .ticket-overview-header {
@@ -38,7 +42,7 @@
   font-size: 17px;
   text-transform: uppercase;
   text-align: center;
-  margin: 26px 0px 4px 0px;
+  margin: 60px 0px 4px 0px;
 }
 
 .ticket-overview-count {
@@ -111,7 +115,7 @@
 
 .vote-choice {
   padding: 4px;
-  background-color: rgba(105, 211, 245, 0.3);
+  background-color: rgba(133, 57, 221, 0.3);
 }
 
 .vote-choice-agenda-id {

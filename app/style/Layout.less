@@ -32,7 +32,7 @@
 
 // Main content that allows scrolling
 .page-content {
-  .page-content-mixin;
+  // .page-content-mixin;
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -41,6 +41,9 @@
 // Main content that *does not* allow scrolling
 .page-content-fixed {
   overflow: visible;
+  background: @content-color;
+  border-radius: 10px 0 0 10px;
+  padding: 60px;
 }
 
 // Main content that has been blured by something positioned "on top" of it
@@ -72,6 +75,9 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  background-color: #f3eff6;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
 }
 
 .tab-content {
@@ -88,7 +94,7 @@
 }
 
 .tab-card {
-  margin: 60px 60px 30px 60px;
+  margin: 60px;
 }
 
 .tab-card-blur {

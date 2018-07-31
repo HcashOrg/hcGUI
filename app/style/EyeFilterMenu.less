@@ -2,53 +2,60 @@
 @import (reference) "./Icons.less";
 
 .eye-filter-menu {
-  margin-left: 0.5em;
+  // margin-left: 15px;
 }
 
 .eye-filter-menu.menu-open::after {
   content: "";
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-bottom: 5px solid @darkGrey;
+  border-bottom: 5px solid @white;
   position: absolute;
-  top: 30px;
-  right: 10px;
+  top: 50%;
+  right: 15px;
   transition: all 100ms ease-in-out;
 }
 
 .eye-filter-menu-button {
   background-color: @white;
-  height: 34px;
-  width: 40px;
-  padding: 0px;
+  height: 50px;
+  width: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .eye-filter-menu-button-icon {
   background-position: 6px 5px;
   background-repeat: no-repeat;
-  background-size: 13px 10px;
-  width: 40px;
-  height: 20px;
-  border-radius: 4px;
-  padding: 0px;
+  background-size: 30px 30px;
+  width: 80px;
+  height: 50px;
+  padding: 0 15px;
   background-image: @contextbutton-eye-default-icon;
-  background-color: @disabled-color;
+  // background-color: @disabled-color;
+  background-position: left center;
 }
 
 .eye-filter-menu-button-icon::after {
   content: "";
-  border-color: @darkGrey transparent transparent;
+  border-color: @white transparent transparent;
   border-style: solid;
   border-width: 5px 5px 2.5px;
   height: 0;
   width: 0;
-  top: 11px;
-  left: 10px;
-  position: relative;
+  top: 50%;
+  right: 0;
+  position: absolute;
+}
+.menu-open {
+  background-color: #742eb4;
+}
+.menu-open .eye-filter-menu-button-icon::after {
+  display: none;
 }
 
 .eye-filter-menu-button-icon:hover {
-  background-color: @enabled-color;
+  // background-color: @enabled-color;
 }
 
 .eye-filter-menu-button-icon:disabled {
@@ -57,4 +64,6 @@
 
 .sort-by .eye-filter-menu-button-icon {
   background-image: @sort-by-icon;
+  background-color: transparent;
+  background-position: left center;
 }

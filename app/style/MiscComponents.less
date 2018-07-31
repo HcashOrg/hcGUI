@@ -25,8 +25,8 @@
 .copy-to-clipboard-icon {
   display: inline-block;
   width: 20px;
-  height: 18px;
-  background-image: @copy-to-clipboard-icon;
+  height: 20px;
+  background-image: @copy-to-clipboard-icon-white;
   background-position: 0 0;
   background-size: 20px auto;
   background-repeat: no-repeat;
@@ -34,13 +34,13 @@
 }
 
 .copy-to-clipboard-icon:hover {
-  background-image: @copy-to-clipboard-hover-icon;
+  background-image: @copy-to-clipboard-icon-white;
 }
 
 .copy-to-clipboard-success {
   font-size: 12px;
   color: #fff;
-  background-color: #69d3f5;
+  background-color: #8839d1;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   padding: 5px 10px;
   border-radius: 5px;
@@ -48,7 +48,7 @@
   bottom: 100%;
   left: 50%;
   transform: translate(-50%, -4px);
-  min-width: 4em;
+  min-width: 6em;
 }
 
 .copy-to-clipboard-success.hidden {
@@ -172,7 +172,7 @@
 
 .manage-pools-button {
   float: left;
-  background-color: @blue;
+  background-color: #fff;
   background-image: @manage-pools-icon;
   background-position: 50% 50%;
   background-size: 12px;
@@ -190,6 +190,7 @@
   line-height: inherit;
   text-decoration: none;
   cursor: pointer;
+  margin-top: 7px;
 }
 
 .manage-pools-button:hover {
@@ -201,23 +202,47 @@
 }
 
 .menu-link {
-  display: flex;
   position: relative;
   z-index: 1;
-  align-items: center;
+  display: block;
   cursor: pointer;
-  height: 52px;
-  padding-left: 40px;
-  color: @grey;
+  line-height: 52px;
+  // padding-left: 40px;
+  text-align: center;
+  color: @white;
   font-size: 18px;
   text-decoration: none;
   text-transform: capitalize;
-  transition: color 0.13s ease-in-out;
+  transition: all 0.13s ease-in-out;
+  width: 100%;
+  &:before {
+    display: none;
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 4px;
+    background-color: #8839d1;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(65,37,76,1), rgba(65,37,76,0));
+  }
 }
 
 .menu-link:hover,
 .menu-link-active {
   color: @white;
+  background-color: #3b1c4d;
+  &:before {
+    display: block;
+  }
 }
 
 .menu-link-active {
@@ -414,6 +439,15 @@
   line-height: 2em;
   min-width: 10em;
   padding-left: 8px;
+  color: #fff !important;
+  &:hover {
+    color: #fff !important;
+    background-color: #8839d1 !important;
+  }
+}
+
+div[role="menu"] {
+  background-color: #742eb4;
 }
 
 .context-menu-item.selected::before {
@@ -424,11 +458,11 @@
 
 .transaction-link {
   cursor: pointer;
-  color: @link-color;
+  color: #8839d1;
 }
 
 .transaction-link:hover {
-  color: @link-hover-color;
+  color: #742eb4;
 }
 
 [data-pseudo-content]::before,

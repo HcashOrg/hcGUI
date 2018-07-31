@@ -13,20 +13,22 @@ const HomePage = ({
   return (
     <div className="overview-content-wrapper">
       <div className="overview-spendable-locked-wrapper">
-        <div className="overview-spendable-locked">
-          <Balance
-            classNameWrapper="overview-balance-spendable-locked"
-            classNameUnit="overview-balance-spendable-locked-unit"
-            amount={balanceReceived} />
-          <div className="overview-balance-spendable-locked-label">
-            <T id="home.currentTotalSpendableBalanceLabel" m="Sent" />
-          </div>
-          <Balance
-            classNameWrapper="overview-balance-spendable-locked"
-            classNameUnit="overview-balance-spendable-locked-unit"
-            amount={balanceSent} />
-          <div className="overview-balance-spendable-locked-label">
-            <T id="home.currentTotalLockedBalanceLabel" m="Received" />
+        <div class="hope-bg">
+          <div className="overview-spendable-locked">
+            <Balance
+              classNameWrapper="overview-balance-spendable-locked"
+              classNameUnit="overview-balance-spendable-locked-unit"
+              amount={balanceReceived} />
+            <div className="overview-balance-spendable-locked-label">
+              <T id="home.currentTotalSpendableBalanceLabel" m="Sent" />
+            </div>
+            <Balance
+              classNameWrapper="overview-balance-spendable-locked"
+              classNameUnit="overview-balance-spendable-locked-unit"
+              amount={balanceSent} />
+            <div className="overview-balance-spendable-locked-label">
+              <T id="home.currentTotalLockedBalanceLabel" m="Received" />
+            </div>
           </div>
         </div>
       </div>

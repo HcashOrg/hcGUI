@@ -24,7 +24,7 @@
   z-index: 200;
   border-radius: 5px;
   overflow-y: auto;
-  background-color: rgba(12, 30, 62, 0.9);
+  background-color: #8839d1;
   padding: 2em;
   color: #fff;
   line-height: normal;
@@ -44,9 +44,9 @@
 }
 
 .info-modal-header-title {
-  font-size: 19px;
+  font-size: 10px;
   text-transform: capitalize;
-  height: 60px;
+  height: 40px;
   margin-bottom: 1em;
 }
 
@@ -61,24 +61,16 @@
   z-index: 200;
   border-radius: 5px;
   overflow-y: auto;
-  padding: 2em;
-  color: rgba(12, 30, 62, 1);
+  padding: 30px;
+  color: #fff;
   line-height: normal;
   text-align: left;
-}
-
-@media screen and (min-width: 768px) {
-  .app-modal.passphrase-modal {
-    left: 20%;
-    right: 20%;
-  }
-}
-
-@media screen and (max-height: 420px) {
-  .app-modal.passphrase-modal {
-    top: 10%;
-    max-height: 60%;
-  }
+  background-color: #8839d1;
+  left: 50%;
+  top: 50%;
+  width: 1024px;
+  min-width: 320px;
+  transform: translate(-50%, -50%);
 }
 
 .passphrase-modal-toolbar > .passphrase-modal-close-button {
@@ -106,10 +98,8 @@
 }
 
 .passphrase-modal-field-label {
-  font-size: 19px;
-  text-align: right;
+  font-size: 16px;
   width: 12em;
-  margin-right: 0.5em;
 }
 
 .passphrase-modal-field-value {
@@ -145,11 +135,11 @@
 }
 
 .info-modal-row-label.highlight-blue {
-  color: #69d5f7;
+  color: #fff;
 }
 
 .info-modal-row-label.highlight-green {
-  color: #2ed8a3;
+  color: #fff;
 }
 
 .info-modal-row-text {

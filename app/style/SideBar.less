@@ -14,13 +14,16 @@
   display: flex;
   flex-direction: column;
   z-index: 99;
+  background-image: url('../style/images/sidebar_bg.png');
+  background-position: center 92%;
+  background-repeat: no-repeat;
 }
 
 .sidebar-logo {
   position: relative;
   z-index: 3;
   height: 115px;
-  padding: 20px 0px 19px 20px;
+  padding: 20px 0px;
 }
 
 .sidebar-main {
@@ -29,6 +32,9 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  // background-image: url('../style/images/sidebar_bg.png');
+  // background-position: center bottom;
+  // background-repeat: no-repeat;
 }
 
 .sidebar-scroll {
@@ -77,68 +83,77 @@
 
 .sidebar-menu-bottom-total-balance-short {
   position: relative;
-  height: 56px;
-  padding: 14px 16px 0px 16px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 15px;
   cursor: pointer;
+  border-bottom: 1px solid #4a2b5e;
 }
 
 .sidebar-menu-bottom-total-balance-short-separator {
-  height: 7px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid @blue;
-  background-image: @arrow-up-light-blue-icon;
-  background-position: 50% 0px;
-  background-repeat: no-repeat;
+  // height: 7px;
+  // margin-bottom: 15px;
+  // border-bottom: 1px solid @blue;
+  // background-image: @arrow-up-light-blue-icon;
+  // background-position: 50% 0px;
+  // background-repeat: no-repeat;
 }
 
 .sidebar-menu-bottom-total-balance-short-name {
   float: left;
-  color: @blue;
-  font-size: 13px;
+  color: #fff;
+  font-size: 14px;
   text-align: left;
   text-decoration: none;
   padding-left: 20px;
-  margin-left: 4px;
+  // margin-left: 4px;
   background-image: @menu-wallet-icon;
   background-repeat: no-repeat;
   background-size: 16px 16px;
+  background-position: left center;
 }
 
 .sidebar-menu-bottom-total-balance-short-value {
   float: right;
-  font-family: Inconsolata, monospace;
-  color: @purple;
-  font-size: 15px;
+  font-family: @font-family-JuraBold;
+  color: #9b4be4;
+  font-size: 16px;
   text-align: right;
 }
 
 .sidebar-menu-bottom-latest-block {
   position: relative;
   height: 30px;
-  padding-top: 14px;
-  padding-right: 18px;
-  padding-left: 20px;
+  line-height: 30px;
+  padding: 0 15px;
   background-color: @darkGrey;
-  font-size: 13px;
+  font-size: 14px;
+  .rescan-button {
+    margin-top: 8px;
+  }
+  .rescan-button-area {
+    padding-right: 4px;
+  }
 }
 
 .sidebar-menu-bottom-latest-block-name {
-  color: @blue;
-  font-size: 13px;
+  color: #fff;
+  font-size: 14px;
   line-height: 10px;
   text-align: left;
   text-decoration: none;
 }
 
 .sidebar-menu-bottom-latest-block-number {
-  font-family: Inconsolata, monospace;
-  color: @purple;
+  font-family: @font-family-JuraBold;
+  color: #9b4be4;
+  font-size: 16px;
 }
 
 .sidebar-menu-bottom-latest-block-time {
   float: right;
-  color: @blue;
-  font-size: 13px;
+  color: #fff;
+  font-size: 14px;
   text-align: right;
   text-decoration: none;
 }

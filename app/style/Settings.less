@@ -3,15 +3,17 @@
 
 .settings-wrapper {
   display: flex;
-  flex-direction: row;
-  width: 740px;
-  background: @darkGrey;
+  // background: @darkGrey;
   margin-bottom: 20px;
-  padding: 26px 0 26px 40px;
 }
 
+.settings-general {
+  flex: 0 0 50%;
+  margin-right: 15px;
+}
 .settings-security {
-  padding-left: 100px;
+  margin-left: 15px;
+  width: 100%;
 }
 
 .settings-column-title {
@@ -21,7 +23,7 @@
 }
 
 .settings-column-content {
-  margin-left: 60px;
+  // margin-left: 60px;
 }
 
 .settings-restart {
@@ -30,19 +32,20 @@
 
 .settings-row {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .settings-label {
   .inline-block-mixin;
 
   text-align: right;
+  line-height: 34px;
   margin: -1px 10px 20px 0;
 }
 
 .change-password-default-icon {
   background: @change-password-default-icon no-repeat center;
-  background-color: @blue;
+  background-color: #8839d1;
   background-size: 16px;
   cursor: pointer;
   width: 19px;
@@ -56,14 +59,14 @@
 }
 
 .change-password-default-icon:hover {
-  background-color: @blue;
+  background-color: #8839d1;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 }
 
 .settings-input {
   .inline-block-mixin;
 
-  width: 150px;
+  width: 200px;
 }
 
 .settings-input-error {

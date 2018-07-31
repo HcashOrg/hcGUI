@@ -7,11 +7,15 @@
 @blue: #68d7ff;
 @darkBlue: #017999;
 @purple: #8539dd;
-@lightPurple: #f60fff;
+@lightPurple: #6b26b9;
 @grey: #9da5b5;
-@darkGrey: #020f1f;
+@darkGrey: #220f2b;
+@dark: #220f2a;
 
-@error-text-color: @lightPurple;
+@material-ui-bg: #f3eff6;
+@material-ui-bg2: #8839d1;
+
+@error-text-color: #e21650;
 @sidebar-width: 296px;
 @disabled-background-color: #e7eaed;
 @disabled-color: #8997a5;
@@ -23,9 +27,15 @@
 @link-color: @blue;
 @link-hover-color: @white;
 @accent-color: @green;
+@content-color: linear-gradient(45deg, #8735d1, #a85eea);
 
-@font-family-monospaced: "Inconsolata", monospace;
-@font-family-regular: "Source Sans Pro", sans-serif;
+@font-family-monospaced: "JuraRegular", 'PingFangSC-Regular', 'Helvetica', "Inconsolata", monospace, "Microsoft Yahei";
+@font-family-regular: "JuraRegular", 'PingFangSC-Regular', 'Helvetica', "Source Sans Pro", sans-serif, "Microsoft Yahei";
+@font-family-JuraRegular: "JuraRegular", 'PingFangSC-Regular', 'Helvetica', "Source Sans Pro", sans-serif, "Microsoft Yahei";
+@font-family-JuraMedium: "JuraMedium", 'PingFangSC-Regular', 'Helvetica', "Source Sans Pro", sans-serif, "Microsoft Yahei";
+@font-family-JuraBold: "JuraBold", 'PingFangSC-Regular', 'Helvetica', "Source Sans Pro", sans-serif, "Microsoft Yahei";
+@font-family-JuraLight: "JuraLight", 'PingFangSC-Regular', 'Helvetica', "Source Sans Pro", sans-serif, "Microsoft Yahei";
+@font-family-JuraSemiBold: "JuraSemiBold", 'PingFangSC-Regular', 'Helvetica', "Source Sans Pro", sans-serif, "Microsoft Yahei";
 
 @input-color-disabled: #dadfe2;
 @input-color-default: @white;
@@ -95,3 +105,24 @@
 
 // Check out standard curves in http://easings.net
 @easeInOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
+
+
+input {
+  font-family: @font-family-JuraRegular;
+}
+* {
+  box-sizing: border-box;
+}
+.clear {
+	display : block;
+	height  : 0;
+	overflow: hidden;
+	clear   : both;
+}
+.clearfix:after {
+	content: '\20';
+	display: block;
+	height : 0;
+	clear  : both;
+	*zoom  : 1;
+}

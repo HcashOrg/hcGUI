@@ -35,8 +35,8 @@ const AdvancedBodyBase = ({
 }) => {
   return (
     <div className="advanced-page">
-      <div className="advanced-page-toggle">
-        <div className="text-toggle">
+      <div className="advanced-page-toggle clearfix">
+        <div className="text-toggle clearfix">
           <div className={"text-toggle-button-left " + (!sideActive && "text-toggle-button-active")} onClick={sideActive ? onShowRemote : null}>
             <T id="advancedDaemon.toggle.remote" m="Remote Daemon" />
           </div>
