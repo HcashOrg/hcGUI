@@ -54,7 +54,7 @@ export default (
         <Route path=":status"                   component={MyTicketsList}/>
       </Route>
       <Route path="governance"                  component={GovernanceTab}/>
-      <Route path="statistics"                  component={StatisticsTab}/>
+      {/* <Route path="statistics"                  component={StatisticsTab}/> */}
     </Route>
     <Route   path="security"                    component={TabbedPage}        desc>
       <IndexRedirect to="sign"/>
