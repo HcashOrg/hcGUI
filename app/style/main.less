@@ -12,10 +12,10 @@
 @darkGrey: #220f2b;
 @dark: #220f2a;
 
-@material-ui-bg: #f3eff6;
-@material-ui-bg2: #8839d1;
+@material-ui-bg: #61308C;
+@material-ui-bg2: #E21651;
 
-@error-text-color: #e21650;
+@error-text-color: #fd714b;
 @sidebar-width: 296px;
 @disabled-background-color: #e7eaed;
 @disabled-color: #8997a5;
@@ -96,7 +96,7 @@
 ////////////////////////////////////
 
 .error {
-  color: @error-text-color;
+  color: #fd714b;
 }
 
 ////////////////////////////////////
@@ -119,10 +119,12 @@ input {
 	overflow: hidden;
 	clear   : both;
 }
-.clearfix:after {
-	content: '\20';
-	display: block;
-	height : 0;
-	clear  : both;
-	*zoom  : 1;
+.clearfix {
+  &:after {
+    content: '\20';
+    display: block;
+    height : 0;
+    clear  : both;
+    *zoom  : 1;
+  }
 }

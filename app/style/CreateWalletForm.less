@@ -1,9 +1,9 @@
 @import (reference) "./main.less";
 
 .new-seed {
-  background-color: @darkGrey;
-  padding-top: 24px;
-  padding-right: 40px;
+  // background-color: @darkGrey;
+  // padding-top: 24px;
+  // padding-right: 40px;
 }
 
 .help-text {
@@ -15,10 +15,11 @@
 }
 
 .paragraph {
-  width: 300px;
+  float: none !important;
+  // width: 300px;
   color: @white;
-  font-size: 13px;
-  line-height: 16px;
+  font-size: 14px;
+  line-height: 1.6em;
 }
 
 .left {
@@ -34,12 +35,12 @@
 }
 
 .cyan-bold {
-  color: @blue;
+  color: #fff;
   font-weight: 700;
 }
 
 .cyan-regular {
-  color: @blue;
+  color: #fff;
 }
 
 .orange-warning {
@@ -50,10 +51,10 @@
   min-height: 140px;
   margin-bottom: 20px;
   padding: 14px 20px;
-  border: 2px solid @purple;
+  border: 1px solid #fff;
   border-radius: 5px;
-  background-color: #282c34;
-  font-family: Inconsolata, monospace;
+  // background-color: #282c34;
+  font-family: @font-family-JuraRegular;
   color: @white;
   font-size: 16px;
   line-height: 29px;
@@ -67,19 +68,20 @@
 .seed > .copy-to-clipboard-icon {
   width: auto;
   height: auto;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+  // position: absolute;
+  // bottom: 20px;
+  // right: 20px;
+  margin-top: 20px;
   background-position: 7px 8px;
   background-size: 23px auto;
   background-repeat: no-repeat;
   cursor: pointer;
-  background-color: #181a1f;
+  background-color: rgba(24, 26, 31, 0.49);
   border-radius: 5px;
   padding: 5px 20px 5px 40px;
 
   &:hover {
-    color: @blue;
+    color: #e21650;
   }
 }
 
@@ -119,10 +121,10 @@
 }
 
 .create-wallet-label {
-  color: #9da5b5;
-  font-size: 19px;
-  letter-spacing: -0.1px;
-  line-height: 41px;
+  color: #fff;
+  font-size: 18px;
+  // letter-spacing: -0.1px;
+  line-height: 40px;
 }
 
 .create-wallet-header {
@@ -132,10 +134,17 @@
 }
 
 .seed-type-label {
-  color: @grey;
+  color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
+  > span {
+    margin-bottom: 10px;
+    display: block;
+  }
+  .text-toggle {
+    border-radius: 5px;
+  }
 }
 
 .create-wallet-field {
@@ -174,15 +183,15 @@
 .input-form-confirm-seed {
   -moz-appearance: none !important;
   position: relative;
-  min-height: 140px;
+  // min-height: 140px;
   margin-bottom: 20px;
   padding: 14px 20px;
-  border: 2px solid #8539dd;
+  border: 1px solid #fff;
   border-radius: 5px;
-  background-color: #282c34;
+  // background-color: #282c34;
 
   .words-input {
-    height: 155px;
+    // height: 155px;
     min-height: 44px;
   }
 
