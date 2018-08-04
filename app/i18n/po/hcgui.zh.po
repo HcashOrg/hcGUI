@@ -1473,7 +1473,7 @@ msgstr "如果选票价格高于此值，您将不会购买更多选票。 默�
 #: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
 msgctxt "getStarted.chainLoadingDelayReminder"
 msgid "If you are starting hcGUI for the first time, this may take a while."
-msgstr "如果是第一次启动hcGUI,可能需要等待一段时间"
+msgstr "如果第一次启动，可能需要等待较长时间同步区块，如果进度条长时间未变化，请尝试更换网络或更新版本。"
 
 #. [getStarted.firstTimeSyncDelayReminder]
 #. defaultMessage is:
