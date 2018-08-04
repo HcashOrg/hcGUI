@@ -107,6 +107,7 @@ class PurchaseTickets extends React.Component {
           account: this.getAccount(),
           ...substruct({
             onToggleShowAdvanced: null,
+            onchangeNumTickets: null,
             onIncrementNumTickets: null,
             onDecrementNumTickets: null,
             onChangeAccount: null,
@@ -155,8 +156,22 @@ class PurchaseTickets extends React.Component {
     onChangeAccount && onChangeAccount(account);
   }
 
+
+  onchangeNumTickets(num) {
+    if(!isNaN(num.target.value)||num.target.value >= 0){
+      var inputNum = Math.ceil(num.target.value)
+      if(inputNum > 200){
+        this.setState({ numTicketsToBuy: 200});
+      } else {
+        this.setState({ numTicketsToBuy: Math.max(1, inputNum)});
+      }
+    }else {
+      this.setState({ numTicketsToBuy: 1 });
+    }
+  }
+
   onIncrementNumTickets() {
-    this.setState({ numTicketsToBuy: this.state.numTicketsToBuy + 1 });
+    this.setState({ numTicketsToBuy:Math.min(200, this.state.numTicketsToBuy + 1)});
   }
 
   onDecrementNumTickets() {
