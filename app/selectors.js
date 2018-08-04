@@ -390,13 +390,6 @@ export const ticketDataChart = createSelector(
   [transactions,network],
   (transactions,network) => {
 
-    console.log("getblockheight")
-    console.log(currentBlockHeight)
-
-    console.log("=========")
-    console.log("ticketMaturity"+chainParams(network).TicketMaturity)
-    console.log(transactions[0])
-
 
     return [
       { name: "23.10", immature: 4000, live: 2400, voted: 4000, legendName: "23.10.2017"},

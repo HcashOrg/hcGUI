@@ -202,7 +202,6 @@ class TicketAutoBuyer extends React.Component {
 
   onChangeMaxPerBlock(maxPerBlock) {
     const maxPerBlockError = !maxPerBlock;
-    console.log("what happen??????")
     this.setState({
       maxPerBlock: maxPerBlock.replace(/[^\d.]/g, ""),
       maxPerBlockError: maxPerBlockError

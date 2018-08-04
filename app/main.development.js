@@ -417,7 +417,6 @@ const AddToLog = (destIO, destLogBuffer, data) => {
 // NOTE: very simple impl for the moment, will break if messages get split
 // between data calls.
 const DecodeDaemonIPCData = (data, cb) => {
-  console.log("decode  xxxxx")
   let i = 0;
   while (i < data.length) {
     if (data[i++] !== 0x01) throw "Wrong protocol version when decoding IPC data";
@@ -559,8 +558,6 @@ const launchHCWallet = (walletPath, testnet) => {
     logger.log("info", "wallet grpc running on port", port);
     mainWindow.webContents.send("hcwallet-port", port);
   };
-
-  console.log(hcwallet)
 
   hcwallet.stdio[4].on("data", (data) => DecodeDaemonIPCData(data, (mtype, payload) => {
     if (mtype === "grpclistener") {
@@ -886,7 +883,7 @@ app.on("ready", async () => {
       }, {
         label: locale.messages["appMenu.showWalletLog"],
         click() {
-          shell.openItem(path.join(appDataDirectory(), "logs"));
+          shell.openItem(path.join(appDataDirectory(), "hcGUI.log"));
         }
       }, {
         label: locale.messages["appMenu.showDaemonLog"],
