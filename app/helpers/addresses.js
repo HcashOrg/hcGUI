@@ -34,7 +34,7 @@ export function isValidAddress(addr, network) {
   if (addr.length > 36) return ERR_INVALID_ADDR_TOOLONG;
 
   if (network === "testnet" && addr[0] !== "T") return ERR_INVALID_ADDR_NETWORKPREFIX;
-  if (network === "mainnet" && addr[0] !== "D") return ERR_INVALID_ADDR_NETWORKPREFIX;
+  if (network === "mainnet" && addr[0] !== "H") return ERR_INVALID_ADDR_NETWORKPREFIX;
 
   try {
     var bs58check = bs58checkBase(_blake256x2);
