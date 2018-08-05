@@ -1347,7 +1347,7 @@ msgstr "HC宪法"
 #: app/i18n/extracted/app/components/views/AccountsPage/Accounts/AccountRow/AccountDetails.json
 msgctxt "accounts.hdPath"
 msgid "HD Path"
-msgstr "HD 路劲"
+msgstr "HD 路径"
 
 #. [appMenu.hcgui]
 #. defaultMessage is:
