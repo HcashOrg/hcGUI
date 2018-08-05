@@ -3310,7 +3310,7 @@ msgid ""
 "alphanumeric characters\n"
 "(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
 msgstr ""
-"TestNETHC地址总是以字母T开头，包含26-35字母数字字符。\n"
+"Testnet HC地址总是以字母T开头，包含26-35字母数字字符。\n"
 "（如TXXXXXXXXXXXXXXXXXXXXXXXXXXX0）。"
 
 #. [invalidRPCVersion.info]
@@ -3350,7 +3350,7 @@ msgstr "用于投票的hc地址"
 #: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
 msgctxt "getStarted.chainLoading"
 msgid "The Hc chain is currently loading and may take a few minutes."
-msgstr "正在加载Hc区块数据，这可能需要等待几分钟。"
+msgstr "正在加载Hc区块数据，这可能需要等待几分钟。如果进度条长期不变化，请尝试更换网络或更新版本"
 
 #. [tickets.info.poolFeeAddress.message]
 #. defaultMessage is:
@@ -3925,7 +3925,7 @@ msgstr "已转账"
 #: app/i18n/extracted/app/components/buttons/AutoBuyerSwitch.json
 msgctxt "autobuyer.enabled"
 msgid "Turn off auto buyer"
-msgstr "关闭自动买家"
+msgstr "关闭自动购票"
 
 #. [autobuyer.disabled]
 #. defaultMessage is:
@@ -3933,7 +3933,7 @@ msgstr "关闭自动买家"
 #: app/i18n/extracted/app/components/buttons/AutoBuyerSwitch.json
 msgctxt "autobuyer.disabled"
 msgid "Turn on auto buyer"
-msgstr "打开自动买家"
+msgstr "打开自动购票"
 
 #. [purchaseTickets.txFeePlaceholder]
 #. defaultMessage is:

@@ -15,6 +15,7 @@ const PurchaseTicketsForm = ({
   numTicketsToBuy,
   canAffordTickets,
   rescanRequest,
+  onchangeNumTickets,
   onIncrementNumTickets,
   onDecrementNumTickets,
   onChangeAccount,
@@ -56,6 +57,7 @@ const PurchaseTicketsForm = ({
             <div className="stakepool-purchase-ticket-num-select">
               <NumTicketsInput
                 numTickets={numTicketsToBuy}
+                changeNumTickets={onchangeNumTickets}
                 incrementNumTickets={onIncrementNumTickets}
                 decrementNumTickets={onDecrementNumTickets}
               />
