@@ -18,7 +18,7 @@ class Receive extends React.Component{
 
   onRequestAddress () {
     const { getNextAddressAttempt, account } = this.props;
-    getNextAddressAttempt(account.value);
+    getNextAddressAttempt(account.value,account.accountType);
   }
 }
 
