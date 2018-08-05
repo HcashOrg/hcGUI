@@ -68,6 +68,10 @@ class History extends React.Component {
     return this.props.transactions;
   }
 
+  componentWillMount() {
+    this.props.changeTransactionsFilter(this.props.transactionsFilter);
+  }
+
   onLoadMoreTransactions() {
     this.props.getTransactions();
   }
