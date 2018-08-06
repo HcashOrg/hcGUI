@@ -7,13 +7,13 @@ export default defineMessages({
   "home.tab.transactions":                    { id: "home.tab.transactions",                 defaultMessage: "Transactions" },
 
   "accounts.title":                           { id: "accounts.title",                        defaultMessage: "Accounts" },
-  "accounts.description":                     { id: "accounts.description",                  defaultMessage: "Accounts allow you to keep separate records of your Hc funds.\nTransferring Hc across accounts will create a transaction on the blockchain." },
+  "accounts.description":                     { id: "accounts.description",                  defaultMessage: "Accounts allow you to keep separate records of your HC funds.\nTransferring HC across accounts will create a transaction on the blockchain." },
 
   "transaction.description":                  { id: "transaction.description",               defaultMessage: "Date and time will appear as soon as we get a confirmation." },
 
   "transactions.title":                       { id: "transactions.title",                    defaultMessage: "Transactions" },
-  "transactions.description.send.testnet":    { id: "transactions.description.send.testnet", defaultMessage: "Testnet Hc addresses always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)." },
-  "transactions.description.send.mainnet":    { id: "transactions.description.send.mainnet", defaultMessage: "Mainnet Hc addresses always begin with letter D and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)." },
+  "transactions.description.send.testnet":    { id: "transactions.description.send.testnet", defaultMessage: "Testnet HC addresses always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)." },
+  "transactions.description.send.mainnet":    { id: "transactions.description.send.mainnet", defaultMessage: "Mainnet HC addresses always begin with letter D and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)." },
   "transactions.description.receive":         { id: "transactions.description.receive",      defaultMessage: "Each time you request a payment, create a new address to protect your privacy." },
   "transactions.description.history":         { id: "transactions.description.history",      defaultMessage: "Total Balance:" },
   "transactions.tab.send":                    { id: "transactions.tab.send",                 defaultMessage: "Send" },

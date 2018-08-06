@@ -14,10 +14,10 @@ const PurchaseTicketsAdvanced = ({
       <div className="stakepool-icon">{stakePool && stakePool.value.Host}</div>
     </Tooltip>
     <Tooltip text={<T id="purchaseTickets.ticketFeeTip" m="Ticket Fee" />}>
-      <div className="stakepool-fee-icon">{ticketFee} Hc/KB</div>
+      <div className="stakepool-fee-icon">{ticketFee} HC/KB</div>
     </Tooltip>
     <Tooltip text={<T id="purchaseTickets.txFeeTip" m="Tx Fee" />}>
-      <div className="stakepool-fee-icon">{txFee} Hc/KB</div>
+      <div className="stakepool-fee-icon">{txFee} HC/KB</div>
     </Tooltip>
     <Tooltip text={<T id="purchaseTickets.expiry" m="Expiry" />}>
       <div className="stakepool-expiry-icon">{expiry} Blocks</div>

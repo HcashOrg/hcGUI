@@ -82,7 +82,7 @@ const Details = ({
               value={maxFee}
               onChange={onChangeMaxFee}
               invalid={maxFeeError}
-              invalidMessage={<T id="autobuyer.invalidMaxFee" m="*Invalid max fee (0 - 0.1 Hc/KB)" />}
+              invalidMessage={<T id="autobuyer.invalidMaxFee" m="*Invalid max fee (0 - 0.1 HC/KB)" />}
               showErrors
               required
             />

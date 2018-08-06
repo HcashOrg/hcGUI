@@ -159,7 +159,7 @@ const messages = defineMessages({
   },
   PUBLISHUNMINEDTRANSACTIONS_SUCCESS: {
     id: "send.publishUnminedTransactions.success",
-    defaultMessage: "Republished unmined transactions to the Hc network."
+    defaultMessage: "Republished unmined transactions to the HC network."
   }
 });
 

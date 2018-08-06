@@ -49,27 +49,27 @@ msgstr "* Todos os campos são obrigatórios"
 
 #. [autobuyer.invalidMaxFee]
 #. defaultMessage is:
-#. *Invalid max fee (0 - 0.1 Hc/KB)
+#. *Invalid max fee (0 - 0.1 HC/KB)
 #: app/i18n/extracted/app/components/TicketAutoBuyer/Form.json
 msgctxt "autobuyer.invalidMaxFee"
-msgid "*Invalid max fee (0 - 0.1 Hc/KB)"
-msgstr "* Taxa máxima inválida (0-0.1 Hc/KB)"
+msgid "*Invalid max fee (0 - 0.1 HC/KB)"
+msgstr "* Taxa máxima inválida (0-0.1 HC/KB)"
 
 #. [purchaseTickets.errors.invalidTicketFee]
 #. defaultMessage is:
-#. *Invalid ticket fee (0 - 0.1 Hc/KB)
+#. *Invalid ticket fee (0 - 0.1 HC/KB)
 #: app/i18n/extracted/app/components/PurchaseTickets/Form.json
 msgctxt "purchaseTickets.errors.invalidTicketFee"
-msgid "*Invalid ticket fee (0 - 0.1 Hc/KB)"
-msgstr "* Taxa de ticket inválida (0-0.1 Hc/KB)"
+msgid "*Invalid ticket fee (0 - 0.1 HC/KB)"
+msgstr "* Taxa de ticket inválida (0-0.1 HC/KB)"
 
 #. [purchaseTickets.errors.invalidTxFee]
 #. defaultMessage is:
-#. *Invalid tx fee (0 - 0.1 Hc/KB)
+#. *Invalid tx fee (0 - 0.1 HC/KB)
 #: app/i18n/extracted/app/components/PurchaseTickets/Form.json
 msgctxt "purchaseTickets.errors.invalidTxFee"
-msgid "*Invalid tx fee (0 - 0.1 Hc/KB)"
-msgstr "* Taxa de transação inválida (0 - 0.1 Hc/KB)"
+msgid "*Invalid tx fee (0 - 0.1 HC/KB)"
+msgstr "* Taxa de transação inválida (0 - 0.1 HC/KB)"
 
 #. [createWallet.passphraseInput.errors.noMatch]
 #. defaultMessage is:
@@ -281,17 +281,17 @@ msgstr "Contas"
 
 #. [accounts.description]
 #. defaultMessage is:
-#. Accounts allow you to keep separate records of your Hc funds.
-#. Transferring Hc across accounts will create a transaction on the
+#. Accounts allow you to keep separate records of your HC funds.
+#. Transferring HC across accounts will create a transaction on the
 #. blockchain.
 #: app/i18n/extracted/app/messages.json
 msgctxt "accounts.description"
 msgid ""
-"Accounts allow you to keep separate records of your Hc funds.\n"
-"Transferring Hc across accounts will create a transaction on the blockchain."
+"Accounts allow you to keep separate records of your HC funds.\n"
+"Transferring HC across accounts will create a transaction on the blockchain."
 msgstr ""
-"Contas permitem que você mantenha registros separados dos seus fundos Hc.\n"
-"Transferir Hc entre contas irá criar uma transação na blockchain."
+"Contas permitem que você mantenha registros separados dos seus fundos HC.\n"
+"Transferir HC entre contas irá criar uma transação na blockchain."
 
 #. [addAccountModal.addBtn]
 #. defaultMessage is:
@@ -2761,7 +2761,7 @@ msgstr "Assinatura"
 #. defaultMessage is:
 #. Signing a message with an address' private key allows you to prove that you
 #. are the owner of a given address to a possible counterparty.  For instance,
-#. let's say you sent 100 Hc to a merchant and you have yet to receive your
+#. let's say you sent 100 HC to a merchant and you have yet to receive your
 #. merchandise.  You contact the merchant and explain the situation, but need
 #. a way to prove you are, in fact, the owner of the address that the funds
 #. were sent from.  To do this you can generate a signature based on a message
@@ -2773,7 +2773,7 @@ msgctxt "sign.info.message"
 msgid ""
 "Signing a message with an address' private key allows you to prove that you "
 "are the owner of a given address to a possible counterparty.  For instance, "
-"let's say you sent 100 Hc to a merchant and you have yet to receive your "
+"let's say you sent 100 HC to a merchant and you have yet to receive your "
 "merchandise.  You contact the merchant and explain the situation, but need a"
 " way to prove you are, in fact, the owner of the address that the funds were"
 " sent from.  To do this you can generate a signature based on a message only"
@@ -2783,7 +2783,7 @@ msgid ""
 msgstr ""
 "Assinar uma mensagem com a chave privada de um endereço permite que você "
 "prove que você é o dono de um endereço para uma possível contraparte. Por "
-"exemplo, digamos que você envie 100 Hc para um vendedor e você não recebeu "
+"exemplo, digamos que você envie 100 HC para um vendedor e você não recebeu "
 "sua mercadoria. Você contacta o vendedor para explicar a situação mas "
 "precisa prova que você, de fator, é o dono do endereço de onde os fundos "
 "foram enviados. Para fazer isso, você pode gerar uma assinatura baseada em "
@@ -3376,11 +3376,11 @@ msgstr "O Ticket Buyer está parado."
 
 #. [tickets.info.ticketFee.header]
 #. defaultMessage is:
-#. Ticket fee (Hc/kB)
+#. Ticket fee (HC/kB)
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 msgctxt "tickets.info.ticketFee.header"
-msgid "Ticket fee (Hc/kB)"
-msgstr "Taxa de Ticket (Hc/kB)"
+msgid "Ticket fee (HC/kB)"
+msgstr "Taxa de Ticket (HC/kB)"
 
 #. [tickets.info.ticketPrice.header]
 #. defaultMessage is:
@@ -3664,11 +3664,11 @@ msgstr "Taxa de transação"
 
 #. [tickets.info.txFee.header]
 #. defaultMessage is:
-#. Tx fee (Hc/kB)
+#. Tx fee (HC/kB)
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 msgctxt "tickets.info.txFee.header"
-msgid "Tx fee (Hc/kB)"
-msgstr "Taxa de Transação (Hc/kB)"
+msgid "Tx fee (HC/kB)"
+msgstr "Taxa de Transação (HC/kB)"
 
 #. [stakepools.list.form.field.url]
 #. defaultMessage is:

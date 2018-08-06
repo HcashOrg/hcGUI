@@ -38,26 +38,26 @@ msgstr "视图"
 
 #. [autobuyer.invalidMaxFee]
 #. defaultMessage is:
-#. *Invalid max fee (0 - 0.1 Hc/KB)
+#. *Invalid max fee (0 - 0.1 HC/KB)
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/TicketAutoBuyer/Details.json
 msgctxt "autobuyer.invalidMaxFee"
-msgid "*Invalid max fee (0 - 0.1 Hc/KB)"
+msgid "*Invalid max fee (0 - 0.1 HC/KB)"
 msgstr "最大费用无效"
 
 #. [purchaseTickets.errors.invalidTicketFee]
 #. defaultMessage is:
-#. *Invalid ticket fee (0 - 0.1 Hc/KB)
+#. *Invalid ticket fee (0 - 0.1 HC/KB)
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/PurchaseTicketsAdvanced.json
 msgctxt "purchaseTickets.errors.invalidTicketFee"
-msgid "*Invalid ticket fee (0 - 0.1 Hc/KB)"
+msgid "*Invalid ticket fee (0 - 0.1 HC/KB)"
 msgstr "*无效投票费"
 
 #. [purchaseTickets.errors.invalidTxFee]
 #. defaultMessage is:
-#. *Invalid tx fee (0 - 0.1 Hc/KB)
+#. *Invalid tx fee (0 - 0.1 HC/KB)
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/PurchaseTicketsAdvanced.json
 msgctxt "purchaseTickets.errors.invalidTxFee"
-msgid "*Invalid tx fee (0 - 0.1 Hc/KB)"
+msgid "*Invalid tx fee (0 - 0.1 HC/KB)"
 msgstr "*无效交易费"
 
 #. [changePassModal.confirmMismatch]
@@ -287,13 +287,13 @@ msgstr "账户"
 
 #. [accounts.description]
 #. defaultMessage is:
-#. Accounts allow you to keep separate records of your Hc funds.
-#. Transferring Hc across accounts will create a transaction on the blockchain.
+#. Accounts allow you to keep separate records of your HC funds.
+#. Transferring HC across accounts will create a transaction on the blockchain.
 #: app/i18n/extracted/app/messages.json
 msgctxt "accounts.description"
 msgid ""
-"Accounts allow you to keep separate records of your Hc funds.\n"
-"Transferring Hc across accounts will create a transaction on the blockchain."
+"Accounts allow you to keep separate records of your HC funds.\n"
+"Transferring HC across accounts will create a transaction on the blockchain."
 msgstr ""
 "帐户允许您单独保留您的Hc资金的历史记录\n"
 "通过Hc账户的转账将会在区块链中创建一笔交易"
@@ -1768,12 +1768,12 @@ msgstr "日志"
 
 #. [transactions.description.send.mainnet]
 #. defaultMessage is:
-#. Mainnet Hc addresses always begin with letter D and contain 26-35 alphanumeric characters
+#. Mainnet HC addresses always begin with letter D and contain 26-35 alphanumeric characters
 #. (e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).
 #: app/i18n/extracted/app/messages.json
 msgctxt "transactions.description.send.mainnet"
 msgid ""
-"Mainnet Hc addresses always begin with letter D and contain 26-35 "
+"Mainnet HC addresses always begin with letter D and contain 26-35 "
 "alphanumeric characters\n"
 "(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
 msgstr ""
@@ -2655,10 +2655,10 @@ msgstr "重命名账户"
 
 #. [send.publishUnminedTransactions.success]
 #. defaultMessage is:
-#. Republished unmined transactions to the Hc network.
+#. Republished unmined transactions to the HC network.
 #: app/i18n/extracted/app/reducers/snackbar.json
 msgctxt "send.publishUnminedTransactions.success"
-msgid "Republished unmined transactions to the Hc network."
+msgid "Republished unmined transactions to the HC network."
 msgstr "将未完成的交易重新发布到HC网络。"
 
 #. [getStarted.walletRescan.progress]
@@ -3079,13 +3079,13 @@ msgstr "签名"
 
 #. [sign.info.message]
 #. defaultMessage is:
-#. Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 Hc to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID.
+#. Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 HC to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID.
 #: app/i18n/extracted/app/components/modals/SignMessageInfoModalContent.json
 msgctxt "sign.info.message"
 msgid ""
 "Signing a message with an address' private key allows you to prove that you "
 "are the owner of a given address to a possible counterparty.  For instance, "
-"let's say you sent 100 Hc to a merchant and you have yet to receive your "
+"let's say you sent 100 HC to a merchant and you have yet to receive your "
 "merchandise.  You contact the merchant and explain the situation, but need a "
 "way to prove you are, in fact, the owner of the address that the funds were "
 "sent from.  To do this you can generate a signature based on a message only "
@@ -3301,12 +3301,12 @@ msgstr "设置投票选择成功"
 
 #. [transactions.description.send.testnet]
 #. defaultMessage is:
-#. Testnet Hc addresses always begin with letter T and contain 26-35 alphanumeric characters
+#. Testnet HC addresses always begin with letter T and contain 26-35 alphanumeric characters
 #. (e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).
 #: app/i18n/extracted/app/messages.json
 msgctxt "transactions.description.send.testnet"
 msgid ""
-"Testnet Hc addresses always begin with letter T and contain 26-35 "
+"Testnet HC addresses always begin with letter T and contain 26-35 "
 "alphanumeric characters\n"
 "(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
 msgstr ""
@@ -3338,18 +3338,18 @@ msgstr ""
 
 #. [tickets.info.votingAddress.message]
 #. defaultMessage is:
-#. The Hc address that will do the voting.
+#. The HC address that will do the voting.
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 msgctxt "tickets.info.votingAddress.message"
-msgid "The Hc address that will do the voting."
+msgid "The HC address that will do the voting."
 msgstr "用于投票的hc地址"
 
 #. [getStarted.chainLoading]
 #. defaultMessage is:
-#. The Hc chain is currently loading and may take a few minutes.
+#. The HC chain is currently loading and may take a few minutes.
 #: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
 msgctxt "getStarted.chainLoading"
-msgid "The Hc chain is currently loading and may take a few minutes."
+msgid "The HC chain is currently loading and may take a few minutes."
 msgstr "正在加载Hc区块数据，这可能需要等待几分钟。如果进度条长期不变化，请尝试更换网络或更新版本"
 
 #. [tickets.info.poolFeeAddress.message]
@@ -3514,14 +3514,14 @@ msgstr "这是此帐户目前控制的总余额。"
 
 #. [ticketAutoBuyer.info.maxPriceRelative.message]
 #. defaultMessage is:
-#. This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 Hc.
+#. This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 HC.
 #: app/i18n/extracted/app/components/modals/TicketAutoBuyerInfoModalContent.json
 msgctxt "ticketAutoBuyer.info.maxPriceRelative.message"
 msgid ""
 "This number sets the max price to purchase tickets based on the observed "
 "average price multiplied by this number.  e.g. If the average price is 100, "
 "and this was set to 1.25, then the max price to purchase tickets would be "
-"125 Hc."
+"125 HC."
 msgstr ""
 "这个数字是根据观察到的平均价格乘以这个数字来设定购买门票的最高价格。例如，如"
 "果平均价格是100，而这被设置为1.25，那么购买门票的最高价格将是125 HC。"
@@ -3676,10 +3676,10 @@ msgstr "选票购买者已经停止"
 
 #. [tickets.info.ticketFee.header]
 #. defaultMessage is:
-#. Ticket fee (Hc/kB)
+#. Ticket fee (HC/kB)
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 msgctxt "tickets.info.ticketFee.header"
-msgid "Ticket fee (Hc/kB)"
+msgid "Ticket fee (HC/kB)"
 msgstr "选票费"
 
 #. [tickets.info.ticketPrice.header]
@@ -3961,10 +3961,10 @@ msgstr "交易费"
 
 #. [tickets.info.txFee.header]
 #. defaultMessage is:
-#. Tx fee (Hc/kB)
+#. Tx fee (HC/kB)
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 msgctxt "tickets.info.txFee.header"
-msgid "Tx fee (Hc/kB)"
+msgid "Tx fee (HC/kB)"
 msgstr "交易费"
 
 #. [stakepools.list.form.field.url]

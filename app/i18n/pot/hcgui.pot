@@ -34,25 +34,25 @@ msgstr ""
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/TicketAutoBuyer/Details.json
 #. [autobuyer.invalidMaxFee]
 #. defaultMessage is:
-#. *Invalid max fee (0 - 0.1 Hc/KB)
+#. *Invalid max fee (0 - 0.1 HC/KB)
 msgctxt "autobuyer.invalidMaxFee"
-msgid "*Invalid max fee (0 - 0.1 Hc/KB)"
+msgid "*Invalid max fee (0 - 0.1 HC/KB)"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/PurchaseTicketsAdvanced.json
 #. [purchaseTickets.errors.invalidTicketFee]
 #. defaultMessage is:
-#. *Invalid ticket fee (0 - 0.1 Hc/KB)
+#. *Invalid ticket fee (0 - 0.1 HC/KB)
 msgctxt "purchaseTickets.errors.invalidTicketFee"
-msgid "*Invalid ticket fee (0 - 0.1 Hc/KB)"
+msgid "*Invalid ticket fee (0 - 0.1 HC/KB)"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/PurchaseTickets/PurchaseTicketsAdvanced.json
 #. [purchaseTickets.errors.invalidTxFee]
 #. defaultMessage is:
-#. *Invalid tx fee (0 - 0.1 Hc/KB)
+#. *Invalid tx fee (0 - 0.1 HC/KB)
 msgctxt "purchaseTickets.errors.invalidTxFee"
-msgid "*Invalid tx fee (0 - 0.1 Hc/KB)"
+msgid "*Invalid tx fee (0 - 0.1 HC/KB)"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/ChangePassphraseModal/Modal.json
@@ -282,10 +282,10 @@ msgstr ""
 #: app/i18n/extracted/app/messages.json
 #. [accounts.description]
 #. defaultMessage is:
-#. Accounts allow you to keep separate records of your Hc funds.
-#. Transferring Hc across accounts will create a transaction on the blockchain.
+#. Accounts allow you to keep separate records of your HC funds.
+#. Transferring HC across accounts will create a transaction on the blockchain.
 msgctxt "accounts.description"
-msgid "Accounts allow you to keep separate records of your Hc funds.\nTransferring Hc across accounts will create a transaction on the blockchain."
+msgid "Accounts allow you to keep separate records of your HC funds.\nTransferring HC across accounts will create a transaction on the blockchain."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/StakePools/AddForm.json
@@ -1704,10 +1704,10 @@ msgstr ""
 #: app/i18n/extracted/app/messages.json
 #. [transactions.description.send.mainnet]
 #. defaultMessage is:
-#. Mainnet Hc addresses always begin with letter D and contain 26-35 alphanumeric characters
+#. Mainnet HC addresses always begin with letter D and contain 26-35 alphanumeric characters
 #. (e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).
 msgctxt "transactions.description.send.mainnet"
-msgid "Mainnet Hc addresses always begin with letter D and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
+msgid "Mainnet HC addresses always begin with letter D and contain 26-35 alphanumeric characters\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/HelpPage/LinksTab/index.json
@@ -2504,9 +2504,9 @@ msgstr ""
 #: app/i18n/extracted/app/reducers/snackbar.json
 #. [send.publishUnminedTransactions.success]
 #. defaultMessage is:
-#. Republished unmined transactions to the Hc network.
+#. Republished unmined transactions to the HC network.
 msgctxt "send.publishUnminedTransactions.success"
-msgid "Republished unmined transactions to the Hc network."
+msgid "Republished unmined transactions to the HC network."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/RescanWallet/Form.json
@@ -2928,9 +2928,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/SignMessageInfoModalContent.json
 #. [sign.info.message]
 #. defaultMessage is:
-#. Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 Hc to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID.
+#. Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 HC to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID.
 msgctxt "sign.info.message"
-msgid "Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 Hc to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID."
+msgid "Signing a message with an address' private key allows you to prove that you are the owner of a given address to a possible counterparty.  For instance, let's say you sent 100 HC to a merchant and you have yet to receive your merchandise.  You contact the merchant and explain the situation, but need a way to prove you are, in fact, the owner of the address that the funds were sent from.  To do this you can generate a signature based on a message only known to you and your counterparty and the private key associated with the address.  Upon receipt, the counterparty may use the Verify Message form to ensure the signature is VALID."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/AdvancedStartup/Form.json
@@ -3136,10 +3136,10 @@ msgstr ""
 #: app/i18n/extracted/app/messages.json
 #. [transactions.description.send.testnet]
 #. defaultMessage is:
-#. Testnet Hc addresses always begin with letter T and contain 26-35 alphanumeric characters
+#. Testnet HC addresses always begin with letter T and contain 26-35 alphanumeric characters
 #. (e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).
 msgctxt "transactions.description.send.testnet"
-msgid "Testnet Hc addresses always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
+msgid "Testnet HC addresses always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/InvalidRPCVersion.json
@@ -3157,17 +3157,17 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 #. [tickets.info.votingAddress.message]
 #. defaultMessage is:
-#. The Hc address that will do the voting.
+#. The HC address that will do the voting.
 msgctxt "tickets.info.votingAddress.message"
-msgid "The Hc address that will do the voting."
+msgid "The HC address that will do the voting."
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/DaemonLoading/Form.json
 #. [getStarted.chainLoading]
 #. defaultMessage is:
-#. The Hc chain is currently loading and may take a few minutes.
+#. The HC chain is currently loading and may take a few minutes.
 msgctxt "getStarted.chainLoading"
-msgid "The Hc chain is currently loading and may take a few minutes."
+msgid "The HC chain is currently loading and may take a few minutes."
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
@@ -3309,9 +3309,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/TicketAutoBuyerInfoModalContent.json
 #. [ticketAutoBuyer.info.maxPriceRelative.message]
 #. defaultMessage is:
-#. This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 Hc.
+#. This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 HC.
 msgctxt "ticketAutoBuyer.info.maxPriceRelative.message"
-msgid "This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 Hc."
+msgid "This number sets the max price to purchase tickets based on the observed average price multiplied by this number.  e.g. If the average price is 100, and this was set to 1.25, then the max price to purchase tickets would be 125 HC."
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PassphraseInfoModalContent.json
@@ -3453,9 +3453,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 #. [tickets.info.ticketFee.header]
 #. defaultMessage is:
-#. Ticket fee (Hc/kB)
+#. Ticket fee (HC/kB)
 msgctxt "tickets.info.ticketFee.header"
-msgid "Ticket fee (Hc/kB)"
+msgid "Ticket fee (HC/kB)"
 msgstr ""
 
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
@@ -3723,9 +3723,9 @@ msgstr ""
 #: app/i18n/extracted/app/components/modals/PurchaseTicketsInfoModalContent.json
 #. [tickets.info.txFee.header]
 #. defaultMessage is:
-#. Tx fee (Hc/kB)
+#. Tx fee (HC/kB)
 msgctxt "tickets.info.txFee.header"
-msgid "Tx fee (Hc/kB)"
+msgid "Tx fee (HC/kB)"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/TicketsPage/PurchaseTab/StakePools/List.json

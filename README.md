@@ -2,7 +2,7 @@
 
 [![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
 
-hcGUI is a cross-platform GUI for Hc written in node.js using
+hcGUI is a cross-platform GUI for HC written in node.js using
 Electron.
 
 ## Installation

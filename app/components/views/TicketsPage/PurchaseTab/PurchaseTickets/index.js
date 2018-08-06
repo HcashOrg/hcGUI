@@ -20,8 +20,8 @@ class PurchaseTickets extends React.Component {
       expiryError: false,
       isShowingAdvanced: false,
       numTicketsToBuy: 1,
-      ticketFee: 0.001, // Hc/kB
-      txFee: 0.001, // Hc/kB
+      ticketFee: 0.001, // HC/kB
+      txFee: 0.001, // HC/kB
       conf: 0,
       expiry: 16
     };

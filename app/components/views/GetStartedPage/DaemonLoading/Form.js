@@ -35,7 +35,7 @@ const DaemonLoadingFormBody = ({
       showLongWaitMessage ?
         <Aux>
           <div className="get-started-fetch-headers-message">
-            <T id="getStarted.chainLoading" m="The Hc chain is currently loading and may take a few minutes." />
+            <T id="getStarted.chainLoading" m="The HC chain is currently loading and may take a few minutes." />
           </div>
           <div className="get-started-bottom-buttons">
             <SlateGrayButton onClick={onShowLogs}>
