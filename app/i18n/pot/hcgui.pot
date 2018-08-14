@@ -952,7 +952,7 @@ msgstr ""
 #. [stakepools.list.confirmRemove]
 #. defaultMessage is:
 #. Do you confirm removal of wallet {wallet}?
-msgctxt "stakepools.list.confirmRemove"
+msgctxt "stakepools.list.confirmRemoveWallet"
 msgid "Do you confirm removal of wallet {wallet}?"
 msgstr ""
 
@@ -2478,10 +2478,10 @@ msgid "Remove StakePool"
 msgstr ""
 
 #: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/SelectAvailableWalletsForm.json
-#. [stakepools.list.removeConfirmTitle]
+#. [stakepools.list.removeWalletConfirmTitle]
 #. defaultMessage is:
 #. Remove Wallet
-msgctxt "stakepools.list.removeConfirmTitle"
+msgctxt "stakepools.list.removeWalletConfirmTitle"
 msgid "Remove Wallet"
 msgstr ""
 

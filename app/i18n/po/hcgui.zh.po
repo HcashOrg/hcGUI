@@ -974,9 +974,9 @@ msgstr " 是否确认移除权益池{stakepool}?"
 #. defaultMessage is:
 #. Do you confirm removal of wallet {wallet}?
 #: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/SelectAvailableWalletsForm.json
-msgctxt "stakepools.list.confirmRemove"
+msgctxt "stakepools.list.confirmRemoveWallet"
 msgid "Do you confirm removal of wallet {wallet}?"
-msgstr "是否确认一处钱包 {wallet}?"
+msgstr "是否确认移除钱包 {wallet}?"
 
 #. [help.documentation]
 #. defaultMessage is:
@@ -2629,11 +2629,11 @@ msgctxt "stakepools.list.removeConfirmTitle"
 msgid "Remove StakePool"
 msgstr "移除投票池"
 
-#. [stakepools.list.removeConfirmTitle]
+#. [stakepools.list.removeWalletConfirmTitle]
 #. defaultMessage is:
 #. Remove Wallet
 #: app/i18n/extracted/app/components/views/GetStartedPage/WalletSelection/SelectAvailableWalletsForm.json
-msgctxt "stakepools.list.removeConfirmTitle"
+msgctxt "stakepools.list.removeWalletConfirmTitle"
 msgid "Remove Wallet"
 msgstr "移除钱包"
 
