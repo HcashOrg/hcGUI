@@ -26,6 +26,7 @@ export const getNextAddress = log((walletService, accountNum) =>
     const request = new NextAddressRequest();
     request.setAccount(accountNum);
     request.setKind(0);
+    request.setGapPolicy(NextAddressRequest.GapPolicy.GAP_POLICY_WRAP);
     walletService
       .nextAddress(request, (error, response) => error ? reject(error) : resolve(response));
   })

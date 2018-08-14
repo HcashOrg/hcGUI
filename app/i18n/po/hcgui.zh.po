@@ -1768,14 +1768,14 @@ msgstr "日志"
 
 #. [transactions.description.send.mainnet]
 #. defaultMessage is:
-#. Mainnet HC addresses always begin with letter D and contain 26-35 alphanumeric characters
-#. (e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).
+#. Mainnet HC addresses always begin with letter H and contain 26-35 alphanumeric characters
+#. (e.g. HxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).
 #: app/i18n/extracted/app/messages.json
 msgctxt "transactions.description.send.mainnet"
 msgid ""
-"Mainnet HC addresses always begin with letter D and contain 26-35 "
+"Mainnet HC addresses always begin with letter H and contain 26-35 "
 "alphanumeric characters\n"
-"(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
+"(e.g. HxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
 msgstr ""
 "主网地址总是以字母H开头，包含26-35字母数字字符。\n"
 "（如HXXXXXXXXXXXXXXXXXXXXXXXXXXX0X）。"
