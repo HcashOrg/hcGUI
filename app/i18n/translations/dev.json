@@ -497,7 +497,7 @@
   "transaction.type.votes": "Votos",
   "transactions.description.history": "Saldo total:",
   "transactions.description.receive": "Cada vez que requerer, crie um novo ende.",
-  "transactions.description.send.mainnet": "Endereços mainnet\n(e.g. DxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
+  "transactions.description.send.mainnet": "Endereços mainnet\n(e.g. HxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).",
   "transactions.description.send.testnet": "Endereços testnet\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0).",
   "transactions.sortby.tooltip": "Orenar por",
   "transactions.tab.history": "Histórico",
