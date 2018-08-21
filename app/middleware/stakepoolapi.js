@@ -39,6 +39,9 @@ export function setStakePoolAddress(apiUrl, apiToken, pKAddress, cb) {
       "Authorization": "Bearer " + apiToken,
     }
   };
+  if (apiUrl.endsWith("/")){
+    apiUrl = apiUrl.slice(0,-1) 
+  }
   var url = apiUrl+"/api/v1/address";
   axios.post(url,
     querystring.stringify({
@@ -59,6 +62,9 @@ export function setVoteChoices(apiUrl, apiToken, voteChoices, cb) {
       "Authorization": "Bearer " + apiToken,
     }
   };
+  if (apiUrl.endsWith("/")){
+    apiUrl = apiUrl.slice(0,-1) 
+  }
   var url = apiUrl+"/api/v2/voting";
   axios.post(url,
     querystring.stringify({
@@ -79,6 +85,9 @@ export function getPurchaseInfo(apiUrl, apiToken, cb) {
       "Authorization": "Bearer " + apiToken,
     }
   };
+  if (apiUrl.endsWith("/")){
+    apiUrl = apiUrl.slice(0,-1) 
+  }
   var url = apiUrl+"/api/v1/getpurchaseinfo";
   axios.get(url, config)
     .then(function(response) {
