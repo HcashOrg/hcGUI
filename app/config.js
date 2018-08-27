@@ -30,7 +30,7 @@ export function initWalletCfg(testnet, walletPath) {
     config.set("maxfee","0.1");
   }
   if (!config.has("maxpricerelative")) {
-    config.set("maxpricerelative","1.25");
+    config.set("maxpricerelative","10");
   }
   if (!config.has("maxpriceabsolute")) {
     config.set("maxpriceabsolute","0");
