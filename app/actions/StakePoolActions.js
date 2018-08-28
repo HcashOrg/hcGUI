@@ -14,7 +14,14 @@ export const UPDATESTAKEPOOLCONFIG_SUCCESS = "UPDATESTAKEPOOLCONFIG_SUCCESS";
 const updateSavedConfig = (newPoolInfo, poolHost, apiKey, accountNum) =>
   (dispatch, getState) => {
     const currentStakePoolConfig = sel.currentStakePoolConfig(getState());
-    const stakePoolConfigs = currentStakePoolConfig.map(config =>
+    let stakePoolConfigs = currentStakePoolConfig.map(config => {
+      if (config.Host && config.Host.endsWith("/")){
+        config.Host = config.Host.slice(0,-1)
+      }
+      return config
+    })
+    
+    stakePoolConfigs = currentStakePoolConfig.map(config =>
       (config.Host === poolHost)
         ? (apiKey || accountNum)
           ? { ...config, ...newPoolInfo, ApiKey: apiKey }
