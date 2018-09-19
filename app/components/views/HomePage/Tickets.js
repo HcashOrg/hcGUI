@@ -15,7 +15,7 @@ const HomePage = ({
   return (
     <div className="overview-content-wrapper">
       <div className="overview-spendable-locked-wrapper">
-        <div class="hope-bg">
+        <div className="hope-bg">
           <div className="overview-ticket">
             <div className="overview-ticket-column">
               <Balance

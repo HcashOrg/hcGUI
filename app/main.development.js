@@ -848,7 +848,7 @@ app.on("ready", async () => {
     template = [{
       label: locale.messages["appMenu.file"],
       submenu: [{
-        label: "&Close",
+        label:  locale.messages["appMenu.close"],
         accelerator: "Ctrl+W",
         click() {
           mainWindow.close();

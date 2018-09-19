@@ -4,7 +4,7 @@ import { transactionDetails } from "connectors";
 import { SlateGrayButton } from "buttons";
 import { addSpacingAroundText, tsToDate, reverseHash } from "helpers";
 import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
-import { DecodedTransaction }  from "middleware/walletrpc/api_pb";
+import { DecodedTransaction }  from "middleware/walletrpc/api_pb"; 
 import "style/TxDetails.less";
 import "style/Fonts.less";
 
@@ -194,8 +194,12 @@ const TxDetails = ({ routes, router,
                 <div className="txdetails-value">{txHeight}</div>
               </Aux>
             }
-            <div className="txdetails-name"><T id="txDetails.rawTransactionLabel" m="Raw Transaction" />:</div>
-            <div className="txdetails-value"><div className="txdetails-value-rawtx">{rawTx}</div><CopyToClipboard textToCopy={rawTx} className="receive-content-nest-copy-to-clipboard-icon" /></div>
+          <div className="txdetails-name"><T id="txDetails.rawTransactionLabel" m="Raw Transaction" />:</div>
+            <div className="txdetails-value">
+              <div className="txdetails-value-card">
+                <div className="txdetails-value-rawtx">{rawTx}</div><CopyToClipboard textToCopy={rawTx} className="receive-content-nest-copy-to-clipboard-icon" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

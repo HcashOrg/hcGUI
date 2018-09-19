@@ -23,14 +23,22 @@ class MenuLinks extends React.Component {
   _nodes = new Map();
   state = { top: 0 };
 
-  componentWillReceiveProps(nextProps) {
-    const activeLink = getPage(nextProps.routes);
-    const basePage = activeLink.split("/")[0];
+  componentDidMount(){ 
+    this.menuLinkActive(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {  
+    this.menuLinkActive(nextProps);
+  } 
+
+  menuLinkActive=(Props)=>{
+    const activeLink = getPage(Props.routes);
+    const basePage = activeLink.split("/")[0];  
     const newTop = this._nodes.get(basePage).offsetTop;
     this.setState({ top: spring(newTop, theme("springs.sideBar")) });
   }
 
-  render () {
+  render () { 
     return (
       <Aux>
         { linkList.map(link =>
