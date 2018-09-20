@@ -468,13 +468,12 @@ function filterTransactions(transactions, filter) {
 // When no more transactions are available given the current filter,
 // `grpc.noMoreTransactions` is set to true.
 export const getTransactions = () => async (dispatch, getState) => {
-  const { getAccountsResponse, getTransactionsRequestAttempt,
-    transactionsFilter, walletService, maximumTransactionCount } = getState().grpc;
-  let { noMoreTransactions, lastTransaction, minedTransactions } = getState().grpc;
+  const { currentBlockHeight, getTransactionsRequestAttempt,
+    transactionsFilter, walletService, maximumTransactionCount, recentTransactionCount } = getState().grpc;
+  let { noMoreTransactions, lastTransaction, minedTransactions, recentRegularTransactions, recentStakeTransactions } = getState().grpc;
   if (getTransactionsRequestAttempt || noMoreTransactions) return;
 
-  // Check to make sure getAccountsResponse (which has current block height) is available
-  if (getAccountsResponse === null) {
+  if (!currentBlockHeight) {
     // Wait a little then re-dispatch this call since we have no starting height yet
     setTimeout(() => { dispatch(getTransactions()); }, 1000);
     return;
@@ -493,33 +492,49 @@ export const getTransactions = () => async (dispatch, getState) => {
 
   // now, request a batch of mined transactions until `maximumTransactionCount`
   // transactions have been obtained (after filtering)
-  while (!noMoreTransactions && (filtered.length < maximumTransactionCount)) {
+  let reachedGenesis = false;
+  while (!noMoreTransactions && (filtered.length < maximumTransactionCount) && !reachedGenesis) {
     let startRequestHeight, endRequestHeight;
 
     if ( transactionsFilter.listDirection === "desc" ) {
-      startRequestHeight = lastTransaction ? lastTransaction.height -1 : getAccountsResponse.getCurrentBlockHeight();
+      startRequestHeight = lastTransaction ? lastTransaction.height -1 : currentBlockHeight;
+      if (startRequestHeight < 1) break;
       endRequestHeight = 1;
     } else {
       startRequestHeight = lastTransaction ? lastTransaction.height +1 : 1;
-      endRequestHeight = getAccountsResponse.getCurrentBlockHeight();
+      endRequestHeight = currentBlockHeight;
     }
 
     try {
       let { mined } = await walletGetTransactions(walletService,
-        startRequestHeight, endRequestHeight, pageCount);
-      noMoreTransactions = mined.length === 0;
-      lastTransaction = mined.length ? mined[mined.length -1] : lastTransaction;
+        startRequestHeight, endRequestHeight, pageCount); 
+      lastTransaction = mined.length ? mined[mined.length -1] : lastTransaction; 
+
+      reachedGenesis = (transactionsFilter.listDirection === "desc") &&
+        lastTransaction && (lastTransaction.height === 1);
+
+      noMoreTransactions = mined.length === 0 || reachedGenesis;
+      
       filterTransactions(mined, transactionsFilter)
         .forEach(v => filtered.push(v));
     } catch (error) {
-      dispatch({ type: GETTRANSACTIONS_FAILED, error});
+      dispatch({ type: GETTRANSACTIONS_FAILED, error });
       return;
     }
   }
 
-  minedTransactions = [...minedTransactions, ...filtered];
+  minedTransactions = [ ...minedTransactions, ...filtered ];
+  
+  if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.REGULAR) > -1) {
+    recentRegularTransactions = [ ...unminedTransactions, ...minedTransactions ];
+    recentRegularTransactions = recentRegularTransactions.slice(0, recentTransactionCount);
+  } else if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.VOTE) > -1) {
+    recentStakeTransactions = [ ...unminedTransactions, ...minedTransactions ];
+    recentStakeTransactions = recentStakeTransactions.slice(0, recentTransactionCount);
+  } 
+
   const stateChange = { unminedTransactions, minedTransactions,
-    noMoreTransactions, lastTransaction, type: GETTRANSACTIONS_COMPLETE};
+    noMoreTransactions, lastTransaction, recentRegularTransactions, recentStakeTransactions, type: GETTRANSACTIONS_COMPLETE };
   dispatch(stateChange);
   return stateChange;
 };
