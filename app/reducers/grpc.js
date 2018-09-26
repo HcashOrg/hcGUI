@@ -267,17 +267,21 @@ export default function grpc(state = {}, action) {
       lastTransaction: action.lastTransaction,
       getTransactionsRequestError: "",
       getTransactionsRequestAttempt: false,
-      recentTransactions: state.recentTransactions.length
-        ? state.recentTransactions
-        : transactions.slice(0, state.recentTransactionCount)
+      recentRegularTransactions: action.recentRegularTransactions
+        ? action.recentRegularTransactions
+        : state.recentRegularTransactions,
+      recentStakeTransactions: action.recentStakeTransactions
+        ? action.recentStakeTransactions
+        : state.recentStakeTransactions
     };
   case NEW_TRANSACTIONS_RECEIVED:
     return {
       ...state,
       minedTransactions: action.minedTransactions,
       unminedTransactions: action.unminedTransactions,
-      transactions: [...action.unminedTransactions, ...action.minedTransactions],
-      recentTransactions: action.recentTransactions,
+      transactions: [ ...action.unminedTransactions, ...action.minedTransactions ],
+      recentRegularTransactions: action.recentRegularTransactions,
+      recentStakeTransactions: action.recentStakeTransactions,
     };
   case CHANGE_TRANSACTIONS_FILTER:
     return {

@@ -12,7 +12,7 @@ import { getWalletCfg } from "../config.js";
 import { onAppReloadRequested } from "wallet";
 import { getTransactions as walletGetTransactions } from "wallet/service";
 import { TransactionDetails } from "middleware/walletrpc/api_pb";
-import { clipboard } from "electron";
+import { clipboard } from "electron"; 
 
 export const GETWALLETSERVICE_ATTEMPT = "GETWALLETSERVICE_ATTEMPT";
 export const GETWALLETSERVICE_FAILED = "GETWALLETSERVICE_FAILED";
@@ -63,6 +63,8 @@ export const getStartupWalletInfo = () => (dispatch) => {
     setTimeout( async () => {
       try {
         await dispatch(getAccountsAttempt(true));
+        await dispatch(getMostRecentRegularTransactions());
+        await dispatch(getMostRecentStakeTransactions());
         await dispatch(getMostRecentTransactions());
         dispatch(findImmatureTransactions());
         dispatch({type: GETSTARTUPWALLETINFO_SUCCESS});
@@ -525,14 +527,16 @@ export const getTransactions = () => async (dispatch, getState) => {
 
   minedTransactions = [ ...minedTransactions, ...filtered ];
   
-  if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.REGULAR) > -1) {
+  if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.REGULAR) > -1) { 
     recentRegularTransactions = [ ...unminedTransactions, ...minedTransactions ];
     recentRegularTransactions = recentRegularTransactions.slice(0, recentTransactionCount);
-  } else if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.VOTE) > -1) {
+  } else if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.TICKET_PURCHASE) > -1 
+  || transactionsFilter.types.indexOf(TransactionDetails.TransactionType.VOTE) > -1
+  || transactionsFilter.types.indexOf(TransactionDetails.TransactionType.REVOCATION) >-1) {
     recentStakeTransactions = [ ...unminedTransactions, ...minedTransactions ];
     recentStakeTransactions = recentStakeTransactions.slice(0, recentTransactionCount);
   } 
-
+ 
   const stateChange = { unminedTransactions, minedTransactions,
     noMoreTransactions, lastTransaction, recentRegularTransactions, recentStakeTransactions, type: GETTRANSACTIONS_COMPLETE };
   dispatch(stateChange);
@@ -565,7 +569,7 @@ function checkForStakeTransactions(txs) {
 export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTransactions) => (dispatch, getState) => {
   if (!newlyMinedTransactions.length && !newlyUnminedTransactions.length) return;
 
-  let { unminedTransactions, minedTransactions, recentTransactions } = getState().grpc;
+  let { unminedTransactions, minedTransactions, recentRegularTransactions, recentStakeTransactions } = getState().grpc;
   const { transactionsFilter, recentTransactionCount } = getState().grpc;
   const chainParams = sel.chainParams(getState());
 
@@ -591,11 +595,30 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
     ...unminedTransactions.filter(tx => !newlyMinedMap[tx.hash] && !newlyUnminedMap[tx.hash])
   ], transactionsFilter);
 
-  recentTransactions = [
+  const regularTransactionFilter = {
+    listDirection: "desc",
+    types: [ TransactionDetails.TransactionType.REGULAR ],
+    direction: null,
+  };
+
+  recentRegularTransactions = filterTransactions([
     ...newlyUnminedTransactions,
     ...newlyMinedTransactions,
-    ...recentTransactions.filter(tx => !newlyMinedMap[tx.hash] && !newlyUnminedMap[tx.hash])
-  ].slice(0, recentTransactionCount);
+    ...recentRegularTransactions.filter(tx => !newlyMinedMap[tx.hash] && !newlyUnminedMap[tx.hash])
+  ], regularTransactionFilter).slice(0, recentTransactionCount);
+
+  const stakeTransactionFilter = {
+    listDirection: "desc",
+    types: [ TransactionDetails.TransactionType.TICKET_PURCHASE, TransactionDetails.TransactionType.VOTE, TransactionDetails.TransactionType.REVOCATION ],
+    direction: null,
+  };
+
+  recentStakeTransactions = filterTransactions([
+    ...newlyUnminedTransactions,
+    ...newlyMinedTransactions,
+    ...recentStakeTransactions.filter(tx => !newlyMinedMap[tx.hash] && !newlyUnminedMap[tx.hash])
+  ], stakeTransactionFilter).slice(0, recentTransactionCount);
+
 
   const { maturingBlockHeights } = getState().grpc;
   const newMaturingHeights = {...maturingBlockHeights};
@@ -617,9 +640,31 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
     minedTransactions = [...minedTransactions, ...newlyMinedTransactions];
   }
   minedTransactions = filterTransactions(minedTransactions, transactionsFilter);
+  
+  dispatch({ unminedTransactions, minedTransactions, newlyUnminedTransactions,
+    newlyMinedTransactions, recentRegularTransactions, recentStakeTransactions, type: NEW_TRANSACTIONS_RECEIVED });
 
-  dispatch({unminedTransactions, minedTransactions, newlyUnminedTransactions,
-    newlyMinedTransactions, recentTransactions, type: NEW_TRANSACTIONS_RECEIVED});
+};
+
+// getMostRecentRegularTransactions clears the transaction filter and refetches
+// the first page of transactions. This is used to get and store the initial
+// list of recent transactions.
+export const getMostRecentRegularTransactions = () => dispatch => {
+  const defaultFilter = {
+    listDirection: "desc",
+    types: [ TransactionDetails.TransactionType.REGULAR ],
+    direction: null,
+  };
+  return dispatch(changeTransactionsFilter(defaultFilter));
+};
+
+export const getMostRecentStakeTransactions = () => dispatch => {
+  const defaultFilter = {
+    listDirection: "desc",
+    types: [ TransactionDetails.TransactionType.TICKET_PURCHASE, TransactionDetails.TransactionType.VOTE, TransactionDetails.TransactionType.REVOCATION ],
+    direction: null,
+  };
+  return dispatch(changeTransactionsFilter(defaultFilter));
 };
 
 export const CLEAR_MOSTRECENTTRANSACTIONS = "CLEAR_MOSTRECENTTRANSACTIONS";

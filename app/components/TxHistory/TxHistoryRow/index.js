@@ -13,7 +13,7 @@ const TxRowByType = { // TODO: use constants instead of string
 
 const TxRow = ({ tx }, { router }) => {
   const rowType = tx.txType || tx.txDirection;
-  const Component = TxRowByType[rowType];
+  const Component = TxRowByType[rowType]; 
 
   return Component ? (
     <Component

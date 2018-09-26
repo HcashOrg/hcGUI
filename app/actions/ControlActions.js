@@ -85,11 +85,19 @@ export function rescanAttempt(beginHeight) {
       });
       rescanCall.on("end", function() {
         dispatch({ type: RESCAN_COMPLETE });
-        dispatch(getStartupWalletInfo()).then(resolve);
+        if (startup) {
+          dispatch(startWalletServices());
+        } else {
+          dispatch(getStartupWalletInfo());
+        }
       });
       rescanCall.on("error", function(status) {
-        console.error("Rescan error", status);
-        reject(status);
+        status = status + "";
+        if (status.indexOf("Cancelled") < 0) {
+          console.error("Rescan error", status);
+          reject(status);
+          dispatch({ type: RESCAN_FAILED });
+        }
       });
     });
 
