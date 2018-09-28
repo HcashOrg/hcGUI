@@ -1199,7 +1199,7 @@ msgstr "预估大小"
 msgctxt "getStarted.chainLoading.syncEstimation"
 msgid ""
 "Estimated ending {timeEstimation} ({currentBlockCount} / {neededBlocks})"
-msgstr "预计结束时间"
+msgstr "预计结束时间  {timeEstimation} ({currentBlockCount} / {neededBlocks})"
 
 #. [getStarted.existingSeedTab]
 #. defaultMessage is:
