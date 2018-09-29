@@ -1,12 +1,14 @@
-import { Tooltip } from "shared";
+import { Tooltip,Unit } from "shared";
 import { FormattedMessage as T } from "react-intl";
 import { addSpacingAroundText } from "helpers/strings";
+import balanceConnector from "connectors/balance";
 
 const PurchaseTicketsAdvanced = ({
   stakePool,
   ticketFee,
   txFee,
   expiry,
+  currencyDisplay
 }) => (
   <div className="stakepool-purchase-ticket-quick-bar-row">
     <div className="stakepool-quick-bar-row-label"><T id="purchaseTickets.settings" m="Settings" />:</div>
@@ -14,10 +16,10 @@ const PurchaseTicketsAdvanced = ({
       <div className="stakepool-icon">{stakePool && stakePool.value.Host}</div>
     </Tooltip>
     <Tooltip text={<T id="purchaseTickets.ticketFeeTip" m="Ticket Fee" />}>
-      <div className="stakepool-fee-icon">{ticketFee} HC/KB</div>
+      <div className="stakepool-fee-icon">{ticketFee} <Unit currencyDisplay={`${currencyDisplay}/KB`}/></div>
     </Tooltip>
     <Tooltip text={<T id="purchaseTickets.txFeeTip" m="Tx Fee" />}>
-      <div className="stakepool-fee-icon">{txFee} HC/KB</div>
+      <div className="stakepool-fee-icon">{txFee} <Unit currencyDisplay={`${currencyDisplay}/KB`}/></div>
     </Tooltip>
     <Tooltip text={<T id="purchaseTickets.expiry" m="Expiry" />}>
       <div className="stakepool-expiry-icon">{expiry} Blocks</div>
@@ -33,4 +35,4 @@ const PurchaseTicketsAdvanced = ({
     </Tooltip>
   </div>);
 
-export default PurchaseTicketsAdvanced;
+export default balanceConnector(PurchaseTicketsAdvanced);

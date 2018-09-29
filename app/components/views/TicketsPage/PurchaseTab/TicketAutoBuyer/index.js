@@ -4,6 +4,7 @@ import { injectIntl } from "react-intl";
 import { spring } from "react-motion";
 import Details from "./Details";
 import TicketAutoBuyerForm from "./Form";
+import {hcToAtoms,UnitEnum,atomsToHc} from '../../../../../helpers/balance'
 
 @autobind
 class TicketAutoBuyer extends React.Component {
@@ -26,7 +27,7 @@ class TicketAutoBuyer extends React.Component {
     };
   }
 
-  componentDidUpdate() {
+  componentDidUpdate() { 
     const {isHidingDetails} = this.state;
     if(!isHidingDetails) {
       this.scrollToBottom();
@@ -66,11 +67,14 @@ class TicketAutoBuyer extends React.Component {
     const changeMaxPerBlock = e => this.onChangeMaxPerBlock(v(e));
 
     const { 
+      maxFee,
+      currencyDisplay,
       getTicketBuyerConfigResponse,
       intl : { formatMessage }
     } = this.props;
     let isTicketAutoBuyerConfigDirty = this.getIsDirty()
     const { onUpdateTicketAutoBuyerConfig } = this;
+    console.log(this.state,'=========================')
     return [{
       data: <Details {...{
         ...this.state,
@@ -83,6 +87,8 @@ class TicketAutoBuyer extends React.Component {
         onChangeMaxPriceRelative: changeMaxPriceRelative,
         onChangeMaxPerBlock: changeMaxPerBlock,
         onUpdateTicketAutoBuyerConfig,
+        currencyDisplay,
+        pMaxFee:hcToAtoms(maxFee,currencyDisplay,UnitEnum.hc) 
       }}
       />,
       key: "output_0",
@@ -131,13 +137,20 @@ class TicketAutoBuyer extends React.Component {
   }
 
   getCurrentSettings() {
-    return substruct({
+   
+    let obj=substruct({
       balanceToMaintain: null,
       maxFee: null,
       maxPriceAbsolute: null,
       maxPriceRelative: null,
       maxPerBlock: null
     }, this.props);
+
+    obj = {...obj,...{
+      maxFee:hcToAtoms(obj.maxFee,this.props.currencyDisplay,UnitEnum.hc),
+      maxPriceAbsolute:hcToAtoms(obj.maxPriceAbsolute,this.props.currencyDisplay,UnitEnum.hc)
+    }} 
+    return obj;
   }
 
   getIsDirty() {
@@ -176,15 +189,15 @@ class TicketAutoBuyer extends React.Component {
     });
   }
 
-  onChangeMaxFee(maxFee) {
-    const maxFeeError = (isNaN(maxFee) || maxFee <= 0 || maxFee >= 0.1) || !maxFee;
+  onChangeMaxFee(maxFee) {  
+    const maxFeeError = (isNaN(maxFee) || maxFee <= 0 || maxFee >= hcToAtoms(this.props.maxFee,this.props.currencyDisplay,UnitEnum.hc)) || !maxFee;
     this.setState({
       maxFee: maxFee.replace(/[^\d.]/g, ""),
       maxFeeError: maxFeeError
     });
   }
 
-  onChangeMaxPriceAbsolute(maxPriceAbsolute) {
+  onChangeMaxPriceAbsolute(maxPriceAbsolute) { 
     const maxPriceAbsoluteError = (isNaN(maxPriceAbsolute) || maxPriceAbsolute < 0) || !maxPriceAbsolute;
     this.setState({
       maxPriceAbsolute: maxPriceAbsolute.replace(/[^\d.]/g, ""),
@@ -209,13 +222,13 @@ class TicketAutoBuyer extends React.Component {
   }
 
   onStartAutoBuyer(passphrase) {
-    const { onEnableTicketAutoBuyer } = this.props;
+    const { onEnableTicketAutoBuyer,currencyDisplay } = this.props;
     onEnableTicketAutoBuyer && onEnableTicketAutoBuyer(
       passphrase,
       this.getAccount().value,
       this.state.balanceToMaintain,
-      this.state.maxFee,
-      this.state.maxPriceRelative,
+      atomsToHc(this.state.maxFee,currencyDisplay,UnitEnum.hc),
+      atomsToHc(this.state.maxPriceAbsolute,currencyDisplay,UnitEnum.hc),
       this.state.maxPriceAbsolute,
       this.state.maxPerBlock,
       this.props.stakePool.value
@@ -227,8 +240,8 @@ class TicketAutoBuyer extends React.Component {
     this.getIsDirty() ? (onUpdateConfig && onUpdateConfig(
       this.getAccount().value,
       this.state.balanceToMaintain,
-      this.state.maxFee,
-      this.state.maxPriceAbsolute,
+      atomsToHc(this.state.maxFee,this.props.currencyDisplay,UnitEnum.hc),
+      atomsToHc(this.state.maxPriceAbsolute,this.props.currencyDisplay,UnitEnum.hc),
       this.state.maxPriceRelative,
       this.props.stakePool.value,
       this.state.maxPerBlock

@@ -7,6 +7,7 @@ import purchaseTickets from "connectors/purchaseTickets";
 import PurchaseTicketsAdvanced from "./PurchaseTicketsAdvanced";
 import PurchaseTicketsQuickBar from "./PurchaseTicketsQuickBar";
 import { injectIntl } from "react-intl";
+import {hcToAtoms,atomsToHc,UnitEnum} from '../../../../../helpers/balance'
 
 const MAX_POSSIBLE_FEE_INPUT = 0.1;
 
@@ -20,8 +21,8 @@ class PurchaseTickets extends React.Component {
       expiryError: false,
       isShowingAdvanced: false,
       numTicketsToBuy: 1,
-      ticketFee: 0.001, // HC/kB
-      txFee: 0.001, // HC/kB
+      ticketFee: hcToAtoms(0.001,this.props.currencyDisplay,UnitEnum.hc), // HC/kB
+      txFee: hcToAtoms(0.001,this.props.currencyDisplay,UnitEnum.hc), // HC/kB
       conf: 0,
       expiry: 16
     };
@@ -54,7 +55,7 @@ class PurchaseTickets extends React.Component {
       onShowStakePoolConfig,
       onChangeStakePool,
       intl: { formatMessage }
-    } = this.props;
+    } = this.props; 
     const { ticketFee, txFee, expiry,
       ticketFeeError, txFeeError, expiryError } = this.state;
     return [{
@@ -97,7 +98,7 @@ class PurchaseTickets extends React.Component {
     };
   }
 
-  render() {
+  render() { 
     return (
       <PurchaseTicketsForm
         {...{
@@ -197,14 +198,14 @@ class PurchaseTickets extends React.Component {
       this.state.conf,
       this.state.numTicketsToBuy,
       this.state.expiry,
-      this.state.ticketFee,
-      this.state.txFee,
+      atomsToHc(this.state.ticketFee,this.props.currencyDisplay),
+      atomsToHc(this.state.txFee,this.props.currencyDisplay),
       this.getStakePool().value
     );
   }
 
-  onChangeTicketFee(ticketFee) {
-    const ticketFeeError = (isNaN(ticketFee) || ticketFee <= 0 || ticketFee >= MAX_POSSIBLE_FEE_INPUT);
+  onChangeTicketFee(ticketFee) { 
+    const ticketFeeError = (isNaN(ticketFee) || ticketFee <= 0 || ticketFee >= hcToAtoms(this.props.maxFee,this.props.currencyDisplay,UnitEnum.hc));
     this.setState({
       ticketFee: ticketFee.replace(/[^\d.]/g, ""),
       ticketFeeError: ticketFeeError,
@@ -212,8 +213,8 @@ class PurchaseTickets extends React.Component {
 
   }
 
-  onChangeTxFee(txFee) {
-    const txFeeError = (isNaN(txFee) || txFee <= 0 || txFee >= MAX_POSSIBLE_FEE_INPUT);
+  onChangeTxFee(txFee) { 
+    const txFeeError = (isNaN(txFee) || txFee <= 0 || txFee >=  hcToAtoms(this.props.maxFee,this.props.currencyDisplay,UnitEnum.hc));
     this.setState({
       txFee: txFee.replace(/[^\d.]/g, ""),
       txFeeError: txFeeError

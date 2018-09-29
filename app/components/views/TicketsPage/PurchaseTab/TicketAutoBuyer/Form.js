@@ -1,6 +1,6 @@
 import { AutoBuyerSwitch, InfoModalButton, PassphraseModalSwitch, TicketsCogs } from "buttons";
 import { TicketAutoBuyerInfoModalContent } from "modals";
-import { Tooltip, TransitionMotionWrapper } from "shared";
+import { Tooltip, TransitionMotionWrapper,Unit } from "shared";
 import { FormattedMessage as T } from "react-intl";
 import "style/StakePool.less";
 
@@ -16,7 +16,8 @@ const TicketAutoBuyerForm = ({
   onToggleShowDetails,
   isTicketAutoBuyerEnabled,
   getNullStyles,
-  getDetailsComponent
+  getDetailsComponent,
+  currencyDisplay
 }) => (
   <Aux>
     <div className="stakepool-voting-title-area">
@@ -39,10 +40,10 @@ const TicketAutoBuyerForm = ({
                 <div className="stakepool-balance-to-maintain-icon">{balanceToMaintain}</div>
               </Tooltip>
               <Tooltip text={<T id="autobuyer.maxFee" m="Max Fee" />}>
-                <div className="stakepool-max-fee-icon">{maxFee} HC</div>
+                <div className="stakepool-max-fee-icon">{maxFee} <Unit currencyDisplay={currencyDisplay} /></div>
               </Tooltip>
               <Tooltip text={<T id="autobuyer.maxPriceAbsolute" m="Max Price Absolute" />}>
-                <div className="stakepool-max-price-absolute-icon">{maxPriceAbsolute} HC</div>
+                <div className="stakepool-max-price-absolute-icon">{maxPriceAbsolute} <Unit currencyDisplay={currencyDisplay}/></div>
               </Tooltip>
               <Tooltip text={<T id="autobuyer.maxPriceRelative" m="Max Price Relative" />}>
                 <div className="stakepool-max-price-relative-icon">{maxPriceRelative}%</div>

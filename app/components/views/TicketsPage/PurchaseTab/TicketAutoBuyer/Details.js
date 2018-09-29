@@ -1,6 +1,6 @@
 import { FeeInput, FixedHcInput, PercentInput, BlocksInput } from "inputs";
 import { KeyBlueButton } from "buttons";
-import { FormattedMessage as T, defineMessages } from "react-intl";
+import { FormattedMessage as T, defineMessages } from "react-intl"; 
 
 const messages = defineMessages({
   balanceToMaintain: {
@@ -44,7 +44,9 @@ const Details = ({
   maxFee,
   maxPriceAbsolute,
   maxPriceRelative,
-  maxPerBlock
+  maxPerBlock,
+  currencyDisplay,
+  pMaxFee
 }) => (
   <div className="stakepool-auto-buyer-advanced-area">
     {canNotEnableAutobuyer ?
@@ -82,7 +84,7 @@ const Details = ({
               value={maxFee}
               onChange={onChangeMaxFee}
               invalid={maxFeeError}
-              invalidMessage={<T id="autobuyer.invalidMaxFee" m="*Invalid max fee (0 - 0.1 HC/KB)" />}
+              invalidMessage={<T id="autobuyer.invalidMaxFee" m="*Invalid max fee (0 - {maxFee} {currencyDisplay}/KB)" values={{maxFee:pMaxFee,currencyDisplay:currencyDisplay}} />}
               showErrors
               required
             />

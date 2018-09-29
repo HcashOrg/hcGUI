@@ -8,7 +8,9 @@ const mapStateToProps = selectorMap({
   ticketPrice: sel.ticketPrice,
   spendingAccounts: sel.spendingAccounts,
   rescanRequest: sel.rescanRequest,
-  hasTicketsToRevoke: sel.hasTicketsToRevoke
+  hasTicketsToRevoke: sel.hasTicketsToRevoke,
+  maxFee:sel.maxFee,
+  currencyDisplay: sel.currencyDisplay
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
