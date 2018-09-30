@@ -73,8 +73,7 @@ class TicketAutoBuyer extends React.Component {
       intl : { formatMessage }
     } = this.props;
     let isTicketAutoBuyerConfigDirty = this.getIsDirty()
-    const { onUpdateTicketAutoBuyerConfig } = this;
-    console.log(this.state,'=========================')
+    const { onUpdateTicketAutoBuyerConfig } = this; 
     return [{
       data: <Details {...{
         ...this.state,
