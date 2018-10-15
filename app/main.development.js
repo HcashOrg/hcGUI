@@ -519,7 +519,6 @@ const launchHCWallet = (walletPath, testnet) => {
   args.push("--ticketbuyer.maxpricerelative=" + cfg.get("maxpricerelative"));
   args.push("--ticketbuyer.maxpriceabsolute=" + cfg.get("maxpriceabsolute"));
   args.push("--ticketbuyer.maxperblock=" + cfg.get("maxperblock"));
-
   var hcwExe = getExecutablePath("hcwallet");
   if (!fs.existsSync(hcwExe)) {
     logger.log("error", "The hcwallet file does not exists");

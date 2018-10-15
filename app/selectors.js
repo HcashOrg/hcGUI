@@ -102,6 +102,8 @@ export const isInputRequest = or(
 export const isOpenWalletPublicInputRequest = get(["walletLoader", "openWalletPublicInputRequest"]);
 export const isOpenWalletPrivateInputRequest = get(["walletLoader", "openWalletPrivateInputRequest"]);
 
+export const omniService = get(["rpc", "omniService"]);
+
 export const balances = or(get(["grpc", "balances"]), () => []);
 export const walletService = get(["grpc", "walletService"]);
 export const agendaService = get(["grpc", "agendaService"]);

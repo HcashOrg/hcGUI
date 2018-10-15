@@ -65,6 +65,11 @@ var initialState = {
     getWalletRPCVersionRequestAttempt: false,
     getWalletRPCVersionResponse: null,
   },
+  rpc:{
+    getOmniServiceError: null,
+    getOmniServiceRequestAttempt: false,
+    omniService:null
+  },
   grpc: {
     // WalletService
     address: "127.0.0.1",

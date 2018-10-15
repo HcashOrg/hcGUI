@@ -4652,3 +4652,43 @@ msgstr ~ {days, plural, one {# day} other {# days}} from buying until {status}
 msgctxt "getStarted.enterWallet"
 msgid "Enter Wallet Passphrase:"
 msgstr "输入钱包密码"
+
+#. [charts.keys.available]
+#. defaultMessage is:
+#. Available
+#: app/i18n/extracted/app/components/charts/messages.json
+msgctxt "charts.keys.available"
+msgid "Available"
+msgstr "可用"
+
+#. [charts.keys.locked]
+#. defaultMessage is:
+#. Locked
+#: app/i18n/extracted/app/components/charts/messages.json
+msgctxt "charts.keys.locked"
+msgid "Locked"
+msgstr "已锁定"
+
+#: app/i18n/extracted/app/components/charts/messages.json
+#. [charts.dayMonthDisplay]
+#. defaultMessage is:
+#. {value, date, day-short-month}
+msgctxt "charts.dayMonthDisplay"
+msgid "{value, date, day-short-month}"
+msgstr "{value, date, day-short-month}"
+
+#: app/i18n/extracted/app/components/charts/messages.json
+#. [charts.fullDayDisplay]
+#. defaultMessage is:
+#. {value, date}
+msgctxt "charts.fullDayDisplay"
+msgid "{value, date}"
+msgstr "{value, date}"
+
+#. [menu.omni]
+#. defaultMessage is:
+#. Overview
+#: app/i18n/extracted/app/messages.json
+msgctxt "menu.omni"
+msgid "Omni"
+msgstr "Omni Token"

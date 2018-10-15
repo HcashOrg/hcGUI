@@ -54,4 +54,5 @@ export default defineMessages({
   "menu.security":                            { id: "menu.security",                         defaultMessage: "Security Center"},
   "menu.settings":                            { id: "menu.settings",                         defaultMessage: "Settings"},
   "menu.help":                                { id: "menu.help",                             defaultMessage: "Help"},
+  "menu.omni":                                { id: "menu.omni",                             defaultMessage: "Omni Token"},
 });

@@ -18,6 +18,7 @@ class StakePools extends React.Component {
     if (this.getNoAvailableStakepools()) {
       this.props.discoverAvailableStakepools();
     }
+    this.props.discoverAvailableStakepools();
   }
 
   componentWillReceiveProps(nextProps) {

@@ -318,6 +318,7 @@ export function newWalletConfigCreation(testnet, walletPath) {
     }
   };
   fs.writeFileSync(hcctlCfg(getWalletPath(testnet, walletPath)), ini.stringify(hcctlConf));
+  //nolegacyrpc: "1",
   var hcwConf = {
     "Application Options":
     {
@@ -327,7 +328,8 @@ export function newWalletConfigCreation(testnet, walletPath) {
       grpclisten: "127.0.0.1:0",
       appdata: getWalletPath(testnet, walletPath),
       testnet: testnet ? "1" : "0",
-      nolegacyrpc: "1",
+      username :rpcOptions.username,
+      password : rpcOptions.password,
     },
   };
   fs.writeFileSync(hcwalletCfg(getWalletPath(testnet, walletPath)), ini.stringify(hcwConf));
@@ -342,4 +344,14 @@ export function hcdCfg(configPath) {
 
 export function hcwalletCfg(configPath) {
   return path.resolve(configPath, "hcwallet.conf");
+}
+
+export const rpcOptions={
+  username : "admin",
+  password : "123",
+  jsonrpc:"1.0",
+  id:1,
+  port:function(isTestNet){
+    return isTestNet ? 12010 : 12010;
+  }
 }

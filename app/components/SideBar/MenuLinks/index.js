@@ -11,9 +11,10 @@ const linkList = [
   "accounts",
   "transactions",
   "tickets",
+  "omni",
   //// hide for now
   // "security",
-   "settings",
+  "settings",
   // "help"
 ];
 
@@ -39,16 +40,16 @@ class MenuLinks extends React.Component {
   }
 
   render () { 
-    return (
-      <Aux>
-        { linkList.map(link =>
-          <MenuLink to={ "/" + link } linkRef={ ref => this._nodes.set(link, ref) } key={ link }>
-            { this.props.intl.formatMessage(messages["menu." + link]) }
-          </MenuLink> )}
-        <Motion style={ this.state }>
-          { style => <div className="menu-caret" {...{ style }}/> }
-        </Motion>
-      </Aux>
+    return ( 
+        <Aux>
+          { linkList.map(link =>
+            <MenuLink to={ "/" + link } linkRef={ ref => this._nodes.set(link, ref) } key={ link }>
+              { this.props.intl.formatMessage(messages["menu." + link]) }
+            </MenuLink> )}
+          <Motion style={ this.state }>
+            { style => <div className="menu-caret" {...{ style }}/> }
+          </Motion> 
+        </Aux> 
     );
   }
 }

@@ -13,7 +13,6 @@ import { onAppReloadRequested } from "wallet";
 import { getTransactions as walletGetTransactions } from "wallet/service";
 import { TransactionDetails } from "middleware/walletrpc/api_pb";
 import { clipboard } from "electron"; 
-
 export const GETWALLETSERVICE_ATTEMPT = "GETWALLETSERVICE_ATTEMPT";
 export const GETWALLETSERVICE_FAILED = "GETWALLETSERVICE_FAILED";
 export const GETWALLETSERVICE_SUCCESS = "GETWALLETSERVICE_SUCCESS";
@@ -149,7 +148,7 @@ export const findImmatureTransactions = () => async (dispatch, getState) => {
 
 export const getWalletServiceAttempt = () => (dispatch, getState) => {
   const { grpc: { address, port } } = getState();
-  const { daemon: { walletName } } = getState();
+  const { daemon: { walletName } } = getState(); 
   dispatch({ type: GETWALLETSERVICE_ATTEMPT });
   wallet.getWalletService(sel.isTestNet(getState()), walletName, address, port)
     .then(walletService => dispatch(getWalletServiceSuccess(walletService)))
@@ -469,7 +468,8 @@ function filterTransactions(transactions, filter) {
 //
 // When no more transactions are available given the current filter,
 // `grpc.noMoreTransactions` is set to true.
-export const getTransactions = () => async (dispatch, getState) => {
+export const getTransactions = () => async (dispatch, getState) => { 
+
   const { currentBlockHeight, getTransactionsRequestAttempt,
     transactionsFilter, walletService, maximumTransactionCount, recentTransactionCount } = getState().grpc;
   let { noMoreTransactions, lastTransaction, minedTransactions, recentRegularTransactions, recentStakeTransactions } = getState().grpc;
