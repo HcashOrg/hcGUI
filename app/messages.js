@@ -27,6 +27,14 @@ export default defineMessages({
   "tickets.tab.governance":                   { id: "tickets.tab.governance",                defaultMessage: "Governance" },
   "tickets.tab.statistics":                   { id: "tickets.tab.statistics",                defaultMessage: "Statistics" },
 
+  "omni.title":                               { id: "omni.title",                         defaultMessage: "Omni Token" },
+  "omni.description":                         { id: "omni.description",                   defaultMessage: "Estimated total:" },
+  "omni.tab.overview":                        { id: "omni.tab.overview",                  defaultMessage: "Overview" },
+  "omni.tab.addressest":                      { id: "omni.tab.addressest",                 defaultMessage: "My Addressest" },
+  "omni.tab.assets":                          { id: "omni.tab.assets",                defaultMessage: "My Assets" },
+  "omni.tab.history":                         { id: "omni.tab.history",                defaultMessage: "History" },
+  "omni.tab.send":                            { id: "omni.tab.send",                defaultMessage: "Send" },
+
   "security.title":                           { id: "security.title",                        defaultMessage: "Security Center" },
   "security.description":                     { id: "security.description",                  defaultMessage: "Various tools that help in different aspects of crypto currency security will be located here." },
   "security.tab.sign":                        { id: "security.tab.sign",                     defaultMessage: "Sign Message" },

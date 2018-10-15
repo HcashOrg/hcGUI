@@ -4687,8 +4687,64 @@ msgstr "{value, date}"
 
 #. [menu.omni]
 #. defaultMessage is:
-#. Overview
+#. Omni Token
 #: app/i18n/extracted/app/messages.json
 msgctxt "menu.omni"
-msgid "Omni"
+msgid "Omni Token"
 msgstr "Omni Token"
+
+#. [omni.title]
+#. defaultMessage is:
+#. Omni title
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.title"
+msgid "Omni Token"
+msgstr "Omni Token"
+
+#. [omni.description]
+#. defaultMessage is:
+#. Estimated total:
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.description"
+msgid "Estimated total:"
+msgstr "预计余额："
+
+#. [omni.tab.overview]
+#. defaultMessage is:
+#. Overview
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.tab.overview"
+msgid "Overview"
+msgstr "概述"
+
+#. [omni.tab.addressest]
+#. defaultMessage is:
+#. My Addressest
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.tab.addressest"
+msgid "My Addressest"
+msgstr "地址"
+
+#. [omni.tab.assets]
+#. defaultMessage is:
+#. My Assets
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.tab.assets"
+msgid "My Assets"
+msgstr "资产"
+
+#. [omni.tab.history]
+#. defaultMessage is:
+#. History
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.tab.history"
+msgid "History"
+msgstr "历史"
+
+#. [omni.tab.send]
+#. defaultMessage is:
+#. Send
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.tab.send"
+msgid "Send"
+msgstr "发送"
