@@ -27,8 +27,7 @@ class TabbedPage extends React.Component{
     const effect = !prevTab ? enterLeft : tabs.indexOf(prevTab) > tabs.indexOf(pathname) ? enterLeft : enterRight;
     const wrapperComponent = this.props.wrapperComponent ? this.props.wrapperComponent : wrapperComponentDefault;
     const header = this.props.header ? h(this.props.header, {routes, ...this.props}) : h(TabbedHeader, {routes});
-    console.log(theme("springs.tab"),pathname,routes,header,'------------------------------------------TabbedComponent')
-    return (
+     return (
       <Aux>
         {header}
         <RouteTransition className={className} opts={ theme("springs.tab") } {...{ wrapperComponent, pathname, ...effect }}>

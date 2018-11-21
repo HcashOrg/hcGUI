@@ -204,3 +204,118 @@
   text-decoration: underline;
   margin: 0px 4px 0px 4px;
 }
+
+
+
+.app-modal.qrcode-modal {
+   
+  z-index: 200;
+  border-radius: 5px;
+  overflow-y: auto;
+  background-color: #8839d1;
+  padding: 2em;
+  color: #fff;
+  line-height: normal;
+  text-align: left;
+  width:600px;
+  position: fixed;
+  left:50%;
+  top:10%;
+  margin-left:-222px;
+
+  
+}
+
+.qrcode-modal-close-button {
+  position: absolute;
+  right: 2em;
+  top: 2em;
+}
+
+.qrcode-modal-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #fff;
+}
+
+.qrcode-modal-header-title {
+  font-size: 10px;
+  text-transform: capitalize;
+  height: 40px;
+  margin-bottom: 1em;
+}
+
+.qrcode-modal-header-title > h1 {
+  margin-top: 0;
+}
+.qrcode-modal-content{ 
+  .receive-content-nest-qrimage{
+    margin-right: calc(~"50% - 65px");
+    margin-top: 20px;
+  }
+  .receive-content-nest-text{
+      width: 100%;
+      text-align: center;
+      clear: both;
+  }
+  .pubKeymodal-content{
+    width:100%;
+    >div{
+      display: flex;
+      flex-direction: row; 
+      margin:10px 20px;
+      >div:first-child{
+        width:100px;
+        min-width: 100px;
+      }
+      >div:last-child{ 
+        word-wrap: break-word;
+       
+      }
+    }
+  }
+   
+}
+
+.confirmAssetsModal-content{
+  width:100%;
+  >div{
+    display: flex;
+    flex-direction: row; 
+    margin:10px 20px;
+    >div:first-child{
+      width:170px;
+      min-width: 100px;
+      text-align: right;
+      padding-right: 20px;
+    }
+    >div:last-child{
+      flex:1;
+      word-wrap: break-word;
+    }
+  }
+}
+
+.confirm-modal-content-sendAsset{
+  .content-info{
+    >div{
+      div{
+        display: inline-block;
+        min-width: 100px;
+        margin-bottom: 10px;
+      }
+      >div:first-child{
+        text-align: right;
+        padding-right: 10px;
+      }
+
+    }
+  }
+  .content-tips{
+    border-radius: 6px;
+    padding: 16px;
+    margin-top: 15px;
+    background: #dca7a7; 
+    color: #000;
+  }
+}

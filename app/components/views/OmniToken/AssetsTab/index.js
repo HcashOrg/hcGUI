@@ -1,5 +1,8 @@
-const AssetsPage = ( ) => (
-    <div>Omni AssetsPage</div>
- );
- 
+const AssetsPage = ({children} ) => (
+    <Aux>  
+        <div className="tab-card"> 
+             {children}
+        </div>
+    </Aux>
+ ); 
  export default AssetsPage;

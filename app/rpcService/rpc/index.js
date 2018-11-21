@@ -23,19 +23,21 @@ export const getOmnitService = (isTestNet,host) => (method,params=[],methodType=
         }, 
     }; 
 
+    let stringData="";
     return new Promise((resolve, reject)=>{
         const req = https.request(options, (res) => {    
             res.setEncoding('utf8');    
-            res.on('data', (chunk) => {  
-                const data = JSON.parse(chunk); 
-                if(data.error){
-                    reject(data.error) 
-                } else{
-                    reject(data.result);
-                }     
+            res.on('data', (chunk) => {     
+                stringData=stringData+chunk; 
             });    
             res.on('end', () => {     
-                console.log('No more data in response.');    
+                const data = JSON.parse(stringData);    
+                console.log(`wallet rpc request method end:${method}`,params,data);    
+                if(data.error){
+                    reject(data.error.message) 
+                } else{
+                    resolve(data.result);
+                }        
             }); 
         });  
         req.on('error', (e) => {   

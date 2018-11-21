@@ -14,7 +14,7 @@ class SignMessage extends React.Component {
   getInitialState() {
     return {
       isShowingSignMessageInfo: false,
-      address: "",
+      address: this.props.address? this.props.address:'',
       addressError: null,
       message: "",
       messageError: null,

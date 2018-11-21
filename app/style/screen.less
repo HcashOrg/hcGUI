@@ -1,0 +1,31 @@
+@import (reference) "./main.less";
+@import (reference) "./Icons.less";
+
+.omni-screen{
+    height: 60px;
+    border-radius: 10px;
+    background: #ffffff;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    >div{
+        display: inline-block;
+    }
+    >:first-child{
+        line-height: 60px;
+        font-size: 22px;
+        width: 200px;
+        min-width:fit-content; 
+        color: #999999;
+        padding-left: 20px;
+    }
+    >:last-child{
+        text-align: right;
+        flex:1;
+        margin-top:13px;
+        padding-right: 20px;
+        >div,>button{
+            margin-right: 10px;
+        }
+    }
+  }

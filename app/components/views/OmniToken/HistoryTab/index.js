@@ -1,5 +1,7 @@
-const HistoryPage = ( ) => (
-    <div>Omni HistoryPage</div>
- );
- 
- export default HistoryPage;
+import "style/OmnihistoryPage.less";
+const HistoryPage = ({ children }) => (
+    <Aux> 
+        {children}
+    </Aux>
+);
+export default HistoryPage;

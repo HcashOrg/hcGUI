@@ -7,6 +7,7 @@ export { default as RescanCancelButton } from "./RescanCancelButton";
 export { default as TextToggle } from "./TextToggle";
 export { default as TicketsCogs } from "./TicketsCogs";
 export { default as TransactionLink } from "./TransactionLink";
+export {default as FormButton} from "./FormButton"
 
 import ModalButton from "./ModalButton";
 import KeyBlueButton from "./KeyBlueButton";
@@ -21,7 +22,7 @@ export { ModalButton, AutoBuyerSwitch, KeyBlueButton, DangerButton, NetworkSwitc
  ***************************************************/
 import {
   InfoModal, PassphraseModal, ChangePassphraseModal,
-  ConfirmModal
+  ConfirmModal,QRCodeModel
 } from "modals";
 
 // mbb = ModalButtonBuilder (func to build a functional ModalButton component
@@ -46,3 +47,4 @@ export const PassphraseModalButton = mbb(null, PassphraseModal, KeyBlueButton);
 export const PassphraseModalSwitch = mbb(null, PassphraseModal, AutoBuyerSwitch);
 export const RemoveStakePoolButton = mbb(null, ConfirmModal, DangerButton);
 export const RemoveWalletButton = mbb(null, ConfirmModal, KeyDestructionButton);
+export const QRCodeModalButton = mbb("qrcode",QRCodeModel)

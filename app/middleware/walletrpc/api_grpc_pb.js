@@ -114,6 +114,28 @@ function deserialize_walletrpc_BalanceResponse(buffer_arg) {
   return api_pb.BalanceResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_walletrpc_BestBlockRequest(arg) {
+  if (!(arg instanceof api_pb.BestBlockRequest)) {
+    throw new Error('Expected argument of type walletrpc.BestBlockRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_walletrpc_BestBlockRequest(buffer_arg) {
+  return api_pb.BestBlockRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_walletrpc_BestBlockResponse(arg) {
+  if (!(arg instanceof api_pb.BestBlockResponse)) {
+    throw new Error('Expected argument of type walletrpc.BestBlockResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_walletrpc_BestBlockResponse(buffer_arg) {
+  return api_pb.BestBlockResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_walletrpc_BlockInfoRequest(arg) {
   if (!(arg instanceof api_pb.BlockInfoRequest)) {
     throw new Error('Expected argument of type walletrpc.BlockInfoRequest');
@@ -1462,6 +1484,17 @@ var WalletServiceService = exports.WalletServiceService = {
     requestDeserialize: deserialize_walletrpc_BlockInfoRequest,
     responseSerialize: serialize_walletrpc_BlockInfoResponse,
     responseDeserialize: deserialize_walletrpc_BlockInfoResponse,
+  },
+  bestBlock: {
+    path: '/walletrpc.WalletService/BestBlock',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.BestBlockRequest,
+    responseType: api_pb.BestBlockResponse,
+    requestSerialize: serialize_walletrpc_BestBlockRequest,
+    requestDeserialize: deserialize_walletrpc_BestBlockRequest,
+    responseSerialize: serialize_walletrpc_BestBlockResponse,
+    responseDeserialize: deserialize_walletrpc_BestBlockResponse,
   },
   // Notifications
   transactionNotifications: {

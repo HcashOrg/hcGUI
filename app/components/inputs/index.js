@@ -18,3 +18,6 @@ export { default as PathBrowseInput } from "./PathBrowseInput";
 export { default as PassphraseModalField } from "./PassphraseModalField";
 export { default as WalletSelect } from "./WalletSelect";
 export { FixedHcInput } from "./HcInput";
+export { default as InputSelect } from  "./InputSelect";
+export { default as FloatInput } from  "./FloatInput";
+export {default as TextArea} from "./TextArea"

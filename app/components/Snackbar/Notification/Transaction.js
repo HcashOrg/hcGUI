@@ -39,7 +39,12 @@ const Transaction = ({
   type,
   message,
   intl
-}) => (
+}) =>{
+  /** */
+  if(type=='Coinbase'){
+    return null;
+  }
+  return (
   <div className="snackbar-information">
     <div className="snackbar-information-row">
       <div className="snackbar-information-row-tx"><Link to={`/transactions/history/${message.txHash}`}>{message.txHash}</Link></div>
@@ -56,6 +61,7 @@ const Transaction = ({
       }
     </div>
   </div>
-);
+)
+    };
 
 export default injectIntl(Transaction);

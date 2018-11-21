@@ -68,7 +68,10 @@ var initialState = {
   rpc:{
     getOmniServiceError: null,
     getOmniServiceRequestAttempt: false,
-    omniService:null
+    omniService:null,
+    tradeHistory: null,
+    getTradeHistoryForAddressRequestAttempt: false,
+    getTradeHistoryForAddressRequestError:null,
   },
   grpc: {
     // WalletService

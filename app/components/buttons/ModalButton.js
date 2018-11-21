@@ -10,12 +10,18 @@ class ModalButton extends React.Component {
     this.state = {show: false};
   }
 
-  showModal() {
+  showModal(e) {
     this.setState({show: true});
+    if(e){
+      e.stopPropagation();
+    }
   }
 
-  hideModal() {
+  hideModal(e) {
     this.setState({show: false});
+    if(e){
+        e.stopPropagation();
+      }
   }
 
   onSubmit(...args) {

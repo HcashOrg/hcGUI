@@ -85,11 +85,8 @@ export function rescanAttempt(beginHeight) {
       });
       rescanCall.on("end", function() {
         dispatch({ type: RESCAN_COMPLETE });
-        if (startup) {
-          dispatch(startWalletServices());
-        } else {
-          dispatch(getStartupWalletInfo());
-        }
+        resolve()
+        //dispatch(getStartupWalletInfo());
       });
       rescanCall.on("error", function(status) {
         status = status + "";

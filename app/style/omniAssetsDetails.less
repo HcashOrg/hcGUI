@@ -1,0 +1,32 @@
+@import (reference) "./main.less";
+@import (reference) "./Icons.less";
+.omni-asstes-details{
+    .hc-card{
+        background-color:#ffffff;
+        .omni-asstes-details-Basics{
+            div{
+                margin:15px 0px; 
+            }
+        }
+        .omni-asstes-details-history{
+            >div{
+                border-bottom:1px #eee solid;
+                >:first-child{
+                    height: 35px;
+                    line-height: 35px;
+                   >div{
+                    display: inline-block; 
+                   }
+                   :first-child{
+                    width: 200px;
+                   }
+                }
+                >:last-child{
+                    color: #999999;
+                    height: 30px; 
+                } 
+            }
+        }
+    }
+
+}

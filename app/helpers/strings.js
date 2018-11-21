@@ -55,3 +55,19 @@ export function limitFractionalDigits(s, maxFracDigits) {
   if (match[2].length <= maxFracDigits) return s;
   return match[1] + "." + match[2].substr(0, maxFracDigits);
 }
+
+export function getByteLen(val) {
+  var len = 0;
+  for (var i = 0; i < val.length; i++) {
+       var a = val.charAt(i);
+       if (a.match(/[^\x00-\xff]/ig) != null) 
+      {
+          len += 3;
+      }
+      else
+      {
+          len += 1;
+      }
+  }
+  return len;
+}

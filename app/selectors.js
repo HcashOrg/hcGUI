@@ -103,6 +103,14 @@ export const isOpenWalletPublicInputRequest = get(["walletLoader", "openWalletPu
 export const isOpenWalletPrivateInputRequest = get(["walletLoader", "openWalletPrivateInputRequest"]);
 
 export const omniService = get(["rpc", "omniService"]);
+export const walletAddressBalances =  get(["rpc", "walletAddressBalances"]);
+export const walletAssetsBalances =  get(["rpc", "walletAssetsBalances"]);
+export const listproperties =  get(["rpc","listproperties"]);
+export const tradeHistory =  get(["rpc","tradeHistory"]);
+export const omniListTransactions=get(["rpc","ListTransactions"]);
+export const omniNoMoreTransactions=get(["rpc","noMoreTransactions"]);
+export const omniTransaction =get(["rpc","omniTransaction"]);
+export const property=get(["rpc","property"]);
 
 export const balances = or(get(["grpc", "balances"]), () => []);
 export const walletService = get(["grpc", "walletService"]);
@@ -871,10 +879,11 @@ const numberEqual = (left, right) => {
 
 //const getState = state => state
 
-const ticketDataChartArray = []
+
 export const ticketDataChart = createSelector(
   [transactions, getState, currentBlockHeight,getStakeInfoResponse],
   (transactions, state, currentBlockHeight,stakeInfoResponse) => {
+    const ticketDataChartArray = []
     var immatureCount = 0;
     var liveCount = 0;
     var votedCount = 0;

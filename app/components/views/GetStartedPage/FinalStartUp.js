@@ -8,7 +8,7 @@ const FinalStartUpHeader = () => (
 );
 
 const FinalStartUpBody = () => (
-  null
+  <T id="getStarted.body.finalizingSetup.meta" m="Initializing data, please be patient." />
 );
 
 export { FinalStartUpHeader, FinalStartUpBody };
