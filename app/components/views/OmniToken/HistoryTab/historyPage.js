@@ -1,6 +1,6 @@
 
 import { omniHistory } from "connectors";
-import HistoryList from './HistoryList';
+import HistoryList from './historyList';
 import { LoadingMoreTransactionsIndicator, NoMoreTransactionsIndicator } from "indicators";
 import InfiniteScroll from "react-infinite-scroller";
 

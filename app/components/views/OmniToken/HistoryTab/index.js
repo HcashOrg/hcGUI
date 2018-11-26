@@ -1,4 +1,4 @@
-import "style/OmnihistoryPage.less";
+import "style/OmniHistoryPage.less";
 const HistoryPage = ({ children }) => (
     <Aux> 
         {children}

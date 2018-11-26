@@ -1,6 +1,6 @@
 import Screen from '../issuanceScreen';
 import { FormattedMessage as T } from "react-intl";
-import CrowdsaleForm from './CrowdsaleForm';
+import CrowdsaleForm from './crowdsaleForm';
 import ConfirmCrowdsaleModal from "./confirmCrowdsaleModal";
 import { omniCrowdsaleForm } from "connectors";
 import { addMonths } from "helpers";
