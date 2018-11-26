@@ -31,3 +31,17 @@ export function dateToUTC(d) {
   return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
     date.getUTCHours(), date.getUTCMinutes(),  date.getUTCSeconds());
 }
+
+export function addMonths(d,months){ 
+  if(!(d instanceof Date) && months) return d;
+
+  const year=d.getFullYear();
+    const month=d.getMonth();
+    const day=d.getDate();
+    const hour=d.getHours();
+    const min=d.getMinutes();
+    const s=d.getSeconds();
+    const newDate=new Date(year,month+months,day,hour,min,s);  
+    return newDate;
+  
+}

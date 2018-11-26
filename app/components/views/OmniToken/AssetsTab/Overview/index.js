@@ -1,5 +1,5 @@
 import Screen from './screen';
-import AssetsList from './assetsList';
+import AssetsList from './assetsList'; 
 import { omniIssuanceList } from "connectors";
 import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
 
@@ -10,7 +10,7 @@ const messages = defineMessages({
     },
     assetsTypeToCrowdsaleKey: {
         id: "omni.myAssets.Type.crowdsale",
-        defaultMessage: "Crowd-funding"
+        defaultMessage: "Crowd Assets"
     },
     assetsTypeToManagedKey: {
         id: "omni.myAssets.Type.managed",
@@ -22,13 +22,19 @@ const messages = defineMessages({
 class OverviewPage extends React.PureComponent {
     constructor(props) {
         super(props);
+
+
     }
     componentDidMount = () => {
-        this.props.listpropertiesFunc();
+        const { getActiveCrowdsales, listpropertiesFunc } = this.props;
+        getActiveCrowdsales && getActiveCrowdsales();
+        listpropertiesFunc && listpropertiesFunc();
     }
     onAssesTypesChanged = (value) => {
         this.props.router.push(`/omni/assets/${value}`)
     }
+
+
 
     assetsTypes = () => [{
         text: this.props.intl.formatMessage(messages.assetsTypeToIssueKey),
@@ -43,7 +49,6 @@ class OverviewPage extends React.PureComponent {
         value: 'managed'
     }]
 
-
     render() {
         const { listproperties, router } = this.props;
         const properties = listproperties ? listproperties.filter((i) => i.isMine) : [];
@@ -51,7 +56,7 @@ class OverviewPage extends React.PureComponent {
             <div>
                 <Screen {...{
                     assetsTypes: this.assetsTypes(),
-                    onAssesTypesChanged: this.onAssesTypesChanged
+                    onAssesTypesChanged: this.onAssesTypesChanged,
                 }} />
                 <AssetsList {
                     ...{

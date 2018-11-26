@@ -1,8 +1,7 @@
 import { shell } from "electron";
 import { FormattedMessage as T } from "react-intl";
 import Card from "card";
-import {KeyBlueButton} from "buttons"; 
-import { omniassetsDetails } from "connectors"
+import {KeyBlueButton} from "buttons";  
 import "style/omniAssetsDetails.less";
 
 class Index extends React.PureComponent {
@@ -25,7 +24,7 @@ class Index extends React.PureComponent {
                     </div>
 
                     <div>
-                        <T id="omni.assets.infoForm.issueAddress" m="Issue address" />:<a href="#"> </a><a className="stakepool-link" onClick={function (x) { shell.openExternal(x); }.bind(null, `https://${isTestNet ? "testnet-" : ""}hcomni-explorer.h.cash/address/${query.issuer}`)}> {query.issuer}</a>
+                        <T id="omni.assets.infoForm.issueAddress" m="Issue address" />:<a className="stakepool-link" onClick={function (x) { shell.openExternal(x); }.bind(null, `https://${isTestNet ? "testnet-" : ""}hcomni-explorer.h.cash/address/${query.issuer}`)}> {query.issuer}</a>
                     </div>
                 </div>
             </Card>

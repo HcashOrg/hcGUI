@@ -15,7 +15,7 @@ const mapStateToProps = selectorMap({
   
   const mapDispatchToProps = (dispatch) => bindActionCreators({
     validateAddress: ca.validateAddress,
-    getwalletaddressbalances:oa.getwalletaddressbalances_func
+    getwalletaddressbalances:oa.getwalletAddressBalances_func
   }, dispatch);
   
   export default connect(mapStateToProps,mapDispatchToProps);

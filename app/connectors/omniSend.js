@@ -18,7 +18,7 @@ const mapStateToProps = selectorMap({
     send_func:oa.send_func,
     onAttemptSignTransaction: ca.signTransactionAttempt,
     onAttemptConstructTransaction:ca.constructTransactionAttempt,
-    getwalletaddressbalances:oa.getwalletaddressbalances_func
+    getwalletaddressbalances:oa.getwalletAddressBalances_func
   }, dispatch);
   
   export default connect(mapStateToProps,mapDispatchToProps);

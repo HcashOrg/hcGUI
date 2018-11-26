@@ -91,8 +91,7 @@ const MeanageForm = ({ addressError, destination, operationTypes, operationType,
                     <T id="omni.managePage.form.recipient" m="Recipient" />
                         </div>
                     <div>
-                        <AddressInput
-                            autoFocus={true}
+                        <AddressInput 
                             showErrors={!!addressError}
                             invalid={!!addressError}
                             invalidMessage={addressError}

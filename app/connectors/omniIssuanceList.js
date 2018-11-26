@@ -7,10 +7,12 @@ import * as oa from "../actions/OmniActions";
 
 const mapStateToProps = selectorMap({ 
     listproperties:sel.listproperties,
+    activeCrowdsales:sel.activeCrowdsales
   });
   
   const mapDispatchToProps = (dispatch) => bindActionCreators({  
-    listpropertiesFunc:oa.listproperties_func
+    listpropertiesFunc:oa.listproperties_func,
+    getActiveCrowdsales: oa.getActiveCrowdsales_func
   }, dispatch);
   
   export default connect(mapStateToProps,mapDispatchToProps);

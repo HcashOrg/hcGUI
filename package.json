@@ -1,7 +1,7 @@
 {
   "name": "hcgui",
   "productName": "HcGUI",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "HcGui based on React, React Router, Webpack, React Hot Loader for rapid application development",
   "main": "main.js",
   "scripts": {

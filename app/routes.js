@@ -42,6 +42,9 @@ import OmniHistoryPage from "./components/views/OmniToken/HistoryTab/HistoryPage
 import OmniHistoryDetail from "./components/views/OmniToken/HistoryTab/detail";
 import OmniAssetsDetail from "./components/views/OmniToken/AssetsTab/Overview/details";
 import OmniAssetsManage from "./components/views/OmniToken/AssetsTab/manage";
+import OmniCrowdsalesTab from "./components/views/OmniToken/CrowdsaleTab";
+import OmniCrowdsalesList from "./components/views/OmniToken/CrowdsaleTab/list";
+import OmniCrowdsaleDetail from "./components/views/OmniToken/CrowdsaleTab/details"
 
 export default (
   <Route path="/" component={App}>
@@ -76,17 +79,22 @@ export default (
       <Route path="addresses" component={AddressesTab} />
       <Route path="assets" component={AssetsTab}>
         <IndexRoute component={OmniAssetsIndex} />
-        <Route path="details/:propertyid" component={OmniAssetsDetail}/>
+        <Route path="details/:propertyid" component={OmniAssetsDetail} />
         <Route path="crowdsale" component={OmniAssetsCrowdsale} />
         <Route path="issue" component={OmniAssetsIssue} />
         <Route path="managed" component={OmniAssetsManaged} />
-        <Route path="manage/:propertyid" component={OmniAssetsManage} /> 
+        <Route path="manage/:propertyid" component={OmniAssetsManage} />
       </Route>
       <Route path="history" component={OmniHistoryTab}>
         <IndexRoute component={OmniHistoryPage} />
         <Route path=":txid" component={OmniHistoryDetail} />
       </Route>
       <Route path="send" component={OmniSendTab} />
+      <Route path="crowdsales" component={OmniCrowdsalesTab} > 
+        <IndexRoute component={OmniCrowdsalesList} />
+        <Route path="details/:propertyid" component={OmniCrowdsaleDetail} />
+      </Route>
+
       {/* <Route path="statistics"                  component={StatisticsTab}/> */}
     </Route>
 

@@ -1,7 +1,7 @@
 import { shell } from "electron";
 import { FormattedMessage as T } from "react-intl";
 
-const AssetsList = ({ listproperties,router }) => (
+const AssetsList = ({ listproperties, router }) => (
 
     <div className="omni-history-list">
         <div className="omni-history-list-header">
@@ -19,21 +19,25 @@ const AssetsList = ({ listproperties,router }) => (
             {listproperties ? listproperties.map(item => (
                 <div key={item.propertyid}>
                     <div>{item.propertyid}
-                    <a  className="stakepool-link" onClick={()=>{
-                        router.push({pathname:`/omni/assets/manage/${item.propertyid}`,
-                        query:item.detail})
-                    }}> (Manage) </a>
+                        {item.detail.managedissuance ? <a className="stakepool-link" onClick={() => {
+                            router.push({
+                                pathname: `/omni/assets/manage/${item.propertyid}`,
+                                query: item.detail
+                            })
+                        }}> (Manage) </a> : null}
                     </div>
-                    <div><a className="stakepool-link" onClick={()=>{
-                        router.push({pathname:`/omni/assets/details/${item.propertyid}`,
-                        query:item.detail})
-                    }}>{item.name}</a></div>  
+                    <div><a className="stakepool-link" onClick={() => {
+                        router.push({
+                            pathname: `/omni/assets/details/${item.propertyid}`,
+                            query: item.detail
+                        })
+                    }}>{item.name}</a></div>
                     <div>{item.detail.totaltokens}</div>
                     <div><a className="stakepool-link" onClick={function (x) { shell.openExternal(x); }.bind(null, item.url)}>{item.url}</a></div>
                 </div>
-            )) : <div className="omni-history-list-tips"> 
+            )) : <div className="omni-history-list-tips">
                     <T id="omni.tables.noData" m="no data" />
-            </div>}
+                </div>}
 
         </div>
     </div>

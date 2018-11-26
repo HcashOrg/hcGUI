@@ -4757,6 +4757,14 @@ msgctxt "omni.tab.send"
 msgid "Send"
 msgstr "发送"
 
+#. [omni.tab.crowdsales]
+#. defaultMessage is:
+#. Active Crowdsales
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.tab.crowdsales"
+msgid "Active Crowdsales"
+msgstr "有效众筹"
+
 #. [omni.history.type]
 #. defaultMessage is:
 #. type
@@ -5209,10 +5217,10 @@ msgstr "智能资产"
 
 #. [omni.myAssets.Type.crowdsale]
 #. defaultMessage is:
-#. Crowd-funding
+#. Crowd Assets
 #: app/i18n/extracted/app/messages.json
 msgctxt "omni.myAssets.Type.crowdsale"
-msgid "Crowd-funding"
+msgid "Crowd Assets"
 msgstr "众筹"
 
 #. [omni.myAssets.Type.managed]

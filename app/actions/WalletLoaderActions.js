@@ -300,6 +300,7 @@ export function determineNeededBlocks() {
 
     
     const explorerInfoURL = TestNet ? `${TestNetParams.Url}api/status`:`${MainNetParams.Url}api/status`
+
     
     axios.get(explorerInfoURL, {timeout: 5000})
       .then(function (response) {

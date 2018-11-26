@@ -5,7 +5,7 @@ function objToArray(obj) {
     return obj ? Object.values(obj) : obj;
 }
 
-export function omni_listproperties(omniService) {
+export function omni_listProperties(omniService) {
     return omniService(omniMethod.listproperties);
 }
 
@@ -13,25 +13,25 @@ export function omni_listproperties(omniService) {
  * @param {*} omniService 
  * @param {	number	required	the identifier of the tokens or property} propertyid 
  */
-export function omni_getproperty(omniService, params) {
+export function omni_getProperty(omniService, params) {
     return omniService(omniMethod.getproperty, objToArray(params));
 }
 
-export function omni_getinfo(omniService) {
+export function omni_getInfo(omniService) {
     return omniService(omniMethod.getinfo);
 }
 
-export function omni_getwalletbalances(omniService) {
+export function omni_getWalletBalances(omniService) {
     return omniService(omniMethod.getwalletbalances);
 }
 
-export function omni_getwalletaddressbalances(omniService) {
+export function omni_getWalletAddressBalances(omniService) {
     return omniService(omniMethod.getwalletaddressbalances);
 }
 /**
  * @param {	string	required	the hash of the transaction to lookup} txid
 */
-export function omni_gettransaction(omniService, params) {
+export function omni_getTransaction(omniService, params) {
     return omniService(omniMethod.gettransaction, objToArray(params));
 }
 /**
@@ -42,11 +42,11 @@ export function omni_gettransaction(omniService, params) {
  * @param {	number	optional	first block to begin the search (default: 0)} startblock
  * @param {	number	optional	last block to include in the search (default: 999999999)} endblock
  */
-export function omni_listtransactions(omniService, params) {
+export function omni_listTransactions(omniService, params) {
     return omniService(omniMethod.listtransactions, objToArray(params));
 }
 
-export function omni_gettradehistoryforpair(omniService, params) {
+export function omni_getTradeHistoryForPair(omniService, params) {
     return omniService(omniMethod.gettradehistoryforpair, objToArray(params));
 }
 /** 
@@ -54,7 +54,7 @@ export function omni_gettradehistoryforpair(omniService, params) {
  * @param {	number	optional	number of orders to retrieve (default: 10)} count
  * @param {	number	optional	filter by propertyid transacted (default: no filter)} propertyid
 */
-export function omni_gettradehistoryforaddress(omniService, params) {
+export function omni_getTradeHistoryForAddress(omniService, params) {
     return omniService(omniMethod.gettradehistoryforaddress, objToArray(params));
 }
 
@@ -82,7 +82,7 @@ export function omni_send(omniService, params) {
  * @param {	string	required	a description for the new tokens (can be "")} data
  * @param {	string	required	the number of tokens to create }  amount
  */
-export function omni_sendissuancefixed(omniService, params) {
+export function omni_sendIssuanceFixed(omniService, params) {
     return omniService(omniMethod.sendissuancefixed, objToArray(params));
 }
 
@@ -97,7 +97,7 @@ export function omni_sendissuancefixed(omniService, params) {
 * @param {	string	required	an URL for further information about the new tokens (can be "")} url
 * @param {	string	required	a description for the new tokens (can be "")} data
  */
-export function omni_sendissuancemanaged(omniService, params) {
+export function omni_sendIssuanceManaged(omniService, params) {
     return omniService(omniMethod.sendissuancemanaged, objToArray(params));
 }
 /**
@@ -105,7 +105,7 @@ export function omni_sendissuancemanaged(omniService, params) {
  * @param {	string	required	the address to transfer administrative control to} toaddress
  * @param {	number	required	the identifier of the tokens} propertyid
  */
-export function omni_sendchangeissuer(omniService, params) {
+export function omni_sendChangeIssuer(omniService, params) {
     return omniService(omniMethod.sendchangeissuer, objToArray(params));
 }
 
@@ -116,7 +116,7 @@ export function omni_sendchangeissuer(omniService, params) {
  * @param {	string	required	the amount of tokens to create} amount
  * @param {	string	optional	a text note attached to this transaction (none by default)} memo
  */
-export function omni_sendgrant(omniService, params) {
+export function omni_sendGrant(omniService, params) {
     return omniService(omniMethod.sendgrant, objToArray(params));
 }
 
@@ -127,7 +127,7 @@ export function omni_sendgrant(omniService, params) {
  * @param {	string	required	the amount of tokens to revoke} amount
  * @param {	string	optional	a text note attached to this transaction (none by default)}  memo
  */
-export function omni_sendrevoke(omniService, params) {
+export function omni_sendRevoke(omniService, params) {
     return omniService(omniMethod.sendrevoke, objToArray(params));
 }
 
@@ -148,9 +148,23 @@ export function omni_sendrevoke(omniService, params) {
  *@param {	number	required	an early bird bonus for participants in percent per week} earlybonus
  *@param {  number	required	a percentage of tokens that will be granted to the issuer} issuerpercentage
  */
-export function omni_sendissuancecrowdsale(omniService, params) {
+export function omni_sendIssuanceCrowdsale(omniService, params) {
     return omniService(omniMethod.sendissuancecrowdsale, objToArray(params));
 }
+
+/**
+ * 
+ * @param {*} omniService 
+ * @param {*} params 
+ */
+export function omni_getActiveCrowdsales(omniService){
+    return omniService(omniMethod.getactivecrowdsales)
+}
+
+export function omni_getCrowdsale(omniService,params){
+    return omniService(omniMethod.getcrowdsale,objToArray(params));
+}
+
 
 export function omni_getCategories() {
     return categories;

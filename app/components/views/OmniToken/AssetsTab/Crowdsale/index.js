@@ -3,6 +3,7 @@ import { FormattedMessage as T } from "react-intl";
 import CrowdsaleForm from './CrowdsaleForm';
 import ConfirmCrowdsaleModal from "./confirmCrowdsaleModal";
 import { omniCrowdsaleForm } from "connectors";
+import { addMonths } from "helpers";
 
 
 class Crowdsale extends React.PureComponent {
@@ -23,7 +24,7 @@ class Crowdsale extends React.PureComponent {
 
             issuerPercentage: null,
             issuerPercentageError: null,
-            deadline: new Date(),
+            deadline: addMonths(new Date(),1),
             earlyBonus: null,
             tokenSperUnit: null,
             tokenSperUnitError: null,

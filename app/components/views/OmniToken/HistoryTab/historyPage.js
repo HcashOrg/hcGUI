@@ -48,9 +48,9 @@ class HistoryPage extends React.PureComponent {
     onProperyidToName = (properyid) => {
         if (properyid) { 
             const { listproperties } = this.props; 
-            const obj = listproperties.find(item => {
+            const obj =listproperties ? listproperties.find(item => {
                 return item.propertyid == properyid
-            }) 
+            }):null;
             return obj?obj.name:"--";
         } else {
             return "--";

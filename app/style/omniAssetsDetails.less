@@ -1,8 +1,8 @@
 @import (reference) "./main.less";
 @import (reference) "./Icons.less";
 .omni-asstes-details{
-    .hc-card{
-        background-color:#ffffff;
+    >.hc-card{
+        background-color:white;
         .omni-asstes-details-Basics{
             div{
                 margin:15px 0px; 
@@ -29,4 +29,53 @@
         }
     }
 
+}
+
+.omni-crowdsale-details{
+    display: flex;
+    >:first-child{
+        flex:1;
+    }
+    >:last-child{
+        width:300px;
+        padding:0px;
+        color:@white
+    }
+    .omni-crowdsale-countdown{
+        width:100%;
+        padding:10px 0px;
+        background-color: @material-ui-bg;
+        .crowdsale-title{
+            text-align: center;
+            padding-top: 15px;
+
+            >p:first-child{
+                font-size: 20px;
+                margin-top:0px;
+            }
+            >p:last-child{
+                font-size: 16px; 
+            }
+        }
+        .timerWrapper{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            
+            .countdown-group{
+                width: 60px;
+                height: 80px;
+                margin: 7px;
+                text-align: center;
+                >div:first-child{
+                    height:60px;
+                    line-height: 60px;
+                    font-size: 20px;
+                    border-radius: 5px;
+                    background: @purple;
+                }
+            }
+        }
+        
+    }
 }

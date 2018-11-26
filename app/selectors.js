@@ -111,6 +111,7 @@ export const omniListTransactions=get(["rpc","ListTransactions"]);
 export const omniNoMoreTransactions=get(["rpc","noMoreTransactions"]);
 export const omniTransaction =get(["rpc","omniTransaction"]);
 export const property=get(["rpc","property"]);
+export const activeCrowdsales = get(["rpc","activeCrowdsales"])
 
 export const balances = or(get(["grpc", "balances"]), () => []);
 export const walletService = get(["grpc", "walletService"]);

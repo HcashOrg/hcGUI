@@ -3,8 +3,7 @@
     getinfo:'omni_getinfo',
     getwalletbalances:"omni_getwalletbalances", 
     getwalletaddressbalances:"omni_getwalletaddressbalances",
-    send:"omni_send",
-    listproperties:"omni_listproperties",
+    send:"omni_send", 
     gettransaction:"omni_gettransaction",
     listtransactions:"omni_listtransactions",
     gettradehistoryforpair:"omni_gettradehistoryforpair",
@@ -16,5 +15,7 @@
     sendgrant:"omni_sendgrant",
     sendrevoke:"omni_sendrevoke",
     sendissuancecrowdsale:"omni_sendissuancecrowdsale",
+    getactivecrowdsales:"omni_getactivecrowdsales",
+    getcrowdsale:"omni_getcrowdsale",
  }
 

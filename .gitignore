@@ -13,3 +13,6 @@ bin/
 dist/
 app/i18n/extracted/app
 /*.node
+/package-lock.json
+app/package-lock.json
+

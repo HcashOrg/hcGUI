@@ -16,7 +16,7 @@ const mapStateToProps = selectorMap({
   });
   
   const mapDispatchToProps = (dispatch) => bindActionCreators({  
-    getListtransactions:oa.listtransactions_func,
+    getListtransactions:oa.listTransactions_func,
     gettransaction:oa.gettransaction_func
   }, dispatch);
   
