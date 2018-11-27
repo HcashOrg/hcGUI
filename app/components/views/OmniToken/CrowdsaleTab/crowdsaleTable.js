@@ -6,20 +6,21 @@ const CrowdsaleList = ({ activeCrowdsales,router }) => (
     <div className="omni-history-list">
         <div className="omni-history-list-header">
             <div>
-                众筹
+                
+                <T id="omni.crodsale.table.Field.Crowdsale" m="Crowdsale" />
             </div>
-            <div>
-                支持的货币
+            <div> 
+                <T id="omni.crodsale.infoForm.assets" m="Supported Assets" />
             </div>
-            <div>
-                最后期限
+            <div> 
+                <T id="omni.crodsale.infoForm.Deadline" m="Deadline" />
         </div>
-            <div>
+            {/* <div>
                 已被购买的令牌
         </div>
             <div>
                 已被创建的令牌
-            </div>
+            </div> */}
         </div>
         <div className="omni-history-list-body">
 
@@ -28,7 +29,7 @@ const CrowdsaleList = ({ activeCrowdsales,router }) => (
                     return <div key={item.propertyid} onClick={() => {
                         router.push({
                             pathname: `/omni/crowdsales/details/${item.propertyid}`,
-                            query: item.detail
+                            query: {item:JSON.stringify(item)}
                         })
                     }}>
                         <div>{item.name}</div>
@@ -36,8 +37,8 @@ const CrowdsaleList = ({ activeCrowdsales,router }) => (
                         <div><T id="transaction.timestamp"
                             m="{timestamp, date, medium} {timestamp, time, medium}"
                             values={{ timestamp: tsToDate(item.deadline) }} /></div>
-                        <div>{item.detail.amountraised}</div>
-                        <div>{item.detail.tokensissued}</div>
+                        {/* <div>{item.detail.amountraised}</div>
+                        <div>{item.detail.tokensissued}</div> */}
                     </div>
                 }) : null
             }

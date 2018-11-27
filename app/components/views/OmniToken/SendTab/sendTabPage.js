@@ -3,7 +3,7 @@ import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
 import { AddressInput, InputSelect, FloatInput } from "inputs";
 import { KeyBlueButton } from "buttons";
 
-import ConfirmSendModal from "./confirmSendModal"
+import {ConfirmSendModalContent} from "Modals";
 import 'style/OmniSendPage.less';
 
 
@@ -28,7 +28,7 @@ const SendTabPage = ({
     destination,
     amount,
     getOnChangeOutputDestination,
-    getOnChangeOutputAmount,
+    onChangeOutputAmount,
     address,
     asset,
     intl,
@@ -81,7 +81,7 @@ const SendTabPage = ({
                                 value={amount}
                                 className="send-address-input-amount"
                                 placeholder={intl.formatMessage(messages.amountPlaceholder)}
-                                onChange={getOnChangeOutputAmount}
+                                onChange={onChangeOutputAmount}
                                 maxFracDigits={8}
                             />
                         </div>
@@ -141,7 +141,7 @@ const SendTabPage = ({
                             block={false} >
                            <T id="formButton.nextStep" m="Next step" />
                         </KeyBlueButton>
-                        <ConfirmSendModal {
+                        <ConfirmSendModalContent {
                             ...{
                                 show: showConfirmSendModal,
                                 onCancelModal,

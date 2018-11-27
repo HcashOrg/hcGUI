@@ -45,7 +45,7 @@ class SendPage extends React.Component {
           updateDestinationState();
         }); 
   }
-  getOnChangeOutputAmount=(e)=> {    
+  onChangeOutputAmount=(e)=> {    
     const value=e.target.value; 
     if (value !== this.state.amount) {
       this.setState({amount:value},this.onAttemptConstructTransaction);
@@ -124,7 +124,7 @@ class SendPage extends React.Component {
         assetsList:walletAssetsBalances,
         onAssetsChange:this.onAssetsChange,
         getOnChangeOutputDestination:this.getOnChangeOutputDestination,
-        getOnChangeOutputAmount:this.getOnChangeOutputAmount,
+        onChangeOutputAmount:this.onChangeOutputAmount,
         addressError:this.getAddressError(),
         amountError:this.getAmountError(),  
         address,

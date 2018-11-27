@@ -34,7 +34,7 @@ export default defineMessages({
   "omni.tab.assets":                          { id: "omni.tab.assets",                defaultMessage: "My Assets" },
   "omni.tab.history":                         { id: "omni.tab.history",                defaultMessage: "History" },
   "omni.tab.send":                            { id: "omni.tab.send",                defaultMessage: "Send" },
-  "omni.tab.crowdsales":                      { id: "omni.tab.crowdsales",                defaultMessage: "Active Crowdsales" },
+  "omni.tab.crowdsales":                      { id: "omni.tab.crowdsales",                defaultMessage: "Crowdsales" },
 
   "security.title":                           { id: "security.title",                        defaultMessage: "Security Center" },
   "security.description":                     { id: "security.description",                  defaultMessage: "Various tools that help in different aspects of crypto currency security will be located here." },

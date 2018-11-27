@@ -94,9 +94,18 @@ msgstr "请输入一个有效的数字"
 
 #. [send.errors.negativeAmount]
 #. defaultMessage is:
-#. *Please enter a valid amount (> 0)
+#. *Insufficient balance
 #: app/i18n/extracted/app/components/views/TransactionsPage/SendTab/index.json
 msgctxt "send.errors.negativeAmount"
+msgid "*Insufficient balance"
+msgstr "余额不足"
+
+
+#. [send.errors.amount]
+#. defaultMessage is:
+#. *Please enter a valid amount (> 0)
+#: app/i18n/extracted/app/components/views/TransactionsPage/SendTab/index.json
+msgctxt "send.errors.amount"
 msgid "*Please enter a valid amount (> 0)"
 msgstr "请输入有效的数字（>0）"
 
@@ -4759,11 +4768,11 @@ msgstr "发送"
 
 #. [omni.tab.crowdsales]
 #. defaultMessage is:
-#. Active Crowdsales
+#. Crowdsales
 #: app/i18n/extracted/app/messages.json
 msgctxt "omni.tab.crowdsales"
-msgid "Active Crowdsales"
-msgstr "有效众筹"
+msgid "Crowdsales"
+msgstr "众筹"
 
 #. [omni.history.type]
 #. defaultMessage is:
@@ -5476,6 +5485,153 @@ msgstr "每个"
 msgctxt "omni.assets.infoForm.listPropertiesLast"
 msgid "investment"
 msgstr "投资"
+
+#. [omni.crowdsale.title]
+#. defaultMessage is:
+#. Effective crowdfunding
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crowdsale.title"
+msgid "Effective crowdsales"
+msgstr "有效众筹" 
+
+#. [omni.crodsale.infoForm.assets]
+#. defaultMessage is:
+#. Supported Assets
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.assets"
+msgid "Supported Assets"
+msgstr "支持货币" 
+
+#. [omni.crodsale.infoForm.tips]
+#. defaultMessage is:
+#. Ongoing crowdfunding
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.tips"
+msgid "Ongoing crowdfunding"
+msgstr "正在进行的众筹" 
+
+#. [omni.crodsale.infoForm.Deadline]
+#. defaultMessage is:
+#. Deadline
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.Deadline"
+msgid "Deadline"
+msgstr "最后期限" 
+
+#. [omni.crodsale.infoForm.days]
+#. defaultMessage is:
+#. Days
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.days"
+msgid "Days"
+msgstr "日s" 
+
+#. [omni.crodsale.infoForm.Hours]
+#. defaultMessage is:
+#. Hours
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.Hours"
+msgid "Hours"
+msgstr "时s"  
+
+#. [omni.crodsale.infoForm.Minutes]
+#. defaultMessage is:
+#. Minutes
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.Minutes"
+msgid "Minutes"
+msgstr "分s"  
+
+#. [omni.crodsale.infoForm.Seconds]
+#. defaultMessage is:
+#. Seconds
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.Seconds"
+msgid "Seconds"
+msgstr "秒s"  
+
+#. [omni.crodsale.infoForm.amountraised]
+#. defaultMessage is:
+#. Token that has been purchased
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.amountraised"
+msgid "Token that has been purchased"
+msgstr "已被购买的令牌"  
+
+#. [omni.crodsale.infoForm.tokensissued]
+#. defaultMessage is:
+#. Token that has been created
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.tokensissued"
+msgid "Token that has been created"
+msgstr "已被创建的令牌"  
+
+#. [omni.crodsale.infoForm.earlybonus]
+#. defaultMessage is:
+#. Current early participation in crowdfunding offers
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.earlybonus"
+msgid "Current early participation in crowdfunding offers"
+msgstr "目前早期参与众筹者的优惠"  
+
+
+#. [omni.crodsale.infoForm.panelTips]
+#. defaultMessage is:
+#. Get the token!
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.panelTips"
+msgid "Get the token!"
+msgstr "获取令牌!"  
+
+#. [omni.crodsale.table.Field.Crowdsale]
+#. defaultMessage is:
+#. Crowdsale
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.table.Field.Crowdsale"
+msgid "Crowdsale"
+msgstr "众筹"  
+
+#. [omni.crodsale.infoForm.buttonText]
+#. defaultMessage is:
+#. participate
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.crodsale.infoForm.buttonText"
+msgid "participate"
+msgstr "参与"  
+
+
+#. [omni.Participatecrowdsale.title]
+#. defaultMessage is:
+#. Participate Crowdsale
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.Participatecrowdsale.title"
+msgid "Participate Crowdsale"
+msgstr "参与众筹"  
+
+#. [omni.Participatecrowdsale.assetsName]
+#. defaultMessage is:
+#. Name
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.Participatecrowdsale.assetsName"
+msgid "Name"
+msgstr "发送令牌"  
+
+#. [omni.Participatecrowdsale.amount]
+#. defaultMessage is:
+#. Amount (valid: {redeemaddress})
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.Participatecrowdsale.amount"
+msgid "Amount (valid: {redeemaddress})"
+msgstr "发送 数量 (有效的:{redeemaddress})"   
+
+#. [omni.Participatecrowdsale.tips]
+#. defaultMessage is:
+#. You will receive {amount} {name} if you participate at this level.
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.Participatecrowdsale.tips"
+msgid "You will receive {amount} {name} if you participate at this level."
+msgstr "如果您参加此级别，您将收到{amount} {name}。"   
+
 
 
 

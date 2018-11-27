@@ -15,12 +15,11 @@ class CrowdsalePage extends React.PureComponent {
 
 
     render() {
-        const { activeCrowdsales,router } = this.props;
-        console.log(router,'===========================')
+        const { activeCrowdsales,router } = this.props; 
         return (
             <Aux>
                 <div className="tab-card">
-                    <Screen title="有效众筹" />
+                    <Screen title={<T id="omni.crowdsale.title" m="Effective crowdsales" />} />
                     <CrowdsaleTable
                         {
                         ...{ activeCrowdsales,

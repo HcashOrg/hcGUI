@@ -7,7 +7,7 @@ import { KeyBlueButton } from "buttons";
 import ConfirmSendModal from "./confirmSendModal";
 
 
-const MeanageForm = ({ addressError, destination, operationTypes, operationType, detail, onChangeOutputDestination,
+const ManageForm = ({ addressError, destination, operationTypes, operationType, detail, onChangeOutputDestination,
     amountError, onChangeOutputAmount, amount, onOperationTypeChange, isValid, onSend, onSubmit, showConfirmSendModal, onCancelModal,
     goBack,
     modalTitle,
@@ -163,4 +163,4 @@ const MeanageForm = ({ addressError, destination, operationTypes, operationType,
             </div>
         </Aux>
     );
-export default injectIntl(MeanageForm);
+export default injectIntl(ManageForm);

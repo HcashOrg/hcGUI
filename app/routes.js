@@ -41,10 +41,11 @@ import OmniAssetsCrowdsale from "./components/views/OmniToken/AssetsTab/Crowdsal
 import OmniHistoryPage from "./components/views/OmniToken/HistoryTab/HistoryPage";
 import OmniHistoryDetail from "./components/views/OmniToken/HistoryTab/detail";
 import OmniAssetsDetail from "./components/views/OmniToken/AssetsTab/Overview/details";
-import OmniAssetsManage from "./components/views/OmniToken/AssetsTab/manage";
+import OmniAssetsManage from "./components/views/OmniToken/AssetsTab/Manage";
 import OmniCrowdsalesTab from "./components/views/OmniToken/CrowdsaleTab";
 import OmniCrowdsalesList from "./components/views/OmniToken/CrowdsaleTab/list";
-import OmniCrowdsaleDetail from "./components/views/OmniToken/CrowdsaleTab/details"
+import OmniCrowdsaleDetail from "./components/views/OmniToken/CrowdsaleTab/details";
+import CrowdsaleManage from "./components/views/OmniToken/CrowdsaleTab/Manage";
 
 export default (
   <Route path="/" component={App}>
@@ -93,6 +94,7 @@ export default (
       <Route path="crowdsales" component={OmniCrowdsalesTab} > 
         <IndexRoute component={OmniCrowdsalesList} />
         <Route path="details/:propertyid" component={OmniCrowdsaleDetail} />
+        <Route path="manage/:propertyid" component={CrowdsaleManage} />
       </Route>
 
       {/* <Route path="statistics"                  component={StatisticsTab}/> */}

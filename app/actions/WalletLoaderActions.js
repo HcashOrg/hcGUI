@@ -8,7 +8,7 @@ import { getWalletServiceAttempt, getTicketBuyerServiceAttempt, getAgendaService
 import {getOmniServiceAttempt} from './OmniActions'
 import { prepStartDaemon } from "./DaemonActions";
 import { getVersionServiceAttempt } from "./VersionActions";
-import { getWalletCfg, getWalletCfgPath, getHcdCert } from "config";
+import { getWalletCfg, getWalletCfgPath, getHcdCert } from "../config";
 import { isTestNet } from "selectors";
 import { MainNetParams, TestNetParams } from "wallet/constants";
 import axios from "axios";

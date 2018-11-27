@@ -150,11 +150,12 @@ export const gettradehistoryforaddress_func = (address) => async (dispatch, getS
 
 export const OMNISEND_FAILED = "OMNISEND_FAILED";
 
-export const send_func = (params) => async (dispatch, getState) => {
+export const send_func = (params,callBack) => async (dispatch, getState) => {
   try {
     const { omniService } = getState().rpc;
     await omni_send(omniService, params);
     loadOmniDataAttempt(dispatch, getState);
+    callBack && callBack();
   } catch (error) {
     console.error(error, ' send_func  error ');
     dispatch({ type: OMNISEND_FAILED, error })

@@ -9,7 +9,8 @@ export { default as PassphraseInfoModalContent } from "./PassphraseInfoModalCont
 export { default as QRCodeModalContent} from './QRCodeModalContent';
 export {default as PubKeyModalContent} from './PubKeyModalContent';
 export {default as ConfirmAssetsModalContent} from './ConfirmAssetsModalContent';
-export {default as ConfirmCrowdsaleModalContent} from './ConfirmCrowdsaleModalContent'
+export {default as ConfirmCrowdsaleModalContent} from './ConfirmCrowdsaleModalContent';
+export {default as ConfirmSendModalContent} from './confirmSendModalContent'
 
 export { default as ImportScriptModal } from "./ImportScriptModal";
 export { default as AddAccountModal } from "./AddAccountModal";
