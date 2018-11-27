@@ -3,7 +3,7 @@ import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
 import { AddressInput, InputSelect, FloatInput } from "inputs";
 import { KeyBlueButton } from "buttons";
 
-import {ConfirmSendModalContent} from "Modals";
+import {ConfirmSendModalContent} from "modals";
 import 'style/OmniSendPage.less';
 
 

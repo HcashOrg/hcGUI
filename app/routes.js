@@ -38,7 +38,7 @@ import OmniAssetsIndex from "./components/views/OmniToken/AssetsTab/Overview";
 import OmniAssetsIssue from "./components/views/OmniToken/AssetsTab/Issue";
 import OmniAssetsManaged from "./components/views/OmniToken/AssetsTab/Managed";
 import OmniAssetsCrowdsale from "./components/views/OmniToken/AssetsTab/Crowdsale";
-import OmniHistoryPage from "./components/views/OmniToken/HistoryTab/HistoryPage";
+import OmniHistoryPage from "./components/views/OmniToken/HistoryTab/historyPage";
 import OmniHistoryDetail from "./components/views/OmniToken/HistoryTab/detail";
 import OmniAssetsDetail from "./components/views/OmniToken/AssetsTab/Overview/details";
 import OmniAssetsManage from "./components/views/OmniToken/AssetsTab/Manage";

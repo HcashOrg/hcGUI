@@ -2,7 +2,7 @@ import Screen from 'shared/screen';
 import { FormattedMessage as T, injectIntl } from "react-intl";
 import { FloatInput, Input, AddressInput, InputSelect } from "inputs";
 import { KeyBlueButton } from "buttons";
-import { ConfirmSendModalContent } from "Modals";
+import { ConfirmSendModalContent } from "modals";
 
 const CrowdsaleManageForm = ({ data, goBack,
     onSend,

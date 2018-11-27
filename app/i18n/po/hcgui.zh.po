@@ -4860,7 +4860,7 @@ msgstr "发送 {assetName} (有效的： {balance})"
 #: app/i18n/extracted/app/messages.json
 msgctxt "omni.send.field.Recipient"
 msgid "Recipient"
-msgstr "接受地址"
+msgstr "接收地址"
 
 #. [omni.send.tips.AvailableAddress]
 #. defaultMessage is:
