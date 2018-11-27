@@ -32,7 +32,7 @@ class SendPage extends React.Component {
         this.setState({
           destination,
           destinationInvalid
-        },this.onAttemptConstructTransaction);
+        });
       };
 
       this.props.validateAddress(destination)
@@ -48,7 +48,7 @@ class SendPage extends React.Component {
   onChangeOutputAmount=(e)=> {    
     const value=e.target.value; 
     if (value !== this.state.amount) {
-      this.setState({amount:value},this.onAttemptConstructTransaction);
+      this.setState({amount:value});
     }
   }
   getAddressError() {
@@ -89,19 +89,10 @@ class SendPage extends React.Component {
     const { send_func } = this.props; 
     const {address,destination,amount,asset} =this.state;  
     send_func  && send_func({fromaddress:address.address,toaddress:destination,propertyid:asset.propertyid,amount:amount});
-    this.onClearTransaction();
+   
   }
 
-  onAttemptConstructTransaction=()=> {
-    const { onAttemptConstructTransaction } = this.props;  
-    if (!this.getIsValid()) return; 
-    onAttemptConstructTransaction && onAttemptConstructTransaction(
-      0,
-      0,
-      [{amount: this.state.amount, destination: this.state.destination }]
-    );
-  }
-
+ 
 
 
 
@@ -111,7 +102,7 @@ class SendPage extends React.Component {
 
   componentWillReceiveProps=(nextProps)=>{ 
     if (nextProps.walletAssetsBalances != this.props.walletAssetsBalances) {
-      this.setState(this.getInitialState(nextProps),this.onAttemptConstructTransaction);
+      this.setState(this.getInitialState(nextProps));
     }
   }
   render() { 
