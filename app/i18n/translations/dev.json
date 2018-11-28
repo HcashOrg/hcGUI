@@ -277,7 +277,6 @@
   "omni.IssuanceScreen.ecosystemToTest": "Test",
   "omni.Participatecrowdsale.amount": "Amount (valid: {redeemaddress})",
   "omni.Participatecrowdsale.assetsName": "Name",
-  "omni.Participatecrowdsale.tips": "You will receive {amount} {name} if you participate at this level.",
   "omni.Participatecrowdsale.title": "Participate Crowdsale",
   "omni.address.preview": "preview",
   "omni.addressPage.publicKey": "public key",

@@ -23,7 +23,7 @@ class Index extends React.PureComponent {
     componentDidMount = () => {
         const { location: { query }, walletAssetsBalances } = this.props;
         const obj = JSON.parse(query.item);
-        const assets = walletAssetsBalances ? walletAssetsBalances.find(item => item.propertyid === obj.propertyiddesired) : [];
+        const assets = walletAssetsBalances ? walletAssetsBalances.find(item => item.propertyid === obj.propertyiddesired) : null;
         this.setState({
             redeemaddress: assets && assets.addressData.length > 0 ? assets.addressData[0] : null,
             assetsDesired: assets ? assets.addressData : null
@@ -49,16 +49,15 @@ class Index extends React.PureComponent {
     }
 
     getAmountError() {
-        const { amount, redeemaddress } = this.state;
-
+        const { amount, redeemaddress } = this.state; 
         if (isNaN(amount)) return <T id="send.errors.invalidAmount" m="*Please enter a valid amount" />;
         if (amount <= 0) return <T id="send.errors.negativeAmount" m="*Please enter a valid amount (> 0)" />;
-        if (parseFloat(amount) > parseFloat(redeemaddress.balance)) return  <T id="send.errors.amount" m="*Insufficient balance" />;
+        if (redeemaddress && parseFloat(amount) > parseFloat(redeemaddress.balance)) return  <T id="send.errors.amount" m="*Insufficient balance" />;
     }
 
     getIsValid() {
         const { amount, redeemaddress } = this.state;
-        return !!(amount && (parseFloat(amount) <= parseFloat(redeemaddress.balance)));
+        return !!(redeemaddress && amount && (parseFloat(amount) <= parseFloat(redeemaddress.balance)));
     }
 
     onCancelModal = () => {
@@ -70,7 +69,7 @@ class Index extends React.PureComponent {
         const { location: { query },send_func } = this.props;
         const data = JSON.parse(query.item);
         const {amount,redeemaddress} =this.state;  
-        send_func  && send_func({fromaddress:data.issuer,toaddress:redeemaddress.address,propertyid:data.propertyiddesired,amount:amount},this.goBack);
+        send_func  && send_func({fromaddress:redeemaddress.address,toaddress:data.issuer,propertyid:data.propertyiddesired,amount:amount},this.goBack);
 
 
     }

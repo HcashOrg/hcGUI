@@ -4,6 +4,7 @@ import Card from "card";
 import { InputSelect, FloatInput, AddressInput,Input } from "inputs";
 import { omniIssuanceForm } from "connectors";
 import { FormattedMessage as T } from "react-intl";
+import { addDays } from "helpers";
 
 import "style/react-datepicker.less";
 
@@ -36,6 +37,7 @@ const CrowdsaleInfoForm = ({
                     </div>
                     <div>  <DateTimeRange
                         selected={deadline}
+                        minDate={addDays(new Date(),1)}
                         onChange={onDeadlineChange}
                     />
                     </div>

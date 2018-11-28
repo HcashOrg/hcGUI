@@ -45,3 +45,17 @@ export function addMonths(d,months){
     return newDate;
   
 }
+
+export function addDays(d,days){ 
+  if(!(d instanceof Date) && months) return d;
+
+  const year=d.getFullYear();
+    const month=d.getMonth();
+    const day=d.getDate();
+    const hour=d.getHours();
+    const min=d.getMinutes();
+    const s=d.getSeconds();
+    const newDate=new Date(year,month,day+days,hour,min,s);  
+    return newDate;
+  
+}

@@ -94,20 +94,21 @@ msgstr "请输入一个有效的数字"
 
 #. [send.errors.negativeAmount]
 #. defaultMessage is:
-#. *Insufficient balance
+#. *Please enter a valid amount (> 0)
 #: app/i18n/extracted/app/components/views/TransactionsPage/SendTab/index.json
 msgctxt "send.errors.negativeAmount"
-msgid "*Insufficient balance"
-msgstr "余额不足"
+msgid "*Please enter a valid amount (> 0)"
+msgstr "请输入有效的数字（>0）"
 
 
 #. [send.errors.amount]
 #. defaultMessage is:
-#. *Please enter a valid amount (> 0)
+#. *Insufficient balance
 #: app/i18n/extracted/app/components/views/TransactionsPage/SendTab/index.json
 msgctxt "send.errors.amount"
-msgid "*Please enter a valid amount (> 0)"
-msgstr "请输入有效的数字（>0）"
+msgid "*Insufficient balance"
+msgstr "余额不足"
+
 
 #. [stake.addPool.errors.noApiKey]
 #. defaultMessage is:

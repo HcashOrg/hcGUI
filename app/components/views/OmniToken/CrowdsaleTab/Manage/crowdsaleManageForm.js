@@ -36,7 +36,8 @@ const CrowdsaleManageForm = ({ data, goBack,
                 </div>
                 <div className="sendForm-panel">
                     <div>
-                    <T id="omni.send.field.sendAddress" m="Sender" />
+                   
+                    <T id="omni.send.field.Recipient" m="Recipient" />
                         </div>
                     <div>
                         <AddressInput value={data.issuer}
@@ -71,7 +72,7 @@ const CrowdsaleManageForm = ({ data, goBack,
 
                 <div className="sendForm-panel">
                     <div>
-                    <div><T id="omni.send.field.Recipient" m="Recipient" /></div>
+                    <T id="omni.send.field.sendAddress" m="Sender" />
                         </div>
                     <div>
 
@@ -88,10 +89,10 @@ const CrowdsaleManageForm = ({ data, goBack,
             {/* onChange={compose(onChangeOutputDestination, e => e.target.value)} */}
             <div className="omni-send-button-area">
                 <div>
-                <T id="omni.Participatecrowdsale.tips" m="You will receive {amount} {name} if you participate at this level."  values={{
+                {/* <T id="omni.Participatecrowdsale.tips" m="You will receive {amount} {name} if you participate at this level."  values={{
                         amount:amount,
                         name:data.name
-                    }}/>
+                    }}/> */}
                 </div>
                 <div className="omni-send-buttons">
                     <KeyBlueButton
