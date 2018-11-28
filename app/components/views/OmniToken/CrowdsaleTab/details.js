@@ -16,7 +16,8 @@ class Index extends React.PureComponent {
             hours: 0,
             minutes: 0,
             seconds: 0,
-            hasButton:false
+            hasButton: false,
+            Expired: false
 
         }
     }
@@ -24,20 +25,30 @@ class Index extends React.PureComponent {
 
         const { location: { query }, walletAssetsBalances } = this.props;
         const obj = JSON.parse(query.item);
-        const assets = walletAssetsBalances ? walletAssetsBalances.find(item => item.propertyid === obj.propertyiddesired) : null; 
+        const assets = walletAssetsBalances ? walletAssetsBalances.find(item => item.propertyid === obj.propertyiddesired) : null;
         if (assets) {
-            this.setState({hasButton:true});
+            this.setState({ hasButton: true });
         }
 
-        this.timer = setInterval(this.getDeadline, 1000);
+      
+        const toTime = parseInt(new Date().getTime() / 1000);
+        const diffTime = obj.deadline - toTime;
+
+        if (diffTime <= 0) {
+            this.setState({ Expired: true }); 
+            return;
+        }else{
+            this.timer = setInterval(this.getDeadline(obj.deadline), 1000);
+        }
+
+        
 
     }
 
-    getDeadline = () => {
-        const { location: { query } } = this.props;
-        const item = JSON.parse(query.item);
+    getDeadline = (deadline)=>() => {
+       
         const toTime = parseInt(new Date().getTime() / 1000);
-        const diffTime = item.deadline - toTime;
+        const diffTime = deadline - toTime;
 
         const days = parseInt(diffTime / 86400);
         const re_days = diffTime % 86400;
@@ -61,7 +72,7 @@ class Index extends React.PureComponent {
     render() {
         const { isTestNet, router, location: { query } } = this.props;
         const item = JSON.parse(query.item);
-        const { days, hours, minutes, seconds } = this.state;
+        const { days, hours, minutes, seconds, Expired } = this.state;
         return (<div>{item ? <div className="omni-asstes-details omni-crowdsale-details">
             <Card title={<div>{item.name} <span>(#{item.propertyid})</span></div>}>
                 <div className="omni-asstes-details-Basics">
@@ -86,7 +97,7 @@ class Index extends React.PureComponent {
                     </KeyBlueButton>
                 </div> */}
             </Card>
-            <Card>
+            {Expired ? null : <Card className="omni-crowdsale-rightPanle">
                 <div className="omni-crowdsale-countdown">
                     <div className="crowdsale-title">
                         <p>
@@ -196,7 +207,7 @@ class Index extends React.PureComponent {
                     </KeyBlueButton>
 
                 </div>
-            </Card>
+            </Card>}
 
             {/* <div className="hc-card-buttons">
                     <KeyBlueButton
