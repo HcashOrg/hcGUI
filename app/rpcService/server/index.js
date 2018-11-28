@@ -165,6 +165,17 @@ export function omni_getCrowdsale(omniService,params){
     return omniService(omniMethod.getcrowdsale,objToArray(params));
 }
 
+/**
+ * @param {	string	required	the address to trade with} fromaddress
+ * @param {	number	required	the identifier of the tokens to list for sale} propertyidforsale
+ * @param {	string	required	the amount of tokens to list for sale} amountforsale
+ * @param {	number	required	the identifier of the tokens desired in exchange} propertiddesired
+ * @param {	string	required	the amount of tokens desired in exchange} amountdesired
+ */
+export function omni_sendTrade(omniService,params){ 
+    return omniService(omniMethod.sendtrade,objToArray(params));
+}
+ 
 
 export function omni_getCategories() {
     return categories;

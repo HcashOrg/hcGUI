@@ -29,10 +29,10 @@ class Detail extends React.PureComponent {
                     </div>
                     <div className="omni-history-list-body">
                         {
-                            dataKeys.length>0 ? dataKeys.map(item => {
-                                return <div>
+                            dataKeys.length>0 ? dataKeys.map((item,index) => { 
+                                return <div key={index}>
                                     <div>{item}</div>
-                                    <div>{(omniTransaction[item] instanceof Array)?JSON.stringify(omniTransaction[item]):omniTransaction[item]}</div>
+                                    <div>{(omniTransaction[item] instanceof Array)?JSON.stringify(omniTransaction[item]):omniTransaction[item].toString()}</div>
                                 </div>
                             }) : null
                         } 
