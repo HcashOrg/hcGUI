@@ -26,8 +26,7 @@ class OverviewPage extends React.PureComponent {
 
     }
     componentDidMount = () => {
-        const { getActiveCrowdsales, listpropertiesFunc } = this.props;
-        getActiveCrowdsales && getActiveCrowdsales();
+        const { getActiveCrowdsales, listpropertiesFunc } = this.props; 
         listpropertiesFunc && listpropertiesFunc();
     }
     onAssesTypesChanged = (value) => {

@@ -3,6 +3,7 @@ import { FormattedMessage as T } from "react-intl";
 import CrowdsaleForm from './crowdsaleForm';
 import ConfirmCrowdsaleModal from "./confirmCrowdsaleModal";
 import { omniCrowdsaleForm } from "connectors";
+import {TEST_ECO_PROPERTY} from '../../../../../config'
 import { addMonths } from "helpers";
 
 
@@ -22,24 +23,30 @@ class Crowdsale extends React.PureComponent {
             showConfirmCrowdsaleModal: false,
 
 
-            issuerPercentage: null,
-            issuerPercentageError: null,
+            issuerPercentage: null, 
             deadline: addMonths(new Date(),1),
             earlyBonus: null,
             tokenSperUnit: null,
             tokenSperUnitError: null,
             fromAddress: null,
             property: (this.props.listProperties && this.props.listProperties.length > 0) ? this.props.listProperties[0] : null,
-            properties: this.props.listProperties ? this.props.listProperties.map(item => {
-                item.showName = `${item.name}(${item.propertyid})`;
-                return item;
-            }) : [],
+            properties:[],
         }
     }
 
 
     onEcosystemChanged = (value) => {
-        this.setState({ ecosystem: value });
+        let properties = this.props.listProperties ? this.props.listProperties.filter(item=>{
+            if(value==1){
+                return item.propertyid < TEST_ECO_PROPERTY;
+            }else{
+                return item.propertyid >= TEST_ECO_PROPERTY;
+            }
+        }).map(item => {
+            item.showName = `${item.name}(${item.propertyid})`;
+            return item;
+        }):[];  
+        this.setState({ ecosystem: value,properties });
     }
     onDivisibleEnumchanged = (divisible) => {
         if (divisible !== this.state.divisible) {
@@ -87,9 +94,9 @@ class Crowdsale extends React.PureComponent {
 
     getIsValid = () => {
         const { name, ecosystem, url, category, subCategory, issuerPercentage, deadline, earlyBonus, tokenSperUnit, fromAddress, fromAddressInvalid, property,
-            divisible, description, earlyBonusInvalid } = this.state;
+            divisible, description, earlyBonusInvalid,issuerPercentageInvalid } = this.state;
 
-        return name && ecosystem && url && category && subCategory && issuerPercentage && deadline && earlyBonus && !earlyBonusInvalid && tokenSperUnit && !(!fromAddress || fromAddressInvalid) &&
+        return name && ecosystem && url && category && subCategory && issuerPercentage && !issuerPercentageInvalid && deadline && earlyBonus && !earlyBonusInvalid && tokenSperUnit && !(!fromAddress || fromAddressInvalid) &&
             property && divisible && description;
 
     }
@@ -137,10 +144,13 @@ class Crowdsale extends React.PureComponent {
 
     onIssuerPercentageChange = (value) => {
         if (this.state.issuerPercentage != value) {
-            this.setState({ issuerPercentage: value });
+            this.setState({ issuerPercentage: value,issuerPercentageInvalid:value>255 });
         }
     }
-
+    getIssuerPercentageError() {
+        const { issuerPercentage, issuerPercentageInvalid } = this.state;
+        if (issuerPercentage && issuerPercentageInvalid) return "必须小于等于 255";
+    }
     onDeadlineChange = (date) => {
         if (this.state.deadline != date) {
             this.setState({ deadline: date });
@@ -193,8 +203,9 @@ class Crowdsale extends React.PureComponent {
         }
     }
     render() {
-        const { nameError, urlError, showConfirmCrowdsaleModal, name, category, subCategory, url, description, issuerPercentage,
-            issuerPercentageError, deadline, earlyBonus, tokenSperUnit, tokenSperUnitError, fromAddress, property, properties } = this.state;
+        const { nameError, urlError, showConfirmCrowdsaleModal, name, category, subCategory, url, 
+            description, issuerPercentage, deadline, earlyBonus, tokenSperUnit, tokenSperUnitError, 
+            fromAddress, property, properties } = this.state;
         const { router } = this.props;
         const disabled = !this.getIsValid();
 
@@ -229,7 +240,7 @@ class Crowdsale extends React.PureComponent {
 
                         onIssuerPercentageChange: this.onIssuerPercentageChange,
                         issuerPercentage,
-                        issuerPercentageError,
+                        issuerPercentageError:this.getIssuerPercentageError(),
                         deadline,
                         onDeadlineChange: this.onDeadlineChange,
                         earlyBonusError: this.getEarlyBonusError(),
