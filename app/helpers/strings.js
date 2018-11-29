@@ -51,7 +51,7 @@ export function limitFractionalDigits(s, maxFracDigits) {
 
   const match = s.match(/(\d+)\.(\d*)/);
   if (!match) return s;
-  if (!maxFracDigits) return s[1]; // no fractional digits, return just the int part
+  if (!maxFracDigits) return match[1]; // no fractional digits, return just the int part
   if (match[2].length <= maxFracDigits) return s;
   return match[1] + "." + match[2].substr(0, maxFracDigits);
 }

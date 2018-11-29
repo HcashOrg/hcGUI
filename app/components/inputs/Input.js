@@ -54,8 +54,9 @@ class Input extends React.Component{
       unit,
       hidden,
       type,
+      maxLength,
     } = this.props;
-
+ 
     const highlightInputDueToError = showErrors && ((invalid && value) || (required && !value));
     const containerClassName = highlightInputDueToError?
         `${this.state.divClassName} input-and-unit--with-error`:
@@ -77,6 +78,7 @@ class Input extends React.Component{
               onFocus={this.onInputFocus}
               onBlur={this.onInputBlur}
               onKeyDown={this.onKeyDown}
+              {...{maxLength}}
             />
             {unit ? <div className="unit-area">{unit}</div> : null}
           </div>

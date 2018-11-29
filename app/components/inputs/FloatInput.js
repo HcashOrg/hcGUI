@@ -7,7 +7,7 @@ const FloatInput = ({maxFracDigits, ...props}) => {
 
   const onChange = (e) => {
     let newValue = restrictToStdDecimalNumber(e.target.value);
-    newValue = maxFracDigits ? limitFractionalDigits(newValue, maxFracDigits) : newValue;
+    newValue = (maxFracDigits ||maxFracDigits ==0 ) ? limitFractionalDigits(newValue, maxFracDigits) : newValue;
     if (value !== newValue) {
       value = newValue;
       e.target.value = newValue;
