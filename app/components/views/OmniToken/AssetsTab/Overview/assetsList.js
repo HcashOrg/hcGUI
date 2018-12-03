@@ -1,7 +1,7 @@
 import { shell } from "electron";
 import { FormattedMessage as T } from "react-intl";
 
-const AssetsList = ({ listproperties, router }) => (
+const AssetsList = ({ listproperties, router,onCloseCrowdsale }) => (
 
     <div className="omni-history-list">
         <div className="omni-history-list-header">
@@ -25,6 +25,10 @@ const AssetsList = ({ listproperties, router }) => (
                                 query: item.detail
                             })
                         }}> (Manage) </a> : null}
+
+                        {(!item.detail.managedissuance && !item.detail.fixedissuance) ? <a className="stakepool-link" onClick={() => {
+                            onCloseCrowdsale && onCloseCrowdsale(item.name,item.detail.issuer,item.detail.propertyid,)
+                        }}> (close) </a> : null}
                     </div>
                     <div><a className="stakepool-link" onClick={() => {
                         router.push({

@@ -5691,8 +5691,22 @@ msgid "Send Amount"
 msgstr "发送金额"
 
 
+#. [omni.confirmModal.closeCrowdsaleModal]
+#. defaultMessage is:
+#. Close Crowdsale
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.confirmModal.closeCrowdsaleModal"
+msgid "Close Crowdsale"
+msgstr "关闭众筹"
 
 
+#. [omni.confirmModal.closeCrowdsaleModalContent]
+#. defaultMessage is:
+#. Are you sure to close the crowdfunding asset {assetsName} (#{propertyid}) ?
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.confirmModal.closeCrowdsaleModalContent"
+msgid "Are you sure to close the crowdfunding asset {assetsName} (#{propertyid}) ?"
+msgstr "是否确认关闭该众筹资产 {assetsName} (#{propertyid}) ？"
 
 
 

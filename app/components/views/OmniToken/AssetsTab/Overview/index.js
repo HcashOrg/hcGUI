@@ -1,6 +1,7 @@
 import Screen from './screen';
-import AssetsList from './assetsList'; 
+import AssetsList from './assetsList';
 import { omniIssuanceList } from "connectors";
+import { ConfirmModal } from "modals";
 import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
 
 const messages = defineMessages({
@@ -23,14 +24,36 @@ class OverviewPage extends React.PureComponent {
     constructor(props) {
         super(props);
 
-
+        this.state = {
+            showCloseModal: false
+        }
     }
     componentDidMount = () => {
-        const { getActiveCrowdsales, listpropertiesFunc } = this.props; 
+        const { getActiveCrowdsales, listpropertiesFunc } = this.props;
         listpropertiesFunc && listpropertiesFunc();
     }
     onAssesTypesChanged = (value) => {
         this.props.router.push(`/omni/assets/${value}`)
+    }
+
+    onCloseCrowdsale = (assetsName,fromaddress, propertyid) => { 
+        this.setState({
+            showCloseModal: true,
+            fromaddress, 
+            propertyid,
+            assetsName
+        })
+    }
+    onCancelModal = ()=>{
+        this.setState({
+            showCloseModal: false,
+        })
+    }
+
+    onSubmit=()=>{
+        const {fromaddress,  propertyid} = this.state;
+        const { sendCloseCrowdsale } = this.props;
+        sendCloseCrowdsale && sendCloseCrowdsale({fromaddress,  propertyid},this.onCancelModal);
     }
 
 
@@ -50,6 +73,9 @@ class OverviewPage extends React.PureComponent {
 
     render() {
         const { listproperties, router } = this.props;
+        const {showCloseModal, 
+            propertyid,
+            assetsName} =this.state;
         const properties = listproperties ? listproperties.filter((i) => i.isMine) : [];
         return (
             <div>
@@ -60,9 +86,20 @@ class OverviewPage extends React.PureComponent {
                 <AssetsList {
                     ...{
                         listproperties: properties,
-                        router
+                        router,
+                        onCloseCrowdsale:this.onCloseCrowdsale
                     }
                 } />
+                <ConfirmModal
+                    modalTitle= {<T id="omni.confirmModal.closeCrowdsaleModal" m="Close Crowdsale"/> }
+                    show={showCloseModal}
+                    onCancelModal={this.onCancelModal}
+                    onSubmit={this.onSubmit}
+                    modalContent={<T id="omni.confirmModal.closeCrowdsaleModalContent" m="Are you sure to close the crowdfunding asset {assetsName} (#{propertyid}) ?" values={{
+                        assetsName,
+                        propertyid
+                    }}/> }
+                />
             </div>
         )
     }

@@ -18,5 +18,6 @@
     getactivecrowdsales:"omni_getactivecrowdsales",
     getcrowdsale:"omni_getcrowdsale",
     sendtrade:"omni_sendtrade",
+    sendclosecrowdsale:"omni_sendclosecrowdsale",
  }
 

@@ -176,6 +176,15 @@ export function omni_sendtrade(omniService,params){
     return omniService(omniMethod.sendtrade,objToArray(params));
 }
 
+/**
+ * @param {	string	required	the address associated with the crowdsale to close} fromaddress
+ * @param {	number	required	the identifier of the crowdsale to close} propertyid 
+ */
+export function omni_sendCloseCrowdsale(omniService,params){
+    return omniService(omniMethod.sendclosecrowdsale,objToArray(params));
+}
+
 export function omni_getCategories() {
     return categories;
 }
+

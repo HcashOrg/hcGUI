@@ -6,7 +6,7 @@ import {
   omni_listProperties, omni_getWalletAddressBalances, omni_send, omni_getTransaction,
   omni_getTradeHistoryForAddress, omni_getCategories, omni_listTransactions, omni_sendIssuanceFixed, omni_sendIssuanceManaged, omni_getProperty,
   omni_sendChangeIssuer, omni_sendGrant, omni_sendRevoke, omni_sendIssuanceCrowdsale, omni_getActiveCrowdsales, omni_getCrowdsale,
-  omni_sendtrade
+  omni_sendtrade,omni_sendCloseCrowdsale
 } from '../rpcService/server';
 
 
@@ -329,6 +329,18 @@ export const sendTrade_func = (params, callBack) => async (dispatch, getState) =
   } catch (error) {
     console.error(error, ' sendTrade_func  error ')
     dispatch({ type: OMNISENDTRADE_FAILED, error })
+  }
+}
+
+export const OMNISENDCLOSECROWDSALE_FAILED = "OMNISENDCLOSECROWDSALE_FAILED";
+export const sendCloseCrowdsale_func = (params, callBack) => async (dispatch, getState) => { 
+  try {
+    const { omniService } = getState().rpc;
+    await omni_sendCloseCrowdsale(omniService, params);
+    callBack && callBack();
+  } catch (error) {
+    console.error(error, ' sendCloseCrowdsale_func  error ')
+    dispatch({ type: OMNISENDCLOSECROWDSALE_FAILED, error })
   }
 }
 

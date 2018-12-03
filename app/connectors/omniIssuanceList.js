@@ -12,7 +12,8 @@ const mapStateToProps = selectorMap({
   
   const mapDispatchToProps = (dispatch) => bindActionCreators({  
     listpropertiesFunc:oa.listproperties_func,
-    getActiveCrowdsales: oa.getActiveCrowdsales_func
+    getActiveCrowdsales: oa.getActiveCrowdsales_func,
+    sendCloseCrowdsale:oa.sendCloseCrowdsale_func
   }, dispatch);
   
   export default connect(mapStateToProps,mapDispatchToProps);

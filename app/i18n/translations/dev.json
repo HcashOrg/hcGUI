@@ -314,6 +314,8 @@
   "omni.browseType.address": "address",
   "omni.browseType.wallet": "wallet",
   "omni.confirm.CreateAssets": "Create Assets",
+  "omni.confirmModal.closeCrowdsaleModal": "Close Crowdsale",
+  "omni.confirmModal.closeCrowdsaleModalContent": "Are you sure to close the crowdfunding asset {assetsName} (#{propertyid}) ?",
   "omni.crodsale.infoForm.Deadline": "Deadline",
   "omni.crodsale.infoForm.Hours": "Hours",
   "omni.crodsale.infoForm.Minutes": "Minutes",
