@@ -3,7 +3,7 @@ import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
 import { AddressInput, InputSelect, FloatInput } from "inputs";
 import { KeyBlueButton } from "buttons";
 
-import {ConfirmSendModalContent} from "modals";
+import { ConfirmSendModalContent } from "modals";
 import 'style/OmniSendPage.less';
 
 
@@ -42,67 +42,70 @@ const SendTabPage = ({
         <Aux>
             <div className="tab-card">
                 <div className="omni-sendForm">
-                    <div className="sendForm-panel">
-                        <div>
-                            <T id="omni.send.field.choiceCurrency" m="Choice of currency" />
+                    <div className="sendForm-row">
+                        <div className="sendForm-col col-6">
+                            <div>
+                                <T id="omni.send.field.choiceCurrency" m="Choice of assets" />
+                            </div>
+                            <div><InputSelect className="send-select-account-input" {...{
+                                datas: assetsList,
+                                onChange: onAssetsChange,
+                                labelKey: "name",
+                                valueKey: "name",
+                            }} /></div>
                         </div>
-                        <div><InputSelect className="send-select-account-input" {...{
-                            datas: assetsList,
-                            onChange: onAssetsChange,
-                            labelKey: "name",
-                            valueKey: "name",
-                        }} /></div>
-                    </div>
-                    <div className="sendForm-panel">
-                        <div>
-                            <T id="omni.send.field.sendAddress" m="Sender" />
+                        <div className="sendForm-col col-6">
+                            <div>
+                                <T id="omni.send.field.sendAddress" m="Sender" />
+                            </div>
+                            <div><InputSelect className="send-select-account-input" {...{
+                                datas: addressList,
+                                onChange: onAddressChange,
+                                labelKey: "address",
+                                valueKey: "address"
+                            }} /></div>
                         </div>
-                        <div><InputSelect className="send-select-account-input" {...{
-                            datas: addressList,
-                            onChange: onAddressChange,
-                            labelKey: "address",
-                            valueKey: "address"
-                        }} /></div>
                     </div>
                 </div>
                 <div className="omni-sendForm">
-                    <div className="sendForm-panel">
-                        <div>
-                            <T id="omni.send.field.sendAmount" m="Send {assetName} (Effective {balance})"
-                                values={{ assetName: asset ? asset.name : "",balance: address ? address.balance : 0, }}
-                            />
+                    <div className="sendForm-row">
+                        <div className="sendForm-col col-6">
+                            <div>
+                                <T id="omni.send.field.sendAmount" m="Send {assetName} (Effective {balance})"
+                                    values={{ assetName: asset ? asset.name : "", balance: address ? address.balance : 0, }}
+                                />
+                            </div>
+                            <div>
+                                <FloatInput
+                                    showErrors={!!amountError}
+                                    invalid={!!amountError}
+                                    invalidMessage={amountError}
+                                    hidden={false}
+                                    value={amount}
+                                    className="send-address-input-amount"
+                                    placeholder={intl.formatMessage(messages.amountPlaceholder)}
+                                    onChange={onChangeOutputAmount}
+                                    maxFracDigits={8}
+                                />
+                            </div>
                         </div>
-                        <div>
-                            <FloatInput
-                                showErrors={!!amountError}
-                                invalid={!!amountError}
-                                invalidMessage={amountError}
-                                hidden={false}
-                                value={amount}
-                                className="send-address-input-amount"
-                                placeholder={intl.formatMessage(messages.amountPlaceholder)}
-                                onChange={onChangeOutputAmount}
-                                maxFracDigits={8}
-                            />
-                        </div>
-                    </div>
-                    <div className="sendForm-panel">
-                        <div><T id="omni.send.field.Recipient" m="Recipient" /></div>
-                        <div>
-                            <AddressInput
-                                autoFocus={true}
-                                showErrors={!!addressError}
-                                invalid={!!addressError}
-                                invalidMessage={addressError}
-                                value={destination}
-                                className="send-address-hash-to"
-                                placeholder={intl.formatMessage(messages.destinationAddrPlaceholder)}
-                                onChange={compose(getOnChangeOutputDestination, e => e.target.value)}
-                            />
+                        <div className="sendForm-col col-6">
+                            <div><T id="omni.send.field.Recipient" m="Recipient" /></div>
+                            <div>
+                                <AddressInput
+                                    autoFocus={true}
+                                    showErrors={!!addressError}
+                                    invalid={!!addressError}
+                                    invalidMessage={addressError}
+                                    value={destination}
+                                    className="send-address-hash-to"
+                                    placeholder={intl.formatMessage(messages.destinationAddrPlaceholder)}
+                                    onChange={compose(getOnChangeOutputDestination, e => e.target.value)}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
-
                 <div className="omni-send-button-area">
                     <div>
                         {/* <p>全部交易费用: 0.00025 HC </p> */}
@@ -139,7 +142,7 @@ const SendTabPage = ({
                             size="large"
                             onClick={onSend}
                             block={false} >
-                           <T id="formButton.nextStep" m="Next step" />
+                            <T id="formButton.nextStep" m="Next step" />
                         </KeyBlueButton>
                         <ConfirmSendModalContent {
                             ...{

@@ -1,4 +1,4 @@
-import Screen from 'shared/screen'; 
+import {Screen} from "shared";
 import { FormattedMessage as T, injectIntl } from "react-intl";
 import { FloatInput, Input, AddressInput, InputSelect } from "inputs";
 import { KeyBlueButton } from "buttons";
@@ -19,77 +19,81 @@ const CrowdsaleManageForm = ({ data, goBack,
     onSubmit
 }) => (
         <Aux>
-            <Screen title={<T id="omni.Participatecrowdsale.title" m="Participate Crowdsale" />} /> 
+            <Screen title={<T id="omni.Participatecrowdsale.title" m="Participate Crowdsale" />} />
             <div className="omni-sendForm">
-                <div className="sendForm-panel">
-                    <div>
-                       
-                        <T id="omni.Participatecrowdsale.assetsName" m="Name" />
+                <div className="sendForm-row">
+                    <div className="sendForm-col col-6">
+                        <div>
+
+                            <T id="omni.Participatecrowdsale.assetsName" m="Name" />
                         </div>
-                    <div>
-                        <Input
-                            disabled={true}
-                            value={`${data.assetsName} (${data.propertyiddesired})`}
-                            className="send-address-hash-toAssetAddress"
-                        />
+                        <div>
+                            <Input
+                                disabled={true}
+                                value={`${data.assetsName} (${data.propertyiddesired})`}
+                                className="send-address-hash-toAssetAddress"
+                            />
+                        </div>
                     </div>
-                </div>
-                <div className="sendForm-panel">
-                    <div>
-                   
-                    <T id="omni.send.field.Recipient" m="Recipient" />
+                    <div className="sendForm-col col-6">
+                        <div>
+
+                            <T id="omni.send.field.Recipient" m="Recipient" />
                         </div>
-                    <div>
-                        <AddressInput value={data.issuer}
-                            disabled={true}
-                        />
+                        <div>
+                            <AddressInput value={data.issuer}
+                                disabled={true}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div className="omni-sendForm">
-                <div className="sendForm-panel">
-                    <div>
-                    <T id="omni.Participatecrowdsale.amount" m="Amount (valid: {redeemaddress})"  values={{
-                        redeemaddress:`${redeemaddress ? redeemaddress.balance : "0.00"}  ${data.assetsName} (#${data.propertyiddesired})`
-                    }}/>
-                         
-                    </div>
-                    <div>
-                        <FloatInput
-                            showErrors={!!amountError}
-                            invalid={!!amountError}
-                            invalidMessage={amountError}
-                            hidden={false}
-                            value={amount}
-                            className="send-address-input-amount"
-                            placeholder="1.00000000"
-                            onChange={onChangeOutputAmount}
-                            maxFracDigits={8}
-                        />
-                    </div>
-                </div>
+                <div className="sendForm-row">
+                    <div className="sendForm-col col-6">
+                        <div>
+                            <T id="omni.Participatecrowdsale.amount" m="Amount (valid: {redeemaddress})" values={{
+                                redeemaddress: `${redeemaddress ? redeemaddress.balance : "0.00"}  ${data.assetsName} (#${data.propertyiddesired})`
+                            }} />
 
-                <div className="sendForm-panel">
-                    <div>
-                    <T id="omni.send.field.sendAddress" m="Sender" />
                         </div>
-                    <div>
+                        <div>
+                            <FloatInput
+                                showErrors={!!amountError}
+                                invalid={!!amountError}
+                                invalidMessage={amountError}
+                                hidden={false}
+                                value={amount}
+                                className="send-address-input-amount"
+                                placeholder="1.00000000"
+                                onChange={onChangeOutputAmount}
+                                maxFracDigits={8}
+                            />
+                        </div>
+                    </div>
 
-                        <InputSelect className="send-select-account-input" {...{
-                            datas: assetsDesired,
-                            onChange: onAddressChange,
-                            labelKey: "address",
-                            valueKey: "address"
-                        }} />
+                    <div className="sendForm-col col-6">
+                        <div>
+                            <T id="omni.send.field.sendAddress" m="Sender" />
+                        </div>
+                        <div>
 
+                            <InputSelect className="send-select-account-input" {...{
+                                datas: assetsDesired,
+                                onChange: onAddressChange,
+                                labelKey: "address",
+                                valueKey: "address"
+                            }} />
+
+                        </div>
                     </div>
                 </div>
             </div>
             {/* onChange={compose(onChangeOutputDestination, e => e.target.value)} */}
             <div className="omni-send-button-area">
                 <div>
-                {/* <T id="omni.Participatecrowdsale.tips" m="You will receive {amount} {name} if you participate at this level."  values={{
+                    {/* <T id="omni.Participatecrowdsale.tips" m="You will receive {amount} {name} if you participate at this level."  values={{
                         amount:amount,
                         name:data.name
                     }}/> */}

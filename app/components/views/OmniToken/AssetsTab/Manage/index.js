@@ -4,11 +4,12 @@ import ManageForm from "./manageForm";
 import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
 import { omniAssetsManage } from "connectors";
 
-const operationTypes = [{
-    name: "Change Issuer",
-    value: 1,
-    isAll: true
-},
+const operationTypes = [
+//     {
+//     name: "Change Issuer",
+//     value: 1,
+//     isAll: true
+// },
 {
     name: "Grant",
     value: 2,
@@ -78,7 +79,7 @@ class Index extends React.PureComponent {
     }
     getAddressError() {
         const { destination, destinationInvalid } = this.state;
-        if (!destination || destinationInvalid) return <T id="send.errors.invalidAddress" m="*Please enter a valid address" />;
+        if (destination && destinationInvalid) return <T id="send.errors.invalidAddress" m="*Please enter a valid address" />;
     }
     onChangeOutputAmount = (e) => {
         const value = e.target.value;
@@ -88,8 +89,8 @@ class Index extends React.PureComponent {
     }
     getAmountError() {
         const { amount } = this.state;
-        if (isNaN(amount)) return <T id="send.errors.invalidAmount" m="*Please enter a valid amount" />;
-        if (amount <= 0) return <T id="send.errors.negativeAmount" m="*Please enter a valid amount (> 0)" />;
+        if (amount && isNaN(amount)) return <T id="send.errors.invalidAmount" m="*Please enter a valid amount" />;
+        if (amount && amount <= 0) return <T id="send.errors.negativeAmount" m="*Please enter a valid amount (> 0)" />;
     }
 
     onOperationTypeChange = (type) => {
@@ -134,7 +135,7 @@ class Index extends React.PureComponent {
     getIsValid() {
         const { operationType, destinationInvalid, destination, amount } = this.state;
         if (!operationType) return false;
-        else if (operationType.value === 1) return !(!destination || destinationInvalid)
+        else if (operationType.value === 1) return destination && !(destination && destinationInvalid)
         else if (operationType.value === 2) return !(destinationInvalid) && !!amount;
         else if (operationType.value === 3) return !!amount
     }

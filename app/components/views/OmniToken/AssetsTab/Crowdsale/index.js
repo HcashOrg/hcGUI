@@ -1,4 +1,4 @@
-import Screen from '../issuanceScreen';
+import {EcosystemScreen} from "shared";
 import { FormattedMessage as T } from "react-intl";
 import CrowdsaleForm from './crowdsaleForm';
 import ConfirmCrowdsaleModal from "./confirmCrowdsaleModal";
@@ -36,13 +36,7 @@ class Crowdsale extends React.PureComponent {
 
 
     onEcosystemChanged = (value) => {
-        let properties = this.props.listProperties ? this.props.listProperties.filter(item=>{
-            if(value==1){
-                return item.propertyid < TEST_ECO_PROPERTY;
-            }else{
-                return item.propertyid >= TEST_ECO_PROPERTY;
-            }
-        }).map(item => {
+        let properties = this.props.listProperties ? this.props.listProperties.filter(item=>item.ecosystem == value).map(item => {
             item.showName = `${item.name}(${item.propertyid})`;
             return item;
         }):[];  
@@ -83,7 +77,7 @@ class Crowdsale extends React.PureComponent {
 
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.walletAssetsBalances != this.props.walletAssetsBalances) {
-            this.setState(this.getInitialState(nextProps), this.onAttemptConstructTransaction);
+            this.setState(this.getInitialState(nextProps));
         }
     }
     onNextStep = () => {
@@ -214,7 +208,7 @@ class Crowdsale extends React.PureComponent {
 
         return (
             <div>
-                <Screen {
+                <EcosystemScreen {
                     ...{
                         tabTitle: <T id="omni.crowdsalePage.title" m="Initiating crowdfunding" />,
                         onEcosystemChanged: this.onEcosystemChanged

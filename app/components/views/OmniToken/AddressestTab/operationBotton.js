@@ -1,5 +1,5 @@
 import OptionsButton from 'buttons/OptionsButton';
-import Screen from 'shared/screen';
+import {Screen} from "shared";
 import { FormattedMessage as T } from "react-intl"; 
 
 const OperationBotton = ({ browseTypes, onBrowseTypesChanged, browseTypeText, createAddressTypes, onCreateAddressTypesChanged, onSend }) => (

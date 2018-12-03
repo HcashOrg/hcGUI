@@ -1,6 +1,6 @@
 
 import OptionsButton from 'buttons/OptionsButton';
-import Screen from 'shared/screen';
+import Screen from "./index";
 import { FormattedMessage as T ,injectIntl,defineMessages} from "react-intl"; 
 
 const messages=defineMessages({
@@ -23,7 +23,7 @@ class Index extends React.PureComponent{
     }
 
     componentDidMount=()=>{
-        this.props.onEcosystemChanged(this.state.ecosystem.value)
+        this.props.onEcosystemChanged && this.props.onEcosystemChanged(this.state.ecosystem.value)
     }
     ecosystemDatas =()=> [{
         text:  this.props.intl.formatMessage(messages.ecosystemToMainKey),
@@ -40,7 +40,7 @@ class Index extends React.PureComponent{
     }
 
     render(){
-        const { tabTitle } =this.props;
+        const { tabTitle,children } =this.props;
         const {ecosystem} =this.state;
         return (
             <Screen title={tabTitle}>
@@ -49,6 +49,8 @@ class Index extends React.PureComponent{
                     menuItemDatas: this.ecosystemDatas(),
                     btnText: ecosystem.text
                 }} />
+
+                {children}
             </Screen>
         
         );

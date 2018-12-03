@@ -1,4 +1,4 @@
-import Screen from 'shared/screen';
+import {Screen} from "shared";
 import CrowdsaleTable from "./crowdsaleTable";
 import { omniIssuanceList } from "connectors";
 import { FormattedMessage as T } from "react-intl";

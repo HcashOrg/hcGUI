@@ -46,4 +46,5 @@ export { default as omniassetsDetails } from "./omniassetsDetails";
 export { default as omniAssetsManage} from "./omniAssetsManage";
 export { default as omniCrowdsaleForm} from "./omniCrowdsaleForm";
 export {default as omniCrowdsaleManageForm} from "./omniCrowdsaleManageForm";
+export { default as omniTradeSend}  from "./omniTradeSend"
 

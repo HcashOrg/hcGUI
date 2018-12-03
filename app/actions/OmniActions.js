@@ -1,10 +1,12 @@
 import * as sel from "selectors";
 import * as wallet from "wallet";
 import { getOmnitService } from '../rpcService/rpc';
+import { TEST_ECO_PROPERTY } from "../config"
 import {
   omni_listProperties, omni_getWalletAddressBalances, omni_send, omni_getTransaction,
   omni_getTradeHistoryForAddress, omni_getCategories, omni_listTransactions, omni_sendIssuanceFixed, omni_sendIssuanceManaged, omni_getProperty,
-  omni_sendChangeIssuer, omni_sendGrant, omni_sendRevoke, omni_sendIssuanceCrowdsale, omni_getActiveCrowdsales, omni_getCrowdsale, omni_sendTrade
+  omni_sendChangeIssuer, omni_sendGrant, omni_sendRevoke, omni_sendIssuanceCrowdsale, omni_getActiveCrowdsales, omni_getCrowdsale,
+  omni_sendtrade
 } from '../rpcService/server';
 
 
@@ -19,7 +21,7 @@ export const getOmniServiceAttempt = () => (dispatch, getState) => {
 }
 
 
-const loadOmniDataAttempt = (dispatch, getState) => { 
+const loadOmniDataAttempt = async (dispatch, getState) => {
   setTimeout(() => { dispatch(listTransactions_func({ txid: "*", indexPage: 0 })); }, 1000);
   setTimeout(() => { dispatch(getwalletAddressBalances_func()); }, 1000);
   setTimeout(() => { dispatch(listproperties_func()); }, 1000);
@@ -53,6 +55,7 @@ export const getwalletAddressBalances_func = () => async (dispatch, getState) =>
               name: item.name,
               balance: item.balance,
               propertyid: item.propertyid,
+              ecosystem: item.propertyid < TEST_ECO_PROPERTY ? 1 : 2,
               addressData: [
                 {
                   address: data.address,
@@ -91,6 +94,11 @@ export const listproperties_func = () => async (dispatch, getState) => {
 
       listproperties[index].detail = property;
       listproperties[index].isMine = response.getIsMine();
+      listproperties[index].ecosystem = listproperties[index].propertyid < TEST_ECO_PROPERTY ? 1 : 2;
+
+
+
+      listproperties[index].showName = `${listproperties[index].name}(${listproperties[index].propertyid})`;
       index++;
 
     }
@@ -311,18 +319,16 @@ export const getActiveCrowdsales_func = () => async (dispatch, getState) => {
 }
 
 
-export const sendTrade_func = () => async (dispatch, getState) => {
-  try{
-    const { omniService } = getState().rpc;
-    await omni_sendTrade(omniService,{fromaddress :"Tsd2QBtfDpUShxNgBbDNeRSenDbBFsbpB4g",
-      propertyidforsale :32,
-      amountforsale :"100",
-      propertiddesired :30,
-      amountdesired:"100"}); 
+export const OMNISENDTRADE_FAILED = "OMNISENDTRADE_FAILED";
+export const sendTrade_func = (params, callBack) => async (dispatch, getState) => {
 
-      console.log("====================================================================================")
-  }catch(error){
+  try {
+    const { omniService } = getState().rpc;
+    await omni_sendtrade(omniService, params);
+    callBack && callBack();
+  } catch (error) {
     console.error(error, ' sendTrade_func  error ')
+    dispatch({ type: OMNISENDTRADE_FAILED, error })
   }
 }
 

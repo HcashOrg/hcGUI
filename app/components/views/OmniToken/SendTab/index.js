@@ -21,7 +21,7 @@ class SendPage extends React.Component {
   }
 
   componentDidMount=()=>{
-    this.props.getwalletaddressbalances();
+    // this.props.getwalletaddressbalances();
   }
   onCancelModal=()=>{
     this.setState({showConfirmSendModal:false});
@@ -53,13 +53,13 @@ class SendPage extends React.Component {
   }
   getAddressError() {
     const { destination,destinationInvalid } = this.state; 
-    if (!destination || destinationInvalid) return <T id="send.errors.invalidAddress" m="*Please enter a valid address" />;
+    if (destination && destinationInvalid) return <T id="send.errors.invalidAddress" m="*Please enter a valid address" />;
   }
 
   getAmountError() {
     const { amount} = this.state; 
-    if (isNaN(amount)) return <T id="send.errors.invalidAmount" m="*Please enter a valid amount" /> ;
-    if (amount <= 0) return <T id="send.errors.negativeAmount" m="*Please enter a valid amount (> 0)" />;
+    if (amount && isNaN(amount)) return <T id="send.errors.invalidAmount" m="*Please enter a valid amount" /> ;
+    if (amount && amount <= 0) return <T id="send.errors.negativeAmount" m="*Please enter a valid amount (> 0)" />;
   }
 
   onAddressChange=(address)=>{
@@ -76,7 +76,7 @@ class SendPage extends React.Component {
 
   getIsValid() {
     const {address,asset,destination,destinationInvalid,amount} = this.state; 
-    return !!(address && asset && !(!destination || destinationInvalid) && amount && (parseFloat(amount)<=parseFloat(address.balance)));
+    return !!(address && asset && destination && !(destination && destinationInvalid) && amount && (parseFloat(amount)<=parseFloat(address.balance)));
   }
   onSend=() =>{
     if (!this.getIsValid()) return;

@@ -1,4 +1,4 @@
-import Screen from './issuanceScreen';
+import {EcosystemScreen} from "shared";
 import { FormattedMessage as T } from "react-intl";
 import IssuanceForm from './IssuanceForm';
 import ConfirmAssetsModal from "./confirmAssetsModal";
@@ -93,7 +93,7 @@ class Issue extends React.Component {
     }
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.walletAssetsBalances != this.props.walletAssetsBalances) {
-            this.setState(this.getInitialState(nextProps), this.onAttemptConstructTransaction);
+            this.setState(this.getInitialState(nextProps));
         }
     }
     onNextStep = () => {
@@ -159,7 +159,7 @@ class Issue extends React.Component {
         const disabled = !this.getIsValid();
         return (
             <div>
-                <Screen {
+                <EcosystemScreen {
                     ...{
                         tabTitle,
                         onEcosystemChanged: this.onEcosystemChanged

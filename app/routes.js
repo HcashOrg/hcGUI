@@ -45,7 +45,10 @@ import OmniAssetsManage from "./components/views/OmniToken/AssetsTab/Manage";
 import OmniCrowdsalesTab from "./components/views/OmniToken/CrowdsaleTab";
 import OmniCrowdsalesList from "./components/views/OmniToken/CrowdsaleTab/list";
 import OmniCrowdsaleDetail from "./components/views/OmniToken/CrowdsaleTab/details";
-import CrowdsaleManage from "./components/views/OmniToken/CrowdsaleTab/Manage";
+import OmniCrowdsaleManage from "./components/views/OmniToken/CrowdsaleTab/Manage";
+import OmniTrade from "./components/views/OmniToken/Trade";
+import OmniTradeViewPage from "./components/views/OmniToken/Trade/View";
+import OmniTradeSendPage from "./components/views/OmniToken/Trade/Send";
 
 export default (
   <Route path="/" component={App}>
@@ -75,8 +78,8 @@ export default (
       {/* <Route path="statistics"                  component={StatisticsTab}/> */}
     </Route>
     <Route path="omni" component={TabbedPage} desc omni>
-      <IndexRedirect to="overview" />
-      <Route path="overview" component={OverviewTab} />
+      <IndexRedirect to="addresses" />
+      {/* <Route path="overview" component={OverviewTab} /> */}
       <Route path="addresses" component={AddressesTab} />
       <Route path="assets" component={AssetsTab}>
         <IndexRoute component={OmniAssetsIndex} />
@@ -91,12 +94,17 @@ export default (
         <Route path=":txid" component={OmniHistoryDetail} />
       </Route>
       <Route path="send" component={OmniSendTab} />
-      <Route path="crowdsales" component={OmniCrowdsalesTab} > 
+      <Route path="crowdsales" component={OmniCrowdsalesTab} >
         <IndexRoute component={OmniCrowdsalesList} />
         <Route path="details/:propertyid" component={OmniCrowdsaleDetail} />
-        <Route path="manage/:propertyid" component={CrowdsaleManage} />
+        <Route path="manage/:propertyid" component={OmniCrowdsaleManage} />
       </Route>
+      <Route path="trade" component={OmniTrade} >
 
+        <IndexRoute component={OmniTradeSendPage} />
+        <Route path="tradeSend" component={OmniTradeViewPage} />
+        
+      </Route>
       {/* <Route path="statistics"                  component={StatisticsTab}/> */}
     </Route>
 

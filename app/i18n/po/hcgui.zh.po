@@ -4775,6 +4775,15 @@ msgctxt "omni.tab.crowdsales"
 msgid "Crowdsales"
 msgstr "众筹"
 
+#. [omni.tab.trade]
+#. defaultMessage is:
+#. Trade
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.tab.trade"
+msgid "Trade"
+msgstr "交易"
+
+
 #. [omni.history.type]
 #. defaultMessage is:
 #. type
@@ -4833,11 +4842,11 @@ msgstr "生态系统"
 
 #. [omni.send.field.choiceCurrency]
 #. defaultMessage is:
-#. Choice of currency
+#. Choice of assets
 #: app/i18n/extracted/app/messages.json
 msgctxt "omni.send.field.choiceCurrency"
-msgid "Choice of currency"
-msgstr "选择货币"
+msgid "Choice of assets"
+msgstr "选择资产"
 
 #. [omni.send.field.sendAddress]
 #. defaultMessage is:
@@ -5633,16 +5642,53 @@ msgctxt "omni.Participatecrowdsale.tips"
 msgid "You will receive {amount} {name} if you participate at this level."
 msgstr "如果您参加此级别，您将收到{amount} {name}。"   
 
+#. [omni.trade.screen.title]
+#. defaultMessage is:
+#. Send Trade
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.trade.screen.title"
+msgid "Send Trade"
+msgstr "交易"  
 
+#. [omni.trade.form.Field.assets]
+#. defaultMessage is:
+#. Asstes Name
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.trade.form.Field.assets"
+msgid "Asstes Name"
+msgstr "资产名称"  
 
+#. [omni.trade.form.Field.sendAddress]
+#. defaultMessage is:
+#. Sender
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.trade.form.Field.sendAddress"
+msgid "Sender"
+msgstr "发送地址"  
 
+#. [omni.trade.form.Field.receivingAmount]
+#. defaultMessage is:
+#. Receiving amount
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.trade.form.Field.receivingAmount"
+msgid "Receiving amount"
+msgstr "接收数量"  
 
+#. [omni.trade.form.Field.receivingAssets]
+#. defaultMessage is:
+#. Receiving Assets
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.trade.form.Field.receivingAssets"
+msgid "Receiving Assets"
+msgstr "接收资产"
 
-
-
-
-
-
+#. [omni.trade.form.Field.sendAmount]
+#. defaultMessage is:
+#. Send Amount
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.trade.form.Field.sendAmount"
+msgid "Send Amount"
+msgstr "发送金额"
 
 
 

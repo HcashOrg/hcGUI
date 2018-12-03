@@ -1,4 +1,4 @@
-import Screen from 'shared/screen';
+import {Screen} from "shared";
 import { compose } from "fp";
 import { FormattedMessage as T, injectIntl } from "react-intl";
 import { FloatInput, InputSelect, AddressInput } from "inputs";
@@ -19,26 +19,28 @@ const ManageForm = ({ addressError, destination, operationTypes, operationType, 
                 <span> {detail.name}</span>  <span>{`(ID:${detail.propertyid})`}</span>
             </div>
             <div className="omni-sendForm">
-                <div className="sendForm-panel">
-                    <div> 
-                        <T id="omni.managePage.form.operationType" m="Select hosting operation" />
+                <div className="sendForm-row">
+                    <div className="sendForm-col col-6">
+                        <div>
+                            <T id="omni.managePage.form.operationType" m="Select hosting operation" />
                         </div>
-                    <div>
-                        <InputSelect className="send-select-account-input" {...{
-                            datas: operationTypes,
-                            onChange: onOperationTypeChange,
-                            labelKey: "name",
-                            valueKey: "name",
-                        }} /></div>
-                </div>
-                <div className="sendForm-panel">
-                    <div> 
-                        <T id="omni.managePage.form.sendaddress" m="Sender" />
+                        <div>
+                            <InputSelect className="send-select-account-input" {...{
+                                datas: operationTypes,
+                                onChange: onOperationTypeChange,
+                                labelKey: "name",
+                                valueKey: "name",
+                            }} /></div>
+                    </div>
+                    <div className="sendForm-col col-6">
+                        <div>
+                            <T id="omni.managePage.form.sendaddress" m="Sender" />
                         </div>
-                    <div>
-                        <AddressInput value={detail.issuer}
-                            disabled={true}
-                        />
+                        <div>
+                            <AddressInput value={detail.issuer}
+                                disabled={true}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,13 +48,54 @@ const ManageForm = ({ addressError, destination, operationTypes, operationType, 
                 operationType && operationType.value == 1 ? <div className="omni-sendForm">
 
 
-                    <div className="sendForm-panel">
-                        <div> 
+                    <div className="sendForm-row">
+                        <div className="sendForm-col col-6">
+                            <div>
+                                <T id="omni.managePage.form.recipient" m="Recipient" />
+                            </div>
+                            <div>
+                                <AddressInput
+                                    autoFocus={true}
+                                    showErrors={!!addressError}
+                                    invalid={!!addressError}
+                                    invalidMessage={addressError}
+                                    value={destination}
+                                    className="send-address-hash-to"
+                                    placeholder={destinationTips}
+                                    onChange={compose(onChangeOutputDestination, e => e.target.value)}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div> : null
+            }
+            {operationType && operationType.value == 2 ? <div className="omni-sendForm">
+                <div className="sendForm-row">
+                    <div className="sendForm-col col-6">
+                        <div>
+                            <T id="omni.managePage.form.grant" m="Grant {name}" values={{ name: `${detail.name} (ID:${detail.propertyid})` }} />
+                        </div>
+                        <div>
+                            <FloatInput
+                                showErrors={!!amountError}
+                                invalid={!!amountError}
+                                invalidMessage={amountError}
+                                hidden={false}
+                                value={amount}
+                                className="send-address-input-amount"
+                                placeholder="1.00000000"
+                                onChange={onChangeOutputAmount}
+                                maxFracDigits={8}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="sendForm-col col-6">
+                        <div>
                             <T id="omni.managePage.form.recipient" m="Recipient" />
                         </div>
                         <div>
                             <AddressInput
-                                autoFocus={true}
                                 showErrors={!!addressError}
                                 invalid={!!addressError}
                                 invalidMessage={addressError}
@@ -63,69 +106,32 @@ const ManageForm = ({ addressError, destination, operationTypes, operationType, 
                             />
                         </div>
                     </div>
-                    <div className="sendForm-panel"></div>
-                </div> : null
-            }
-            {operationType && operationType.value == 2 ? <div className="omni-sendForm">
-                <div className="sendForm-panel">
-                    <div> 
-                         <T id="omni.managePage.form.grant" m="Grant {name}" values={{name:`${detail.name} (ID:${detail.propertyid})`}}/>
-                    </div>
-                    <div>
-                        <FloatInput
-                            showErrors={!!amountError}
-                            invalid={!!amountError}
-                            invalidMessage={amountError}
-                            hidden={false}
-                            value={amount}
-                            className="send-address-input-amount"
-                            placeholder="1.00000000"
-                            onChange={onChangeOutputAmount}
-                            maxFracDigits={8}
-                        />
-                    </div>
-                </div>
-
-                <div className="sendForm-panel">
-                    <div>
-                    <T id="omni.managePage.form.recipient" m="Recipient" />
-                        </div>
-                    <div>
-                        <AddressInput 
-                            showErrors={!!addressError}
-                            invalid={!!addressError}
-                            invalidMessage={addressError}
-                            value={destination}
-                            className="send-address-hash-to"
-                            placeholder={destinationTips}
-                            onChange={compose(onChangeOutputDestination, e => e.target.value)}
-                        />
-                    </div>
                 </div>
             </div> : null
             }
             {operationType && operationType.value == 3 ? <div className="omni-sendForm">
 
 
-                <div className="sendForm-panel">
-                    <div>
-                         <T id="omni.managePage.form.revoke" m="revoke {name}" values={{name:`${detail.name} (ID:${detail.propertyid})`}}/>
-                    </div>
-                    <div>
-                        <FloatInput
-                            showErrors={!!amountError}
-                            invalid={!!amountError}
-                            invalidMessage={amountError}
-                            hidden={false}
-                            value={amount}
-                            className="send-address-input-amount"
-                            placeholder="1.00000000"
-                            onChange={onChangeOutputAmount}
-                            maxFracDigits={8}
-                        />
+                <div className="sendForm-row">
+                    <div className="sendForm-col col-6">
+                        <div>
+                            <T id="omni.managePage.form.revoke" m="revoke {name}" values={{ name: `${detail.name} (ID:${detail.propertyid})` }} />
+                        </div>
+                        <div>
+                            <FloatInput
+                                showErrors={!!amountError}
+                                invalid={!!amountError}
+                                invalidMessage={amountError}
+                                hidden={false}
+                                value={amount}
+                                className="send-address-input-amount"
+                                placeholder="1.00000000"
+                                onChange={onChangeOutputAmount}
+                                maxFracDigits={8}
+                            />
+                        </div>
                     </div>
                 </div>
-                <div className="sendForm-panel"></div>
             </div> : null
             }
             <div className="omni-send-button-area">
@@ -150,9 +156,9 @@ const ManageForm = ({ addressError, destination, operationTypes, operationType, 
                             show: showConfirmSendModal,
                             onCancelModal,
                             onSubmit,
-                            token:`${detail.name} (ID:${detail.propertyid})`,
-                            amount, 
-                            issuer:detail.issuer,
+                            token: `${detail.name} (ID:${detail.propertyid})`,
+                            amount,
+                            issuer: detail.issuer,
                             destination,
                             operationType,
                             modalTitle

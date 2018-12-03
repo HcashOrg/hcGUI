@@ -3,17 +3,26 @@
 
 .omni-sendForm{
     background: @material-ui-bg;
-    border-radius: 10px; 
-    display: flex;
+    border-radius: 10px;  
     margin-bottom: 20px;
-    .sendForm-panel{
-        flex: 1;
-        margin: 20px;
-        >div:first-child{
-            margin: 5px 0px;
-            color: @white;
+    padding:10px 0px;
+    .sendForm-row{
+        display: flex;
+        .sendForm-col{ 
+            padding: 0px 20px 10px 20px;
+            >div:first-child{
+                margin: 5px 0px;
+                color: @white;
+            }
         }
-    }
+        .col-12{
+            flex:100%;
+        }
+        .col-6{
+            width:50%; 
+        }
+    } 
+    
 }
 .omni-assets-name{
     padding: 15px;

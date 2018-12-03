@@ -1,4 +1,4 @@
-import ValueCombination from './ValueCombination';
+// import ValueCombination from './ValueCombination';
 import AsssetsList from 'OmniAssetsList';
 import "style/OmniOverviewTab.less"
 
