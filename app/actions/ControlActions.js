@@ -667,7 +667,7 @@ export const validateAddress = address => async (dispatch, getState) => {
     dispatch({ type: VALIDATEADDRESS_ATTEMPT });
     let response = await wallet.validateAddress(sel.walletService(getState()), address);
     dispatch({ response, type: VALIDATEADDRESS_SUCCESS });
-    return { isValid: response.getIsValid(), error: null, getIsValid () { return response.getIsValid(); } };
+    return { isValid: response.getIsValid(), error: null, getIsValid () { return response.getIsValid(); },isMine:response.getIsMine() };
   } catch (error) {
     dispatch({type: VALIDATEADDRESS_FAILED});
     return { isValid: false, error, getIsValid () { return false; } };

@@ -11,7 +11,7 @@ class Index extends React.Component {
   }
 
   getInitialState(props) {
-     return {
+    return {
       address: null,
       asset: null,
       amountforsale: null,
@@ -70,10 +70,12 @@ class Index extends React.Component {
 
     const { sendTrade } = this.props;
     const { address, asset, amountforsale, propertiddesired, amountdesired } = this.state;
-    sendTrade && sendTrade({ fromaddress: address.address, propertyidforsale: asset.propertyid,amountforsale, 
-      propertiddesired: propertiddesired.propertyid, amountdesired },()=>{
-        this.setState({ showConfirmSendModal: false })
-      });
+    sendTrade && sendTrade({
+      fromaddress: address.address, propertyidforsale: asset.propertyid, amountforsale,
+      propertiddesired: propertiddesired.propertyid, amountdesired
+    }, () => {
+      this.setState({ showConfirmSendModal: false })
+    });
 
   }
   // fromaddress	string	required	the address to trade with
@@ -103,26 +105,26 @@ class Index extends React.Component {
   }
 
 
-  onEcosystemChanged = (value)=>{
+  onEcosystemChanged = (value) => {
     const { walletAssetsBalances, listproperties } = this.props;
 
-    const assets = walletAssetsBalances?walletAssetsBalances.filter(item=>item.ecosystem==value):null;
-    const properties=listproperties?listproperties.filter(item=>item.ecosystem==value):null; 
-    
+    const assets = walletAssetsBalances ? walletAssetsBalances.filter(item => item.ecosystem == value) : null;
+    const properties = listproperties ? listproperties.filter(item => item.ecosystem == value) : null;
+
     this.setState({
-      walletAssetsBalances:assets,
-      listproperties:properties,
+      walletAssetsBalances: assets,
+      listproperties: properties,
       address: assets && assets.length > 0 ? assets[0].addressData[0] : null,
       asset: assets && assets.length > 0 ? assets[0] : null,
       propertiddesired: properties && properties.length > 0 ? properties[0] : null,
     })
   }
   render() {
-  //  const { walletAssetsBalances, listproperties } = this.props;
-    const { address, asset, amountforsale, amountdesired, showConfirmSendModal, propertiddesired,walletAssetsBalances, listproperties } = this.state;
+    //  const { walletAssetsBalances, listproperties } = this.props;
+    const { address, asset, amountforsale, amountdesired, showConfirmSendModal, propertiddesired, walletAssetsBalances, listproperties } = this.state;
     const isValid = this.getIsValid();
-    return <SendTabPage {...{
-      onEcosystemChanged:this.onEcosystemChanged,
+    return <div className="tab-card"> <SendTabPage {...{
+      onEcosystemChanged: this.onEcosystemChanged,
 
       address,
       addressList: asset ? asset.addressData : null,
@@ -155,7 +157,7 @@ class Index extends React.Component {
       onSubmit: this.onSubmit,
 
 
-    }} />
+    }} /></div>
   }
 }
 

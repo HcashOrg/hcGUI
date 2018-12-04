@@ -49,6 +49,7 @@ import OmniCrowdsaleManage from "./components/views/OmniToken/CrowdsaleTab/Manag
 import OmniTrade from "./components/views/OmniToken/Trade";
 import OmniTradeViewPage from "./components/views/OmniToken/Trade/View";
 import OmniTradeSendPage from "./components/views/OmniToken/Trade/Send";
+import OmniTradeDetail from "./components/views/OmniToken/Trade/Detail"
 
 export default (
   <Route path="/" component={App}>
@@ -101,9 +102,9 @@ export default (
       </Route>
       <Route path="trade" component={OmniTrade} >
 
-        <IndexRoute component={OmniTradeSendPage} />
-        <Route path="tradeSend" component={OmniTradeViewPage} />
-        
+        <IndexRoute component={OmniTradeViewPage} />
+        <Route path="detail/:txid" component={OmniTradeDetail} />
+        <Route path="tradeSend" component={OmniTradeSendPage} /> 
       </Route>
       {/* <Route path="statistics"                  component={StatisticsTab}/> */}
     </Route>

@@ -19,5 +19,7 @@
     getcrowdsale:"omni_getcrowdsale",
     sendtrade:"omni_sendtrade",
     sendclosecrowdsale:"omni_sendclosecrowdsale",
+    sendcanceltradesbypair:"omni_sendcanceltradesbypair",
+    gettrade:"omni_gettrade",
  }
 

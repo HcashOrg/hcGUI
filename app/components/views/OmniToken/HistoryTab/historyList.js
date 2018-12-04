@@ -1,7 +1,7 @@
 import Screen from './screen';
 import HistoryTable from './historyTable';
 
-const HistoryList = ({onProperyidToName,selectAddress,addressList,onAddressChanged,listTransactions,onDetail})=>(
+const HistoryList = ({selectAddress,addressList,onAddressChanged,listTransactions,onDetail})=>(
     <div>
         <Screen {...{
                 addressList,
@@ -10,7 +10,7 @@ const HistoryList = ({onProperyidToName,selectAddress,addressList,onAddressChang
             }}/>
             <HistoryTable {
                 ...{
-                    onProperyidToName,
+                   
                     listTransactions,
                     onDetail
                 }

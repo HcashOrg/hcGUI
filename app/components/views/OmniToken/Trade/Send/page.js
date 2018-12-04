@@ -109,7 +109,7 @@ const SendPage = ({
                     <div className="sendForm-col col-6">
                         <div>
                         
-                            <T id="omni.trade.form.Field.receivingAmount" m="Receiving amount"/>
+                            <T id="omni.trade.form.Field.desiredAmount" m="Desired Amount"/>
                             </div>
                         <div>
                             <FloatInput
@@ -126,7 +126,7 @@ const SendPage = ({
                         </div>
                     </div>
                     <div className="sendForm-col col-6">
-                    <div><T id="omni.trade.form.Field.receivingAssets" m="Receiving Assets" /></div>
+                    <div><T id="omni.trade.form.Field.desiredAssets" m="Desired Assets" /></div>
                         <div>
                             <div><InputSelect className="send-select-account-input" {...{
                                 datas: listproperties,

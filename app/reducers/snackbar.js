@@ -32,7 +32,7 @@ import {
 import { SNACKBAR_DISMISS_MESSAGES } from "../actions/SnackbarActions";
 import {OMNISENDISSUANCEFIXED_FAILED,OMNISENDISSUANCEMANAGED_FAILED,OMNISENDCHANGEISSUER_FAILED,
   OMNISENDGRANT_FAILED,OMNISENDREVOKE_FAILED,OMNISEND_FAILED,OMNISENDISSUANCECROWDSALE_FAILED,
-  OMNISENDTRADE_FAILED,OMNISENDCLOSECROWDSALE_FAILED} from "../actions/OmniActions"
+  OMNISENDTRADE_FAILED,OMNISENDCLOSECROWDSALE_FAILED,OMNISENDCANCELTRADEESBYPAIR_FAILED,OMNIGETTRADE_FAILED} from "../actions/OmniActions"
 
 const messages = defineMessages({
   defaultSuccessMessage: {
@@ -235,6 +235,8 @@ export default function snackbar(state = {}, action) {
   case OMNISENDISSUANCECROWDSALE_FAILED:
   case OMNISENDTRADE_FAILED:
   case OMNISENDCLOSECROWDSALE_FAILED:
+  case OMNISENDCANCELTRADEESBYPAIR_FAILED:
+  case OMNIGETTRADE_FAILED:
     type = "Error";
     message = messages[action.type] || messages.defaultErrorMessage;
     values = { originalError: String(action.error) };

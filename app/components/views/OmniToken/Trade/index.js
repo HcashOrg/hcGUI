@@ -1,8 +1,7 @@
 const AssetsPage = ({children} ) => (
     <Aux>  
-        <div className="tab-card"> 
-             {children}
-        </div>
+       
+             {children} 
     </Aux>
  ); 
  export default AssetsPage;

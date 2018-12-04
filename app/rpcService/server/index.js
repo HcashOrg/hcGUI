@@ -184,6 +184,22 @@ export function omni_sendCloseCrowdsale(omniService,params){
     return omniService(omniMethod.sendclosecrowdsale,objToArray(params));
 }
 
+/**
+ * @param {	string	required	the address to trade with } fromaddress
+ * @param {	number	required	the identifier of the tokens listed for sale } propertyidforsale
+ * @param {	number	required	the identifier of the tokens desired in exchange } propertiddesired
+ */
+export function omni_sendCancelTradesByPair(omniService,params){
+    return omniService(omniMethod.sendcanceltradesbypair,objToArray(params));
+}
+
+/** 
+ *@param {	string	required	the hash of the order to lookup } txid
+ */
+export function omni_getTrade(omniService,params){
+    return omniService(omniMethod.gettrade,objToArray(params));
+}
+
 export function omni_getCategories() {
     return categories;
 }

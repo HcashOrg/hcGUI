@@ -5666,21 +5666,21 @@ msgctxt "omni.trade.form.Field.sendAddress"
 msgid "Sender"
 msgstr "发送地址"  
 
-#. [omni.trade.form.Field.receivingAmount]
+#. [omni.trade.form.Field.desiredAmount]
 #. defaultMessage is:
-#. Receiving amount
+#. Desired Amount
 #: app/i18n/extracted/app/messages.json
-msgctxt "omni.trade.form.Field.receivingAmount"
-msgid "Receiving amount"
-msgstr "接收数量"  
+msgctxt "omni.trade.form.Field.desiredAmount"
+msgid "Desired Amount"
+msgstr "期望数量"  
 
-#. [omni.trade.form.Field.receivingAssets]
+#. [omni.trade.form.Field.desiredAssets]
 #. defaultMessage is:
-#. Receiving Assets
+#. Desired Assets
 #: app/i18n/extracted/app/messages.json
-msgctxt "omni.trade.form.Field.receivingAssets"
-msgid "Receiving Assets"
-msgstr "接收资产"
+msgctxt "omni.trade.form.Field.desiredAssets"
+msgid "Desired Assets"
+msgstr "期望资产"
 
 #. [omni.trade.form.Field.sendAmount]
 #. defaultMessage is:
@@ -5708,18 +5708,73 @@ msgctxt "omni.confirmModal.closeCrowdsaleModalContent"
 msgid "Are you sure to close the crowdfunding asset {assetsName} (#{propertyid}) ?"
 msgstr "是否确认关闭该众筹资产 {assetsName} (#{propertyid}) ？"
 
+#. [omni.screen.tradeList.title]
+#. defaultMessage is:
+#. Trade List
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.screen.tradeList.title"
+msgid "Trade List"
+msgstr "交易列表"
 
 
+#. [omni.trade.form.Field.forsaleAmount]
+#. defaultMessage is:
+#. Forsale Amount
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.trade.form.Field.forsaleAmount"
+msgid "Forsale Amount"
+msgstr "数量"
 
 
+#. [omni.trade.form.Field.status]
+#. defaultMessage is:
+#. Status
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.trade.form.Field.status"
+msgid "Status"
+msgstr "状态"
 
 
+#. [omni.trade.form.Field.blockTime]
+#. defaultMessage is:
+#. blockTime
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.trade.form.Field.blockTime"
+msgid "blockTime"
+msgstr "交易时间"
 
 
+#. [omni.confirmModal.cancelTradeModal]
+#. defaultMessage is:
+#. Cancel Trade
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.confirmModal.cancelTradeModal"
+msgid "Cancel Trade"
+msgstr "取消交易"
 
+#. [omni.confirmModal.cancelTradeModalContent]
+#. defaultMessage is:
+#. Are you sure to cancel the transaction?
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.confirmModal.cancelTradeModalContent"
+msgid "Are you sure to cancel the transaction?"
+msgstr "是否确认取消该交易？"
 
+#. [omni.trade.detail.closeButton]
+#. defaultMessage is:
+#. Close Trade
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.trade.detail.closeButton"
+msgid "Close Trade"
+msgstr "关闭交易"
 
-
+#. [omni.trade.selected.address]
+#. defaultMessage is:
+#. Address
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.trade.selected.address"
+msgid "Address"
+msgstr "地址"
 
 
 

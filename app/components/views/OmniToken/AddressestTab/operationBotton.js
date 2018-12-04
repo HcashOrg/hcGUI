@@ -13,7 +13,7 @@ const OperationBotton = ({ browseTypes, onBrowseTypesChanged, browseTypeText, cr
 
         {/* <OptionsButton btnClass="createAddress-operation" { ...{onMenuChanged:onCreateAddressTypesChanged,
                                    menuItemDatas:createAddressTypes,
-                                   btnText:"添加钱包地址"
+                                   btnText:"add address"
                                 } }/> */}
     </Screen>
 

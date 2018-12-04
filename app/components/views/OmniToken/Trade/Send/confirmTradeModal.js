@@ -28,11 +28,11 @@ export default ({ show,
                     <div>   {amountforsale}</div>
                 </div>
                 <div>
-                    <div><T id="omni.trade.form.Field.receivingAmount" m="Receiving amount"/>：</div>
+                    <div> <T id="omni.trade.form.Field.desiredAmount" m="Desired Amount"/>：</div>
                     <div>   {amountdesired}</div>
                 </div>
                 <div>
-                    <div><T id="omni.trade.form.Field.receivingAssets" m="Receiving Assets" />：</div>
+                    <div><T id="omni.trade.form.Field.desiredAssets" m="Desired Assets" />：</div>
                     <div>  {propertiddesired ? propertiddesired.showName:null}</div>
                 </div>
             </div>

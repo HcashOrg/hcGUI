@@ -2,7 +2,7 @@
 import { tsToDate } from "helpers";
 import { FormattedMessage as T } from "react-intl";
 
-const historyTable = ({ onProperyidToName, listTransactions, onDetail }) => (
+const historyTable = ({  listTransactions, onDetail }) => (
 
     <div className="omni-history-list">
         <div className="omni-history-list-header">
@@ -24,7 +24,7 @@ const historyTable = ({ onProperyidToName, listTransactions, onDetail }) => (
             }}>
                 <div>{item.type}</div>
                 <div>{item.amount ? item.amount : '--'}</div>
-                <div>{onProperyidToName(item.propertyid)}</div>
+                <div>{item.showAssetsName}</div>
                 {/* <div>交易明细</div> */}
                 <div>
                     <T id="transaction.timestamp"

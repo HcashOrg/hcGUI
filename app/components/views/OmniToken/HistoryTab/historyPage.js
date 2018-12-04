@@ -43,21 +43,8 @@ class HistoryPage extends React.PureComponent {
 
     onLoadMoreTransactions = () => {
         this.getListtransactions(this.state.selectAddress,this.state.indexPage);
-    }
-
-    onProperyidToName = (properyid) => {
-        if (properyid) { 
-            const { listproperties } = this.props; 
-            const obj =listproperties ? listproperties.find(item => {
-                return item.propertyid == properyid
-            }):null;
-            return obj?obj.name:"--";
-        } else {
-            return "--";
-        }
-
-    }
-
+    } 
+    
     render() {
         const { walletAddressBalances, listTransactions, noMoreTransactions } = this.props;
         const { selectAddress } = this.state;
@@ -80,8 +67,7 @@ class HistoryPage extends React.PureComponent {
                 <div className="tab-card">
                     <HistoryList
                         {
-                        ...{
-                            onProperyidToName: this.onProperyidToName,
+                        ...{ 
                             addressList:[...[optionAll],...addressList],
                             onAddressChanged: this.onAddressChanged,
                             selectAddress:selectAddress==optionAll.value?optionAll.text:selectAddress,

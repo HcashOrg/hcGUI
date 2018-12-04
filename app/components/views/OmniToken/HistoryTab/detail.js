@@ -10,7 +10,7 @@ class Detail extends React.PureComponent {
 
 
     componentDidMount = () => {
-        this.props.gettransaction(this.props.routeParams.txid)
+        this.props.gettransaction && this.props.gettransaction(this.props.routeParams.txid)
     }
 
     render() {
