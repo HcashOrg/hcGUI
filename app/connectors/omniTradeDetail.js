@@ -11,6 +11,7 @@ const mapStateToProps = selectorMap({
   });
   
   const mapDispatchToProps = (dispatch) => bindActionCreators({  
+    sendCancelTradesByPair:oa.sendCancelTradesByPair_func,
     getTrade:oa.getTrade_func, 
   }, dispatch);
   

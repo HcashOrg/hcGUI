@@ -44,8 +44,9 @@ class Index extends React.PureComponent {
     }
 
     onSubmit = () => {
+        
         const { sendCancelTradesByPair, router } = this.props;
-        const { fromaddress, propertyidforsale, propertyiddesired } = this.state;
+        const { fromaddress, propertyidforsale, propertyiddesired } = this.state; 
         sendCancelTradesByPair && sendCancelTradesByPair({ fromaddress, propertyidforsale, propertyiddesired }, router.goBack);
     }
 
