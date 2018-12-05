@@ -23,24 +23,26 @@ class Index extends React.PureComponent {
     }
     componentDidMount = () => {
 
-        const { location: { query }, walletAssetsBalances } = this.props;
-        const obj = JSON.parse(query.item);
-        const assets = walletAssetsBalances ? walletAssetsBalances.find(item => item.propertyid === obj.propertyiddesired) : null;
-        if (assets) {
-            this.setState({ hasButton: true });
-        }
-
-      
-        const toTime = parseInt(new Date().getTime() / 1000);
-        const diffTime = obj.deadline - toTime;
-
-        if (diffTime <= 0) {
-            this.setState({ Expired: true }); 
-            return;
-        }else{
-            this.timer = setInterval(this.getDeadline(obj.deadline), 1000);
-        }
-
+        const { walletAssetsBalances,getCrowdsale,routeParams } = this.props;
+        getCrowdsale && getCrowdsale(routeParams.propertyid).then(result=>{ 
+            const assets = walletAssetsBalances ? walletAssetsBalances.find(item => item.propertyid === result.propertyiddesired) : null;
+            if (assets) {
+                this.setState({ hasButton: true });
+            }
+    
+          
+            const toTime = parseInt(new Date().getTime() / 1000);
+            const diffTime = result.deadline - toTime;
+    
+            if (diffTime <= 0) {
+                this.setState({ Expired: true }); 
+                return;
+            }else{
+                this.timer = setInterval(this.getDeadline(result.deadline), 1000);
+            }
+    
+        })
+       
         
 
     }
@@ -61,6 +63,7 @@ class Index extends React.PureComponent {
             days, hours, minutes, seconds
         })
         if (diffTime <= 0) {
+            this.setState({ Expired: true }); 
             clearInterval(this.timer);
         }
     }
@@ -70,19 +73,19 @@ class Index extends React.PureComponent {
     }
 
     render() {
-        const { isTestNet, router, location: { query } } = this.props;
-        const item = JSON.parse(query.item);
+        const { isTestNet, router, crowdsale } = this.props;
+    
         const { days, hours, minutes, seconds, Expired } = this.state;
-        return (<div>{item ? <div className="omni-asstes-details omni-crowdsale-details">
-            <Card title={<div>{item.name} <span>(#{item.propertyid})</span></div>}>
+        return (<div>{crowdsale ? <div className="omni-asstes-details omni-crowdsale-details">
+            <Card title={<div>{crowdsale.name} <span>(#{crowdsale.propertyid})</span></div>}>
                 <div className="omni-asstes-details-Basics">
 
 
                     <div>
-                        <T id="omni.assets.infoForm.issueAddress" m="Issue address" />:<a className="stakepool-link" onClick={function (x) { shell.openExternal(x); }.bind(null, `https://${isTestNet ? "testnet-" : ""}hcomni-explorer.h.cash/address/${item.detail.issuer}`)}> {item.detail.issuer}</a>
+                        <T id="omni.assets.infoForm.issueAddress" m="Issue address" />:<a className="stakepool-link" onClick={function (x) { shell.openExternal(x); }.bind(null, `https://${isTestNet ? "testnet-" : ""}hcomni-explorer.h.cash/address/${crowdsale.issuer}`)}> {crowdsale.issuer}</a>
                     </div>
                     <div>
-                        <T id="omni.crodsale.infoForm.assets" m="Supported Assets" />:{`${item.assetsName}(${item.propertyiddesired}) / Rate(${item.tokensperunit})`}
+                        <T id="omni.crodsale.infoForm.assets" m="Supported Assets" />:{`${crowdsale.assetsName}(${crowdsale.propertyiddesired}) / Rate(${crowdsale.tokensperunit})`}
                     </div>
                 </div>
                 {/* <div className="hc-card-buttons">
@@ -167,7 +170,7 @@ class Index extends React.PureComponent {
                         <T id="omni.crodsale.infoForm.amountraised" m="Token that has been purchased" />
                     </div>
                     <div>
-                        {item.detail.amountraised}
+                        {crowdsale.amountraised}
                     </div>
                 </div>
                 <div className="row">
@@ -175,7 +178,7 @@ class Index extends React.PureComponent {
                         <T id="omni.crodsale.infoForm.tokensissued" m="Token that has been created" />
                     </div>
                     <div>
-                        {item.detail.tokensissued}
+                        {crowdsale.tokensissued}
                     </div>
                 </div>
                 <div className="row">
@@ -185,7 +188,7 @@ class Index extends React.PureComponent {
                     </div>
                     <div>
 
-                        {item.detail.earlybonus}
+                        {crowdsale.earlybonus}
                     </div>
                 </div>
                 <div className="buttonPanel">
@@ -199,8 +202,8 @@ class Index extends React.PureComponent {
                         block={false}
                         onClick={() => {
                             router.push({
-                                pathname: `/omni/crowdsales/manage/${item.propertyid}`,
-                                query: { item: JSON.stringify(item) }
+                                pathname: `/omni/crowdsales/manage/${crowdsale.propertyid}`,
+                                query: { item: JSON.stringify(crowdsale) }
                             })
                         }}>
                         <T id="omni.crodsale.infoForm.buttonText" m="participate" />

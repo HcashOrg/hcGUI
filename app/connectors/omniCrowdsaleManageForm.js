@@ -6,9 +6,11 @@ import * as oa from "../actions/OmniActions"
 
 const mapStateToProps = selectorMap({ 
       walletAssetsBalances: sel.walletAssetsBalances, 
+      crowdsale:sel.crowdsale
   });
   
   const mapDispatchToProps = (dispatch) => bindActionCreators({   
+    getCrowdsale:oa.getCrowdsale_fun,
     send_func:oa.send_func,
   }, dispatch);
   

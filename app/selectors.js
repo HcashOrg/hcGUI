@@ -114,6 +114,7 @@ export const property=get(["rpc","property"]);
 export const activeCrowdsales = get(["rpc","activeCrowdsales"]);
 export const trade=get(["rpc","trade"]);
 export const noMoreTradeHistory=get(["rpc","noMoreTradeHistory"]);
+export const crowdsale=get(["rpc","crowdsale"]);
 
 export const balances = or(get(["grpc", "balances"]), () => []);
 export const walletService = get(["grpc", "walletService"]);

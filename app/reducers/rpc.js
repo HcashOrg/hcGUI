@@ -3,7 +3,8 @@ import {
     , OMNILISTPROPERTIES_SUCCESS, OMNIGETTRADEHISTORYFORADDRESS_SUCCESS, OMNIGETTRADEHISTORYFORADDRESS_FAILED, OMNILISTTRANSACTIONS_SUCCESS,
     OMNILISTTRANSACTIONS_ATTEMPT, OMNILISTTRANSACTIONS_FAILED, OMNIGETTRADEHISTORY_SUCCESS, OMNIGETTRADEHISTORY_FAILED,
     OMNISENDISSUANCEFIXED_SUCCESS, OMNISENDISSUANCEFIXED_FAILED, OMNIGETPROPERTY_SUCCESS,
-    OMNIGETACTIVECROWDSALES_SUCCESS, OMNIGETTRADE_SUCCESS,OMNIGETTRADEHISTORYFORADDRESS_ATTEMPT
+    OMNIGETACTIVECROWDSALES_SUCCESS, OMNIGETTRADE_SUCCESS, OMNIGETTRADEHISTORYFORADDRESS_ATTEMPT,
+    OMNIGETCROWDSALE_SUCCESS
 } from "../actions/OmniActions";
 
 export default function rpc(state = {}, action) {
@@ -50,13 +51,13 @@ export default function rpc(state = {}, action) {
             return {
                 ...state,
                 tradeHistory: action.tradeHistory,
-                noMoreTradeHistory:action.noMoreTradeHistory,
+                noMoreTradeHistory: action.noMoreTradeHistory,
                 getTradeHistoryForAddressRequestAttempt: false
             }
         }
-        case OMNIGETTRADEHISTORYFORADDRESS_ATTEMPT:{
+        case OMNIGETTRADEHISTORYFORADDRESS_ATTEMPT: {
             return {
-                ...state, 
+                ...state,
                 getTradeHistoryForAddressRequestAttempt: true
             }
         }
@@ -124,6 +125,13 @@ export default function rpc(state = {}, action) {
                 ...state,
                 trade: action.trade,
                 getTradeRequestAttempt: false
+            }
+
+        case OMNIGETCROWDSALE_SUCCESS:
+            return {
+                ...state,
+                crowdsale: action.crowdsale,
+                getCrowdsaleRequestAttempt: false
             }
         default:
             return state;

@@ -1,7 +1,7 @@
 import { shell } from "electron";
 import { FormattedMessage as T } from "react-intl";
 
-const AssetsList = ({ listproperties, router,onCloseCrowdsale }) => (
+const AssetsList = ({ listproperties, router, onCloseCrowdsale }) => (
 
     <div className="omni-history-list">
         <div className="omni-history-list-header">
@@ -27,14 +27,18 @@ const AssetsList = ({ listproperties, router,onCloseCrowdsale }) => (
                         }}> (Manage) </a> : null}
 
                         {(!item.detail.managedissuance && !item.detail.fixedissuance) ? <a className="stakepool-link" onClick={() => {
-                            onCloseCrowdsale && onCloseCrowdsale(item.name,item.detail.issuer,item.detail.propertyid,)
+                            onCloseCrowdsale && onCloseCrowdsale(item.name, item.detail.issuer, item.detail.propertyid, )
                         }}> (close) </a> : null}
                     </div>
                     <div><a className="stakepool-link" onClick={() => {
-                        router.push({
-                            pathname: `/omni/assets/details/${item.propertyid}`,
-                            query: item.detail
-                        })
+                        if (!item.detail.managedissuance && !item.detail.fixedissuance) {
+                            router.push(`/omni/crowdsales/details/${item.propertyid}`)
+                        } else { 
+                            router.push({
+                                pathname: `/omni/assets/details/${item.propertyid}`,
+                                query: item.detail
+                            })
+                        }
                     }}>{item.name}</a></div>
                     <div>{item.detail.totaltokens}</div>
                     <div><a className="stakepool-link" onClick={function (x) { shell.openExternal(x); }.bind(null, item.url)}>{item.url}</a></div>

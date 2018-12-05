@@ -51,8 +51,12 @@ class Index extends React.Component {
   }
 
   onAssetsChange = (asset) => {
-    if (asset !== this.state.asset) {
-      this.setState({ asset, address: asset.addressData[0] })
+    if (asset !== this.state.asset) { 
+      const { listproperties } = this.props; 
+      const properties = listproperties ? listproperties.filter(item => item.ecosystem == this.state.ecosystem && item.name != asset.name) : null;
+  
+      this.setState({ asset, address: asset.addressData[0], listproperties: properties, })
+
     }
   }
 
@@ -77,15 +81,7 @@ class Index extends React.Component {
       this.setState({ showConfirmSendModal: false })
     });
 
-  }
-  // fromaddress	string	required	the address to trade with
-  // propertyidforsale	number	required	the identifier of the tokens listed for sale
-  // amountforsale	string	required	the amount of tokens to listed for sale
-  // propertiddesired	number	required	the identifier of the tokens desired in exchange
-  // amountdesired	string	required	the amount of tokens desired in exchange
-
-
-
+  } 
 
   onClearTransaction = () => {
     this.setState(this.getInitialState(this.props));
@@ -109,9 +105,10 @@ class Index extends React.Component {
     const { walletAssetsBalances, listproperties } = this.props;
 
     const assets = walletAssetsBalances ? walletAssetsBalances.filter(item => item.ecosystem == value) : null;
-    const properties = listproperties ? listproperties.filter(item => item.ecosystem == value) : null;
+    const properties = listproperties ? listproperties.filter(item => item.ecosystem == value && item.name != assets[0].name) : null;
 
     this.setState({
+      ecosystem:value,
       walletAssetsBalances: assets,
       listproperties: properties,
       address: assets && assets.length > 0 ? assets[0].addressData[0] : null,
@@ -120,7 +117,6 @@ class Index extends React.Component {
     })
   }
   render() {
-    //  const { walletAssetsBalances, listproperties } = this.props;
     const { address, asset, amountforsale, amountdesired, showConfirmSendModal, propertiddesired, walletAssetsBalances, listproperties } = this.state;
     const isValid = this.getIsValid();
     return <div className="tab-card"> <SendTabPage {...{

@@ -27,10 +27,7 @@ const CrowdsaleList = ({ activeCrowdsales,router }) => (
             {
                 activeCrowdsales ? activeCrowdsales.map(item => {
                     return <div key={item.propertyid} onClick={() => {
-                        router.push({
-                            pathname: `/omni/crowdsales/details/${item.propertyid}`,
-                            query: {item:JSON.stringify(item)}
-                        })
+                        router.push(`/omni/crowdsales/details/${item.propertyid}`)
                     }}>
                         <div>{item.name}</div>
                         <div>{`${item.assetsName}(${item.propertyiddesired}) / Rate(${item.tokensperunit})`}</div>
