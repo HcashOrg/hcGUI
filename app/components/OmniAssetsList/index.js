@@ -21,7 +21,7 @@ import { FormattedMessage as T } from "react-intl";
     }
 
     componentDidMount=()=>{
-        this.props.getwalletaddressbalances();
+        this.props.getwalletaddressbalances && this.props.getwalletaddressbalances();
     }
 
      

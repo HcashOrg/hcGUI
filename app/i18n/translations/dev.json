@@ -309,6 +309,7 @@
   "omni.assetsInfoForm.firstCategory": "Please choose",
   "omni.assetsInfoForm.tips": "{tips}residual characters",
   "omni.asstes.balance": "balance",
+  "omni.asstes.frozen": "frozen",
   "omni.asstes.name": "asstes",
   "omni.asstes.operation": "operation",
   "omni.browseType.address": "address",

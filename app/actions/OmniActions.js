@@ -45,9 +45,11 @@ export const getwalletAddressBalances_func = () => async (dispatch, getState) =>
             let itemData = walletAssetsBalances.get(item.propertyid);
             itemData.balance = parseFloat(itemData.balance) + parseFloat(item.balance);
             itemData.propertyid = item.propertyid;
+            itemData.frozen= parseFloat(itemData.frozen) + parseFloat(item.frozen);
             itemData.addressData.push({
               address: data.address,
               balance: item.balance,
+              frozen:item.frozen,
             })
             walletAssetsBalances.set(item.propertyid, itemData);
           } else {
@@ -56,10 +58,12 @@ export const getwalletAddressBalances_func = () => async (dispatch, getState) =>
               balance: item.balance,
               propertyid: item.propertyid,
               ecosystem: item.propertyid < TEST_ECO_PROPERTY ? 1 : 2,
+              frozen: parseFloat(item.frozen),
               addressData: [
                 {
                   address: data.address,
                   balance: item.balance,
+                  frozen:item.frozen,
                 }
               ]
             };

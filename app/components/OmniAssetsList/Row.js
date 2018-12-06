@@ -1,8 +1,7 @@
  
-import {Card } from 'material-ui/Card';
-import React from "react"
-import { Balance, TransitionMotionWrapper } from "shared";
+import React from "react" 
 import Details from './details'
+import { FormattedMessage as T } from "react-intl"; 
 import "style/OmniAssetsList.less";
 
 
@@ -28,13 +27,14 @@ const row=({
         >
         <div className="account-row-top-top">
             <div className="account-row-wallet-icon" />
-            <div className="account-row-top-account-name">{data.name} ({data.propertyid})<span></span></div> 
+            <div className="account-row-top-account-name">{data.name} (#{data.propertyid})<span></span></div> 
             {/* <div className="account-row-top-account-funds assets-row-top-account-funds"> 
                 <span>${data.balance}</span>
             </div> */}
             <div className="account-row-top-account-funds assets-row-top-account-funds">
-                {/* <Balance amount={data.balance} />  */}
+                
                 {data.balance}
+                <div className="account-row-top-spendable"><T id="omni.asstes.frozen" m="frozen"/>:{data.frozen}</div>
             </div>
             
         </div>

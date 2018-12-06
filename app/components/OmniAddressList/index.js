@@ -29,7 +29,7 @@ const messages=defineMessages({
     }
     
     componentDidMount=()=>{
-        this.props.getwalletaddressbalances();
+        this.props.getwalletaddressbalances && this.props.getwalletaddressbalances();
     }
 
     onCancelSignMessageModal=()=>{
