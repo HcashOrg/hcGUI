@@ -103,9 +103,12 @@ class Index extends React.Component {
 
   onEcosystemChanged = (value) => {
     const { walletAssetsBalances, listproperties } = this.props;
-
+ 
     const assets = walletAssetsBalances ? walletAssetsBalances.filter(item => item.ecosystem == value) : null;
-    const properties = listproperties ? listproperties.filter(item => item.ecosystem == value && item.name != assets[0].name) : null;
+    let properties = listproperties ? listproperties.filter(item => item.ecosystem == value ) : null; 
+    if(assets && assets.length>0 && properties && properties.length>0){
+      properties = properties.filter(item=>item.name != assets[0].name)
+    }
 
     this.setState({
       ecosystem:value,

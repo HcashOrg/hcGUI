@@ -16,12 +16,12 @@ const Page = ({
 
 }) => (
         <div>
-            <Screen title={<T id="omni.screen.tradeList.title" m="Trade List"/>}>
+            <Screen title={<T id="omni.screen.tradeList.title" m="Trade List" />}>
 
-                <T id="omni.trade.selected.address" m="Address"/>  <OptionsButton btnClass="browseType-operation" {...{
+                <T id="omni.trade.selected.address" m="Address" />  <OptionsButton btnClass="browseType-operation" {...{
                     onMenuChanged: onAddressChanged,
                     menuItemDatas: walletAddressList,
-                    btnText: walletAddress
+                    btnText: walletAddress ? walletAddress : "--"
                 }} />
                 <button className="send-operation-btn" onClick={onSend}><T id="omni.sendButton" m="Send" /></button>
 
