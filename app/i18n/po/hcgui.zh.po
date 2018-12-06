@@ -4943,7 +4943,7 @@ msgstr "余额"
 #: app/i18n/extracted/app/messages.json
 msgctxt "omni.asstes.reserved"
 msgid "reserved"
-msgstr "预定"
+msgstr "预留"
 
 #. [omni.asstes.frozen]
 #. defaultMessage is:
