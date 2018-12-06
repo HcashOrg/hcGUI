@@ -75,7 +75,7 @@ class Index extends React.Component {
                     <ViewPage
                         {
                         ...{
-                            walletAddressList: walletAddressList ? [...walletAddressList] : [],
+                            walletAddressList: walletAddressList ? walletAddressList : [],
                             onAddressChanged: this.onAddressChanged,
                             walletAddress: walletAddress,
 
