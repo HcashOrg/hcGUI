@@ -49,7 +49,7 @@ import { FormattedMessage as T } from "react-intl";
                         data:item,
                         onShowAssetsItem:this.onShowAssetsItem,
                         onhideAssetsItem:this.onhideAssetsItem,
-                        isShowAssetsItem:this.state.assetsItemNum==item.name,
+                        isShowAssetsItem:this.state.assetsItemNum==item.propertyid,
                         onMenuChanged:this.onMenuChanged,
                         menuItemDatas:null 
                     }

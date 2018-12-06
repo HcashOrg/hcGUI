@@ -14,7 +14,8 @@ const details=({
             <div className="asstesList-table-row asstesList-table-header">
                     <div><T id="omni,asstes.address" m="address"/></div>
                     <div><T id="omni.asstes.balance" m="balance"/></div>
-                    <div> <T id="omni.asstes.frozen" m="frozen"/></div>
+                    {/* <div> <T id="omni.asstes.frozen" m="frozen"/></div> */}
+                    <div><T id="omni.asstes.reserved" m="reserved"/></div>
                     {/* <div><T id="omni.asstes.operation" m="operation"/></div> */}
             </div>
             {
@@ -24,7 +25,8 @@ const details=({
                                     {item.address}<QRCodeButton addr={item.address}/>
                                 </div>
                                 <div>{item.balance}</div>
-                                <div>{item.frozen}</div>
+                                {/* <div>{item.frozen}</div> */}
+                                <div>{item.reserved}</div>
                                 {/* <div>
                                    <OptionsButton btnClass="address-operation" { ...{onMenuChanged:onMenuChanged(item.address),
                                    menuItemDatas:menuItemDatas,

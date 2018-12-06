@@ -4936,6 +4936,15 @@ msgctxt "omni.asstes.balance"
 msgid "balance"
 msgstr "余额"
 
+
+#. [omni.asstes.reserved]
+#. defaultMessage is:
+#. reserved
+#: app/i18n/extracted/app/messages.json
+msgctxt "omni.asstes.reserved"
+msgid "reserved"
+msgstr "预定"
+
 #. [omni.asstes.frozen]
 #. defaultMessage is:
 #. frozen

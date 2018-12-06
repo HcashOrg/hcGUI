@@ -1,55 +1,58 @@
- 
-import React from "react" 
+
+import React from "react"
 import Details from './details'
-import { FormattedMessage as T } from "react-intl"; 
+import { FormattedMessage as T } from "react-intl";
 import "style/OmniAssetsList.less";
 
 
-const row=({ 
+const row = ({
     data,
     onShowAssetsItem,
     onhideAssetsItem,
     isShowAssetsItem,
     onMenuChanged,
     menuItemDatas
-})=>(
-        <div  className={
-            isShowAssetsItem?"account-row-long":"account-row-short"
+}) => (
+        <div className={
+            isShowAssetsItem ? "account-row-long" : "account-row-short"
         } >
-        <div  className={
-                isShowAssetsItem?"account-row-details-top":"account-row"
-            } 
-            onClick={
-                isShowAssetsItem
-                  ? onhideAssetsItem
-                  : () => onShowAssetsItem(data.name)
-              }
-        >
-        <div className="account-row-top-top">
-            <div className="account-row-wallet-icon" />
-            <div className="account-row-top-account-name">{data.name} (#{data.propertyid})<span></span></div> 
-            {/* <div className="account-row-top-account-funds assets-row-top-account-funds"> 
+            <div className={
+                isShowAssetsItem ? "account-row-details-top" : "account-row"
+            }
+                onClick={
+                    isShowAssetsItem
+                        ? onhideAssetsItem
+                        : () => onShowAssetsItem(data.propertyid)
+                }
+            >
+                <div className="account-row-top-top">
+                    <div className="account-row-wallet-icon" />
+                    <div className="account-row-top-account-name">{data.name} (#{data.propertyid})<span></span></div>
+                    {/* <div className="account-row-top-account-funds assets-row-top-account-funds"> 
                 <span>${data.balance}</span>
             </div> */}
-            <div className="account-row-top-account-funds assets-row-top-account-funds">
-                
-                {data.balance}
-                <div className="account-row-top-spendable"><T id="omni.asstes.frozen" m="frozen"/>:{data.frozen}</div>
+                    <div className="account-row-top-account-funds assets-row-top-account-funds">
+
+                        {data.balance}
+                        <div className="account-row-top-spendable">
+                            <T id="omni.asstes.reserved" m="reserved" />:{data.reserved}
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            
+            {
+                isShowAssetsItem ? (<Details  {...{
+                    addressData: data.addressData,
+                    onMenuChanged,
+                    menuItemDatas
+                }} />) : null
+            }
+
         </div>
-        </div>
-        {
-            isShowAssetsItem?(<Details  {...{addressData:data.addressData,
-                onMenuChanged,
-                menuItemDatas
-            }} />) :null
-        }
-        
-    </div>
     )
 
 
-    export default row;
+export default row;
 
- 
