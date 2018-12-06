@@ -88,17 +88,7 @@ class Index extends React.PureComponent {
                         <T id="omni.crodsale.infoForm.assets" m="Supported Assets" />:{`${crowdsale.assetsName}(${crowdsale.propertyiddesired}) / Rate(${crowdsale.tokensperunit})`}
                     </div>
                 </div>
-                {/* <div className="hc-card-buttons">
-                    <KeyBlueButton
-                        size="large"
-                        className="hc-card-buttons-exit"
-                        onClick={() => {
-                            router.goBack()
-                        }}
-                        block={false} >
-                        <T id="formButton.quit" m="Quit" />
-                    </KeyBlueButton>
-                </div> */}
+                
             </Card>
             {Expired ? null : <Card className="omni-crowdsale-rightPanle">
                 <div className="omni-crowdsale-countdown">
@@ -210,19 +200,7 @@ class Index extends React.PureComponent {
                     </KeyBlueButton>
 
                 </div>
-            </Card>}
-
-            {/* <div className="hc-card-buttons">
-                    <KeyBlueButton
-                        size="large"
-                        className="hc-card-buttons-exit"
-                        onClick={() => {
-                            router.goBack()
-                        }}
-                        block={false} >
-                        <T id="formButton.quit" m="Quit" />
-                    </KeyBlueButton>
-                </div> */}
+            </Card>} 
         </div> : null}
         </div>
         );

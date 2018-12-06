@@ -1,12 +1,13 @@
- 
+
 import { FormButton } from "buttons";
+import Card from "card";
 import AssetsInfoForm from "./assetsInfoForm";
 import ReleaseDetailForm from "./releaseDetailsForm";
 import "style/omniForm.less";
 
 
 const IssuanceForm = ({
-    onDivisibleEnumchanged, 
+    onDivisibleEnumchanged,
     nameError,
     name,
     onNameChange,
@@ -16,7 +17,7 @@ const IssuanceForm = ({
     onCategoryChange,
     onSubCategoryChange,
     onAssetDescriptionChange,
-    description,  
+    description,
     addressList,
     onAddressChange,
     amountError,
@@ -27,13 +28,13 @@ const IssuanceForm = ({
     amountDisabled,
     disabled,
     address,
-            addressError,
+    addressError,
 }) => {
     return (
         <div>
             <AssetsInfoForm {
                 ...{
-                    onDivisibleEnumchanged, 
+                    onDivisibleEnumchanged,
                     nameError,
                     name,
                     onNameChange,
@@ -41,13 +42,13 @@ const IssuanceForm = ({
                     url,
                     urlError,
                     onAssetDescriptionChange,
-                    description, 
+                    description,
                     onCategoryChange,
                     onSubCategoryChange,
                 }
             } />
             <ReleaseDetailForm {
-                ...{ 
+                ...{
                     addressList,
                     onAddressChange,
                     amountError,
@@ -59,13 +60,15 @@ const IssuanceForm = ({
                 }
             }
             />
-            <FormButton {
-                ...{
-                    router,
-                    onNextStep: onNextStep,
-                    disabled
-                }
-            } /> 
+            <Card>
+                <FormButton {
+                    ...{
+                        goBack:router.goBack,
+                        onNextStep: onNextStep,
+                        disabled
+                    }
+                } />
+            </Card>
         </div>
     )
 };

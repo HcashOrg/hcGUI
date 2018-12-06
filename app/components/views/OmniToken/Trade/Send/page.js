@@ -2,7 +2,7 @@ import { compose } from "fp";
 import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
 import { EcosystemScreen } from "shared";
 import { InputSelect, FloatInput } from "inputs";
-import { KeyBlueButton } from "buttons";
+import { KeyBlueButton,FormButton } from "buttons"; 
 import ConfirmTradeModal from "./confirmTradeModal";
 import 'style/OmniSendPage.less';
 
@@ -48,20 +48,22 @@ const SendPage = ({
     showConfirmSendModal,
     onCancelModal,
     onSubmit,
+
+    router
 }) => (
         <div>
             <EcosystemScreen {
-                    ...{
-                        tabTitle: <T id="omni.trade.screen.title" m="Send Trade"/>,
-                        onEcosystemChanged: onEcosystemChanged
-                    }
-                } />
+                ...{
+                    tabTitle: <T id="omni.trade.screen.title" m="Send Trade" />,
+                    onEcosystemChanged: onEcosystemChanged
+                }
+            } />
             <div className="omni-sendForm">
                 <div className="sendForm-row">
                     <div className="sendForm-col col-6">
-                        <div> 
-                            <T id="omni.trade.form.Field.assets" m="Asstes Name"/>
-                            </div>
+                        <div>
+                            <T id="omni.trade.form.Field.assets" m="Asstes Name" />
+                        </div>
                         <div><InputSelect className="send-select-account-input" {...{
                             datas: assetsList,
                             onChange: onAssetsChange,
@@ -70,9 +72,9 @@ const SendPage = ({
                         }} /></div>
                     </div>
                     <div className="sendForm-col col-6">
-                        <div> 
-                            <T id="omni.trade.form.Field.sendAddress" m="Sender"/>
-                            </div>
+                        <div>
+                            <T id="omni.trade.form.Field.sendAddress" m="Sender" />
+                        </div>
                         <div><InputSelect className="send-select-account-input" {...{
                             datas: addressList,
                             onChange: onAddressChange,
@@ -108,9 +110,9 @@ const SendPage = ({
                 <div className="sendForm-row">
                     <div className="sendForm-col col-6">
                         <div>
-                        
-                            <T id="omni.trade.form.Field.desiredAmount" m="Desired Amount"/>
-                            </div>
+
+                            <T id="omni.trade.form.Field.desiredAmount" m="Desired Amount" />
+                        </div>
                         <div>
                             <FloatInput
                                 showErrors={!!amountdesiredError}
@@ -126,7 +128,7 @@ const SendPage = ({
                         </div>
                     </div>
                     <div className="sendForm-col col-6">
-                    <div><T id="omni.trade.form.Field.desiredAssets" m="Desired Assets" /></div>
+                        <div><T id="omni.trade.form.Field.desiredAssets" m="Desired Assets" /></div>
                         <div>
                             <div><InputSelect className="send-select-account-input" {...{
                                 datas: listproperties,
@@ -144,13 +146,14 @@ const SendPage = ({
                 </div>
                 <div>
 
-                    <KeyBlueButton
-                        disabled={!isValid}
-                        size="large"
-                        onClick={onSend}
-                        block={false} >
-                        <T id="formButton.nextStep" m="Next step" />
-                    </KeyBlueButton>
+            
+                    <FormButton {
+                        ...{
+                            goBack:router.goBack,
+                            onNextStep: onSend,
+                            disabled:!isValid
+                        }
+                    } />
                     <ConfirmTradeModal
                         {
                         ...{
@@ -160,7 +163,7 @@ const SendPage = ({
                             amountdesired,
                             propertiddesired,
 
-                            show:showConfirmSendModal, 
+                            show: showConfirmSendModal,
                             onCancelModal,
                             onSubmit,
                         }

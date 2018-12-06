@@ -1,29 +1,28 @@
-import Card from "card";
-import {KeyBlueButton} from "buttons";
+import { KeyBlueButton } from "buttons";
 import { FormattedMessage as T } from "react-intl";
- 
+import "style/card.less";
 
-const FormButton = ({ router,onNextStep,disabled }) => (
-    <Card> 
+
+const FormButton = ({ goBack, onNextStep, disabled }) => (
+
     <div className="hc-card-buttons">
-        {router?<KeyBlueButton 
+        {goBack ? <KeyBlueButton
             size="large"
-            className="hc-card-buttons-exit"
-            onClick={()=>{
-                router.goBack()
+            onClick={() => {
+                goBack && goBack()
             }}
             block={false} >
             <T id="formButton.quit" m="Quit" />
-        </KeyBlueButton>:null}
-        <KeyBlueButton
+        </KeyBlueButton> : null}
+
+        {onNextStep ? <KeyBlueButton
             disabled={disabled}
             size="large"
             onClick={onNextStep}
             block={false} >
             <T id="formButton.nextStep" m="Next step" />
-        </KeyBlueButton>
+        </KeyBlueButton> : null}
     </div>
-</Card>
-  );
+);
 
-  export default FormButton; 
+export default FormButton; 

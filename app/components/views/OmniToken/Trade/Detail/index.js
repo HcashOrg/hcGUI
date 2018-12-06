@@ -18,7 +18,7 @@ class Index extends React.PureComponent {
 
     onLoadButtons = (trade) => {
         let buttons = [];
-        if (trade && trade.status === "open" && trade.isMine) {
+        if (trade && (trade.status === "open" || trade.status === "open part filled") && trade.isMine) {
             buttons.push(<button key={trade.type_int} className="cancel-operation-btn" 
             onClick={() => { this.onShowModal(trade.sendingaddress, trade.propertyidforsale, trade.propertyiddesired) }}>
                <T id="omni.trade.detail.closeButton" m="Close Trade" />

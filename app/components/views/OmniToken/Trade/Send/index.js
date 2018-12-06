@@ -78,7 +78,8 @@ class Index extends React.Component {
       fromaddress: address.address, propertyidforsale: asset.propertyid, amountforsale,
       propertiddesired: propertiddesired.propertyid, amountdesired
     }, () => {
-      this.setState({ showConfirmSendModal: false })
+      this.setState({ showConfirmSendModal: false });
+      this.props.router.goBack();
     });
 
   } 
@@ -122,6 +123,7 @@ class Index extends React.Component {
   render() {
     const { address, asset, amountforsale, amountdesired, showConfirmSendModal, propertiddesired, walletAssetsBalances, listproperties } = this.state;
     const isValid = this.getIsValid();
+    const {router} = this.props;
     return <div className="tab-card"> <SendTabPage {...{
       onEcosystemChanged: this.onEcosystemChanged,
 
@@ -154,7 +156,7 @@ class Index extends React.Component {
       showConfirmSendModal,
       onCancelModal: this.onCancelModal,
       onSubmit: this.onSubmit,
-
+      router
 
     }} /></div>
   }

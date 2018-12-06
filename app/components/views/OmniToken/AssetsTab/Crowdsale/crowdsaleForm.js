@@ -1,4 +1,5 @@
 import { FormButton } from "buttons";
+import Card from "card";
 import AssetsInfoForm from "../assetsInfoForm";
 import CrowdsaleInfoForm from "./crowdsaleInfoForm";
 
@@ -77,13 +78,15 @@ const CrowdsaleForm = ({
                 }
                 }
             />
-            <FormButton {
-                ...{
-                    router,
-                    onNextStep: onNextStep,
-                    disabled
-                }
-            } />
+            <Card>
+                <FormButton {
+                    ...{
+                        goBack:router.goBack,
+                        onNextStep: onNextStep,
+                        disabled
+                    }
+                } />
+            </Card>
         </div>
     )
 };

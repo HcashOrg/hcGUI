@@ -1,8 +1,8 @@
-import {Screen} from "shared";
+import { Screen } from "shared";
 import { compose } from "fp";
 import { FormattedMessage as T, injectIntl } from "react-intl";
 import { FloatInput, InputSelect, AddressInput } from "inputs";
-import { KeyBlueButton } from "buttons";
+import { KeyBlueButton, FormButton } from "buttons";
 
 import ConfirmSendModal from "./confirmSendModal";
 
@@ -136,36 +136,29 @@ const ManageForm = ({ addressError, destination, operationTypes, operationType, 
             }
             <div className="omni-send-button-area">
                 <div></div>
-                <div className="omni-send-buttons">
-                    <KeyBlueButton
-                        size="large"
-                        className="hc-card-buttons-exit"
-                        onClick={goBack}
-                        block={false} >
-                        <T id="formButton.quit" m="Quit" />
-                    </KeyBlueButton>
-                    <KeyBlueButton
-                        disabled={!isValid}
-                        size="large"
-                        onClick={onSend}
-                        block={false} >
-                        <T id="formButton.nextStep" m="Next step" />
-                    </KeyBlueButton>
-                    <ConfirmSendModal {
-                        ...{
-                            show: showConfirmSendModal,
-                            onCancelModal,
-                            onSubmit,
-                            token: `${detail.name} (ID:${detail.propertyid})`,
-                            amount,
-                            issuer: detail.issuer,
-                            destination,
-                            operationType,
-                            modalTitle
-                        }
+
+                <FormButton {
+                    ...{
+                        goBack: goBack,
+                        onNextStep: onSend,
+                        disabled: !isValid
                     }
-                    />
-                </div>
+                } />
+
+                <ConfirmSendModal {
+                    ...{
+                        show: showConfirmSendModal,
+                        onCancelModal,
+                        onSubmit,
+                        token: `${detail.name} (ID:${detail.propertyid})`,
+                        amount,
+                        issuer: detail.issuer,
+                        destination,
+                        operationType,
+                        modalTitle
+                    }
+                }
+                />
             </div>
         </Aux>
     );
