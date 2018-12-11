@@ -1,12 +1,16 @@
 import {EcosystemScreen} from "shared";
-import { FormattedMessage as T } from "react-intl";
+import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
 import CrowdsaleForm from './crowdsaleForm';
 import ConfirmCrowdsaleModal from "./confirmCrowdsaleModal";
 import { omniCrowdsaleForm } from "connectors";
-import {TEST_ECO_PROPERTY} from '../../../../../config'
 import { addMonths } from "helpers";
 
-
+const messages=defineMessages({
+    inputMaxValue:{
+        id:"input.maxValue.errorMessage",
+        defaultMessage:"Must be 255 or less"
+    } 
+})
 class Crowdsale extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -143,7 +147,7 @@ class Crowdsale extends React.PureComponent {
     }
     getIssuerPercentageError() {
         const { issuerPercentage, issuerPercentageInvalid } = this.state;
-        if (issuerPercentage && issuerPercentageInvalid) return "必须小于等于 255";
+        if (issuerPercentage && issuerPercentageInvalid) return this.props.intl.formatMessage(messages.inputMaxValue);
     }
     onDeadlineChange = (date) => {
         if (this.state.deadline != date) {
@@ -158,7 +162,7 @@ class Crowdsale extends React.PureComponent {
 
     getEarlyBonusError() {
         const { earlyBonus, earlyBonusInvalid } = this.state;
-        if (earlyBonus && earlyBonusInvalid) return "必须小于等于 255";
+        if (earlyBonus && earlyBonusInvalid) return this.props.intl.formatMessage(messages.inputMaxValue);
     }
 
     onFromAddressChange = (fromAddress) => {
@@ -274,4 +278,4 @@ class Crowdsale extends React.PureComponent {
     }
 }
 
-export default omniCrowdsaleForm(Crowdsale);
+export default omniCrowdsaleForm(injectIntl(Crowdsale));

@@ -5794,5 +5794,14 @@ msgctxt "omni.trade.selected.address"
 msgid "Address"
 msgstr "地址"
 
+#. [input.maxValue.errorMessage]
+#. defaultMessage is:
+#. Must be 255 or less
+#: app/i18n/extracted/app/messages.json
+msgctxt "input.maxValue.errorMessage"
+msgid "Must be 255 or less"
+msgstr "必须小于等于 255"
+
+
 
 

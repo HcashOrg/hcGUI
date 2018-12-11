@@ -237,6 +237,7 @@
   "infoModal.btnClose": "Fechar",
   "infoModal.btnConfirm": "Confirm",
   "input.invalidInput": "Campo errado",
+  "input.maxValue.errorMessage": "Must be 255 or less",
   "input.requiredInput": "Campo requerido",
   "invalidRPCVersion.info": "A versão de API está errada",
   "invalidRPCVersion.title": "Versão de api inválida",
