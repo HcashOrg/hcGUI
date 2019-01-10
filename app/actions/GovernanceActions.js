@@ -61,10 +61,11 @@ const fillVotes = async (proposal, propVotes, walletService) => {
   const voteBitToChoice = proposal.voteOptions.reduce((m, o) => {
     m[o.bits] = o.id;
     return m;
-  }, {});  
+  }, {});   
   const eligibleTickets = propVotes && propVotes.data && propVotes.data.startvotereply
     ? await getWalletCommittedTickets(propVotes.data.startvotereply.eligibletickets, walletService)
     : [];
+ 
   const eligibleTicketsByHash = eligibleTickets.reduce( (m, t) => { m[t.ticket] = true; return m; }, {});
 
   proposal.eligibleTickets = eligibleTickets;
@@ -100,8 +101,8 @@ const getWalletCommittedTickets = async (eligibleTickets, walletService) => {
   }));
 };
 
-const getProposalVotes = async (proposal, piURL, walletService) => {
-  const propVotes = await pi.getProposalVotes(piURL, proposal.token);
+const getProposalVotes = async (proposal, piURL, walletService) => { 
+  const propVotes = await pi.getProposalVotes(piURL, proposal.token); 
   if (propVotes && propVotes.data) {
     await fillVotes(proposal, propVotes, walletService);
   }
@@ -130,7 +131,7 @@ export const GETVETTED_SUCCESS = "GETVETTED_SUCCESS";
 export const GETVETTED_UPDATEDVOTERESULTS_SUCCESS = "GETVETTED_UPDATEDVOTERESULTS_SUCCESS";
 export const GETVETTED_UPDATEDVOTERESULTS_FAILED = "GETVETTED_UPDATEDVOTERESULTS_FAILED";
 
-export const getVettedProposals = () => async (dispatch, getState) => {
+export const getVettedProposals = () => async (dispatch, getState) => { 
   dispatch({ type: GETVETTED_ATTEMPT });
   const piURL = sel.autonomyApiURL(getState());
   const oldProposals = sel.proposalsDetails(getState());
@@ -196,7 +197,7 @@ export const getVettedProposals = () => async (dispatch, getState) => {
       }
 
       byToken[p.token] = p;
-    });
+    }); 
     dispatch({ proposals: byToken, preVote, activeVote, abandoned, voted, type: GETVETTED_SUCCESS });
   } catch (error) { 
     dispatch({ error, type: GETVETTED_FAILED });
@@ -209,14 +210,15 @@ export const getVettedProposals = () => async (dispatch, getState) => {
   // (possibly) this being a long time after the GETVETTED_SUCCESS has been
   // processed.
 
-  try {
+  try { 
     const { walletService } = getState().grpc;
 
     const votedWithVotes = await Promise.all([ ...activeVote, ...voted ]
-      .map(prop => getProposalVotes({ ...prop }, piURL, walletService)));
+      .map(prop => getProposalVotes({ ...prop }, piURL, walletService))); 
+      const { governance: { proposals } } = getState();
     activeVote = [];
     voted = [];
-    byToken = { ...byToken };
+   // byToken = { ...byToken };
 
     votedWithVotes.forEach(p => {
       switch (p.voteStatus) {
@@ -232,13 +234,13 @@ export const getVettedProposals = () => async (dispatch, getState) => {
 
       default:
         voted.push(p); break;
-      }
-      byToken[p.token] = p;
+      } 
+      proposals[p.token] = {...p,files:proposals[p.token].files};
     });
     voted.sort((a, b) => a.timestamp - b.timestamp);
     activeVote.sort((a, b) => a.timestamp - b.timestamp);
-
-    dispatch({ proposals: byToken, activeVote, voted, type: GETVETTED_UPDATEDVOTERESULTS_SUCCESS });
+ 
+    dispatch({ proposals: proposals, activeVote, voted, type: GETVETTED_UPDATEDVOTERESULTS_SUCCESS });
   } catch (error) {
     dispatch({ error, type: GETVETTED_UPDATEDVOTERESULTS_FAILED });
     return;

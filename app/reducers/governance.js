@@ -14,7 +14,7 @@ import {
       return { ...state, getVettedAttempt: true };
     case GETVETTED_FAILED:
       return { ...state, getVettedAttempt: false };
-    case GETVETTED_SUCCESS:
+    case GETVETTED_SUCCESS: 
       return { ...state,
         proposals: { ...state.proposals, ...action.proposals },
         getVettedAttempt: false,
@@ -24,7 +24,7 @@ import {
         lastVettedFetchTime: new Date(),
         abandoned: action.abandoned,
       };
-    case GETVETTED_UPDATEDVOTERESULTS_SUCCESS:
+    case GETVETTED_UPDATEDVOTERESULTS_SUCCESS: 
       return { ...state,
         proposals: { ...state.proposals, ...action.proposals },
         activeVote: action.activeVote,
@@ -34,7 +34,7 @@ import {
       return { ...state, getProposalAttempt: true, getProposalError: null };
     case GETPROPOSAL_FAILED:
       return { ...state, getProposalAttempt: false, getProposalError: state.error };
-    case GETPROPOSAL_SUCCESS:
+    case GETPROPOSAL_SUCCESS: 
       return { ...state,
         getProposalAttempt: false,
         preVote: action.preVote,
@@ -45,14 +45,14 @@ import {
       };
     case UPDATEVOTECHOICE_ATTEMPT:
       return { ...state, updateVoteChoiceAttempt: true };
-    case UPDATEVOTECHOICE_SUCCESS:
+    case UPDATEVOTECHOICE_SUCCESS: 
       return {
         ...state,
         proposals: action.proposals,
         updateVoteChoiceAttempt: false };
     case UPDATEVOTECHOICE_FAILED:
       return { ...state, updateVoteChoiceAttempt: false };
-    case CLOSEWALLET_SUCCESS:
+    case CLOSEWALLET_SUCCESS: 
       return { ...state,
         getVettedAttempt: false,
         activeVote: [],
