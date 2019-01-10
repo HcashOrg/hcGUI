@@ -48,5 +48,13 @@ export { default as omniCrowdsaleForm} from "./omniCrowdsaleForm";
 export {default as omniCrowdsaleManageForm} from "./omniCrowdsaleManageForm";
 export { default as omniTradeSend}  from "./omniTradeSend";
 export { default as omniTradeList} from "./omniTradeList";
-export { default as omniTradeDetail} from "./omniTradeDetail"
+export { default as omniTradeDetail} from "./omniTradeDetail";
+
+export { default as activeVoteProposals } from "./activeVoteProposals";
+export { default as preVoteProposals } from "./preVoteProposals";
+export { default as votedProposals } from "./votedProposals";
+export { default as abandonedProposals } from "./abandonedProposals";
+export { default as proposals } from "./proposals";
+export { default as newProposalCounts } from "./newProposalCounts";
+export { default as network } from "./network";
 

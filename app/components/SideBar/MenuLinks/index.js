@@ -10,6 +10,7 @@ const linkList = [
   "home",
   "accounts",
   "transactions",
+  "governance",
   "tickets",
   "omni",
   //// hide for now

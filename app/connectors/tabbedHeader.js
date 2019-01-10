@@ -6,6 +6,7 @@ const mapStateToProps = selectorMap({
   isTestNet: sel.isTestNet,
   totalBalance: sel.totalBalance,
   ticketPrice: sel.ticketPrice,
+  // treasuryBalance:sel.treasuryBalance
 });
 
 export default connect(mapStateToProps);

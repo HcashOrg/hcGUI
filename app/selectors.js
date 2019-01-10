@@ -1,11 +1,12 @@
 import {
-  compose, reduce, filter, get, not, or, and, eq, find, bool, map, apply,
+  compose, reduce, filter, get, not, or, and, eq, find, bool, map, apply,some,
   createSelectorEager as createSelector
 } from "./fp";
 import { reverseHash } from "./helpers/byteActions";
 import { TRANSACTION_TYPES } from "wallet/service";
 import { MainNetParams, TestNetParams } from "wallet/constants";
 import { TicketTypes, decodeVoteScript } from "./helpers/tickets";
+import { httpOptions } from "./config";
 
 const EMPTY_ARRAY = [];  // Maintaining identity (will) improve performance;
 
@@ -103,18 +104,18 @@ export const isOpenWalletPublicInputRequest = get(["walletLoader", "openWalletPu
 export const isOpenWalletPrivateInputRequest = get(["walletLoader", "openWalletPrivateInputRequest"]);
 
 export const omniService = get(["rpc", "omniService"]);
-export const walletAddressBalances =  get(["rpc", "walletAddressBalances"]);
-export const walletAssetsBalances =  get(["rpc", "walletAssetsBalances"]);
-export const listproperties =  get(["rpc","listproperties"]);
-export const tradeHistory =  get(["rpc","tradeHistory"]);
-export const omniListTransactions=get(["rpc","ListTransactions"]);
-export const omniNoMoreTransactions=get(["rpc","noMoreTransactions"]);
-export const omniTransaction =get(["rpc","omniTransaction"]);
-export const property=get(["rpc","property"]);
-export const activeCrowdsales = get(["rpc","activeCrowdsales"]);
-export const trade=get(["rpc","trade"]);
-export const noMoreTradeHistory=get(["rpc","noMoreTradeHistory"]);
-export const crowdsale=get(["rpc","crowdsale"]);
+export const walletAddressBalances = get(["rpc", "walletAddressBalances"]);
+export const walletAssetsBalances = get(["rpc", "walletAssetsBalances"]);
+export const listproperties = get(["rpc", "listproperties"]);
+export const tradeHistory = get(["rpc", "tradeHistory"]);
+export const omniListTransactions = get(["rpc", "ListTransactions"]);
+export const omniNoMoreTransactions = get(["rpc", "noMoreTransactions"]);
+export const omniTransaction = get(["rpc", "omniTransaction"]);
+export const property = get(["rpc", "property"]);
+export const activeCrowdsales = get(["rpc", "activeCrowdsales"]);
+export const trade = get(["rpc", "trade"]);
+export const noMoreTradeHistory = get(["rpc", "noMoreTradeHistory"]);
+export const crowdsale = get(["rpc", "crowdsale"]);
 
 export const balances = or(get(["grpc", "balances"]), () => []);
 export const walletService = get(["grpc", "walletService"]);
@@ -124,6 +125,7 @@ export const getBalanceRequestAttempt = get(["grpc", "getBalanceRequestAttempt"]
 export const getAccountsResponse = get(["grpc", "getAccountsResponse"]);
 export const getNetworkResponse = get(["grpc", "getNetworkResponse"]);
 export const getNetworkError = get(["grpc", "getNetworkError"]);
+export const treasuryBalance = get(["grpc","treasuryBalance"]);
 const accounts = createSelector([getAccountsResponse], r => r ? r.getAccountsList() : []);
 
 export const sortedAccounts = createSelector(
@@ -177,24 +179,24 @@ const getTxTypeStr = type => (TRANSACTION_TYPES)[type];
 
 export const txURLBuilder = createSelector(
   [network],
-  (network) =>{
-    if (network !== "testnet"){
+  (network) => {
+    if (network !== "testnet") {
       return (txHash) => `${MainNetParams.Url}explorer/tx/${txHash}`
     }
     return (txHash) => `${TestNetParams.Url}explorer/tx/${txHash}`
-   
+
   }
   // (txHash) => `https://${network !== "testnet" ? "explorer" : network}.hcdata.org/${network == "testnet" ? "explorer/" : ""}tx/${txHash}`
 );
 
 export const blockURLBuilder = createSelector(
   [network],
-  (network) =>{
-    if (network !== "testnet"){
+  (network) => {
+    if (network !== "testnet") {
       return (txHash) => `${MainNetParams.Url}explorer/block/${txHash}`
     }
     return (txHash) => `${TestNetParams.Url}explorer/block/${txHash}`
-  
+
   }
   // (txHash) => `https://${network !== "testnet" ? "explorer" : network}.hcdata.org/${network == "testnet" ? "explorer/" : ""}block/${txHash}`
 );
@@ -292,11 +294,11 @@ const recentTransactions = createSelector(
 );
 
 export const homeHistoryTransactions = createSelector(
-  [ transactionsNormalizer, get([ "grpc", "recentRegularTransactions" ]) ], apply
-); 
+  [transactionsNormalizer, get(["grpc", "recentRegularTransactions"])], apply
+);
 
 const txHashToTicket = createSelector(
-  [ allTickets ],
+  [allTickets],
   reduce((m, t) => {
     m[t.hash] = t;
     m[t.spenderHash] = t;
@@ -304,11 +306,11 @@ const txHashToTicket = createSelector(
   }, {})
 );
 const recentStakeTransactions = createSelector(
-  [ transactionsNormalizer, get([ "grpc", "recentStakeTransactions" ]) ], apply
+  [transactionsNormalizer, get(["grpc", "recentStakeTransactions"])], apply
 );
 
 export const homeHistoryTickets = createSelector(
-  [ transactionsNormalizer, get([ "grpc", "recentStakeTransactions" ]) ], apply
+  [transactionsNormalizer, get(["grpc", "recentStakeTransactions"])], apply
 );
 // export const homeHistoryTickets = createSelector(
 //   [ recentStakeTransactions, txHashToTicket ],
@@ -338,9 +340,9 @@ const spendableAndLockedBalanceArray = []
 const currency = 100000000
 //fake data for balance chart
 export const spendableAndLockedBalance = createSelector(
-  [totalBalance, spendableTotalBalance,lockedBalance],
-  (totalBalance, spendableTotalBalance,lockedBalance) => {
-    
+  [totalBalance, spendableTotalBalance, lockedBalance],
+  (totalBalance, spendableTotalBalance, lockedBalance) => {
+
     var lockedBalance = totalBalance - spendableTotalBalance;
     if (spendableAndLockedBalanceArray[0]
       && numberEqual(spendableAndLockedBalanceArray[spendableAndLockedBalanceArray.length - 1].locked, lockedBalance / currency)
@@ -370,8 +372,8 @@ export const balanceSent = createSelector(
     transactions.forEach(a => {
       if (a.txDirection === "in") {
         inAmmount += a.txAmount;
-      } 
-       else {
+      }
+      else {
         //transer abort
       }
     });
@@ -458,8 +460,8 @@ export const ticketDataChart = createSelector(
 
 
 export const viewableTransactions = createSelector(
-  [ transactions, homeHistoryTransactions, homeHistoryTickets ],
-  (transactions, homeTransactions, homeHistoryTickets) => [ ...transactions, ...homeTransactions, ...homeHistoryTickets ]
+  [transactions, homeHistoryTransactions, homeHistoryTickets],
+  (transactions, homeTransactions, homeHistoryTickets) => [...transactions, ...homeTransactions, ...homeHistoryTickets]
 );
 export const viewedTransaction = createSelector(
   [viewableTransactions, (state, { params: { txHash } }) => txHash],
@@ -584,23 +586,23 @@ export const ticketsPerStatus = createSelector(
 //fake data for ticket tab on overview Page
 export const totalValueOfLiveTickets = createSelector(
   [ticketNormalizer, get(["grpc", "tickets"])],
-  (normalizer, tickets) => tickets.map(normalizer).reduce((total,cur)=>{
-    if (cur && cur.status === "live"){
-        return total += cur.ticketPrice
+  (normalizer, tickets) => tickets.map(normalizer).reduce((total, cur) => {
+    if (cur && cur.status === "live") {
+      return total += cur.ticketPrice
     }
     return total
-  },0)
+  }, 0)
 );
 
 
 export const earnedStakingReward = createSelector(
   [ticketNormalizer, get(["grpc", "tickets"])],
-  (normalizer, tickets) => tickets.map(normalizer).reduce((total,cur)=>{
-    if (cur && cur.status === "voted"){
-        return total += cur.ticketReward
+  (normalizer, tickets) => tickets.map(normalizer).reduce((total, cur) => {
+    if (cur && cur.status === "voted") {
+      return total += cur.ticketReward
     }
     return total
-  },0)
+  }, 0)
 );
 
 export const viewedTicketListing = createSelector(
@@ -613,8 +615,10 @@ export const rescanRequest = get(["control", "rescanRequest"]);
 export const getTransactionsRequestAttempt = get(["grpc", "getTransactionsRequestAttempt"]);
 export const getTicketsRequestAttempt = get(["grpc", "getTicketsRequestAttempt"]);
 export const notifiedBlockHeight = get(["notifications", "currentHeight"]);
-
+export const tickets = get([ "grpc", "tickets" ]);
 export const currentBlockHeight = get(["grpc", "currentBlockHeight"]);
+
+export const hasTickets = compose(t => t && t.length > 0, tickets); 
 
 export const rescanEndBlock = currentBlockHeight;
 export const rescanStartBlock = compose(
@@ -885,8 +889,8 @@ const numberEqual = (left, right) => {
 
 
 export const ticketDataChart = createSelector(
-  [transactions, getState, currentBlockHeight,getStakeInfoResponse],
-  (transactions, state, currentBlockHeight,stakeInfoResponse) => {
+  [transactions, getState, currentBlockHeight, getStakeInfoResponse],
+  (transactions, state, currentBlockHeight, stakeInfoResponse) => {
     const ticketDataChartArray = []
     var immatureCount = 0;
     var liveCount = 0;
@@ -895,12 +899,12 @@ export const ticketDataChart = createSelector(
 
     var ticketMaturity = chainParams(state).TicketMaturity;
     liveCount = stakeInfoResponse ? stakeInfoResponse.getLive() : 0
-    immatureCount = stakeInfoResponse ? stakeInfoResponse.getImmature():0
+    immatureCount = stakeInfoResponse ? stakeInfoResponse.getImmature() : 0
 
     transactions.forEach(a => {
       if (a.txType === "Vote") {
         votedCount++;
-      } 
+      }
     });
 
     let lastIndex = ticketDataChartArray.length - 1 || 0
@@ -925,3 +929,65 @@ export const ticketDataChart = createSelector(
     return ticketDataChartArray;
   }
 );
+
+
+ 
+
+export const autonomyApiURL = createSelector(
+  [isTestNet],
+  (isTestNet) => isTestNet ? httpOptions.autonomyURL.TESTNET+"/api" : httpOptions.autonomyURL.MAINNET+"/api"
+);
+
+export const autonomyURL = createSelector(
+  [isTestNet],
+  (isTestNet) => isTestNet ? httpOptions.autonomyURL.TESTNET : httpOptions.autonomyURL.MAINNET
+);
+
+export const hcdataURL = createSelector(
+  [isTestNet],
+  (isTestNet) => isTestNet ? httpOptions.hcDataApiURL.TESTNET : httpOptions.hcDataApiURL.MAINNET
+);
+
+export const updateVoteChoiceAttempt = get([ "governance", "updateVoteChoiceAttempt" ]);
+export const activeVoteProposals = get([ "governance", "activeVote" ]);
+export const getVettedProposalsAttempt = get([ "governance", "getVettedAttempt" ]);
+export const preVoteProposals = get([ "governance", "preVote" ]);
+export const votedProposals = get([ "governance", "voted" ]);
+export const abandonedProposals = get([ "governance", "abandoned" ]);
+export const lastVettedFetchTime = get([ "governance", "lastVettedFetchTime" ]);
+export const newActiveVoteProposalsCount = compose(
+  reduce((acc, p) => p.votingSinceLastAccess ? acc + 1 : acc, 0),
+  activeVoteProposals
+);
+export const newPreVoteProposalsCount = compose(
+  reduce((acc, p) => p.modifiedSinceLastAccess ? acc + 1 : acc, 0),
+  preVoteProposals
+);
+export const newProposalsStartedVoting = compose(some(p => p.votingSinceLastAccess), activeVoteProposals);
+
+export const getProposalAttempt = get([ "governance", "getProposalAttempt" ]);
+export const getProposalError = get([ "governance", "getProposalError" ]);
+export const proposalsDetails = get([ "governance", "proposals" ]);
+export const viewedProposalToken = (state, ctx) => ctx.params && ctx.params.token ? ctx.params.token : null;
+export const viewedProposalDetails = createSelector(
+  [ proposalsDetails, viewedProposalToken ],
+  (proposals, token) =>{
+ 
+    return  (proposals ? proposals[token]:null)
+  }
+);
+export const initialProposalLoading = createSelector(
+  [ proposalsDetails, getVettedProposalsAttempt ],
+  ( proposals, getVettedAttempt ) => ((proposals && Object.keys(proposals).length === 0) || !proposals) && getVettedAttempt
+);
+ 
+
+export const blockTimestampFromNow = createSelector(
+  [ chainParams, currentBlockHeight ],
+  ( chainParams, currentHeight ) => {
+    const currentTimestamp = new Date().getTime() / 1000;
+    return (block) => {
+      return Math.trunc(currentTimestamp + ((block - currentHeight) * chainParams.TargetTimePerBlock));
+    };
+  }
+);  

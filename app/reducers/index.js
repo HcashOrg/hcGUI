@@ -12,7 +12,8 @@ import daemon from "./daemon";
 import locales from "./locales";
 import sidebar from "./sidebar";
 import snackbar from "./snackbar";
-import rpc from './rpc'
+import rpc from './rpc';
+import governance from "./governance"
 
 const rootReducer = combineReducers({
   grpc,
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   sidebar,
   snackbar,
   rpc,
+  governance,
 });
 
 export default rootReducer;

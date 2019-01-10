@@ -14,6 +14,9 @@ import { onAppReloadRequested } from "wallet";
 import { getTransactions as walletGetTransactions } from "wallet/service";
 import { TransactionDetails } from "middleware/walletrpc/api_pb";
 import { clipboard } from "electron";
+import * as da from "../httpService/server/hcDataApi";
+import { getVettedProposals } from "./GovernanceActions";
+
 export const GETWALLETSERVICE_ATTEMPT = "GETWALLETSERVICE_ATTEMPT";
 export const GETWALLETSERVICE_FAILED = "GETWALLETSERVICE_FAILED";
 export const GETWALLETSERVICE_SUCCESS = "GETWALLETSERVICE_SUCCESS";
@@ -82,6 +85,11 @@ export const getStartupWalletInfo = () => (dispatch) => {
         await dispatch(getMostRecentStakeTransactions());
         await dispatch(getMostRecentTransactions());
         dispatch(findImmatureTransactions());
+
+        dispatch(getTreasuryBalance());
+        //dispatch(getVettedProposals());
+
+
         dispatch({ type: GETSTARTUPWALLETINFO_SUCCESS });
         resolve();
       } catch (error) {
@@ -471,7 +479,7 @@ export const getTicketsInfoAttempt = () => (dispatch, getState) => {
   let startRequestHeight = 0;
   let endRequestHeight = -1;
 
-  dispatch({ type: GETTICKETS_ATTEMPT });
+  dispatch({ type: GETTICKETS_ATTEMPT }); 
   wallet.getTickets(sel.walletService(getState()), startRequestHeight, endRequestHeight)
     .then(tickets => setTimeout(() => dispatch({ tickets, type: GETTICKETS_COMPLETE }), 1000))
     .catch(error => console.error(error + " Please try again"));
@@ -837,9 +845,32 @@ export const showTicketList = status => dispatch =>
   dispatch(pushHistory("/tickets/mytickets/" + status));
 
 
+export const showPurchaseTicketsPage = () => dispatch => dispatch(pushHistory("/tickets/purchase"));
+
+export const goBackHistory = () => dispatch => dispatch(goBack());
+
 export const SEEDCOPIEDTOCLIPBOARD = "SEEDCOPIEDTOCLIPBOARD";
 export const copySeedToClipboard = (mnemonic) => (dispatch) => {
   clipboard.clear();
   clipboard.writeText(mnemonic);
   dispatch({ type: SEEDCOPIEDTOCLIPBOARD });
 };
+
+
+export const GETTREASURY_BALANCE_SUCCESS = "GETTREASURY_BALANCE_SUCCESS";
+export const getTreasuryBalance = () => (dispatch, getState) => {
+  // const treasuryAddress = sel.chainParams(getState()).TreasuryAddress;
+  // const hcURL = sel.hcdataURL(getState());
+
+  // dispatch({ treasuryBalance: 222, type: GETTREASURY_BALANCE_SUCCESS });
+
+  // da.getTreasuryInfo(hcURL, treasuryAddress).then(treasuryInfo => {
+  //   const treasuryBalance = parseInt(treasuryInfo["data"]["dcr_unspent"].toString().replace(".", ""));
+  //   dispatch({ treasuryBalance: 222, type: GETTREASURY_BALANCE_SUCCESS });
+  // })
+}
+
+
+
+
+

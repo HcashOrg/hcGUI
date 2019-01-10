@@ -27,6 +27,12 @@ export default defineMessages({
   "tickets.tab.governance":                   { id: "tickets.tab.governance",                defaultMessage: "Governance" },
   "tickets.tab.statistics":                   { id: "tickets.tab.statistics",                defaultMessage: "Statistics" },
 
+  "governance.title":                         { id: "governance.title",                      defaultMessage: "Governance" },
+  "governance.description":                   { id: "governance.description",                defaultMessage: "Available Treasury Balance:" },
+  "governance.tab.proposals":                        { id: "governance.tab.proposals",                  defaultMessage: "Proposals" },
+  "governance.tab.consencusChanges":                        { id: "governance.tab.consencusChanges",                  defaultMessage: "Consencus Changes" },
+  
+
   "omni.title":                               { id: "omni.title",                         defaultMessage: "Omni Token" },
   "omni.description":                         { id: "omni.description",                   defaultMessage: "——" },
   "omni.tab.overview":                        { id: "omni.tab.overview",                  defaultMessage: "Overview" },
@@ -66,4 +72,6 @@ export default defineMessages({
   "menu.settings":                            { id: "menu.settings",                         defaultMessage: "Settings"},
   "menu.help":                                { id: "menu.help",                             defaultMessage: "Help"},
   "menu.omni":                                { id: "menu.omni",                             defaultMessage: "Omni Token"},
+  "menu.governance":                          { id: "menu.governance",                       defaultMessage: "Governance"},
+
 });

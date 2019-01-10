@@ -8,6 +8,7 @@ import {
   GetTransactionsRequest,
   TransactionDetails,
   PublishUnminedTransactionsRequest,
+  CommittedTicketsRequest
 } from "middleware/walletrpc/api_pb";
 import { withLog as log, withLogNoData, logOptionNoResponseData } from "./index";
 
@@ -117,6 +118,12 @@ export function formatTransaction(block, transaction, index) {
 export function formatUnminedTransaction(transaction, index) {
   return formatTransaction(UNMINED_BLOCK_TEMPLATE, transaction, index);
 }
+
+export const committedTickets = withLogNoData((walletService, ticketHashes) => new Promise((resolve, reject) => {
+  const req = new CommittedTicketsRequest();
+  req.setTicketsList(ticketHashes);
+  walletService.committedTickets(req, (err, tickets) => err ? reject(err) : resolve(tickets));
+}), "Committed Tickets");
 
 export const getTransactions = withLogNoData((walletService, startBlockHeight,
   endBlockHeight, targetTransactionCount) =>

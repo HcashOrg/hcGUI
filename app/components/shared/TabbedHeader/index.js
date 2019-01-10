@@ -7,8 +7,8 @@ import messages from "messages";
 import Tabs from "./Tabs";
 import "style/Header.less";
 
-const TabbedHeader = ({ intl, children, routes, totalBalance, ticketPrice, isTestNet, icon, title, subtitle }) => {
-  const { tabDesc, desc, noIcon, ticketprice, noHeader, className} = routes[1];
+const TabbedHeader = ({ intl, children, routes, totalBalance, ticketPrice, isTestNet, icon, title, subtitle,treasuryBalance }) => {
+  const { tabDesc, desc, noIcon, ticketprice, noHeader, className,governance} = routes[1];
   const { balance, testNet } = routes[2] || {};
   const page = getPage(routes);
   const tabs = getTabs(routes);
@@ -36,6 +36,7 @@ const TabbedHeader = ({ intl, children, routes, totalBalance, ticketPrice, isTes
         <Description>{ subtitle || description }</Description>
         { balance ? <div className="small-balance"><Balance flat amount={ totalBalance }/></div> :
           ticketprice && <div className="small-balance"><Balance flat amount={ ticketPrice }/></div> }
+        {/* { governance && <div className="small-balance"><Balance flat amount={ treasuryBalance }/></div>} */}
         { children }
       </div>
 

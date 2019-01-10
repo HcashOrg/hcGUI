@@ -10,58 +10,65 @@ export function getGlobalCfg() {
   return (config);
 }
 
-export function getWalletCfg(testnet, walletPath){
-  const config = new Store({cwd: getWalletCfgPath(testnet, walletPath)});
+export function getWalletCfg(testnet, walletPath) {
+  const config = new Store({ cwd: getWalletCfgPath(testnet, walletPath) });
   return (config);
 }
 
 export function initWalletCfg(testnet, walletPath) {
-  const config = new Store({cwd: getWalletCfgPath(testnet, walletPath)});
+  const config = new Store({ cwd: getWalletCfgPath(testnet, walletPath) });
   if (!config.has("wallet_start_advanced")) {
     config.set("wallet_start_advanced", false);
   }
   if (!config.has("enableticketbuyer")) {
-    config.set("enableticketbuyer","0");
+    config.set("enableticketbuyer", "0");
   }
   if (!config.has("balancetomaintain")) {
-    config.set("balancetomaintain","0");
+    config.set("balancetomaintain", "0");
   }
   if (!config.has("maxfee")) {
-    config.set("maxfee","0.1");
+    config.set("maxfee", "0.1");
   }
   if (!config.has("maxpricerelative")) {
-    config.set("maxpricerelative","100");
+    config.set("maxpricerelative", "100");
   }
   if (!config.has("maxpriceabsolute")) {
-    config.set("maxpriceabsolute","0");
+    config.set("maxpriceabsolute", "0");
   }
   if (!config.has("maxperblock")) {
-    config.set("maxperblock","5");
+    config.set("maxperblock", "5");
   }
   if (!config.has("currency_display")) {
-    config.set("currency_display","Hc");
+    config.set("currency_display", "Hc");
   }
   if (!config.has("hiddenaccounts")) {
     var hiddenAccounts = Array();
-    config.set("hiddenaccounts",hiddenAccounts);
+    config.set("hiddenaccounts", hiddenAccounts);
   }
   if (!config.has("discoveraccounts")) {
-    config.set("discoveraccounts",true);
+    config.set("discoveraccounts", true);
   }
   if (!config.has("remote_credentials")) {
     const credentialKeys = {
-      rpc_user : "",
-      rpc_password : "",
-      rpc_cert : "",
-      rpc_host : "",
-      rpc_port : "",
+      rpc_user: "",
+      rpc_password: "",
+      rpc_cert: "",
+      rpc_host: "",
+      rpc_port: "",
     };
-    config.set("remote_credentials",credentialKeys);
+    config.set("remote_credentials", credentialKeys);
   }
   if (!config.has("appdata_path")) {
-    config.set("appdata_path","");
+    config.set("appdata_path", "");
   }
-  stakePoolInfo(testnet,function(foundStakePoolConfigs) {
+  if (!config.has("autonomy_last_access_time")) {
+    config.set("autonomy_last_access_time", 0);
+  }
+  if (!config.has("autonomy_last_access_block")) {
+    config.set("autonomy_last_access_block", 0);
+  }
+
+  stakePoolInfo(testnet, function (foundStakePoolConfigs) {
     if (foundStakePoolConfigs !== null) {
       updateStakePoolConfig(config, foundStakePoolConfigs);
     }
@@ -75,12 +82,12 @@ export function initGlobalCfg() {
     config.set("daemon_start_advanced", false);
   }
   if (!config.has("must_open_form")) {
-    config.set("must_open_form",true);
+    config.set("must_open_form", true);
   }
   if (!config.has("locale")) {
-    config.set("locale","");
+    config.set("locale", "");
   }
-  return(config);
+  return (config);
 }
 
 export function getGlobalCfgPath() {
@@ -96,14 +103,14 @@ export function validateGlobalCfgFile() {
   try {
     fileContents = fs.readFileSync(getGlobalCfgPath(), "utf8");
   }
-  catch(err) {
+  catch (err) {
     return null;
   }
 
   try {
     JSON.parse(fileContents);
   }
-  catch(err) {
+  catch (err) {
     console.error(err);
     return err;
   }
@@ -119,9 +126,9 @@ export function appDataDirectory() {
   if (os.platform() == "win32") {
     return path.join(os.homedir(), "AppData", "Local", "hcGUI");
   } else if (process.platform === "darwin") {
-    return path.join(os.homedir(), "Library","Application Support","hcGUI");
+    return path.join(os.homedir(), "Library", "Application Support", "hcGUI");
   } else {
-    return path.join(os.homedir(),".config","hcGUI");
+    return path.join(os.homedir(), ".config", "hcGUI");
   }
 }
 
@@ -129,9 +136,9 @@ export function getHcdPath() {
   if (os.platform() == "win32") {
     return path.join(os.homedir(), "AppData", "Local", "Hcd");
   } else if (process.platform === "darwin") {
-    return path.join(os.homedir(), "Library","Application Support","Hcd");
+    return path.join(os.homedir(), "Library", "Application Support", "Hcd");
   } else {
-    return path.join(os.homedir(),".hcd");
+    return path.join(os.homedir(), ".hcd");
   }
 }
 
@@ -154,7 +161,7 @@ export function getWalletCert(certPath) {
     }
   }
 
-  return(cert);
+  return (cert);
 }
 
 export function readHcdConfig(configPath, testnet) {
@@ -215,8 +222,8 @@ export function readHcdConfig(configPath, testnet) {
 }
 
 export function getHcdCert(hcdCertPath) {
-  if(hcdCertPath)
-    if(fs.existsSync(hcdCertPath))
+  if (hcdCertPath)
+    if (fs.existsSync(hcdCertPath))
       return fs.readFileSync(hcdCertPath);
 
   var certPath = "";
@@ -230,7 +237,7 @@ export function getHcdCert(hcdCertPath) {
   }
 
   var cert = fs.readFileSync(certPath);
-  return(cert);
+  return (cert);
 }
 
 export function updateStakePoolConfig(config, foundStakePoolConfigs) {
@@ -263,14 +270,14 @@ export function getAppdataPath(testnet, walletPath) {
 export function setAppdataPath(testnet, appdataPath, walletPath) {
   const config = getWalletCfg(testnet, walletPath);
   const credentialKeys = {
-    rpc_user : "",
-    rpc_password : "",
-    rpc_cert : "",
-    rpc_host : "",
-    rpc_port : "",
+    rpc_user: "",
+    rpc_password: "",
+    rpc_cert: "",
+    rpc_host: "",
+    rpc_port: "",
   };
-  config.set("remote_credentials",credentialKeys);
-  return config.set("appdata_path",appdataPath);
+  config.set("remote_credentials", credentialKeys);
+  return config.set("appdata_path", appdataPath);
 }
 
 export function getRemoteCredentials(testnet, walletPath) {
@@ -280,10 +287,10 @@ export function getRemoteCredentials(testnet, walletPath) {
 
 export function setRemoteCredentials(testnet, walletPath, key, value) {
   const config = getWalletCfg(testnet, walletPath);
-  config.set("appdata_path","");
+  config.set("appdata_path", "");
   let credentials = config.get("remote_credentials");
   credentials[key] = value;
-  return config.set("remote_credentials",credentials);
+  return config.set("remote_credentials", credentials);
 }
 
 export function setMustOpenForm(openForm) {
@@ -305,8 +312,8 @@ export function newWalletConfigCreation(testnet, walletPath) {
       rpcpass: "PASSWORD",
       rpclisten: "127.0.0.1:9678",
       testnet: testnet ? "1" : "0",
-      addrindex:1,
-      txindex:1
+      addrindex: 1,
+      txindex: 1
     }
   };
   fs.writeFileSync(hcdCfg(getWalletPath(testnet, walletPath)), ini.stringify(hcdConf));
@@ -330,8 +337,8 @@ export function newWalletConfigCreation(testnet, walletPath) {
       grpclisten: "127.0.0.1:0",
       appdata: getWalletPath(testnet, walletPath),
       testnet: testnet ? "1" : "0",
-      username :rpcOptions.username,
-      password : rpcOptions.password,
+      username: rpcOptions.username,
+      password: rpcOptions.password,
     },
   };
   fs.writeFileSync(hcwalletCfg(getWalletPath(testnet, walletPath)), ini.stringify(hcwConf));
@@ -348,16 +355,27 @@ export function hcwalletCfg(configPath) {
   return path.resolve(configPath, "hcwallet.conf");
 }
 
-export const rpcOptions={
-  username : "admin",
-  password : "123",
-  jsonrpc:"1.0",
-  id:1,
-  port:function(isTestNet){
+export const rpcOptions = {
+  username: "admin",
+  password: "123",
+  jsonrpc: "1.0",
+  id: 1,
+  port: function (isTestNet) {
     return isTestNet ? 12010 : 14010;
+  }
+}
+
+export const httpOptions = {
+  hcDataApiURL: {
+    TESTNET: "https://testnet-data.h.cash/api",
+    MAINNET: "https://data.h.cash/api"
+  }, 
+  autonomyURL: {
+    TESTNET: "https://testnet-autonomy.h.cash",
+    MAINNET: "https://autonomy.h.cash"
   }
 }
 
 export const dataRefreshVersion = "0002.0001.0004";
 
-export const TEST_ECO_PROPERTY=parseInt("0x80000003UL");
+export const TEST_ECO_PROPERTY = parseInt("0x80000003UL");

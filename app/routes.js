@@ -49,7 +49,13 @@ import OmniCrowdsaleManage from "./components/views/OmniToken/CrowdsaleTab/Manag
 import OmniTrade from "./components/views/OmniToken/Trade";
 import OmniTradeViewPage from "./components/views/OmniToken/Trade/View";
 import OmniTradeSendPage from "./components/views/OmniToken/Trade/Send";
-import OmniTradeDetail from "./components/views/OmniToken/Trade/Detail"
+import OmniTradeDetail from "./components/views/OmniToken/Trade/Detail";
+
+import Proposals from "./components/views/Governance/Proposals";
+import ConsencusChanges from "./components/views/Governance/ConsencusChanges";
+
+import ProposalsList from "./components/views/Governance/Proposals/ListPage";
+import ProposalsDetail from "./components/views/Governance/Proposals/Detail";
 
 export default (
   <Route path="/" component={App}>
@@ -75,8 +81,18 @@ export default (
         <IndexRoute component={MyTicketsOverview} />
         <Route path=":status" component={MyTicketsList} />
       </Route>
-      <Route path="governance" component={GovernanceTab} />
+      {/* <Route path="governance" component={GovernanceTab} /> */}
       {/* <Route path="statistics"                  component={StatisticsTab}/> */}
+    </Route>
+    <Route path="governance" component={TabbedPage} governance>
+      <IndexRedirect to="proposals" />
+      <Route path="proposals" component={Proposals} >
+        <IndexRedirect to="list" />
+        <Route path="list" component={ProposalsList} />
+        <Route path="detail/:token" component={ProposalsDetail} />
+      </Route>
+
+      <Route path="consencusChanges" component={ConsencusChanges} />
     </Route>
     <Route path="omni" component={TabbedPage} desc omni>
       <IndexRedirect to="addresses" />
@@ -104,7 +120,7 @@ export default (
 
         <IndexRoute component={OmniTradeViewPage} />
         <Route path="detail/:txid" component={OmniTradeDetail} />
-        <Route path="tradeSend" component={OmniTradeSendPage} /> 
+        <Route path="tradeSend" component={OmniTradeSendPage} />
       </Route>
       {/* <Route path="statistics"                  component={StatisticsTab}/> */}
     </Route>

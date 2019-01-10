@@ -6,7 +6,9 @@ export const TestNetParams = {
   CoinbaseMaturity:        16,
   SStxChangeMaturity:      1,
   HDCoinType:171,
-  Url:"http://testnet-explorer.h.cash/"
+  Url:"http://testnet-explorer.h.cash/",
+
+  TreasuryAddress: "ScuQxvveKGfpG1ypt6u27F99Anf7EW3cqhq",
 };
 
 export const MainNetParams = {
@@ -15,5 +17,7 @@ export const MainNetParams = {
   CoinbaseMaturity:        256,
   SStxChangeMaturity:      1,
   HDCoinType:171,
-  Url:"http://hc-explorer.h.cash/"
+  Url:"http://hc-explorer.h.cash/",
+
+  TreasuryAddress: "ScuQxvveKGfpG1ypt6u27F99Anf7EW3cqhq",
 };

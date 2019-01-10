@@ -1,0 +1,52 @@
+.voting-progress-indicator {
+    width: 130px;
+    height: 6px;   
+    display: flex;
+    border: 1px solid #999999;
+    border-radius: 100px;
+    .voting-progress-yes {
+        background-color: green;
+        // width:80%;
+        z-index: 10; 
+        height:5px; 
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+    }
+    
+    .voting-progress-no {
+        background-color: red;
+        z-index: 5; 
+        // width:20%;
+        height:5px;
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
+    }
+}
+
+.voting-progress-statistics{
+    display: flex;
+    flex-direction: row-reverse;
+    .voting-progress-num{
+        width: 6px;
+        height: 6px;
+        border-radius: 100px; 
+        margin-right: 10px;
+        margin-right: 10px;
+        margin-top: 8px;
+    }
+    .voting-progress-yes-num{ 
+        .voting-progress-num;
+        background-color: green;  
+    }
+    
+    .voting-progress-no-num{
+        .voting-progress-num;
+        background-color: red;  
+    }
+
+    div:nth-child(odd){
+        width:65px;
+        min-width: fit-content;
+    }
+}
+

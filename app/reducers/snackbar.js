@@ -30,10 +30,14 @@ import {
   SEEDCOPIEDTOCLIPBOARD,
 } from "../actions/ClientActions";
 import { SNACKBAR_DISMISS_MESSAGES } from "../actions/SnackbarActions";
-import {OMNISENDISSUANCEFIXED_FAILED,OMNISENDISSUANCEMANAGED_FAILED,OMNISENDCHANGEISSUER_FAILED,
-  OMNISENDGRANT_FAILED,OMNISENDREVOKE_FAILED,OMNISEND_FAILED,OMNISENDISSUANCECROWDSALE_FAILED,
-  OMNISENDTRADE_FAILED,OMNISENDCLOSECROWDSALE_FAILED,OMNISENDCANCELTRADEESBYPAIR_FAILED,OMNIGETTRADE_FAILED,
-  OMNIGETCROWDSALE_FAILED} from "../actions/OmniActions"
+import {
+  OMNISENDISSUANCEFIXED_FAILED, OMNISENDISSUANCEMANAGED_FAILED, OMNISENDCHANGEISSUER_FAILED,
+  OMNISENDGRANT_FAILED, OMNISENDREVOKE_FAILED, OMNISEND_FAILED, OMNISENDISSUANCECROWDSALE_FAILED,
+  OMNISENDTRADE_FAILED, OMNISENDCLOSECROWDSALE_FAILED, OMNISENDCANCELTRADEESBYPAIR_FAILED, OMNIGETTRADE_FAILED,
+  OMNIGETCROWDSALE_FAILED
+} from "../actions/OmniActions"
+
+import { UPDATEVOTECHOICE_FAILED, GETPROPOSAL_FAILED,GETVETTED_UPDATEDVOTERESULTS_FAILED,GETVETTED_FAILED  } from "../actions/GovernanceActions"
 
 const messages = defineMessages({
   defaultSuccessMessage: {
@@ -121,19 +125,19 @@ const messages = defineMessages({
     id: "accounts.renameAccount",
     defaultMessage: "Successfully renamed account."
   },
-  RENAMEACCOUNT_FAILED:{
+  RENAMEACCOUNT_FAILED: {
     id: "accounts.errors.renameAccountFailed",
     defaultMessage: "{originalError}"
   },
-  GETNEXTACCOUNT_SUCCESS:{
+  GETNEXTACCOUNT_SUCCESS: {
     id: "accounts.nextAccount",
     defaultMessage: "Successfully created a new account."
   },
-  GETNEXTACCOUNT_FAILED:{
+  GETNEXTACCOUNT_FAILED: {
     id: "accounts.errors.getNextAccountFailed",
     defaultMessage: "{originalError}"
   },
-  CHANGEPASSPHRASE_SUCCESS:{
+  CHANGEPASSPHRASE_SUCCESS: {
     id: "settings.changePassphrase",
     defaultMessage: "Successfully changed private passphrase."
   },
@@ -171,91 +175,95 @@ export default function snackbar(state = {}, action) {
   let values, type, message;
 
   switch (action.type) {
-  // snackbar management events
-  case SNACKBAR_DISMISS_MESSAGES:
-    return { ...state, messages: Array() };
+    // snackbar management events
+    case SNACKBAR_DISMISS_MESSAGES:
+      return { ...state, messages: Array() };
 
-  case NEW_TRANSACTIONS_RECEIVED: {
-    // TODO: show more notifications or a summary when receiving many transactions.
-    const tx = action.newlyMinedTransactions.length
-      ? action.newlyMinedTransactions[0]
-      : action.newlyUnminedTransactions[0];
+    case NEW_TRANSACTIONS_RECEIVED: {
+      // TODO: show more notifications or a summary when receiving many transactions.
+      const tx = action.newlyMinedTransactions.length
+        ? action.newlyMinedTransactions[0]
+        : action.newlyUnminedTransactions[0];
 
-    type = tx.direction || wallet.TRANSACTION_TYPES[tx.type];
-    message = { ...tx, type };
-    values = { message };
-    break;
-  }
+      type = tx.direction || wallet.TRANSACTION_TYPES[tx.type];
+      message = { ...tx, type };
+      values = { message };
+      break;
+    }
 
-  // all simple success notifications. Just add the type below and the message
-  // on the messages variable above if you need a simple message, without extra
-  // data.
-  case RENAMEACCOUNT_SUCCESS:
-  case GETNEXTACCOUNT_SUCCESS:
-  case CHANGEPASSPHRASE_SUCCESS:
-  case REVOKETICKETS_SUCCESS:
-  case IMPORTSCRIPT_SUCCESS:
-    // willRescan will be false when importing just prior to a ticket purchase
-    if (action.willRescan === false) break;
-  case STOPAUTOBUYER_SUCCESS:
-  case STARTAUTOBUYER_SUCCESS:
-  case UPDATESTAKEPOOLCONFIG_SUCCESS:
-  case SETSTAKEPOOLVOTECHOICES_SUCCESS:
-  case REMOVESTAKEPOOLCONFIG:
-  case SEEDCOPIEDTOCLIPBOARD:
-  case PUBLISHUNMINEDTRANSACTIONS_SUCCESS:
-    type = "Success";
-    message = messages[action.type] || messages.defaultSuccessMessage;
-    break;
+    // all simple success notifications. Just add the type below and the message
+    // on the messages variable above if you need a simple message, without extra
+    // data.
+    case RENAMEACCOUNT_SUCCESS:
+    case GETNEXTACCOUNT_SUCCESS:
+    case CHANGEPASSPHRASE_SUCCESS:
+    case REVOKETICKETS_SUCCESS:
+    case IMPORTSCRIPT_SUCCESS:
+      // willRescan will be false when importing just prior to a ticket purchase
+      if (action.willRescan === false) break;
+    case STOPAUTOBUYER_SUCCESS:
+    case STARTAUTOBUYER_SUCCESS:
+    case UPDATESTAKEPOOLCONFIG_SUCCESS:
+    case SETSTAKEPOOLVOTECHOICES_SUCCESS:
+    case REMOVESTAKEPOOLCONFIG:
+    case SEEDCOPIEDTOCLIPBOARD:
+    case PUBLISHUNMINEDTRANSACTIONS_SUCCESS:
+      type = "Success";
+      message = messages[action.type] || messages.defaultSuccessMessage;
+      break;
 
-  // all simple error messages. Note that the action *must* have an action.error
-  // attribute.
-  case RENAMEACCOUNT_FAILED:
-  case GETNEXTACCOUNT_FAILED:
-  case CHANGEPASSPHRASE_FAILED:
-  case CONSTRUCTTX_FAILED:
-  case SIGNTX_FAILED:
-  case PUBLISHTX_FAILED:
-  case PURCHASETICKETS_FAILED:
-  case REVOKETICKETS_FAILED:
-  case IMPORTSCRIPT_FAILED:
-  case STARTAUTOBUYER_FAILED:
-  case UPDATESTAKEPOOLCONFIG_FAILED:
-  case SETSTAKEPOOLVOTECHOICES_FAILED:
-  case DECODERAWTXS_FAILED:
-  case SIGNMESSAGE_FAILED:
-  case VERIFYMESSAGE_FAILED:
-  case GETSTARTUPWALLETINFO_FAILED:
-  case PUBLISHUNMINEDTRANSACTIONS_FAILED:
-  case OMNISENDISSUANCEFIXED_FAILED:
-  case OMNISENDISSUANCEMANAGED_FAILED:
-  case OMNISENDCHANGEISSUER_FAILED:
-  case OMNISENDGRANT_FAILED:
-  case OMNISENDREVOKE_FAILED:
-  case OMNISEND_FAILED:
-  case OMNISENDISSUANCECROWDSALE_FAILED:
-  case OMNISENDTRADE_FAILED:
-  case OMNISENDCLOSECROWDSALE_FAILED:
-  case OMNISENDCANCELTRADEESBYPAIR_FAILED:
-  case OMNIGETTRADE_FAILED:
-  case OMNIGETCROWDSALE_FAILED:
-    type = "Error";
-    message = messages[action.type] || messages.defaultErrorMessage;
-    values = { originalError: String(action.error) };
-    break;
+    // all simple error messages. Note that the action *must* have an action.error
+    // attribute.
+    case RENAMEACCOUNT_FAILED:
+    case GETNEXTACCOUNT_FAILED:
+    case CHANGEPASSPHRASE_FAILED:
+    case CONSTRUCTTX_FAILED:
+    case SIGNTX_FAILED:
+    case PUBLISHTX_FAILED:
+    case PURCHASETICKETS_FAILED:
+    case REVOKETICKETS_FAILED:
+    case IMPORTSCRIPT_FAILED:
+    case STARTAUTOBUYER_FAILED:
+    case UPDATESTAKEPOOLCONFIG_FAILED:
+    case SETSTAKEPOOLVOTECHOICES_FAILED:
+    case DECODERAWTXS_FAILED:
+    case SIGNMESSAGE_FAILED:
+    case VERIFYMESSAGE_FAILED:
+    case GETSTARTUPWALLETINFO_FAILED:
+    case PUBLISHUNMINEDTRANSACTIONS_FAILED:
+    case OMNISENDISSUANCEFIXED_FAILED:
+    case OMNISENDISSUANCEMANAGED_FAILED:
+    case OMNISENDCHANGEISSUER_FAILED:
+    case OMNISENDGRANT_FAILED:
+    case OMNISENDREVOKE_FAILED:
+    case OMNISEND_FAILED:
+    case OMNISENDISSUANCECROWDSALE_FAILED:
+    case OMNISENDTRADE_FAILED:
+    case OMNISENDCLOSECROWDSALE_FAILED:
+    case OMNISENDCANCELTRADEESBYPAIR_FAILED:
+    case OMNIGETTRADE_FAILED:
+    case OMNIGETCROWDSALE_FAILED:
+    case UPDATEVOTECHOICE_FAILED:
+    case GETPROPOSAL_FAILED:
+    case GETVETTED_UPDATEDVOTERESULTS_FAILED:
+    case GETVETTED_FAILED:
+      type = "Error";
+      message = messages[action.type] || messages.defaultErrorMessage;
+      values = { originalError: String(action.error) };
+      break;
 
-  // success messages that add some context/interpolation/values.
-  case PURCHASETICKETS_SUCCESS:
-    type = "Success";
-    message = messages[PURCHASETICKETS_SUCCESS];
-    values = { numTickets: action.purchaseTicketsResponse.getTicketHashesList().length };
-    break;
+    // success messages that add some context/interpolation/values.
+    case PURCHASETICKETS_SUCCESS:
+      type = "Success";
+      message = messages[PURCHASETICKETS_SUCCESS];
+      values = { numTickets: action.purchaseTicketsResponse.getTicketHashesList().length };
+      break;
   }
 
   if (message && type) {
-    const newMessage = {type, message, values};
-    return {...state, messages: [...state.messages, newMessage]};
+    const newMessage = { type, message, values };
+    return { ...state, messages: [...state.messages, newMessage] };
   }
 
-  return {...state};
+  return { ...state };
 }

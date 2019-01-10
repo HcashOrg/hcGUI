@@ -4711,6 +4711,47 @@ msgctxt "menu.omni"
 msgid "Omni Token"
 msgstr "Omni Token"
 
+#. [menu.governance]
+#. defaultMessage is:
+#. Governance
+#: app/i18n/extracted/app/messages.json
+msgctxt "menu.governance"
+msgid "Governance"
+msgstr "治理"
+
+
+#. [governance.title]
+#. defaultMessage is:
+#. Governance
+#: app/i18n/extracted/app/messages.json
+msgctxt "governance.title"
+msgid "Governance"
+msgstr "治理"
+
+#. [governance.description]
+#. defaultMessage is:
+#. ——
+#: app/i18n/extracted/app/messages.json
+msgctxt "governance.description"
+msgid "Available Treasury Balance:"
+msgstr "基金会余额："
+
+#. [governance.tab.proposals]
+#. defaultMessage is:
+#. Proposals
+#: app/i18n/extracted/app/messages.json
+msgctxt "governance.tab.proposals"
+msgid "Proposals"
+msgstr "提案"
+
+#. [governance.tab.consencusChanges]
+#. defaultMessage is:
+#. Consencus Changes
+#: app/i18n/extracted/app/messages.json
+msgctxt "governance.tab.consencusChanges"
+msgid "Consencus Changes"
+msgstr "共识更改"
+
 #. [omni.title]
 #. defaultMessage is:
 #. Omni title
@@ -5802,6 +5843,280 @@ msgctxt "input.maxValue.errorMessage"
 msgid "Must be 255 or less"
 msgstr "必须小于等于 255"
 
+#. [proposalDetails.loadingError]
+#. defaultMessage is:
+#. Error loading Proposal: {error}
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/helpers.json
+msgctxt "proposalDetails.loadingError"
+msgid "Error loading Proposal: {error}"
+msgstr "加载提案时出错：{error}"
 
+#. [proposalDetails.votingInfo.abandoned]
+#. defaultMessage is:
+#. Proposal has been abandoned
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/helpers.json
+msgctxt "proposalDetails.votingInfo.abandoned"
+msgid "Proposal has been abandoned"
+msgstr "提案已被废弃"
+
+#. [proposalDetails.votingInfo.notVoting]
+#. defaultMessage is:
+#. Proposal not yet on voting stage
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/helpers.json
+msgctxt "proposalDetails.votingInfo.notVoting"
+msgid "Proposal not yet on voting stage"
+msgstr "非投票阶段的提案"
+
+#. [proposalDetails.votingInfo.voted]
+#. defaultMessage is:
+#. Voting has ended for this proposal
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/helpers.json
+msgctxt "proposalDetails.votingInfo.voted"
+msgid "Voting has ended for this proposal"
+msgstr "此提案的投票已结束"
+
+#. [proposalDetails.votingInfo.noTickets]
+#. defaultMessage is:
+#. Voting is only available upon participation in Staking.
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/helpers.json
+msgctxt "proposalDetails.votingInfo.noTickets"
+msgid "Voting is only available upon participation in Staking."
+msgstr "只有参与权益时才能投票。"
+
+#. [proposalDetails.votingInfo.startStakingBtn]
+#. defaultMessage is:
+#. Start Staking
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/helpers.json
+msgctxt "proposalDetails.votingInfo.startStakingBtn"
+msgid "Start Staking"
+msgstr "开始投票"
+
+#. [proposalDetails.votingInfo.noElligibleTickets]
+#. defaultMessage is:
+#. You don't have tickets elligible for voting on this proposal. Purchase
+#. tickets to vote on future proposals.
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/helpers.json
+msgctxt "proposalDetails.votingInfo.noElligibleTickets"
+msgid ""
+"You don't have tickets elligible for voting on this proposal. Purchase "
+"tickets to vote on future proposals."
+msgstr "您没有可以投此提案的选票，请为未来的提案购票。"
+
+#. [proposalDetails.votingInfo.purchaseTicketsBtn]
+#. defaultMessage is:
+#. Purchase Tickets
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/helpers.json
+msgctxt "proposalDetails.votingInfo.purchaseTicketsBtn"
+msgid "Purchase Tickets"
+msgstr "购买选票"
+
+#. [proposalDetails.votingInfo.votingPreferenceTitle]
+#. defaultMessage is:
+#. My Voting Preference
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/helpers.json
+msgctxt "proposalDetails.votingInfo.votingPreferenceTitle"
+msgid "My Voting Preference"
+msgstr "我的投票偏好"
+
+#. [proposalDetails.votingInfo.updatingVoteChoice]
+#. defaultMessage is:
+#. Updating vote choice
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/helpers.json
+msgctxt "proposalDetails.votingInfo.updatingVoteChoice"
+msgid "Updating vote choice"
+msgstr "正在更新投票选择"
+
+#. [proposal.overview.fullTime]
+#. defaultMessage is:
+#. {timestamp, date, medium} {timestamp, time, short}
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/helpers.json
+msgctxt "proposal.overview.fullTime"
+msgid "{timestamp, date, medium} {timestamp, time, short}"
+msgstr "{timestamp, date, medium} {timestamp, time, short}"
+
+
+#. [proposal.overview.created.label]
+#. defaultMessage is:
+#. Created by
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/Page.json
+msgctxt "proposal.overview.created.label"
+msgid "Created by"
+msgstr "创建者"
+
+#. [proposal.overview.version.label]
+#. defaultMessage is:
+#. Version
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/Page.json
+msgctxt "proposal.overview.version.label"
+msgid "Version"
+msgstr "版本"
+
+#. [proposal.overview.lastUpdated.label]
+#. defaultMessage is:
+#. Last Updated
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/Page.json
+msgctxt "proposal.overview.lastUpdated.label"
+msgid "Last Updated"
+msgstr "最近更新时间"
+
+#. [proposal.overview.deadline.label]
+#. defaultMessage is:
+#. Voting Deadline
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/Page.json
+msgctxt "proposal.overview.deadline.label"
+msgid "Voting Deadline"
+msgstr "投票截止日期"
+
+#. [proposals.updateVoteChoiceModal.title]
+#. defaultMessage is:
+#. Confirm Your Vote
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/UpdateVoteChoiceModalButton.json
+msgctxt "proposals.updateVoteChoiceModal.title"
+msgid "Confirm Your Vote"
+msgstr "确认您的投票"
+
+#. [proposalDetails.votingInfo.eligibleCount]
+#. defaultMessage is:
+#. You have {count, plural, one {one ticket} other {# tickets}} eligible for
+#. voting
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/UpdateVoteChoiceModalButton.json
+msgctxt "proposalDetails.votingInfo.eligibleCount"
+msgid ""
+"You have {count, plural, one {one ticket} other {# tickets}} eligible for "
+"voting"
+msgstr "您有资格投票 {count, plural, one {one ticket} other {# tickets}} "
+
+#. [proposals.updateVoteChoiceModal.btnLabel]
+#. defaultMessage is:
+#. Cast Vote
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Details/UpdateVoteChoiceModalButton.json
+msgctxt "proposals.updateVoteChoiceModal.btnLabel"
+msgid "Cast Vote"
+msgstr "投票"
+
+#. [proposals.community.title]
+#. defaultMessage is:
+#. Proposals
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Page.json
+msgctxt "proposals.community.title"
+msgid "Proposals"
+msgstr "提案"
+
+#. [proposals.community.descr]
+#. defaultMessage is:
+#. Voting on community proposals allows you to have a say on how the project
+#. treasury is spent.
+#.         Participation in voting requires (PoS) tickets. Proposal creation,
+#. discussions and other features are available at
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Page.json
+msgctxt "proposals.community.descr"
+msgid ""
+"Voting on community proposals allows you to have a say on how the project treasury is spent.Participation in voting requires (PoS) tickets. Proposal creation, discussions and other features are available at"
+msgstr ""
+"社区提案投票让您对基金会资金的使用发表意见。\n"
+"参与投票需要(PoS)选票。创建提案，讨论及其他功能可以到一下网址"
+
+#. [proposals.community.createLink]
+#. defaultMessage is:
+#. Create a Proposal
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Page.json
+msgctxt "proposals.community.createLink"
+msgid "Create a Proposal"
+msgstr "创建提案"
+
+
+#. [proposals.statusLinks.preVote]
+#. defaultMessage is:
+#. Under Discussion
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Page.json
+msgctxt "proposals.statusLinks.preVote"
+msgid "Under Discussion"
+msgstr "正在讨论中"
+
+#. [proposals.statusLinks.underVote]
+#. defaultMessage is:
+#. Under Vote
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Page.json
+msgctxt "proposals.statusLinks.underVote"
+msgid "Under Vote"
+msgstr "正在投票中"
+
+#. [proposals.statusLinks.voted]
+#. defaultMessage is:
+#. Finished voting
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Page.json
+msgctxt "proposals.statusLinks.voted"
+msgid "Finished voting"
+msgstr "完成投票"
+
+#. [proposals.statusLinks.abandoned]
+#. defaultMessage is:
+#. Abandoned
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/Page.json
+msgctxt "proposals.statusLinks.abandoned"
+msgid "Abandoned"
+msgstr "被废弃"
+
+#. [proposals.quorumNotMet]
+#. defaultMessage is:
+#. Quorum not met
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
+msgctxt "proposals.quorumNotMet"
+msgid "Quorum not met"
+msgstr "未达到法定票数"
+
+#. [noProposals.description]
+#. defaultMessage is:
+#. No Proposals Available
+#: app/i18n/extracted/app/components/indicators/NoProposals.json
+msgctxt "noProposals.description"
+msgid "No Proposals Available"
+msgstr "没有可用的提案"
+
+#. [votingPreferences.title]
+#. defaultMessage is:
+#. Consensus Changes
+#: app/i18n/extracted/app/components/views/GovernancePage/Blockchain/Page.json
+msgctxt "votingPreferences.title"
+msgid "Consensus Changes"
+msgstr "共识更改"
+
+#. [votingPreferences.description]
+#. defaultMessage is:
+#. Consensus changes refer to the on-chain governance aspect of Decred. This
+#. means deciding whether to adopt changes to the consensus rules of the
+#. network. Participation in voting requires (PoS) tickets.
+#: app/i18n/extracted/app/components/views/GovernancePage/Blockchain/Page.json
+msgctxt "votingPreferences.description"
+msgid ""
+"Consensus changes refer to the on-chain governance aspect of Hc. This "
+"means deciding whether to adopt changes to the consensus rules of the "
+"network. Participation in voting requires (PoS) tickets."
+msgstr "共识更改指的是Hc的链上治理方面。这表示决定是否采用对于网络共识规则的更改。参与投票需要(PoS)选票。"
+
+#. [votingPreferences.dashboard]
+#. defaultMessage is:
+#. Voting Dashboard
+#: app/i18n/extracted/app/components/views/GovernancePage/Blockchain/Page.json
+msgctxt "votingPreferences.dashboard"
+msgid "Voting Dashboard"
+msgstr "投票面板"
+
+
+#. [proposal.voted]
+#. defaultMessage is:
+#. Voted
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
+msgctxt "proposal.voted"
+msgid "Voted"
+msgstr "已投票"
+
+#. [proposal.noVote]
+#. defaultMessage is:
+#. No vote cast
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
+msgctxt "proposal.noVote"
+msgid "No vote cast"
+msgstr "没有投票"
 
 

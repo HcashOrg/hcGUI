@@ -1346,6 +1346,50 @@ function deserialize_walletrpc_WalletExistsResponse(buffer_arg) {
   return api_pb.WalletExistsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_walletrpc_CommittedTicketsRequest(arg) {
+  if (!(arg instanceof api_pb.CommittedTicketsRequest)) {
+    throw new Error('Expected argument of type walletrpc.CommittedTicketsRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_walletrpc_CommittedTicketsRequest(buffer_arg) {
+  return api_pb.CommittedTicketsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_walletrpc_CommittedTicketsResponse(arg) {
+  if (!(arg instanceof api_pb.CommittedTicketsResponse)) {
+    throw new Error('Expected argument of type walletrpc.CommittedTicketsResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_walletrpc_CommittedTicketsResponse(buffer_arg) {
+  return api_pb.CommittedTicketsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_walletrpc_SignMessagesRequest(arg) {
+  if (!(arg instanceof api_pb.SignMessagesRequest)) {
+    throw new Error('Expected argument of type walletrpc.SignMessagesRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_walletrpc_SignMessagesRequest(buffer_arg) {
+  return api_pb.SignMessagesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_walletrpc_SignMessagesResponse(arg) {
+  if (!(arg instanceof api_pb.SignMessagesResponse)) {
+    throw new Error('Expected argument of type walletrpc.SignMessagesResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_walletrpc_SignMessagesResponse(buffer_arg) {
+  return api_pb.SignMessagesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var VersionServiceService = exports.VersionServiceService = {
   version: {
@@ -1374,6 +1418,28 @@ var WalletServiceService = exports.WalletServiceService = {
     requestDeserialize: deserialize_walletrpc_PingRequest,
     responseSerialize: serialize_walletrpc_PingResponse,
     responseDeserialize: deserialize_walletrpc_PingResponse,
+  },
+  committedTickets: {
+    path: '/walletrpc.WalletService/CommittedTickets',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.CommittedTicketsRequest,
+    responseType: api_pb.CommittedTicketsResponse,
+    requestSerialize: serialize_walletrpc_CommittedTicketsRequest,
+    requestDeserialize: deserialize_walletrpc_CommittedTicketsRequest,
+    responseSerialize: serialize_walletrpc_CommittedTicketsResponse,
+    responseDeserialize: deserialize_walletrpc_CommittedTicketsResponse,
+  },
+  signMessages: {
+    path: '/walletrpc.WalletService/SignMessages',
+    requestStream: false,
+    responseStream: false,
+    requestType: api_pb.SignMessagesRequest,
+    responseType: api_pb.SignMessagesResponse,
+    requestSerialize: serialize_walletrpc_SignMessagesRequest,
+    requestDeserialize: deserialize_walletrpc_SignMessagesRequest,
+    responseSerialize: serialize_walletrpc_SignMessagesResponse,
+    responseDeserialize: deserialize_walletrpc_SignMessagesResponse,
   },
   network: {
     path: '/walletrpc.WalletService/Network',

@@ -13,3 +13,4 @@ export { default as UnselectableText } from "./UnselectableText";
 export { default as Unit} from "./Unit";
 export {default as Screen} from "./Screen";
 export {default as EcosystemScreen} from "./Screen/ecosystemScreen";
+export {default as AutonomyLink } from "./AutonomyLink"

@@ -4,7 +4,7 @@ import {
   subscribeToBlockNotifications, fetchHeaders, getStakePoolInfo
 } from "wallet";
 import * as wallet from "wallet";
-import { getWalletServiceAttempt, getTicketBuyerServiceAttempt, getAgendaServiceAttempt, getVotingServiceAttempt } from "./ClientActions";
+import { getWalletServiceAttempt, getTicketBuyerServiceAttempt, getAgendaServiceAttempt, getVotingServiceAttempt,getTreasuryBalance } from "./ClientActions";
 import {getOmniServiceAttempt} from './OmniActions'
 import { prepStartDaemon } from "./DaemonActions";
 import { getVersionServiceAttempt } from "./VersionActions";
@@ -267,7 +267,7 @@ export const fetchHeadersAttempt = () => (dispatch, getState) => {
       dispatch(getTicketBuyerServiceAttempt());
       dispatch(getVotingServiceAttempt());
       dispatch(getAgendaServiceAttempt());
-      dispatch(getOmniServiceAttempt());
+      dispatch(getOmniServiceAttempt()); 
     })
     .catch(error => dispatch({ error, type: FETCHHEADERS_FAILED }));
 };

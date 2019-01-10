@@ -1,0 +1,236 @@
+@import (reference) "./main.less";
+@import (reference) "./Icons.less";
+
+.community-header{
+    display: flex;
+    margin-bottom:20px;
+    >div:first-child{
+        flex: 1;
+        padding-right: 20px;
+    }
+    >div:last-child{
+        width: 200px;
+        padding: 15px;
+    }
+    .title{
+        font-size: 22px;
+        padding: 15px 0px;
+    }
+    .links{
+        width: 200px;
+        padding: 15px;
+    }
+}
+
+.tabs{
+    display: flex;
+    height:44px;
+    >div{
+        flex: 1;
+        height: 44px;
+        line-height: 44px;
+        background-color:#742eb4 ;
+        text-align: center;
+        color: #fff;
+        border-right: 1px solid;
+        cursor: pointer;
+        position: relative;
+        .bubbling{
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            min-width: fit-content;
+            border-radius: 50%;
+            /* border: 1px blue solid; */
+            background-color: red;
+            top: -7px;
+            right: -7px;
+            color: #fff;
+            z-index: 2;
+            line-height: 26px;
+        }
+    }
+    .selected{
+        background-color: #596d82;
+    }
+}
+
+.Proposals-list{
+    .item{
+        background-image: @arrow-right-purple-icon;
+        background-position: right 20px center;
+        background-size: 10px 10px;
+        background-repeat: no-repeat; 
+        background-color: #fff;
+        height: 55px;
+        display: flex;
+        margin: 2px 0px;
+        cursor: pointer;
+        >div:first-child{
+            flex:1;
+            padding-left: 20px;
+            >div:first-child{
+                height: 27px;
+                line-height: 40px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                width: 420px;
+            }
+            >div:last-child{
+                color: #999;
+                font-size: 11px;
+                height: 27px;
+                line-height: 27px;
+            }
+        }
+        >div:last-child{
+            // padding-top: 25px;
+            position: relative;
+            width: 197px;
+            min-width:fix-content;
+            .top{
+                display: flex;
+                padding-right: 35px;
+                top: 25px;
+                position: absolute;
+            }
+            .bottom{
+                 width:fit-content; 
+                 padding-right: 25px;
+                color: #999;
+                font-size: 11px;
+                width:100%;
+                text-align: right;
+                position: absolute;
+                bottom:0px;
+            }
+        
+        }
+
+        .proposal-vote-choice{
+            width: 6px;
+            height: 6px;
+            border-radius: 100px;
+            background-color: #596d82; 
+            margin-right: 10px;
+        }
+        .proposal-vote-choice.yes{ 
+            background-color: green;  
+        }
+        .proposal-vote-choice.no{ 
+            background-color: red;  
+        }
+        .proposal-vote-text{
+            width: 130px;
+            line-height: 3px;
+            height: 9px;
+        }
+    }
+    .item:hover{
+        background-color: #eeeeee;  
+        cursor:pointer;
+    }
+    // .item.ended{
+    //     background-color:#e0e0e0;
+    // }
+    
+}
+.Proposals-list.ended{
+    .item{
+        background-color:#e0e0e0;
+    }
+    .item.passed{
+        border-left: green 2px solid;
+    }
+    .item.declined{
+        border-left: red 2px solid;
+    }
+    .item.proposal-modified-since-last-access{
+        background-color:#e0e0e0;
+    }
+}
+
+
+.detail-info{
+    display: flex;
+    background: #fff;
+    >div:first-child{
+        flex:1;
+        padding:15px; 
+        .subtitle{
+            color: #999;
+            font-size: 11px;
+        }
+        .info{
+            margin-top:15px;
+            >div{
+                display: flex;
+                div:first-child{
+                    width:200px;
+                    text-align: right;
+                    color: #999;
+                    padding-right: 25px;
+                }
+            }
+        }
+    }
+    >div:last-child{
+        width: 400px;
+        height: 140px;
+        background: #dadfe2;
+        padding: 15px;
+        min-height: fit-content;
+        .proposal-details-voting-preference{
+            .proposal-details-current-choice-box{
+                .proposal-vote-option{
+                    padding: 7px 0px;
+                    cursor:pointer;
+                    input[type="radio"]{
+                        display:none
+                    }
+                    .radio-label{
+                        display: inline-block;
+                        border: 1px solid #ccc;
+                        width: 16px;
+                        height: 16px;
+                        border-radius: 2px;
+                        vertical-align: middle;
+                        margin-right: 5px;
+                        position: relative;
+                    }
+                    .radio-label.no{
+                        border-color:red;
+                    }
+                    .radio-label.yes{
+                        border-color:green;
+                    }
+                    .radio-label:before{
+                        content: '';
+                        font-size: 0;
+                        width: 10px;
+                        height: 10px;
+                        background: rgb(143, 188, 238);
+                        position: absolute;
+                        left:50%;
+                        top:50%;
+                        margin-left: -5px;
+                        margin-top: -5px;
+                        border-radius: 2px;
+                        display: none;
+                    }
+                    input[type="radio"]:checked~.radio-label:before{
+                        display: block;
+                    } 
+
+                }
+            }
+        }
+    }
+}
+.detail-votingProgress{
+    background: #fff;
+    padding:15px 30px;
+}
+
+

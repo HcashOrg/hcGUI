@@ -1,7 +1,8 @@
 export { createSelector } from "reselect";
-export { compose, reduce, find, filter, get, eq, map } from "lodash/fp";
+export { compose, reduce, find, filter, get, eq, map, some } from "lodash/fp";
 import compose from "lodash/fp/compose";
 import get from "lodash/fp/get";
+import { isFunction } from "util"
 
 export const not = fn => (...args) => !fn(...args);
 export const bool = compose(not, not);
@@ -22,10 +23,26 @@ export const createSelectorEager = (keyFns, resultFn) =>
 // Given a hash of keys to functions, creates a selector that returns a map of function results
 export const selectorMap = (fns) => createSelectorEager(
   Object.keys(fns).map(key => fns[key]),
-  (...args) => Object.keys(fns).reduce((res, key, idx) => ({...res, [key]: args[idx] }), {})
+  (...args) => Object.keys(fns).reduce((res, key, idx) => ({ ...res, [key]: args[idx] }), {})
 );
 
 export const substruct = (structure, obj) => Object.keys(structure)
   .reduce((res, key) => ({ ...res, [structure[key] || key]: get(key, obj) }), {});
 
 export const apply = (fn, ...args) => fn(...args);
+
+
+export const replace = (list, predicate, replacement) => {
+  const idx = list.findIndex(predicate);
+  if (idx === -1) {
+    return list;
+  }
+
+  const rep = isFunction(replacement)
+    ? replacement(list[idx], list, idx)
+    : replacement;
+
+  const newList = [...list];
+  newList[idx] = rep;
+  return newList;
+};

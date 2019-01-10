@@ -19,7 +19,7 @@ const historyTable = ({  listTransactions, onDetail }) => (
                         m="blockTime"/></div>
         </div>
         <div className="omni-history-list-body">
-            {listTransactions && listTransactions.length > 0 ? listTransactions.map((item) => <div key={item.txid} onClick={() => {
+            {listTransactions && listTransactions.length > 0 ? listTransactions.map((item,index) => <div key={`${item.txid}_${index}`} onClick={() => {
                 onDetail(item.txid);
             }}>
                 <div>{item.type}</div>
