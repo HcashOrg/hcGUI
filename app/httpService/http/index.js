@@ -93,7 +93,7 @@ export function get(piURL, path, params = {}) {
       resolve(response);
     })
       .catch(err => {
-        console.log(` err 响应拦截器即异常处理 ${piURL}${path}  ${err}`)
+        console.log(`error: Response interceptor ${piURL}${path}  ${err}`)
         reject(err)
       })
 
@@ -127,7 +127,7 @@ export function post(piURL, path, data = {}) {
     }).then(response => { 
       resolve(response);
     }, err => {
-      console.log(` err 响应拦截器即异常处理 ${piURL}${path}  ${err}`)
+      console.log(` error: Response interceptor  ${piURL}${path}  ${err}`)
       reject(err)
     })
 
