@@ -7,7 +7,8 @@ class IndexPage extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            tabSelected: 1
+            tabSelected: 1,
+            lastToken: null
         }
 
 
@@ -21,9 +22,17 @@ class IndexPage extends React.PureComponent {
         // if (!this.props.getVettedProposalsAttempt) {
         //     this.props.getVettedProposals && this.props.getVettedProposals();
         // }
- 
-        this.props.getVettedProposals && this.props.getVettedProposals();
+
+        // this.props.getVettedProposals && this.props.getVettedProposals();
+        this.getVettedProposals(null);
     }
+
+    getVettedProposals = (token) => {
+        this.props.getVettedProposals && this.props.getVettedProposals(token, (v) => { 
+            this.setState({ lastToken: v });
+        });
+    }
+
 
     onTabSelected = (index) => {
         if (index != this.tabSelected) {
@@ -38,7 +47,9 @@ class IndexPage extends React.PureComponent {
                     {...{
                         tabSelected,
                         onTabSelected: this.onTabSelected,
-                        router: this.props.router
+                        router: this.props.router,
+                        getVettedProposals:()=>{this.getVettedProposals(this.state.lastToken);},
+                        lastToken:this.state.lastToken
                     }}
                 />
             </div>

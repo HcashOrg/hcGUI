@@ -6083,7 +6083,7 @@ msgstr "共识更改"
 
 #. [votingPreferences.description]
 #. defaultMessage is:
-#. Consensus changes refer to the on-chain governance aspect of Decred. This
+#. Consensus changes refer to the on-chain governance aspect of Hc. This
 #. means deciding whether to adopt changes to the consensus rules of the
 #. network. Participation in voting requires (PoS) tickets.
 #: app/i18n/extracted/app/components/views/GovernancePage/Blockchain/Page.json
@@ -6119,4 +6119,27 @@ msgctxt "proposal.noVote"
 msgid "No vote cast"
 msgstr "没有投票"
 
+#. [proposals.loadBtn.moreTitle]
+#. defaultMessage is:
+#. LOAD MORE
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
+msgctxt "proposals.loadBtn.moreTitle"
+msgid "LOAD MORE"
+msgstr "更多"
+
+#. [proposals.loadBtn.loadedTitle]
+#. defaultMessage is:
+#. ALREADY LOADED
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
+msgctxt "proposals.loadBtn.loadedTitle"
+msgid "ALREADY LOADED"
+msgstr "已全部加载"
+
+#. [proposals.loadBtn.loadingTitle]
+#. defaultMessage is:
+#. LOADING...
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
+msgctxt "proposals.loadBtn.loadingTitle"
+msgid "LOADING..."
+msgstr "加载中..."
 

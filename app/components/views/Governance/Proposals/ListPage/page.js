@@ -1,6 +1,7 @@
 // import { VotingProgress } from "charts"
 import { FormattedMessage as T } from "react-intl";
 import { shell } from "electron";
+import { StakeyBounceXs } from "indicators";
 import { newProposalCounts } from "connectors";
 import { ActiveVoteProposals, PreVoteProposals, VotedProposals, AbandonedProposals } from "./proposalList";
 
@@ -11,14 +12,14 @@ const ListLink = ({ count, children, selected, onClick }) => (
     </div>
 )
 
-const Page = ({ router, tabSelected,
-    onTabSelected, newActiveVoteProposalsCount, newPreVoteProposalsCount,autonomyURL }) => (
+const Page = ({ getVettedProposals, tabSelected,
+    onTabSelected, newActiveVoteProposalsCount, newPreVoteProposalsCount, autonomyURL, lastToken, getVettedProposalsAttempt,loading }) => (
         <div>
             <div className="community-header">
                 <div>
                     <div className="title"><T id="proposals.community.title" m="Proposals" /></div>
-                    <div><T id="proposals.community.descr" m="Voting on community proposals allows you to have a say on how the project treasury is spent.Participation in voting requires (PoS) tickets. Proposal creation, discussions and other features are available at" />
-                        <a onClick={() => shell.openExternal(autonomyURL)}>autonomy.h.cash</a>
+                    <div><T id="proposals.community.descr" m="Voting on community proposals allows you to have a say on how the project treasury is spent.Participation in voting requires (PoS) tickets. Proposal creation, discussions and other features are available at " />
+                        <a onClick={() => shell.openExternal(autonomyURL)}> autonomy.h.cash</a>
                     </div>
                 </div>
                 <div className="links">
@@ -53,8 +54,15 @@ const Page = ({ router, tabSelected,
             {
                 tabSelected == 4 && <AbandonedProposals />
             }
-
-
+            {!loading ? <div className="footer-panel">
+                {(lastToken && !getVettedProposalsAttempt) ? <button className="cancel-operation-btn" onClick={() => {
+                    getVettedProposals && getVettedProposals()
+                }}> <T id="proposals.loadBtn.moreTitle" m="LOAD MORE" />  </button> : null}
+                {
+                    (!lastToken && !getVettedProposalsAttempt)  ? <button className="cancel-operation-btn" > <T id="proposals.loadBtn.loadedTitle" m="ALREADY LOADED" /></button> : null
+                }
+                {getVettedProposalsAttempt ? <button className="cancel-operation-btn" ><StakeyBounceXs /><T id="proposals.loadBtn.loadingTitle" m="LOADING..." /></button> : null}
+            </div> : null}
         </div>
     )
 

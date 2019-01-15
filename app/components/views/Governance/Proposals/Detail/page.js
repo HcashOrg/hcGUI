@@ -23,7 +23,7 @@ const Detail = ({ viewedProposalDetails,
         version } = viewedProposalDetails;
     const eligibleTicketCount = viewedProposalDetails.eligibleTickets.length;
 
-    let text = "";
+    let text = "";  
     viewedProposalDetails.files.forEach(f => {
         if (f.name === "index.md") {
             text = autonomyMarkdownIndexMd(f.payload);

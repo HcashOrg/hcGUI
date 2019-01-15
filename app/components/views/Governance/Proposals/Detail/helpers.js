@@ -1,4 +1,5 @@
 import { KeyBlueButton } from "buttons";
+import { shell } from "electron";
 import { FormattedMessage as T, FormattedRelative } from "react-intl";
 import { StakeyBounceXs } from "indicators";
 import { VotingProgress } from "charts";
@@ -88,13 +89,13 @@ export const TimeValue = ({ timestamp, tsDate }) => (
 );
 
 // This changes links to never open. Debatable whether we want to
-// allow proposals to link somewhere directly from decrediton.
-const renderInternalProposalLink = ({ children }) => {
-    return <a onClick={() => { }} href="#">{children}</a>;
+// allow proposals to link somewhere directly from hc.
+const renderInternalProposalLink = ({ children,href }) => {
+    return <a onClick={() => shell.openExternal(href)} href="#">{children}</a>;
 };
 
-const renderProposalImage = ({ alt }) => { 
-    return <span>{alt}</span>;
+const renderProposalImage = (props) => {  
+    return <span>alt</span>;
 };
 
 export const ProposalText = ({ text }) => (
@@ -114,7 +115,7 @@ export const ProposalText = ({ text }) => (
             linkReference: renderInternalProposalLink,
 
             // debatable whether we wanna allow inline image references in proposals
-            // in decrediton.
+            // in hc.
             imageReference: () => renderProposalImage,
             image: () => renderProposalImage,
 

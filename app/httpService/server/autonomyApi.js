@@ -37,7 +37,7 @@ export function Vote(token, ticket, voteBitInt, signature) {
 }
 
 export const getActiveVotes = (piURL) => GET(piURL,`/v1/proposals/activevote`);
-export const getVetted = (piURL) => GET(piURL,`/v1/proposals/vetted`);
+export const getVetted = (piURL,params) => GET(piURL,`/v1/proposals/vetted`,params);
 export const getVotesStatus = (piURL) => GET(piURL,`/v1/proposals/votestatus`);
 export const getProposal = (piURL, token) => GET(piURL,`/v1/proposals/${token}`);
 export const getProposalVotes = (piURL, token) => GET(piURL,`/v1/proposals/${token}/votes`);

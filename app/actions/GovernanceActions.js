@@ -43,7 +43,7 @@ const fillVoteStatus = (proposal, voteStatus, blockTimestampFromNow) => {
   const totalVotes = voteStatus.totalvotes;
   const eligibleVotes = voteStatus.numofeligiblevotes;
   const passPercentage = voteStatus.passPercentage ? voteStatus.passPercentage : 60;
- 
+
   if (totalVotes / eligibleVotes > quorum / 100) {
     proposal.quorumPass = true;
   }
@@ -61,12 +61,12 @@ const fillVotes = async (proposal, propVotes, walletService) => {
   const voteBitToChoice = proposal.voteOptions.reduce((m, o) => {
     m[o.bits] = o.id;
     return m;
-  }, {});   
+  }, {});
   const eligibleTickets = propVotes && propVotes.data && propVotes.data.startvotereply
     ? await getWalletCommittedTickets(propVotes.data.startvotereply.eligibletickets, walletService)
     : [];
- 
-  const eligibleTicketsByHash = eligibleTickets.reduce( (m, t) => { m[t.ticket] = true; return m; }, {});
+
+  const eligibleTicketsByHash = eligibleTickets.reduce((m, t) => { m[t.ticket] = true; return m; }, {});
 
   proposal.eligibleTickets = eligibleTickets;
   proposal.hasEligibleTickets = eligibleTickets.length > 0;
@@ -90,7 +90,7 @@ const fillVotes = async (proposal, propVotes, walletService) => {
 // (committed tickets) for a given proposal (given a list of eligible tickets
 // returned from an activevotes call)
 const getWalletCommittedTickets = async (eligibleTickets, walletService) => {
-  const ticketHashesToByte = (hashes) => hashes.map(hexReversedHashToArray); 
+  const ticketHashesToByte = (hashes) => hashes.map(hexReversedHashToArray);
   const commitedTicketsResp = await wallet.committedTickets(walletService,
     ticketHashesToByte(eligibleTickets));
   const tickets = commitedTicketsResp.getTicketaddressesList();
@@ -101,8 +101,8 @@ const getWalletCommittedTickets = async (eligibleTickets, walletService) => {
   }));
 };
 
-const getProposalVotes = async (proposal, piURL, walletService) => { 
-  const propVotes = await pi.getProposalVotes(piURL, proposal.token); 
+const getProposalVotes = async (proposal, piURL, walletService) => {
+  const propVotes = await pi.getProposalVotes(piURL, proposal.token);
   if (propVotes && propVotes.data) {
     await fillVotes(proposal, propVotes, walletService);
   }
@@ -131,7 +131,7 @@ export const GETVETTED_SUCCESS = "GETVETTED_SUCCESS";
 export const GETVETTED_UPDATEDVOTERESULTS_SUCCESS = "GETVETTED_UPDATEDVOTERESULTS_SUCCESS";
 export const GETVETTED_UPDATEDVOTERESULTS_FAILED = "GETVETTED_UPDATEDVOTERESULTS_FAILED";
 
-export const getVettedProposals = () => async (dispatch, getState) => { 
+export const getVettedProposals = (after, callBack) => async (dispatch, getState) => {
   dispatch({ type: GETVETTED_ATTEMPT });
   const piURL = sel.autonomyApiURL(getState());
   const oldProposals = sel.proposalsDetails(getState());
@@ -146,8 +146,14 @@ export const getVettedProposals = () => async (dispatch, getState) => {
   let proposals = [], preVote = [], activeVote = [], voted = [], abandoned = [], byToken = {};
 
   try {
-    const [ vetted, votesStatus ] = await Promise.all(
-      [ pi.getVetted(piURL), pi.getVotesStatus(piURL) ]);
+    const [vetted, votesStatus] = await Promise.all(
+      [pi.getVetted(piURL, { after }), pi.getVotesStatus(piURL)]);
+
+    if (vetted.data && vetted.data.proposals.length >= 20) {
+      callBack && callBack(vetted.data.proposals[vetted.data.proposals.length - 1].censorshiprecord.token)
+    } else {
+      callBack && callBack(null)
+    }
 
     // helpers
     const blockTimestampFromNow = sel.blockTimestampFromNow(getState());
@@ -162,7 +168,7 @@ export const getVettedProposals = () => async (dispatch, getState) => {
       const voteStatus = statusByToken[p.censorshiprecord.token] || defaultVoteStatus;
       if (p.status == VOTESTATUS_ABANDONED) voteStatus.status = VOTESTATUS_ABANDONED;
       const voteData = parseOptionsResult(voteStatus.optionsresult);
-      const oldProposal =oldProposals && oldProposals[p.censorshiprecord.token];
+      const oldProposal = oldProposals && oldProposals[p.censorshiprecord.token];
 
       const proposal = {
         hasDetails: false,
@@ -178,10 +184,10 @@ export const getVettedProposals = () => async (dispatch, getState) => {
         files: [],
         hasEligibleTickets: 0,
         eligibleTickets: [],
-        modifiedSinceLastAccess: (p.timestamp*1000) > lastAccessTime,
+        modifiedSinceLastAccess: (p.timestamp * 1000) > lastAccessTime,
         votingSinceLastAccess: false,
         ...voteData,
-      }; 
+      };
       fillVoteStatus(proposal, voteStatus, blockTimestampFromNow);
       proposals.push(proposal);
     }
@@ -189,17 +195,28 @@ export const getVettedProposals = () => async (dispatch, getState) => {
 
     proposals.forEach(p => {
       switch (p.voteStatus) {
-      case VOTESTATUS_ABANDONED: abandoned.push(p); break;
-      case VOTESTATUS_ACTIVEVOTE: activeVote.push(p); break;
-      case VOTESTATUS_VOTED: voted.push(p); break;
-      default:
-        preVote.push(p); break;
+        case VOTESTATUS_ABANDONED: abandoned.push(p); break;
+        case VOTESTATUS_ACTIVEVOTE: activeVote.push(p); break;
+        case VOTESTATUS_VOTED: voted.push(p); break;
+        default:
+          preVote.push(p); break;
       }
 
       byToken[p.token] = p;
-    }); 
-    dispatch({ proposals: byToken, preVote, activeVote, abandoned, voted, type: GETVETTED_SUCCESS });
-  } catch (error) { 
+    });
+    if (after) {
+      const state_proposals = getState().governance.proposals;
+      const state_preVote = getState().governance.preVote;
+      const state_activeVote = getState().governance.activeVote;
+      const state_abandoned = getState().governance.abandoned;
+      const state_voted = getState().governance.voted;
+      await dispatch({ proposals: [...state_proposals, ...byToken], preVote: [...state_preVote, ...preVote],
+         activeVote: [...state_activeVote, ...activeVote], abandoned: [...state_abandoned, ...abandoned], 
+         voted: [...state_voted , ...voted], type: GETVETTED_SUCCESS });
+    } else {
+      await dispatch({ proposals: byToken, preVote, activeVote, abandoned, voted, type: GETVETTED_SUCCESS });
+    }
+  } catch (error) {
     dispatch({ error, type: GETVETTED_FAILED });
     return;
   }
@@ -210,37 +227,52 @@ export const getVettedProposals = () => async (dispatch, getState) => {
   // (possibly) this being a long time after the GETVETTED_SUCCESS has been
   // processed.
 
-  try { 
+  try {
     const { walletService } = getState().grpc;
 
-    const votedWithVotes = await Promise.all([ ...activeVote, ...voted ]
-      .map(prop => getProposalVotes({ ...prop }, piURL, walletService))); 
-      const { governance: { proposals } } = getState();
-    activeVote = [];
-    voted = [];
-   // byToken = { ...byToken };
+ 
+    const votedWithVotes = await Promise.all([...activeVote, ...voted]
+      .map(prop => getProposalVotes({ ...prop }, piURL, walletService)));
+    const state_proposals = getState().governance.proposals;
+    const state_activeVote = getState().governance.activeVote;
+    const state_voted = getState().governance.voted;
+    
+    activeVote = state_activeVote.map(obj=>{
+        const p = votedWithVotes.find(o=>{
+          return o.token == obj.token;
+        })
 
-    votedWithVotes.forEach(p => {
-      switch (p.voteStatus) {
-      case VOTESTATUS_ACTIVEVOTE:
-        var startVoteBh = p.startBlockHeight || 0;
-        p.votingSinceLastAccess = startVoteBh >= (lastAccessBlock - chainParams.TicketMaturity);
-        activeVote.push(p);
-        break;
+        if(p){
+          var startVoteBh = p.startBlockHeight || 0;
+          p.votingSinceLastAccess = startVoteBh >= (lastAccessBlock - chainParams.TicketMaturity);
+          return p
+        }else{
+          return obj
+        }
+    });
+    voted = state_voted.map(obj=>{
+      const p = votedWithVotes.find(o=>{
+        return o.token == obj.token;
+      })
+      if(p){ 
+        return p
+      }else{
+        return obj
+      }
+    });
+    // byToken = { ...byToken };
 
-      case VOTESTATUS_VOTED:
-        voted.push(p);
-        break;
-
-      default:
-        voted.push(p); break;
-      } 
-      proposals[p.token] = {...p,files:proposals[p.token].files};
+    votedWithVotes.forEach(p => { 
+      if (state_proposals[p.token]) {
+        state_proposals[p.token] = { ...p, files: state_proposals[p.token].files };
+      } else {
+        state_proposals[p.token] = p;
+      }
     });
     voted.sort((a, b) => a.timestamp - b.timestamp);
     activeVote.sort((a, b) => a.timestamp - b.timestamp);
- 
-    dispatch({ proposals: proposals, activeVote, voted, type: GETVETTED_UPDATEDVOTERESULTS_SUCCESS });
+
+    dispatch({ proposals: state_proposals, activeVote, voted, type: GETVETTED_UPDATEDVOTERESULTS_SUCCESS });
   } catch (error) {
     dispatch({ error, type: GETVETTED_UPDATEDVOTERESULTS_FAILED });
     return;
@@ -258,10 +290,10 @@ export const getProposalDetails = (token, markViewed) => async (dispatch, getSta
 
   const decodeFilePayload = (f) => {
     switch (f.mime) {
-    case "text/plain; charset=utf-8":
-      return atob(f.payload);
-    default:
-      return f.payload;
+      case "text/plain; charset=utf-8":
+        return atob(f.payload);
+      default:
+        return f.payload;
     }
   };
 
@@ -298,20 +330,20 @@ export const getProposalDetails = (token, markViewed) => async (dispatch, getSta
       hasDetails: true,
       hasEligibleTickets: false,
       eligibleTickets: []
-    }; 
+    };
     if (markViewed) {
       proposal.modifiedSinceLastAccess = false;
       proposal.votingSinceLastAccess = false;
     }
 
-    if ([ VOTESTATUS_VOTED, VOTESTATUS_ACTIVEVOTE ].includes(proposal.voteStatus)) {
+    if ([VOTESTATUS_VOTED, VOTESTATUS_ACTIVEVOTE].includes(proposal.voteStatus)) {
       await getProposalVoteResults(proposal, piURL, walletService, blockTimestampFromNow);
-    } 
+    }
     let { preVote, activeVote, voted, abandoned } = getState().governance;
     preVote = replace(preVote, p => p.token === token, proposal);
     activeVote = replace(activeVote, p => p.token === token, proposal);
     voted = replace(voted, p => p.token === token, proposal);
-    abandoned = replace(abandoned, p => p.token === token, proposal); 
+    abandoned = replace(abandoned, p => p.token === token, proposal);
     dispatch({ token, proposal, preVote, activeVote, voted, abandoned, type: GETPROPOSAL_SUCCESS });
   } catch (error) {
     dispatch({ error, type: GETPROPOSAL_FAILED });
@@ -320,10 +352,10 @@ export const getProposalDetails = (token, markViewed) => async (dispatch, getSta
 };
 
 export const viewProposalDetails = (token) => (dispatch, getState) => {
-  const details = sel.proposalsDetails(getState()); 
+  const details = sel.proposalsDetails(getState());
   if (!details[token] || !details[token].hasDetails) {
     dispatch(getProposalDetails(token, true));
-  } 
+  }
   dispatch(pushHistory("/governance/proposals/detail/" + token));
 };
 
@@ -381,5 +413,4 @@ export const updateVoteChoice = (proposal, newVoteChoiceID, passphrase) =>
     } catch (error) {
       dispatch({ error, type: UPDATEVOTECHOICE_FAILED });
     }
-  };    
-   
+  };
