@@ -1,12 +1,13 @@
 import {
-  compose, reduce, filter, get, not, or, and, eq, find, bool, map, apply,some,
+  compose, reduce, filter, get, not, or, and, eq, find, bool, map, apply, some,
   createSelectorEager as createSelector
 } from "./fp";
 import { reverseHash } from "./helpers/byteActions";
+import { validataOS } from "./helpers";
 import { TRANSACTION_TYPES } from "wallet/service";
 import { MainNetParams, TestNetParams } from "wallet/constants";
 import { TicketTypes, decodeVoteScript } from "./helpers/tickets";
-import { httpOptions } from "./config";
+import { httpOptions, currentVersion } from "./config";
 
 const EMPTY_ARRAY = [];  // Maintaining identity (will) improve performance;
 
@@ -125,7 +126,7 @@ export const getBalanceRequestAttempt = get(["grpc", "getBalanceRequestAttempt"]
 export const getAccountsResponse = get(["grpc", "getAccountsResponse"]);
 export const getNetworkResponse = get(["grpc", "getNetworkResponse"]);
 export const getNetworkError = get(["grpc", "getNetworkError"]);
-export const treasuryBalance = get(["grpc","treasuryBalance"]);
+export const treasuryBalance = get(["grpc", "treasuryBalance"]);
 const accounts = createSelector([getAccountsResponse], r => r ? r.getAccountsList() : []);
 
 export const sortedAccounts = createSelector(
@@ -615,10 +616,10 @@ export const rescanRequest = get(["control", "rescanRequest"]);
 export const getTransactionsRequestAttempt = get(["grpc", "getTransactionsRequestAttempt"]);
 export const getTicketsRequestAttempt = get(["grpc", "getTicketsRequestAttempt"]);
 export const notifiedBlockHeight = get(["notifications", "currentHeight"]);
-export const tickets = get([ "grpc", "tickets" ]);
+export const tickets = get(["grpc", "tickets"]);
 export const currentBlockHeight = get(["grpc", "currentBlockHeight"]);
 
-export const hasTickets = compose(t => t && t.length > 0, tickets); 
+export const hasTickets = compose(t => t && t.length > 0, tickets);
 
 export const rescanEndBlock = currentBlockHeight;
 export const rescanStartBlock = compose(
@@ -931,11 +932,11 @@ export const ticketDataChart = createSelector(
 );
 
 
- 
+
 
 export const autonomyApiURL = createSelector(
   [isTestNet],
-  (isTestNet) => isTestNet ? httpOptions.autonomyURL.TESTNET+"/api" : httpOptions.autonomyURL.MAINNET+"/api"
+  (isTestNet) => isTestNet ? httpOptions.autonomyURL.TESTNET + "/api" : httpOptions.autonomyURL.MAINNET + "/api"
 );
 
 export const autonomyURL = createSelector(
@@ -948,13 +949,13 @@ export const hcdataURL = createSelector(
   (isTestNet) => isTestNet ? httpOptions.hcDataApiURL.TESTNET : httpOptions.hcDataApiURL.MAINNET
 );
 
-export const updateVoteChoiceAttempt = get([ "governance", "updateVoteChoiceAttempt" ]);
-export const activeVoteProposals = get([ "governance", "activeVote" ]);
-export const getVettedProposalsAttempt = get([ "governance", "getVettedAttempt" ]);
-export const preVoteProposals = get([ "governance", "preVote" ]);
-export const votedProposals = get([ "governance", "voted" ]);
-export const abandonedProposals = get([ "governance", "abandoned" ]);
-export const lastVettedFetchTime = get([ "governance", "lastVettedFetchTime" ]);
+export const updateVoteChoiceAttempt = get(["governance", "updateVoteChoiceAttempt"]);
+export const activeVoteProposals = get(["governance", "activeVote"]);
+export const getVettedProposalsAttempt = get(["governance", "getVettedAttempt"]);
+export const preVoteProposals = get(["governance", "preVote"]);
+export const votedProposals = get(["governance", "voted"]);
+export const abandonedProposals = get(["governance", "abandoned"]);
+export const lastVettedFetchTime = get(["governance", "lastVettedFetchTime"]);
 export const newActiveVoteProposalsCount = compose(
   reduce((acc, p) => p.votingSinceLastAccess ? acc + 1 : acc, 0),
   activeVoteProposals
@@ -965,29 +966,59 @@ export const newPreVoteProposalsCount = compose(
 );
 export const newProposalsStartedVoting = compose(some(p => p.votingSinceLastAccess), activeVoteProposals);
 
-export const getProposalAttempt = get([ "governance", "getProposalAttempt" ]);
-export const getProposalError = get([ "governance", "getProposalError" ]);
-export const proposalsDetails = get([ "governance", "proposals" ]);
+export const getProposalAttempt = get(["governance", "getProposalAttempt"]);
+export const getProposalError = get(["governance", "getProposalError"]);
+export const proposalsDetails = get(["governance", "proposals"]);
 export const viewedProposalToken = (state, ctx) => ctx.params && ctx.params.token ? ctx.params.token : null;
 export const viewedProposalDetails = createSelector(
-  [ proposalsDetails, viewedProposalToken ],
-  (proposals, token) =>{
- 
-    return  (proposals ? proposals[token]:null)
+  [proposalsDetails, viewedProposalToken],
+  (proposals, token) => {
+
+    return (proposals ? proposals[token] : null)
   }
 );
 export const initialProposalLoading = createSelector(
-  [ proposalsDetails, getVettedProposalsAttempt ],
-  ( proposals, getVettedAttempt ) => ((proposals && Object.keys(proposals).length === 0) || !proposals) && getVettedAttempt
+  [proposalsDetails, getVettedProposalsAttempt],
+  (proposals, getVettedAttempt) => ((proposals && Object.keys(proposals).length === 0) || !proposals) && getVettedAttempt
 );
- 
+
 
 export const blockTimestampFromNow = createSelector(
-  [ chainParams, currentBlockHeight ],
-  ( chainParams, currentHeight ) => {
+  [chainParams, currentBlockHeight],
+  (chainParams, currentHeight) => {
     const currentTimestamp = new Date().getTime() / 1000;
     return (block) => {
       return Math.trunc(currentTimestamp + ((block - currentHeight) * chainParams.TargetTimePerBlock));
     };
   }
-);  
+);
+
+
+export const lastVersion = get(["github", "lastVersion"]);
+export const downloadLink_mac = get(["github", "downloadLink_mac"]);
+export const downloadLink_win = get(["github", "downloadLink_win"]);
+export const downloadLink_ubuntu = get(["github", "downloadLink_ubuntu"]);
+
+export const hasUpdateApp = createSelector(
+  [lastVersion],
+  (lastVersion) => {
+    if (lastVersion == currentVersion)
+      return false;
+    else
+      return true;
+  }
+);
+
+
+export const downloadLink = createSelector(
+  [downloadLink_mac, downloadLink_win, downloadLink_ubuntu],
+  (mac, win, ubuntu) => { 
+    if (validataOS() == "Mac")
+      return mac;
+    else if (validataOS() == "Linux")
+      return ubuntu;
+    else
+      return win;
+  }
+);
+

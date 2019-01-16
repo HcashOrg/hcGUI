@@ -2,6 +2,7 @@ import {
   WalletSelectionFormHeader as WalletSelectionHeader,
   WalletSelectionFormBody
 } from "./Form";
+import DownloadApp from "../../../shared/DownloadApp";
 
 @autobind
 class WalletSelectionBody extends React.Component {
@@ -45,7 +46,7 @@ class WalletSelectionBody extends React.Component {
       newWalletNetwork,
     } = this.state;
     return (
-      <WalletSelectionFormBody
+      [<WalletSelectionFormBody
         {...{
           sideActive,
           onShowCreateWallet,
@@ -61,7 +62,8 @@ class WalletSelectionBody extends React.Component {
           ...this.props,
           ...this.state,
         }}
-      />
+        key="w01"
+      />,<DownloadApp key="d02"/>]
     );
   }
   onShowCreateWallet() {

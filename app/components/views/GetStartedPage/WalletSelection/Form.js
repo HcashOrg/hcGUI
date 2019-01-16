@@ -20,7 +20,7 @@ const WalletSelectionBodyBase = ({
 }) => {
   return (
     availableWallets && availableWallets.length > 0 ?
-      <div className="advanced-page">
+      <div className="advanced-page"> 
         <div className="advanced-page-toggle">
           <div className="text-toggle">
             <div className={"text-toggle-button-left " + (!sideActive && "text-toggle-button-active")} onClick={sideActive ? onShowCreateWallet : null}>

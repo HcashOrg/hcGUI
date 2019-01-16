@@ -6143,3 +6143,19 @@ msgctxt "proposals.loadBtn.loadingTitle"
 msgid "LOADING..."
 msgstr "加载中..."
 
+
+#. [downloadApp.tips]
+#. defaultMessage is:
+#. Tips
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
+msgctxt "downloadApp.tips"
+msgid "Tips"
+msgstr "温馨提示"
+
+#. [downloadApp.content]
+#. defaultMessage is:
+#. Is there a new version, is it updated to use?
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
+msgctxt "downloadApp.content"
+msgid "Is there a new version, is it updated to use?"
+msgstr "有新的版本，是否更新使用？"

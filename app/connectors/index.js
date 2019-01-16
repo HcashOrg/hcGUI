@@ -57,4 +57,5 @@ export { default as abandonedProposals } from "./abandonedProposals";
 export { default as proposals } from "./proposals";
 export { default as newProposalCounts } from "./newProposalCounts";
 export { default as network } from "./network";
+export { default as updateInformation } from "./updateInformation"
 

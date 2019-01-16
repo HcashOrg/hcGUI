@@ -6,6 +6,7 @@ import { ipcRenderer } from "electron";
 import { setMustOpenForm, getWalletCfg, getAppdataPath, getRemoteCredentials, getGlobalCfg } from "../config";
 import { hideSidebarMenu } from "./SidebarActions";
 import { isTestNet } from "selectors";
+import {getDataConfig} from "./GithubDataAction";
 
 export const DAEMONSTARTED = "DAEMONSTARTED";
 export const DAEMONSTARTED_APPDATA = "DAEMONSTARTED_APPDATA";
@@ -66,7 +67,10 @@ export const shutdownApp = () => (dispatch) => {
 
 export const cleanShutdown = () => () => wallet.cleanShutdown();
 
-export const getAvailableWallets = () => (dispatch) => {
+export const getAvailableWallets = () => (dispatch) => { 
+
+  dispatch(getDataConfig());
+
   wallet.getAvailableWallets()
     .then(availableWallets => {
       dispatch({availableWallets, type: AVAILABLE_WALLETS});
