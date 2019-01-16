@@ -6,13 +6,13 @@ import { VotingProgress } from "charts";
 import UpdateVoteChoiceModalButton from "./updateVoteChoiceModalButton";
 import { default as ReactMarkdown } from "react-markdown";
 
- 
+
 
 export const ProposalError = ({ error }) => <div><T id="proposalDetails.loadingError" m="Error loading Proposal: {error}" values={{ error }} /></div>;
 
-export const ProposalAbandoned = () =><T id="proposalDetails.votingInfo.abandoned" m="Proposal has been abandoned" />;
+export const ProposalAbandoned = () => <T id="proposalDetails.votingInfo.abandoned" m="Proposal has been abandoned" />;
 
-export const ProposalNotVoting = () =><T id="proposalDetails.votingInfo.notVoting" m="Proposal not yet on voting stage" />;
+export const ProposalNotVoting = () => <T id="proposalDetails.votingInfo.notVoting" m="Proposal not yet on voting stage" />;
 
 export const ProposalVoted = () =>
     <div className="proposal-details-voting-voted"><T id="proposalDetails.votingInfo.voted" m="Voting has ended for this proposal" /></div>;
@@ -31,8 +31,8 @@ export const NoElligibleTicketsVotingInfo = ({ showPurchaseTicketsPage }) => (
     </Aux>
 );
 
-const VoteOption = ({ value, description, onClick, checked }) =>{  
-    return ( 
+const VoteOption = ({ value, description, onClick, checked }) => {
+    return (
         <div className="proposal-vote-option" onClick={onClick ? () => onClick(value) : null}>
             <input className={value} type="radio" id={value} name="proposalVoteChoice" readOnly={!onClick} onChange={onClick ? () => onClick(value) : null}
                 value={value} checked={checked} />
@@ -90,18 +90,18 @@ export const TimeValue = ({ timestamp, tsDate }) => (
 
 // This changes links to never open. Debatable whether we want to
 // allow proposals to link somewhere directly from hc.
-const renderInternalProposalLink = ({ children,href }) => {
+const renderInternalProposalLink = ({ children, href }) => {
     return <a onClick={() => shell.openExternal(href)} href="#">{children}</a>;
 };
 
-const renderProposalImage = (props) => {  
-    return <span>alt</span>;
+const renderProposalImage = (props) => {
+    return <img src={props.src} />
 };
 
 export const ProposalText = ({ text }) => (
     <ReactMarkdown
         source={text}
- 
+
         // NEVER set to false
         escapeHtml={true}
 
@@ -121,5 +121,16 @@ export const ProposalText = ({ text }) => (
 
             html: () => null,
         }}
+    />
+);
+
+
+
+const ImageOrLink = alt => props => {
+    return <img src={`data:image/png;base64,${props.src}`} alt={alt} /> 
+}
+export const ProposalImage = ({ text, alt }) => (
+    <ReactMarkdown
+        source={text} renderers={{ image: ImageOrLink(alt) }}
     />
 );

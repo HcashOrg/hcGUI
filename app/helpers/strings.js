@@ -59,15 +59,13 @@ export function limitFractionalDigits(s, maxFracDigits) {
 export function getByteLen(val) {
   var len = 0;
   for (var i = 0; i < val.length; i++) {
-       var a = val.charAt(i);
-       if (a.match(/[^\x00-\xff]/ig) != null) 
-      {
-          len += 3;
-      }
-      else
-      {
-          len += 1;
-      }
+    var a = val.charAt(i);
+    if (a.match(/[^\x00-\xff]/ig) != null) {
+      len += 3;
+    }
+    else {
+      len += 1;
+    }
   }
   return len;
 }
@@ -80,4 +78,12 @@ export function getByteLen(val) {
 export function autonomyMarkdownIndexMd(payload) {
   let text = decodeURIComponent(escape(payload));
   return text.substring(text.indexOf("\n") + 1);
+}
+
+
+export function hasImg(n) {
+  if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(n)) { 
+    return false;
+  }
+  return true;
 }

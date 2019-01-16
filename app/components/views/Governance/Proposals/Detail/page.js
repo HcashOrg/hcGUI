@@ -5,11 +5,11 @@ import { FormattedMessage as T } from "react-intl";
 import { AutonomyLink } from "shared";
 import {
     ProposalNotVoting, NoTicketsVotingInfo, OverviewField, OverviewVotingProgressInfo,
-    NoElligibleTicketsVotingInfo, UpdatingVoteChoice, TimeValue,
+    NoElligibleTicketsVotingInfo, UpdatingVoteChoice, TimeValue, ProposalImage,
     ChosenVoteOption, ProposalText, ProposalAbandoned
 } from "./helpers";
 
-import { autonomyMarkdownIndexMd, tsToDate } from "helpers";
+import { autonomyMarkdownIndexMd, tsToDate, hasImg } from "helpers";
 import {
     VOTESTATUS_ACTIVEVOTE, VOTESTATUS_VOTED, VOTESTATUS_ABANDONED
 } from "actions/GovernanceActions";
@@ -17,16 +17,19 @@ import {
 const Detail = ({ viewedProposalDetails,
     showPurchaseTicketsPage, hasTickets, onVoteOptionSelected, onUpdateVoteChoice,
     newVoteChoice, updateVoteChoiceAttempt }) => {
- 
+
     const { name, token, hasEligibleTickets, voteStatus, voteOptions,
         voteCounts, creator, timestamp, endTimestamp, currentVoteChoice,
         version } = viewedProposalDetails;
     const eligibleTicketCount = viewedProposalDetails.eligibleTickets.length;
 
-    let text = "";  
-    viewedProposalDetails.files.forEach(f => {
+    let content = [];
+    let images=[]; 
+    viewedProposalDetails.files.forEach(f => { 
         if (f.name === "index.md") {
-            text = autonomyMarkdownIndexMd(f.payload);
+            content.push(<ProposalText key={f.name} text={autonomyMarkdownIndexMd(f.payload)} />);
+        } else if (hasImg(f.name)) { 
+            images.push(<ProposalImage key={f.name} text={`![image](${f.payload})`} alt={f.name} />)
         }
     });
 
@@ -46,7 +49,7 @@ const Detail = ({ viewedProposalDetails,
     else voteInfo = <ChosenVoteOption {...{ voteOptions, onUpdateVoteChoice, onVoteOptionSelected, newVoteChoice, eligibleTicketCount, currentVoteChoice, votingComplete: currentVoteChoice !== "abstain" }} />;
 
 
-    
+
     return (
         <div>
             <div className="detail-info">
@@ -69,7 +72,7 @@ const Detail = ({ viewedProposalDetails,
                             label={<T id="proposal.overview.deadline.label" m="Voting Deadline" />}
                             value={voting && <T id="transaction.timestamp"
                                 m="{timestamp, date, medium} {timestamp, time, medium}"
-                                values={{ timestamp: tsToDate(endTimestamp) }} />  } /> : null}
+                                values={{ timestamp: tsToDate(endTimestamp) }} />} /> : null}
                     </div>
                 </div>
                 <div>
@@ -81,7 +84,7 @@ const Detail = ({ viewedProposalDetails,
             </div> : null}
 
             <div >
-                <ProposalText text={text} />
+                {[...content,...images]}
             </div>
         </div>
 

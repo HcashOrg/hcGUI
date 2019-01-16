@@ -159,6 +159,13 @@ export const getVettedProposals = (after, callBack) => async (dispatch, getState
     const blockTimestampFromNow = sel.blockTimestampFromNow(getState());
     const defaultVoteStatus = { status: 0, totalvotes: 0, optionsresult: null };
 
+
+    const state_proposals = getState().governance.proposals;
+    const state_preVote = getState().governance.preVote;
+    const state_activeVote = getState().governance.activeVote;
+    const state_abandoned = getState().governance.abandoned;
+    const state_voted = getState().governance.voted;
+
     // aux maps
     const statusByToken = votesStatus.data.votesstatus ? votesStatus.data.votesstatus.reduce((m, r) => {
       m[r.token] = r;
@@ -188,6 +195,10 @@ export const getVettedProposals = (after, callBack) => async (dispatch, getState
         votingSinceLastAccess: false,
         ...voteData,
       };
+      if (state_proposals && state_proposals[p.censorshiprecord.token]) {
+        proposal.files = state_proposals[p.censorshiprecord.token].files;
+      }
+
       fillVoteStatus(proposal, voteStatus, blockTimestampFromNow);
       proposals.push(proposal);
     }
@@ -205,14 +216,12 @@ export const getVettedProposals = (after, callBack) => async (dispatch, getState
       byToken[p.token] = p;
     });
     if (after) {
-      const state_proposals = getState().governance.proposals;
-      const state_preVote = getState().governance.preVote;
-      const state_activeVote = getState().governance.activeVote;
-      const state_abandoned = getState().governance.abandoned;
-      const state_voted = getState().governance.voted;
-      await dispatch({ proposals: [...state_proposals, ...byToken], preVote: [...state_preVote, ...preVote],
-         activeVote: [...state_activeVote, ...activeVote], abandoned: [...state_abandoned, ...abandoned], 
-         voted: [...state_voted , ...voted], type: GETVETTED_SUCCESS });
+
+      await dispatch({
+        proposals: [...state_proposals, ...byToken], preVote: [...state_preVote, ...preVote],
+        activeVote: [...state_activeVote, ...activeVote], abandoned: [...state_abandoned, ...abandoned],
+        voted: [...state_voted, ...voted], type: GETVETTED_SUCCESS
+      });
     } else {
       await dispatch({ proposals: byToken, preVote, activeVote, abandoned, voted, type: GETVETTED_SUCCESS });
     }
@@ -230,39 +239,39 @@ export const getVettedProposals = (after, callBack) => async (dispatch, getState
   try {
     const { walletService } = getState().grpc;
 
- 
+
     const votedWithVotes = await Promise.all([...activeVote, ...voted]
       .map(prop => getProposalVotes({ ...prop }, piURL, walletService)));
     const state_proposals = getState().governance.proposals;
     const state_activeVote = getState().governance.activeVote;
     const state_voted = getState().governance.voted;
-    
-    activeVote = state_activeVote.map(obj=>{
-        const p = votedWithVotes.find(o=>{
-          return o.token == obj.token;
-        })
 
-        if(p){
-          var startVoteBh = p.startBlockHeight || 0;
-          p.votingSinceLastAccess = startVoteBh >= (lastAccessBlock - chainParams.TicketMaturity);
-          return p
-        }else{
-          return obj
-        }
-    });
-    voted = state_voted.map(obj=>{
-      const p = votedWithVotes.find(o=>{
+    activeVote = state_activeVote.map(obj => {
+      const p = votedWithVotes.find(o => {
         return o.token == obj.token;
       })
-      if(p){ 
+
+      if (p) {
+        var startVoteBh = p.startBlockHeight || 0;
+        p.votingSinceLastAccess = startVoteBh >= (lastAccessBlock - chainParams.TicketMaturity);
         return p
-      }else{
+      } else {
+        return obj
+      }
+    });
+    voted = state_voted.map(obj => {
+      const p = votedWithVotes.find(o => {
+        return o.token == obj.token;
+      })
+      if (p) {
+        return p
+      } else {
         return obj
       }
     });
     // byToken = { ...byToken };
 
-    votedWithVotes.forEach(p => { 
+    votedWithVotes.forEach(p => {
       if (state_proposals[p.token]) {
         state_proposals[p.token] = { ...p, files: state_proposals[p.token].files };
       } else {
@@ -287,7 +296,6 @@ export const GETPROPOSAL_FAILED = "GETPROPOSAL_FAILED";
 export const GETPROPOSAL_SUCCESS = "GETPROPOSAL_SUCCESS";
 
 export const getProposalDetails = (token, markViewed) => async (dispatch, getState) => {
-
   const decodeFilePayload = (f) => {
     switch (f.mime) {
       case "text/plain; charset=utf-8":
