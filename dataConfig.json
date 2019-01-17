@@ -6,8 +6,8 @@
     "advertising_space":{ 
         "footer_space":{
             "link":"https://autonomy.h.cash/",
-            "content_en":"My first ad didn't appear",
-            "content_zh-CN":"我的第一个广告未出现了"
+            "content_en":"<img src='https://github.com/HcashOrg/hcGUI/blob/master/app/style/images/sidebar_03.png'/>My first ad didn't appear",
+            "content_zh-CN":"<img src='https://github.com/HcashOrg/hcGUI/blob/master/app/style/images/sidebar_03.png'/>我的第一个广告未出现了"
         }
     }
 }
