@@ -14,8 +14,8 @@ import { onAppReloadRequested } from "wallet";
 import { getTransactions as walletGetTransactions } from "wallet/service";
 import { TransactionDetails } from "middleware/walletrpc/api_pb";
 import { clipboard } from "electron";
-import * as da from "../httpService/server/hcDataApi";
-import { getVettedProposals } from "./GovernanceActions";
+// import * as da from "../httpService/server/hcDataApi";
+// import { getVettedProposals } from "./GovernanceActions";
 
 export const GETWALLETSERVICE_ATTEMPT = "GETWALLETSERVICE_ATTEMPT";
 export const GETWALLETSERVICE_FAILED = "GETWALLETSERVICE_FAILED";

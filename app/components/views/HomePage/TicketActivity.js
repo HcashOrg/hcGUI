@@ -19,7 +19,7 @@ const RecentTickets = ({
         </div>
         <div className="home-content-nest">
           {tickets.length > 0 ?
-            <TxHistory limit={5} {...{ getAccountsResponse, transactions: tickets }} /> :
+            <TxHistory limit={3} {...{ getAccountsResponse, transactions: tickets }} /> :
             <p><T id="home.noTickets" m="No tickets" /></p>}
         </div>
       </Aux>

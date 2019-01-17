@@ -19,7 +19,7 @@ const RecentTransactions = ({
         </div>
         <div className="home-content-nest">
           {transactions.length > 0 ?
-            <TxHistory limit={5} {...{ getAccountsResponse, transactions }} /> :
+            <TxHistory limit={3} {...{ getAccountsResponse, transactions }} /> :
             <p><T id="home.noTransactions" m="No transactions" /></p>}
         </div>
       </Aux>

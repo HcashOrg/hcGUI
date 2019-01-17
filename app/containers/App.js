@@ -124,8 +124,7 @@ class App extends React.Component {
               <div className="advertising-space">
                 <div onClick={this.renderInternalProposalLink} dangerouslySetInnerHTML={{
                   __html: advertising_space ? advertising_space.footer_space[`content_${locale.language}`] : ""
-                }} />
-                <div></div>
+                }} /> 
               </div>
             </RouteTransition>
           </div>
