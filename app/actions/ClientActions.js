@@ -191,7 +191,7 @@ export const findImmatureTransactions = () => async (dispatch, getState) => {
 
 };
 
-export const getWalletServiceAttempt = () => (dispatch, getState) => {
+export const getWalletServiceAttempt = () => (dispatch, getState) => { 
   const { grpc: { address, port } } = getState();
   const { daemon: { walletName } } = getState();
   dispatch({ type: GETWALLETSERVICE_ATTEMPT });

@@ -12,6 +12,7 @@ import { getWalletCfg, getWalletCfgPath, getHcdCert } from "../config";
 import { isTestNet } from "selectors";
 import { MainNetParams, TestNetParams } from "wallet/constants";
 import axios from "axios";
+import {githubDataConfigAttempt} from "./GithubDataAction"
 
 const MAX_RPC_RETRIES = 5;
 const RPC_RETRY_DELAY = 5000;
@@ -268,6 +269,7 @@ export const fetchHeadersAttempt = () => (dispatch, getState) => {
       dispatch(getVotingServiceAttempt());
       dispatch(getAgendaServiceAttempt());
       dispatch(getOmniServiceAttempt()); 
+      dispatch(githubDataConfigAttempt());
     })
     .catch(error => dispatch({ error, type: FETCHHEADERS_FAILED }));
 };

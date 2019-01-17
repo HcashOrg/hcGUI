@@ -998,6 +998,7 @@ export const lastVersion = get(["github", "lastVersion"]);
 export const downloadLink_mac = get(["github", "downloadLink_mac"]);
 export const downloadLink_win = get(["github", "downloadLink_win"]);
 export const downloadLink_ubuntu = get(["github", "downloadLink_ubuntu"]);
+export const advertising_space = get(["github", "advertising_space"])
 
 export const hasUpdateApp = createSelector(
   [lastVersion],

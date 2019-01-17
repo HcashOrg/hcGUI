@@ -19,7 +19,7 @@ const Page = ({ Header, Body, ...props }) => {
           hidden={hideLogo}
           className="get-started-loading"
         />
-        <Body {...props} />
+        <Body {...props} /> 
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const InvalidRPCVersion = ({ requiredWalletRPCVersion, walletRPCVersion, routes 
           values={{ walletRPCVersion, requiredWalletRPCVersion }}
         />
       </div>
-    </div>
+    </div> 
   </div>
 );
 

@@ -8,11 +8,14 @@ import Snackbar from "components/Snackbar";
 import { RouteTransition } from "shared";
 import { getPage } from "helpers";
 import theme from "theme";
+import { default as ReactMarkdown } from "react-markdown";
+import { shell } from "electron";
 import "style/Layout.less";
 
-const fade = { atEnter: { opacity: 0 }, atActive: { opacity: 1 }, atLeave: { opacity: 0 }};
 
-const wrapperComponent = props => <div className="page-view" { ...props } />;
+const fade = { atEnter: { opacity: 0 }, atActive: { opacity: 1 }, atLeave: { opacity: 0 } };
+
+const wrapperComponent = props => <div className="page-view" {...props} />;
 
 @autobind
 class App extends React.Component {
@@ -29,7 +32,7 @@ class App extends React.Component {
     showAlphaMessage: true,
   };
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     const { window } = props;
     window.addEventListener("beforeunload", this.beforeWindowUnload);
@@ -38,11 +41,11 @@ class App extends React.Component {
     props.listenForAppReloadRequest(this.onReloadRequested);
   }
 
-  dismissAlphaMessage () {
-      this.setState({ showAlphaMessage: false });
+  dismissAlphaMessage() {
+    this.setState({ showAlphaMessage: false });
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.removeEventListener("beforeunload", this.beforeWindowUnload);
   }
 
@@ -67,40 +70,44 @@ class App extends React.Component {
     event.sender.send("app-reload-ui");
   }
 
+  renderInternalProposalLink = () => {
+
+    this.props.advertising_space && shell.openExternal(this.props.advertising_space.footer_space.link);
+  };
+
   render() {
-    const { locale, routes, children } = this.props;
+    const { locale, routes, children, advertising_space } = this.props;
     const pathname = getPage(routes);
 
-    const alphaMessageView = this.state.showAlphaMessage?
-        <div style={{
-            padding: '20px',
-            margin: '20px',
-            backgroundColor: '#862ee0',
-            borderRadius: '10px',
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            padding: '20px',
-            position: 'absolute',
-            width: '100%',
-            top: '0',
-            right: '0',
-            width: 'calc(100% - 140px)',
-            zIndex: '99999',
-        }}>
-            <div style={{ flex: '1 1 100%'  }}>
-                This product is in , have a feature idea? &nbsp;&nbsp;&nbsp;&nbsp;Email it to features@h.cash.
+    const alphaMessageView = this.state.showAlphaMessage ?
+      <div style={{
+        padding: '20px',
+        margin: '20px',
+        backgroundColor: '#862ee0',
+        borderRadius: '10px',
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        padding: '20px',
+        position: 'absolute',
+        width: '100%',
+        top: '0',
+        right: '0',
+        width: 'calc(100% - 140px)',
+        zIndex: '99999',
+      }}>
+        <div style={{ flex: '1 1 100%' }}>
+          This product is in , have a feature idea? &nbsp;&nbsp;&nbsp;&nbsp;Email it to features@h.cash.
             </div>
-            <div style={{ flex: '0 0 50px' }}>
-                <button
-                    style={{ border: '0', color: '#fff', backgroundColor: 'transparent', cursor: 'pointer' }}
-                    onClick={this.dismissAlphaMessage}
-                >
-                    Dismiss
+        <div style={{ flex: '0 0 50px' }}>
+          <button
+            style={{ border: '0', color: '#fff', backgroundColor: 'transparent', cursor: 'pointer' }}
+            onClick={this.dismissAlphaMessage}
+          >
+            Dismiss
                 </button>
-            </div>
-        </div>: null;
-
+        </div>
+      </div> : null;
     return (
       <MuiThemeProvider muiTheme={MUItheme}>
         <IntlProvider
@@ -112,8 +119,14 @@ class App extends React.Component {
           <div className="page-body">
             <SideBar />
             <Snackbar />
-            <RouteTransition className="page-container" opts={ theme("springs.page") } {...{ wrapperComponent, pathname, ...fade }}>
-              { children }
+            <RouteTransition className="page-container" opts={theme("springs.page")} {...{ wrapperComponent, pathname, ...fade }}>
+              {children}
+              <div className="advertising-space">
+                <div onClick={this.renderInternalProposalLink} dangerouslySetInnerHTML={{
+                  __html: advertising_space ? advertising_space.footer_space[`content_${locale.language}`] : ""
+                }} />
+                <div></div>
+              </div>
             </RouteTransition>
           </div>
         </IntlProvider>

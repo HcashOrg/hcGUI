@@ -26,7 +26,7 @@ const Detail = ({ viewedProposalDetails,
     let content = [];
     let images=[]; 
     viewedProposalDetails.files.forEach(f => { 
-        if (f.name === "index.md") {
+        if (f.name === "index.md") { 
             content.push(<ProposalText key={f.name} text={autonomyMarkdownIndexMd(f.payload)} />);
         } else if (hasImg(f.name)) { 
             images.push(<ProposalImage key={f.name} text={`![image](${f.payload})`} alt={f.name} />)
