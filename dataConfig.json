@@ -1,13 +1,13 @@
 {
-    "lastVersion":"2.1.9",
+    "lastVersion":"2.1.8",
     "downloadLink_mac":"https://github.com/HcashOrg/hcGUI/releases/download/R2.1.8/HcGui-2.1.8.dmg",
     "downloadLink_win":"https://github.com/HcashOrg/hcGUI/releases/download/R2.1.8/HcGui.Setup.2.1.8.exe",
     "downloadLink_ubuntu":"https://github.com/HcashOrg/hcGUI/releases/download/R2.1.8/hcgui_2.1.8_amd64.deb",
     "advertising_space":{ 
         "footer_space":{
-            "link":"https://autonomy.h.cash/",
-            "content_en":"<img src='https://raw.githubusercontent.com/HcashOrg/hcGUI/master/app/style/images/sidebar_03.png'/>My first ad didn't appear",
-            "content_zh-CN":"<img src='https://raw.githubusercontent.com/HcashOrg/hcGUI/master/app/style/images/sidebar_03.png'/>我的第一个广告未出现了"
+            "link":"https://www.hyperpay.tech/download",
+            "content_en":"<marquee width='100%' style='cursor: pointer;' scrollamount=4><img src='https://www.hyperpay.tech/themes/en/dist/images/HPY-logo-b.svg' alt='Hyperpay' height='32px' style='vertical-align: middle' > Redefine wallet with On-chain and Off-chain,Download Now!</marquee>",
+            "content_zh-CN":"<marquee width='100%' style='cursor: pointer;' scrollamount=4><img src='https://www.hyperpay.tech/themes/en/dist/images/HPY-logo-b.svg' alt='Hyperpay' height='32px' style='vertical-align: middle' > 一个会赚钱也能交易的好钱包,点击立即下载</marquee>"
         }
     }
 }
