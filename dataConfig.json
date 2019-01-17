@@ -2,5 +2,11 @@
     "lastVersion":"2.1.8",
     "downloadLink_mac":"https://github.com/HcashOrg/hcGUI/releases/download/R2.1.8/HcGui-2.1.8.dmg",
     "downloadLink_win":"https://github.com/HcashOrg/hcGUI/releases/download/R2.1.8/HcGui.Setup.2.1.8.exe",
-    "downloadLink_ubuntu":"https://github.com/HcashOrg/hcGUI/releases/download/R2.1.8/hcgui_2.1.8_amd64.deb"
+    "downloadLink_ubuntu":"https://github.com/HcashOrg/hcGUI/releases/download/R2.1.8/hcgui_2.1.8_amd64.deb",
+    "advertising_space":{ 
+        "footer_space":{
+            "link":"https://autonomy.h.cash/",
+            "content":"我的第一个广告未出现了"
+        }
+    }
 }
