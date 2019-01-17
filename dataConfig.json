@@ -7,7 +7,7 @@
         "footer_space":{
             "link":"https://www.hyperpay.tech/download",
             "content_en":"HyperPay, Redefine wallet with On-chain and Off-chain,Download Now!",
-            "content_zh-CN":"HyperPay 一个会赚钱也能交易的好钱包"
+            "content_zh-CN":"<img src='https://www.hyperpay.tech/themes/en/dist/images/HPY-logo-b.svg' alt='Hyperpay'> 一个会赚钱也能交易的好钱包"
         }
     }
 }
