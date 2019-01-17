@@ -5,9 +5,9 @@
     "downloadLink_ubuntu":"https://github.com/HcashOrg/hcGUI/releases/download/R2.1.8/hcgui_2.1.8_amd64.deb",
     "advertising_space":{ 
         "footer_space":{
-            "link":"https://autonomy.h.cash/",
-            "content_en":"My first ad slot appeared",
-            "content_zh-CN":"我的第一个广告位出现了"
+            "link":"https://www.hyperpay.tech/download",
+            "content_en":"HyperPay, Redefine wallet with On-chain and Off-chain,Download Now!",
+            "content_zh-CN":"HyperPay 一个会赚钱也能交易的好钱包"
         }
     }
 }
