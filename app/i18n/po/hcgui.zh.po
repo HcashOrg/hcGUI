@@ -6182,5 +6182,5 @@ msgstr "更新内容："
 #: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
 msgctxt "downloadApp.confirmLabel"
 msgid "Confirm update"
-msgstr "queren"
+msgstr "确认"
 
