@@ -24,21 +24,22 @@ class DownloadApp extends React.Component {
       const { hasUpdateApp,lastVersion, releaseBody,getDataConfigAttempt } = this.props; 
       return (
          (hasUpdateApp && !getDataConfigAttempt) ? <ConfirmModal
-            modalTitle={<T id="downloadApp.tips" m="Tips" />}
+            modalTitle={<T id="downloadApp.tips" m="Update is available:" />}
             show={this.state.show}
             onCancelModal={this.onCancelModal}
             onSubmit={this.onSubmit}
+            confirmLabel={<T id="downloadApp.confirmLabel" m="Confirm update" />}
             modalContent={
                <div className="confirmAssetsModal-content">
                   <div>
-                     <T id="downloadApp.content" m="Is there a new version, is it updated to use?" />
+                     <T id="downloadApp.content" m="An update to the newest version is available. Do you want to upgrade 'hcGUI' to the latest version?" />
                   </div>
                   <div>
                      <div><T id="downloadApp.content.Version" m="Version：" /></div>
                      <div>{lastVersion} </div>
                   </div>
                   <div>
-                     <div><T id="downloadApp.content.updateContent" m="Update Content：" /></div>
+                     <div><T id="downloadApp.content.updateContent" m="New features:" /></div>
                      <div dangerouslySetInnerHTML={{
                         __html: releaseBody ? releaseBody.replace(/\r\n/g, "<br/>") : ""
                      }} />

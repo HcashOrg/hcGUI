@@ -150,6 +150,7 @@
   "createWallet.warningNotice": "CUIDADO",
   "creteWallet.writeSeedReminder": "Escreva a semente em um lugar seguro.",
   "decodeRawTx.errors.decodeFailed": "{originalError}",
+  "downloadApp.confirmLabel": "Confirm update",
   "downloadApp.content": "Is there a new version, is it updated to use?",
   "downloadApp.content.Version": "Version：",
   "downloadApp.content.updateContent": "update content：",

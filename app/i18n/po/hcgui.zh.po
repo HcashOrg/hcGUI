@@ -6149,16 +6149,16 @@ msgstr "加载中..."
 #. Tips
 #: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
 msgctxt "downloadApp.tips"
-msgid "Tips"
+msgid "Update is available:"
 msgstr "温馨提示"
 
 #. [downloadApp.content]
 #. defaultMessage is:
-#. Is there a new version, is it updated to use?
+#. Found a new version, please download and use 
 #: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
 msgctxt "downloadApp.content"
-msgid "Is there a new version, is it updated to use?"
-msgstr "有新的版本，是否更新使用？"
+msgid "An update to the newest version is available. Do you want to upgrade 'hcGUI' to the latest version?"
+msgstr "可以更新最新版本。 您想将'hcGUI'升级到最新版本吗？"
 
 #. [downloadApp.content.Version]
 #. defaultMessage is:
@@ -6173,5 +6173,14 @@ msgstr "版本号："
 #. Update Content：
 #: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
 msgctxt "downloadApp.content.updateContent"
-msgid "Update Content："
+msgid "New features:"
 msgstr "更新内容："
+
+#. [downloadApp.confirmLabel]
+#. defaultMessage is:
+#. Confirm update
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
+msgctxt "downloadApp.confirmLabel"
+msgid "Confirm update"
+msgstr "确认更新"
+
