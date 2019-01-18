@@ -21,9 +21,9 @@ class DownloadApp extends React.Component {
       this.props.cleanShutdown && this.props.cleanShutdown();
    }
    render() {
-      const { lastVersion, releaseBody } = this.props; 
+      const { hasUpdateApp,lastVersion, releaseBody,getDataConfigAttempt } = this.props; 
       return (
-         this.props.hasUpdateApp ? <ConfirmModal
+         (hasUpdateApp && !getDataConfigAttempt) ? <ConfirmModal
             modalTitle={<T id="downloadApp.tips" m="Tips" />}
             show={this.state.show}
             onCancelModal={this.onCancelModal}

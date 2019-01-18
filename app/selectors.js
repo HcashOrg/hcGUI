@@ -995,9 +995,10 @@ export const blockTimestampFromNow = createSelector(
 
 
 export const lastVersion = get(["github", "tag_name"]);
-export const advertising_space = get(["github", "advertising_space"])
-export const releaseAssets = get(["github", "assets"])
-export const releaseBody = get(["github", "body"])
+export const advertising_space = get(["github", "advertising_space"]);
+export const releaseAssets = get(["github", "assets"]);
+export const releaseBody = get(["github", "body"]);
+export const getDataConfigAttempt = get(["github","getDataConfigAttempt"])
 
 
 export const hasUpdateApp = createSelector(

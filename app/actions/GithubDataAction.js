@@ -7,7 +7,9 @@ export const githubDataConfigAttempt = () => (dispatch, getState) => {
 
 export const GETDATACONFIG_ATTEMPT = "GETDATACONFIG_ATTEMPT";
 export const GETDATACONFIG_SUCCESS = "GETDATACONFIG_SUCCESS";
+export const GETDATACONFIG_FAILED = "GETDATACONFIG_FAILED";
 export const getDataConfig = () => async (dispatch, getState) => { 
+    dispatch({ type: GETDATACONFIG_ATTEMPT });
     try {
         const result = await g.getDataConfig();  
         const releasesData=await g.getReleasesData();
@@ -22,5 +24,6 @@ export const getDataConfig = () => async (dispatch, getState) => {
         dispatch({ ...result.data,tag_name,assets,body, type: GETDATACONFIG_SUCCESS });
     } catch (error) {
         console.error(error);
+        dispatch({ type: GETDATACONFIG_FAILED });
     }
 } 
