@@ -6170,10 +6170,10 @@ msgstr "版本号："
 
 #. [downloadApp.content.updateContent]
 #. defaultMessage is:
-#. Update Content：
+#. New features：
 #: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
 msgctxt "downloadApp.content.updateContent"
-msgid "New features:"
+msgid "New features："
 msgstr "更新内容："
 
 #. [downloadApp.confirmLabel]
@@ -6182,5 +6182,5 @@ msgstr "更新内容："
 #: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
 msgctxt "downloadApp.confirmLabel"
 msgid "Confirm update"
-msgstr "确认更新"
+msgstr "queren"
 

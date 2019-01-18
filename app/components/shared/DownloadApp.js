@@ -39,7 +39,7 @@ class DownloadApp extends React.Component {
                      <div>{lastVersion} </div>
                   </div>
                   <div>
-                     <div><T id="downloadApp.content.updateContent" m="New features:" /></div>
+                     <div><T id="downloadApp.content.updateContent" m="New features：" /></div>
                      <div dangerouslySetInnerHTML={{
                         __html: releaseBody ? releaseBody.replace(/\r\n/g, "<br/>") : ""
                      }} />
