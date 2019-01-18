@@ -14,7 +14,7 @@ export default function rpc(state = {}, action) {
         case GETDATACONFIG_FAILED:
             return {
                 ...state,
-                getDataConfigAttempt: false
+                getDataConfigAttempt: true
             };
         case GETDATACONFIG_SUCCESS:
             return {
