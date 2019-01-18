@@ -380,7 +380,7 @@ export const dataRefreshVersion = "0002.0001.0004";
 
 export const TEST_ECO_PROPERTY = parseInt("0x80000003UL");
 
-export const currentVersion = "2.1.9";
+export const currentVersion = "R2.1.9";
 
 export const githubConfig = {
   dataURL: "https://raw.githubusercontent.com/HcashOrg/hcGUI/master/dataConfig.json",

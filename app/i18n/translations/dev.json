@@ -151,6 +151,8 @@
   "creteWallet.writeSeedReminder": "Escreva a semente em um lugar seguro.",
   "decodeRawTx.errors.decodeFailed": "{originalError}",
   "downloadApp.content": "Is there a new version, is it updated to use?",
+  "downloadApp.content.Version": "Version：",
+  "downloadApp.content.updateContent": "update content：",
   "downloadApp.tips": "Tips",
   "error.title": "Erro aconteceu",
   "errors.general": "Erro desconhecido. Volte.",

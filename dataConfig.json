@@ -1,9 +1,5 @@
-{
-    "lastVersion":"2.1.8",
-    "downloadLink_mac":"https://github.com/HcashOrg/hcGUI/releases/download/R2.1.8/HcGui-2.1.8.dmg",
-    "downloadLink_win":"https://github.com/HcashOrg/hcGUI/releases/download/R2.1.8/HcGui.Setup.2.1.8.exe",
-    "downloadLink_ubuntu":"https://github.com/HcashOrg/hcGUI/releases/download/R2.1.8/hcgui_2.1.8_amd64.deb",
-    "advertising_space":{ 
+{ 
+     "advertising_space":{ 
         "footer_space":{
             "link":"https://www.hyperpay.tech/download",
             "content_en":"<marquee width='100%' style='cursor: pointer;' scrollamount=4><img src='https://www.hyperpay.tech/themes/en/dist/images/HPY-logo-b.svg' alt='Hyperpay' height='32px' style='vertical-align: middle' > Redefine wallet with On-chain and Off-chain,Download Now!</marquee>",

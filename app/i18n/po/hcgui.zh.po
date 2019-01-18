@@ -6159,3 +6159,19 @@ msgstr "温馨提示"
 msgctxt "downloadApp.content"
 msgid "Is there a new version, is it updated to use?"
 msgstr "有新的版本，是否更新使用？"
+
+#. [downloadApp.content.Version]
+#. defaultMessage is:
+#. Version：
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
+msgctxt "downloadApp.content.Version"
+msgid "Version："
+msgstr "版本号："
+
+#. [downloadApp.content.updateContent]
+#. defaultMessage is:
+#. Update Content：
+#: app/i18n/extracted/app/components/views/GovernancePage/Proposals/ProposalList.json
+msgctxt "downloadApp.content.updateContent"
+msgid "Update Content："
+msgstr "更新内容："

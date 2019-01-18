@@ -21,13 +21,31 @@ class DownloadApp extends React.Component {
       this.props.cleanShutdown && this.props.cleanShutdown();
    }
    render() {
+      const { lastVersion, releaseBody } = this.props; 
       return (
          this.props.hasUpdateApp ? <ConfirmModal
-            modalTitle={<T id="downloadApp.tips" m="Tips"/>}
+            modalTitle={<T id="downloadApp.tips" m="Tips" />}
             show={this.state.show}
             onCancelModal={this.onCancelModal}
             onSubmit={this.onSubmit}
-            modalContent={<T id="downloadApp.content" m="Is there a new version, is it updated to use?"/>}
+            modalContent={
+               <div className="confirmAssetsModal-content">
+                  <div>
+                     <T id="downloadApp.content" m="Is there a new version, is it updated to use?" />
+                  </div>
+                  <div>
+                     <div><T id="downloadApp.content.Version" m="Version：" /></div>
+                     <div>{lastVersion} </div>
+                  </div>
+                  <div>
+                     <div><T id="downloadApp.content.updateContent" m="Update Content：" /></div>
+                     <div dangerouslySetInnerHTML={{
+                        __html: releaseBody ? releaseBody.replace(/\r\n/g, "<br/>") : ""
+                     }} />
+                  </div>
+
+               </div>
+            }
          /> : null
       );
    }

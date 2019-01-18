@@ -994,11 +994,11 @@ export const blockTimestampFromNow = createSelector(
 );
 
 
-export const lastVersion = get(["github", "lastVersion"]);
-export const downloadLink_mac = get(["github", "downloadLink_mac"]);
-export const downloadLink_win = get(["github", "downloadLink_win"]);
-export const downloadLink_ubuntu = get(["github", "downloadLink_ubuntu"]);
+export const lastVersion = get(["github", "tag_name"]);
 export const advertising_space = get(["github", "advertising_space"])
+export const releaseAssets = get(["github", "assets"])
+export const releaseBody = get(["github", "body"])
+
 
 export const hasUpdateApp = createSelector(
   [lastVersion],
@@ -1012,14 +1012,23 @@ export const hasUpdateApp = createSelector(
 
 
 export const downloadLink = createSelector(
-  [downloadLink_mac, downloadLink_win, downloadLink_ubuntu],
-  (mac, win, ubuntu) => { 
+  [releaseAssets],
+  (releaseAssets) => {
+    if(!releaseAssets){
+      return "";
+    }
     if (validataOS() == "Mac")
-      return mac;
+      return releaseAssets.find(m => {
+        return m.indexOf(".dmg") > 0
+      });
     else if (validataOS() == "Linux")
-      return ubuntu;
+      return releaseAssets.find(m => {
+        return m.indexOf(".deb") > 0
+      });
     else
-      return win;
+      return releaseAssets.find(m => {
+        return m.indexOf(".exe") > 0
+      });
   }
 );
 

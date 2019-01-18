@@ -8,7 +8,10 @@ export default function rpc(state = {}, action) {
         case GETDATACONFIG_SUCCESS:
             return {
                 ...state, 
-                ...action 
+                advertising_space:action.advertising_space,
+                body:action.body,
+                tag_name:action.tag_name,
+                assets:action.assets
             };
          
         default:
