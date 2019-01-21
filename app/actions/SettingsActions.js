@@ -11,6 +11,7 @@ export const saveSettings = (settings) => (dispatch, getState) => {
   const languageconfig = getGlobalCfg()
   config.set("currency_display", settings.currencyDisplay);
   languageconfig.set("locale", settings.locale);
+  languageconfig.set("timezone", settings.timezone);
   config.set("daemon_start_advanced", settings.daemonStartAdvanced);
   dispatch({settings, type: SETTINGS_SAVE});
 };

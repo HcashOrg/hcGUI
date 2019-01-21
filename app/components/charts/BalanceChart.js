@@ -4,7 +4,7 @@ import {balance} from "connectors";
 import messages from "./messages";
 import ChartTooltip from "./ChartTooltip";
 
-const BalanceChart = ({ data,intl, currencyDisplay }) =>{
+const BalanceChart = ({ data,intl, currencyDisplay }) =>{ 
   const availableKey = intl.formatMessage(messages.availableKey);
   const lockedKey = intl.formatMessage(messages.lockedKey);
 

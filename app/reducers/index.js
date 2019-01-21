@@ -14,7 +14,8 @@ import sidebar from "./sidebar";
 import snackbar from "./snackbar";
 import rpc from './rpc';
 import governance from "./governance";
-import github from "./github"
+import github from "./github";
+import statistics from "./statistics";
 
 const rootReducer = combineReducers({
   grpc,
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
   snackbar,
   rpc,
   governance,
-  github
+  github,
+  statistics
 });
 
 export default rootReducer;

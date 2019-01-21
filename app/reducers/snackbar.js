@@ -179,7 +179,7 @@ export default function snackbar(state = {}, action) {
     case SNACKBAR_DISMISS_MESSAGES:
       return { ...state, messages: Array() };
 
-    case NEW_TRANSACTIONS_RECEIVED: {
+    case NEW_TRANSACTIONS_RECEIVED: { 
       // TODO: show more notifications or a summary when receiving many transactions.
       const tx = action.newlyMinedTransactions.length
         ? action.newlyMinedTransactions[0]
@@ -207,7 +207,7 @@ export default function snackbar(state = {}, action) {
     case SETSTAKEPOOLVOTECHOICES_SUCCESS:
     case REMOVESTAKEPOOLCONFIG:
     case SEEDCOPIEDTOCLIPBOARD:
-    case PUBLISHUNMINEDTRANSACTIONS_SUCCESS:
+    case PUBLISHUNMINEDTRANSACTIONS_SUCCESS: 
       type = "Success";
       message = messages[action.type] || messages.defaultSuccessMessage;
       break;

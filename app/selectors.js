@@ -3,7 +3,7 @@ import {
   createSelectorEager as createSelector
 } from "./fp";
 import { reverseHash } from "./helpers/byteActions";
-import { validataOS } from "./helpers";
+import { validataOS,dateToUTC,dateToLocal } from "./helpers";
 import { TRANSACTION_TYPES } from "wallet/service";
 import { MainNetParams, TestNetParams } from "wallet/constants";
 import { TicketTypes, decodeVoteScript } from "./helpers/tickets";
@@ -25,6 +25,9 @@ export const isPrepared = and(
   getDaemonSynced,
 );
 export const getCredentials = get(["daemon", "credentials"]);
+
+
+export const dailyBalancesStats = get([ "statistics", "dailyBalances" ]);
 
 const START_STEP_OPEN = 2;
 const START_STEP_RPC1 = 3;
@@ -160,8 +163,12 @@ export const currencies = () => [{ name: "Hc" }, { name: "atoms" }];
 export const currencyDisplay = get(["settings", "currentSettings", "currencyDisplay"]);
 export const unitDivisor = compose(disp => disp.toLowerCase() === "hc" ? 100000000 : 1, currencyDisplay);
 export const currentLocaleName = get(["settings", "currentSettings", "locale"]);
+export const timezone = get(["settings", "currentSettings", "timezone"]);
 export const chainParams = compose(isTestNet => isTestNet ? TestNetParams : MainNetParams, isTestNet);
 const getState = state => state
+
+
+export const tsDate = compose(timezone => timezone === "utc" ? dateToUTC : dateToLocal, timezone);
 
 export const sortedLocales = createSelector(
   [get(["locales"])],
@@ -337,99 +344,11 @@ export const homeHistoryTickets = createSelector(
 //   }
 // );
 
-const spendableAndLockedBalanceArray = []
-const currency = 100000000
-//fake data for balance chart
-export const spendableAndLockedBalance = createSelector(
-  [totalBalance, spendableTotalBalance, lockedBalance],
-  (totalBalance, spendableTotalBalance, lockedBalance) => {
 
-    var lockedBalance = totalBalance - spendableTotalBalance;
-    if (spendableAndLockedBalanceArray[0]
-      && numberEqual(spendableAndLockedBalanceArray[spendableAndLockedBalanceArray.length - 1].locked, lockedBalance / currency)
-      && numberEqual(spendableAndLockedBalanceArray[spendableAndLockedBalanceArray.length - 1].available, spendableTotalBalance / currency)) {
-      return spendableAndLockedBalanceArray;
-    }
-    spendableAndLockedBalanceArray.push({
-      name: new Date().toTimeString(),
-      available: spendableTotalBalance / currency,
-      locked: (totalBalance - spendableTotalBalance) / currency,
-      //locked:lockedBalance/currency,
-      legendName: new Date().toDateString()
-    });
-    if (spendableAndLockedBalanceArray.length > 15) {
-      spendableAndLockedBalanceArray.shift();
-    }
-    return spendableAndLockedBalanceArray;
-  }
-);
 
-//fake data for transactions tab on overview Page
-export const balanceSent = createSelector(
-  [transactions],
-  (transactions) => {
-    var inAmmount = 0;
 
-    transactions.forEach(a => {
-      if (a.txDirection === "in") {
-        inAmmount += a.txAmount;
-      }
-      else {
-        //transer abort
-      }
-    });
-    return inAmmount
-  }
-);
 
-export const balanceReceived = createSelector(
-  [transactions],
-  (transactions) => {
-    var outAmount = 0;
-    transactions.forEach(a => {
-      if (a.txDirection === "out" || a.txDirection === "transfer") {
-        outAmount += a.txAmount;
-      } else {
-        //transer abort
-      }
-    });
-    return outAmount
-  }
-);
 
-const sentAndReceivedTransactionsArray = []
-export const sentAndReceivedTransactions = createSelector(
-  [transactions],
-  (transactions) => {
-    var inAmmount = 0;
-    var outAmount = 0;
-
-    transactions.forEach(a => {
-      if (a.txDirection === "in") {
-        inAmmount += a.txAmount;
-      } else if (a.txDirection === "out" || a.txDirection === "transfer") {
-        outAmount += a.txAmount;
-      } else {
-        //transer abort
-      }
-    });
-    if (sentAndReceivedTransactionsArray[0]
-      && numberEqual(sentAndReceivedTransactionsArray[sentAndReceivedTransactionsArray.length - 1].received, inAmmount / currency)
-      && numberEqual(sentAndReceivedTransactionsArray[sentAndReceivedTransactionsArray.length - 1].sent, outAmount / currency)) {
-      return sentAndReceivedTransactionsArray;
-    }
-    sentAndReceivedTransactionsArray.push({
-      name: new Date().toTimeString(),
-      sent: outAmount / currency,
-      received: inAmmount / currency,
-      legendName: new Date().toDateString()
-    });
-    if (sentAndReceivedTransactionsArray.length > 15) {
-      sentAndReceivedTransactionsArray.shift();
-    }
-    return sentAndReceivedTransactionsArray;
-  }
-);
 
 
 
@@ -584,27 +503,37 @@ export const ticketsPerStatus = createSelector(
   )
 );
 
+// //fake data for ticket tab on overview Page
+// export const totalValueOfLiveTickets = createSelector(
+//   [ticketNormalizer, get(["grpc", "tickets"])],
+//   (normalizer, tickets) => tickets.map(normalizer).reduce((total, cur) => {
+//     if (cur && cur.status === "live") {
+//       return total += cur.ticketPrice
+//     }
+//     return total
+//   }, 0)
+// );
+
 //fake data for ticket tab on overview Page
 export const totalValueOfLiveTickets = createSelector(
-  [ticketNormalizer, get(["grpc", "tickets"])],
-  (normalizer, tickets) => tickets.map(normalizer).reduce((total, cur) => {
-    if (cur && cur.status === "live") {
-      return total += cur.ticketPrice
-    }
-    return total
-  }, 0)
+  [ dailyBalancesStats ],
+  (balances) => {
+    if (!balances) return 0;
+    const lastBalance = balances[balances.length-1];
+    if (!lastBalance) return 0;
+    return lastBalance.series.locked;
+  }
 );
-
-
-export const earnedStakingReward = createSelector(
-  [ticketNormalizer, get(["grpc", "tickets"])],
-  (normalizer, tickets) => tickets.map(normalizer).reduce((total, cur) => {
-    if (cur && cur.status === "voted") {
-      return total += cur.ticketReward
-    }
-    return total
-  }, 0)
-);
+ 
+// export const earnedStakingReward = createSelector(
+//   [ticketNormalizer, get(["grpc", "tickets"])],
+//   (normalizer, tickets) => tickets.map(normalizer).reduce((total, cur) => {
+//     if (cur && cur.status === "voted") {
+//       return total += cur.ticketReward
+//     }
+//     return total
+//   }, 0)
+// );
 
 export const viewedTicketListing = createSelector(
   [ticketsPerStatus, (state, { params: { status } }) => status],
@@ -889,51 +818,6 @@ const numberEqual = (left, right) => {
 //const getState = state => state
 
 
-export const ticketDataChart = createSelector(
-  [transactions, getState, currentBlockHeight, getStakeInfoResponse],
-  (transactions, state, currentBlockHeight, stakeInfoResponse) => {
-    const ticketDataChartArray = []
-    var immatureCount = 0;
-    var liveCount = 0;
-    var votedCount = 0;
-    var currHeight = currentBlockHeight;
-
-    var ticketMaturity = chainParams(state).TicketMaturity;
-    liveCount = stakeInfoResponse ? stakeInfoResponse.getLive() : 0
-    immatureCount = stakeInfoResponse ? stakeInfoResponse.getImmature() : 0
-
-    transactions.forEach(a => {
-      if (a.txType === "Vote") {
-        votedCount++;
-      }
-    });
-
-    let lastIndex = ticketDataChartArray.length - 1 || 0
-
-    if (ticketDataChartArray[lastIndex]
-      && numberEqual(ticketDataChartArray[lastIndex].immature, immatureCount)
-      && numberEqual(ticketDataChartArray[lastIndex].live, liveCount)
-      && numberEqual(ticketDataChartArray[lastIndex].voted, votedCount)) {
-
-      return ticketDataChartArray;
-    }
-    ticketDataChartArray.push({
-      name: new Date().toTimeString(),
-      immature: immatureCount,
-      live: liveCount,
-      voted: votedCount,
-      legendName: new Date().toDateString()
-    });
-    if (ticketDataChartArray.length > 15) {
-      ticketDataChartArray.shift();
-    }
-    return ticketDataChartArray;
-  }
-);
-
-
-
-
 export const autonomyApiURL = createSelector(
   [isTestNet],
   (isTestNet) => isTestNet ? httpOptions.autonomyURL.TESTNET + "/api" : httpOptions.autonomyURL.MAINNET + "/api"
@@ -1033,3 +917,46 @@ export const downloadLink = createSelector(
   }
 );
 
+
+
+
+export const ticketDataChart = createSelector(
+  [ dailyBalancesStats, unitDivisor ],
+  ( stats, unitDivisor ) => stats.map(s => ({
+    time: s.time,
+    voted: s.series.voted / unitDivisor,
+    revoked: s.series.revoked / unitDivisor,
+    ticket: s.series.ticket / unitDivisor,
+    locked: (s.series.locked + s.series.immature) / unitDivisor,
+    immature: s.series.immature / unitDivisor,
+  })));
+
+
+  export const spendableAndLockedBalance = createSelector(
+    [ dailyBalancesStats, unitDivisor ],
+    ( stats, unitDivisor ) => stats.map(s => ({
+      time: s.time,
+      available: s.series.spendable / unitDivisor,
+      locked: (s.series.locked + s.series.immature) / unitDivisor,
+    })));
+
+    export const sentAndReceivedTransactions = createSelector(
+      [ dailyBalancesStats, unitDivisor ],
+      ( stats, unitDivisor ) => stats.map(s => ({
+        time: s.time,
+        sent: s.series.sent / unitDivisor,
+        received: s.series.received / unitDivisor
+      })));
+  
+
+      //fake data for transactions tab on overview Page
+      export const balanceReceived = createSelector(
+        [ dailyBalancesStats ],
+        (balances) => balances.reduce((s, b) => s + b.series.received, 0)
+      );
+      
+      
+      export const balanceSent = createSelector(
+        [ dailyBalancesStats ],
+        (balances) => balances.reduce((s, b) => s + b.series.sent, 0)
+      );

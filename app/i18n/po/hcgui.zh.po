@@ -6184,3 +6184,59 @@ msgctxt "downloadApp.confirmLabel"
 msgid "Confirm update"
 msgstr "确认"
 
+#. [charts.keys.voted]
+#. defaultMessage is:
+#. Votes
+#: app/i18n/extracted/app/components/charts/messages.json
+msgctxt "charts.keys.voted"
+msgid "Votes"
+msgstr "投票"
+
+#. [charts.keys.ticket]
+#. defaultMessage is:
+#. Ticket Purchases
+#: app/i18n/extracted/app/components/charts/messages.json
+msgctxt "charts.keys.ticket"
+msgid "Ticket Purchases"
+msgstr "购票"
+
+#. [charts.keys.revoked]
+#. defaultMessage is:
+#. Revocations
+#: app/i18n/extracted/app/components/charts/messages.json
+msgctxt "charts.keys.revoked"
+msgid "Revocations"
+msgstr "撤销"
+
+#. [charts.keys.received]
+#. defaultMessage is:
+#. Received
+#: app/i18n/extracted/app/components/charts/messages.json
+msgctxt "charts.keys.received"
+msgid "Received"
+msgstr "已接收"
+
+#. [charts.keys.sent]
+#. defaultMessage is:
+#. Sent
+#: app/i18n/extracted/app/components/charts/messages.json
+msgctxt "charts.keys.sent"
+msgid "Sent"
+msgstr "已发送"
+
+#. [home.receivedBalanceLabel]
+#. defaultMessage is:
+#. Received
+#: app/i18n/extracted/app/components/views/HomePage/tabs/Transactions.json
+msgctxt "home.receivedBalanceLabel"
+msgid "Received"
+msgstr "已接收"
+
+#. [home.sentBalanceLabel]
+#. defaultMessage is:
+#. Sent
+#: app/i18n/extracted/app/components/views/HomePage/tabs/Transactions.json
+msgctxt "home.sentBalanceLabel"
+msgid "Sent"
+msgstr "已发送"
+

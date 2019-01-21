@@ -1,6 +1,8 @@
 import Promise from "promise";
 import * as client from "middleware/grpc/client";
 import { reverseHash } from "../helpers/byteActions";
+import { Uint64LE } from "int64-buffer";
+import * as api from "middleware/walletrpc/api_pb";
 import {
   NextAddressRequest,
   DecodeRawTransactionRequest,
@@ -73,10 +75,11 @@ export const TRANSACTION_TYPES = {
   [TransactionDetails.TransactionType.COINBASE]: "Coinbase"
 };
 
+ 
+
 export const TRANSACTION_DIR_SENT = "sent";
 export const TRANSACTION_DIR_RECEIVED = "received";
 export const TRANSACTION_DIR_TRANSFERED = "transfer";
-
 // formatTransaction converts a transaction from the structure of a grpc reply
 // into a structure more amenable to use within hcgui. It stores the block
 // information of when the transaction was mined into the transaction.
@@ -90,7 +93,13 @@ export function formatTransaction(block, transaction, index) {
   const type = transaction.getTransactionType();
   let direction = "";
 
-  if (type === TransactionDetails.TransactionType.REGULAR) {
+  let debitAccounts = [];
+  transaction.getDebitsList().forEach((debit) => debitAccounts.push(debit.getPreviousAccount()));
+
+  let creditAddresses = [];
+  transaction.getCreditsList().forEach((credit) => creditAddresses.push(credit.getAddress()));
+
+  if (type === api.TransactionDetails.TransactionType.REGULAR) {
     if (amount > 0) {
       direction = TRANSACTION_DIR_RECEIVED;
     } else if (amount < 0 && (fee == Math.abs(amount))) {
@@ -108,10 +117,15 @@ export function formatTransaction(block, transaction, index) {
     hash: transaction.getHash(),
     txHash: reverseHash(Buffer.from(transaction.getHash()).toString("hex")),
     tx: transaction,
+    txType: TRANSACTION_TYPES[type],
+    debitsAmount: inputAmounts,
+    creditsAmount: outputAmounts,
     type,
     direction,
     amount,
-    fee
+    fee,
+    debitAccounts,
+    creditAddresses
   };
 }
 
@@ -125,43 +139,161 @@ export const committedTickets = withLogNoData((walletService, ticketHashes) => n
   walletService.committedTickets(req, (err, tickets) => err ? reject(err) : resolve(tickets));
 }), "Committed Tickets");
 
-export const getTransactions = withLogNoData((walletService, startBlockHeight,
+export const getTransactions = (walletService, startBlockHeight,
   endBlockHeight, targetTransactionCount) =>
   new Promise((resolve, reject) => {
-    var request = new GetTransactionsRequest();
-    request.setStartingBlockHeight(startBlockHeight);
-    request.setEndingBlockHeight(endBlockHeight);
-    request.setTargetTransactionCount(targetTransactionCount);
 
-    var foundMined = [];
-    var foundUnmined = [];
+    var mined = [];
+    var unmined = [];
 
-    let getTx = walletService.getTransactions(request);
-    getTx.on("data", (response) => {
-      let minedBlock = response.getMinedTransactions();
-      if (minedBlock) {
-        minedBlock
-          .getTransactionsList()
-          .map((v, i) => formatTransaction(minedBlock, v, i))
-          .forEach(v => { foundMined.push(v); });
-      }
+    const dataCb = (foundMined, foundUnmined) => {
+      mined  = mined.concat(foundMined);
+      unmined = unmined.concat(foundUnmined);
+    };
 
-      let unmined = response.getUnminedTransactionsList();
-      if (unmined) {
-        unmined
-          .map((v, i) => formatUnminedTransaction(v, i))
-          .forEach(v => foundUnmined.push(v));
-      }
-    });
-    getTx.on("end", () => {
-      resolve({mined: foundMined, unmined: foundUnmined});
-    });
-    getTx.on("error", (err) => {
-      reject(err);
-    });
-  }), "Get Transactions");
+    streamGetTransactions(walletService, startBlockHeight,
+      endBlockHeight, targetTransactionCount, dataCb)
+      .then(() => resolve({ mined, unmined }))
+      .catch(reject);
+  }); 
 
 export const publishUnminedTransactions = log((walletService) => new Promise((resolve, reject) => {
   const req = new PublishUnminedTransactionsRequest();
   walletService.publishUnminedTransactions(req, (err) => err ? reject(err) : resolve());
 }), "Publish Unmined Transactions");
+
+export const TRANSACTION_TYPE_REGULAR = "Regular";
+export const TRANSACTION_TYPE_TICKET_PURCHASE = "Ticket";
+export const TRANSACTION_TYPE_VOTE = "Vote";
+export const TRANSACTION_TYPE_REVOCATION = "Revocation";
+export const TRANSACTION_TYPE_COINBASE = "Coinbase";
+
+export const decodeTransactionLocal = (rawTx) => {
+  var buffer = Buffer.isBuffer(rawTx) ? rawTx : Buffer.from(rawTx, "hex");
+  return Promise.resolve(decodeRawTransaction(buffer));
+};
+
+export const decodeRawTransaction = (rawTx) => {
+  if (!(rawTx instanceof Buffer)) {
+    throw new Error("rawtx requested for decoding is not a Buffer object");
+  }
+  var position = 0;
+
+  var tx = {};
+  tx.version = rawTx.readUInt32LE(position);
+  position += 4;
+  var first = rawTx.readUInt8(position);
+  position += 1;
+  switch (first) {
+  case 0xFD:
+    tx.numInputs = rawTx.readUInt16LE(position);
+    position += 2;
+    break;
+  case 0xFE:
+    tx.numInputs = rawTx.readUInt32LE(position);
+    position += 4;
+    break;
+  default:
+    tx.numInputs = first;
+  }
+  tx.inputs = [];
+  for (var i = 0; i < tx.numInputs; i++) {
+    var input = {};
+    input.prevTxId = rawTx.slice(position, position+32);
+    position += 32;
+    input.outputIndex = rawTx.readUInt32LE(position);
+    position += 4;
+    input.outputTree = rawTx.readUInt8(position);
+    position += 1;
+    input.sequence = rawTx.readUInt32LE(position);
+    position += 4;
+    tx.inputs.push(input);
+  }
+
+  first = rawTx.readUInt8(position);
+  position += 1;
+  switch (first) {
+  case 0xFD:
+    tx.numOutputs = rawTx.readUInt16LE(position);
+    position += 2;
+    break;
+  case 0xFE:
+    tx.numOutputs = rawTx.readUInt32LE(position);
+    position += 4;
+    break;
+  default:
+    tx.numOutputs = first;
+  }
+
+  tx.outputs = [];
+  for (var j = 0; j < tx.numOutputs; j++) {
+    var output = {};
+    output.value = Uint64LE(rawTx.slice(position, position+8)).toNumber();
+    position += 8;
+    output.version = rawTx.readUInt16LE(position);
+    position += 2;
+    // check length of scripts
+    var scriptLen;
+    first = rawTx.readUInt8(position);
+    position += 1;
+    switch (first) {
+    case 0xFD:
+      scriptLen = rawTx.readUInt16LE(position);
+      position += 2;
+      break;
+    case 0xFE:
+      scriptLen = rawTx.readUInt32LE(position);
+      position += 4;
+      break;
+    default:
+      scriptLen = first;
+    }
+    output.script = rawTx.slice(position, position+scriptLen);
+    position += scriptLen;
+    tx.outputs.push(output);
+  }
+
+  tx.lockTime = rawTx.readUInt32LE(position);
+  position += 4;
+  tx.expiry = rawTx.readUInt32LE(position);
+  position += 4;
+  return tx;
+};
+
+
+
+export const streamGetTransactions = withLogNoData((walletService, startBlockHeight,
+  endBlockHeight, targetTransactionCount, dataCb) =>
+  new Promise((resolve, reject) => {
+    var request = new api.GetTransactionsRequest();
+    request.setStartingBlockHeight(startBlockHeight);
+    request.setEndingBlockHeight(endBlockHeight);
+    request.setTargetTransactionCount(targetTransactionCount);
+
+    let getTx = walletService.getTransactions(request);
+    getTx.on("data", (response) => {
+      var foundMined = [];
+      var foundUnmined = [];
+
+      let minedBlock = response.getMinedTransactions();
+      if (minedBlock) {
+        foundMined = minedBlock
+          .getTransactionsList()
+          .map((v, i) => formatTransaction(minedBlock, v, i));
+      }
+
+      let unmined = response.getUnminedTransactionsList();
+      if (unmined) {
+        foundUnmined = unmined
+          .map((v, i) => formatUnminedTransaction(v, i));
+      }
+
+      dataCb(foundMined, foundUnmined);
+    });
+    getTx.on("end", () => {
+      resolve();
+    });
+    getTx.on("error", (err) => {
+      reject(err);
+    });
+  }), "Get Transactions");

@@ -14,6 +14,7 @@ import { onAppReloadRequested } from "wallet";
 import { getTransactions as walletGetTransactions } from "wallet/service";
 import { TransactionDetails } from "middleware/walletrpc/api_pb";
 import { clipboard } from "electron";
+import { getStartupStats } from "./StatisticsActions";
 // import * as da from "../httpService/server/hcDataApi";
 // import { getVettedProposals } from "./GovernanceActions";
 
@@ -84,6 +85,7 @@ export const getStartupWalletInfo = () => (dispatch) => {
         await dispatch(getMostRecentRegularTransactions());
         await dispatch(getMostRecentStakeTransactions());
         await dispatch(getMostRecentTransactions());
+        await dispatch(getStartupStats());
         dispatch(findImmatureTransactions());
 
         dispatch(getTreasuryBalance());

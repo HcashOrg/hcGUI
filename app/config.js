@@ -87,6 +87,9 @@ export function initGlobalCfg() {
   if (!config.has("locale")) {
     config.set("locale", "");
   }
+  if (!config.has("timezone")) {
+    config.set("timezone", "local");
+  }
   return (config);
 }
 

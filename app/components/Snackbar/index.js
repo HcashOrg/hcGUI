@@ -63,7 +63,7 @@ class Snackbar extends React.Component {
   }
 
   render() {
-    const { message } = this.state;
+    const { message } = this.state; 
     return (
       <MUISnackbar
         className={snackbarClasses(message || "")}
