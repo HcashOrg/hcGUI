@@ -695,6 +695,14 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
     newlyMinedTransactions, recentRegularTransactions, recentStakeTransactions, type: NEW_TRANSACTIONS_RECEIVED
   });
 
+  if(newlyMinedTransactions.length>0){
+    const { startupStatsEndCalcTime ,startupStatsCalcSeconds } = getState().statistics;
+    const secFromLastStats = (new Date() - startupStatsEndCalcTime)/1000;
+    if(secFromLastStats > 5*startupStatsCalcSeconds){
+      dispatch(getStartupStats());
+    }
+  }
+
 };
 
 // getMostRecentRegularTransactions clears the transaction filter and refetches
