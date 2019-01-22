@@ -3,6 +3,7 @@ import { home } from "connectors";
 import { HcashOrgLoading } from "indicators";
 import TxHistory from "TxHistory";
 import { FormattedMessage as T } from "react-intl";
+import { validataOS } from "helpers";
 import "style/Fonts.less";
 import "style/HomePage.less";
 
@@ -11,6 +12,7 @@ const RecentTransactions = ({
   getTransactionsRequestAttempt,
   getAccountsResponse,
 }) => {
+  const limit = validataOS() == "Mac" ? 2 : 3;
   return (
     getTransactionsRequestAttempt ? <HcashOrgLoading /> :
       <Aux>
@@ -19,7 +21,7 @@ const RecentTransactions = ({
         </div>
         <div className="home-content-nest">
           {transactions.length > 0 ?
-            <TxHistory limit={3} {...{ getAccountsResponse, transactions }} /> :
+            <TxHistory limit={limit} {...{ getAccountsResponse, transactions }} /> :
             <p><T id="home.noTransactions" m="No transactions" /></p>}
         </div>
       </Aux>
