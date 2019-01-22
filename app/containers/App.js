@@ -121,11 +121,11 @@ class App extends React.Component {
             <Snackbar />
             <RouteTransition className="page-container" opts={theme("springs.page")} {...{ wrapperComponent, pathname, ...fade }}>
               {children}
-              <div className="advertising-space">
+              {advertising_space ? <div className="advertising-space">
                 <div onClick={this.renderInternalProposalLink} dangerouslySetInnerHTML={{
-                  __html: advertising_space ? advertising_space.footer_space[`content_${locale.language}`] : ""
-                }} /> 
-              </div>
+                  __html: advertising_space.footer_space[`content_${locale.language}`]
+                }} />
+              </div> : null}
             </RouteTransition>
           </div>
         </IntlProvider>

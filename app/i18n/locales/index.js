@@ -37,6 +37,13 @@ const zh_CN = {
   formats: defaultFormats
 };
 
+// const KO = {
+//   key: "KO",
+//   language: "KO",
+//   description: "한국어",
+//   messages: require("../translations/ko.json"),
+//   formats: defaultFormats
+// };
 // pseudo-locale for i18n testing during development. Can be freely
 // modified.
 const dev = {
@@ -60,15 +67,18 @@ export default locales;
 // app.getLocale() can only be called after the app's ready() event is fired.
 //
 // The locale key returned by this function is guaranteed to exist.
-export function appLocaleFromElectronLocale(electronLocale) {
+export function appLocaleFromElectronLocale(electronLocale) { 
   switch (electronLocale) {
-  case "pt":
-  case "pt-BR":
-  case "pt-PT":
-    return "pt-BR";
-  case "zh-CN":
-    return "zh-CN";
+    case "pt":
+    case "pt-BR":
+    case "pt-PT":
+      return "pt-BR";
+    case "zh-CN":
+      return "zh-CN";
+    case "KO":
+    case "ko-KR":
+      return "KO";
 
-  default: return "en";
+    default: return "en";
   }
 }
