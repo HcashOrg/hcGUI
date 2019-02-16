@@ -1,6 +1,6 @@
 import Promise from "promise";
 import * as client from "middleware/grpc/client";
-import { reverseHash } from "../helpers/byteActions";
+import { reverseHash, strHashToRaw, rawHashToHex } from "../helpers/byteActions";
 import { Uint64LE } from "int64-buffer";
 import * as api from "middleware/walletrpc/api_pb";
 import {
@@ -13,6 +13,7 @@ import {
   CommittedTicketsRequest
 } from "middleware/walletrpc/api_pb";
 import { withLog as log, withLogNoData, logOptionNoResponseData } from "./index";
+import { get } from "https";
 
 const promisify = fn => (...args) => new Promise((ok, fail) => fn(...args,
   (res, err) => err ? fail(err) : ok(res)));
@@ -75,7 +76,7 @@ export const TRANSACTION_TYPES = {
   [TransactionDetails.TransactionType.COINBASE]: "Coinbase"
 };
 
- 
+
 
 export const TRANSACTION_DIR_SENT = "sent";
 export const TRANSACTION_DIR_RECEIVED = "received";
@@ -147,7 +148,7 @@ export const getTransactions = (walletService, startBlockHeight,
     var unmined = [];
 
     const dataCb = (foundMined, foundUnmined) => {
-      mined  = mined.concat(foundMined);
+      mined = mined.concat(foundMined);
       unmined = unmined.concat(foundUnmined);
     };
 
@@ -155,8 +156,28 @@ export const getTransactions = (walletService, startBlockHeight,
       endBlockHeight, targetTransactionCount, dataCb)
       .then(() => resolve({ mined, unmined }))
       .catch(reject);
-  }); 
+  });
+export const getTransaction = (walletService, txHash) =>
+  new Promise((resolve, reject) => {
+    var request = new api.GetTransactionRequest();
+    request.setTransactionHash(strHashToRaw(txHash));
+    walletService.getTransaction(request, (err, resp) => {
+      if (err) {
+        reject(err);
+        return;
+      }
 
+      // wallet.GetTransaction doesn't return block height/timestamp information
+      const block = {
+        getHash: resp.getBlockHash,
+        getHeight: () => -1,
+        getTimestamp: () => -1,
+      };
+      const index = -1; // wallet.GetTransaction doesn't return the index
+      const tx = formatTransaction(block, resp.getTransaction(), index);
+      resolve(tx);
+    });
+  });
 export const publishUnminedTransactions = log((walletService) => new Promise((resolve, reject) => {
   const req = new PublishUnminedTransactionsRequest();
   walletService.publishUnminedTransactions(req, (err) => err ? reject(err) : resolve());
@@ -185,21 +206,21 @@ export const decodeRawTransaction = (rawTx) => {
   var first = rawTx.readUInt8(position);
   position += 1;
   switch (first) {
-  case 0xFD:
-    tx.numInputs = rawTx.readUInt16LE(position);
-    position += 2;
-    break;
-  case 0xFE:
-    tx.numInputs = rawTx.readUInt32LE(position);
-    position += 4;
-    break;
-  default:
-    tx.numInputs = first;
+    case 0xFD:
+      tx.numInputs = rawTx.readUInt16LE(position);
+      position += 2;
+      break;
+    case 0xFE:
+      tx.numInputs = rawTx.readUInt32LE(position);
+      position += 4;
+      break;
+    default:
+      tx.numInputs = first;
   }
   tx.inputs = [];
   for (var i = 0; i < tx.numInputs; i++) {
     var input = {};
-    input.prevTxId = rawTx.slice(position, position+32);
+    input.prevTxId = rawTx.slice(position, position + 32);
     position += 32;
     input.outputIndex = rawTx.readUInt32LE(position);
     position += 4;
@@ -213,22 +234,22 @@ export const decodeRawTransaction = (rawTx) => {
   first = rawTx.readUInt8(position);
   position += 1;
   switch (first) {
-  case 0xFD:
-    tx.numOutputs = rawTx.readUInt16LE(position);
-    position += 2;
-    break;
-  case 0xFE:
-    tx.numOutputs = rawTx.readUInt32LE(position);
-    position += 4;
-    break;
-  default:
-    tx.numOutputs = first;
+    case 0xFD:
+      tx.numOutputs = rawTx.readUInt16LE(position);
+      position += 2;
+      break;
+    case 0xFE:
+      tx.numOutputs = rawTx.readUInt32LE(position);
+      position += 4;
+      break;
+    default:
+      tx.numOutputs = first;
   }
 
   tx.outputs = [];
   for (var j = 0; j < tx.numOutputs; j++) {
     var output = {};
-    output.value = Uint64LE(rawTx.slice(position, position+8)).toNumber();
+    output.value = Uint64LE(rawTx.slice(position, position + 8)).toNumber();
     position += 8;
     output.version = rawTx.readUInt16LE(position);
     position += 2;
@@ -237,18 +258,18 @@ export const decodeRawTransaction = (rawTx) => {
     first = rawTx.readUInt8(position);
     position += 1;
     switch (first) {
-    case 0xFD:
-      scriptLen = rawTx.readUInt16LE(position);
-      position += 2;
-      break;
-    case 0xFE:
-      scriptLen = rawTx.readUInt32LE(position);
-      position += 4;
-      break;
-    default:
-      scriptLen = first;
+      case 0xFD:
+        scriptLen = rawTx.readUInt16LE(position);
+        position += 2;
+        break;
+      case 0xFE:
+        scriptLen = rawTx.readUInt32LE(position);
+        position += 4;
+        break;
+      default:
+        scriptLen = first;
     }
-    output.script = rawTx.slice(position, position+scriptLen);
+    output.script = rawTx.slice(position, position + scriptLen);
     position += scriptLen;
     tx.outputs.push(output);
   }

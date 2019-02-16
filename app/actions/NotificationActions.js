@@ -33,7 +33,7 @@ function transactionNtfnsData(response) {
       }
 
       const newlyMined = attachedBlocks.reduce((l, b) => {
-        b.getTransactionsList().forEach((t, i) => {
+        b.getTransactionsList().forEach((t, i) => { 
           const tx = wallet.formatTransaction(b, t, i);
           l.push(tx);
         });
