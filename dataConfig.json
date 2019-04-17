@@ -2,9 +2,9 @@
      "advertising_space":{ 
         "footer_space":{
             "link":"https://www.hyperpay.tech/download",
-            "content_en":"<marquee width='100%' style='cursor: pointer;' scrollamount=4><img src='https://www.hyperpay.tech/themes/en/dist/images/HPY-logo-b.svg' alt='Hyperpay' height='32px' style='vertical-align: middle' > Redefine wallet with On-chain and Off-chain,Download Now!</marquee>",
-            "content_zh-CN":"<marquee width='100%' style='cursor: pointer;' scrollamount=4><img src='https://www.hyperpay.tech/themes/en/dist/images/HPY-logo-b.svg' alt='Hyperpay' height='32px' style='vertical-align: middle' > 一个会赚钱也能交易的好钱包,点击立即下载</marquee>",
-            "content_KO":"<marquee width='100%' style='cursor: pointer;' scrollamount=4><img src='https://www.hyperpay.tech/themes/en/dist/images/HPY-logo-b.svg' alt='Hyperpay' height='32px' style='vertical-align: middle' > 一个会赚钱也能交易的好钱包,点击立即下载</marquee>"
+            "content_en":"<div width='100%' style='cursor: pointer;test-align:center;'><img src='https://www.hyperpay.tech/themes/en/dist/images/HPY-logo-b.svg' alt='Hyperpay' height='32px' style='vertical-align: middle' > Redefine wallet with On-chain and Off-chain,Download Now!</div>",
+            "content_zh-CN":"<div width='100%' style='cursor: pointer;test-align:center;'><img src='https://www.hyperpay.tech/themes/en/dist/images/HPY-logo-b.svg' alt='Hyperpay' height='32px' style='vertical-align: middle' > 一个会赚钱也能交易的好钱包,点击立即下载</div>",
+            "content_KO":"<div width='100%' style='cursor: pointer;test-align:center;'><img src='https://www.hyperpay.tech/themes/en/dist/images/HPY-logo-b.svg' alt='Hyperpay' height='32px' style='vertical-align: middle' > 一个会赚钱也能交易的好钱包,点击立即下载</div>"
         }
     }
 }
