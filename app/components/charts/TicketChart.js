@@ -13,10 +13,10 @@ const BalanceChart = ({ data, intl, currencyDisplay }) => {
   const displayData = data.map(s => ({
     name: intl.formatMessage(messages.dayMonthDisplay, { value: s.time }),
     legendName: intl.formatMessage(messages.fullDayDisplay, { value: s.time }),
-    [votedKey]: s.voted,
-    [revokedKey]: s.revoked,
-    [ticketKey]: s.ticket,
-    [lockedKey]: s.locked,
+    [votedKey]: s.voted ? s.voted : 0,
+    [revokedKey]: s.revoked ? s.revoked : 0,
+    [ticketKey]: s.ticket ? s.ticket : 0,
+    [lockedKey]: s.locked ? s.locked : 0,
   }));
 
   return (
@@ -30,7 +30,7 @@ const BalanceChart = ({ data, intl, currencyDisplay }) => {
         <Bar barSize={8} dataKey={revokedKey} stackId="a" fill="red" radius={[0, 0, 0, 0]} unit={currencyDisplay} />
         <Bar barSize={8} dataKey={votedKey} stackId="a" fill="#f60fff" radius={[0, 0, 0, 0]} unit={currencyDisplay} />
         <Bar barSize={8} dataKey={ticketKey} stackId="a" fill="#68d7ff" radius={[10, 10, 0, 0]} unit={currencyDisplay} />
-      
+
       </BarChart>
     </ResponsiveContainer>
   )

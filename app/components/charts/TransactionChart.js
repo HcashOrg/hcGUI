@@ -1,18 +1,18 @@
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ReferenceLine } from "recharts";
 import { balance } from "connectors";
-import ChartTooltip from "./ChartTooltip"; 
-import { injectIntl } from "react-intl"; 
-import messages from "./messages"; 
+import ChartTooltip from "./ChartTooltip";
+import { injectIntl } from "react-intl";
+import messages from "./messages";
 
-const BalanceChart = ({ data, currencyDisplay, intl}) => {
+const BalanceChart = ({ data, currencyDisplay, intl }) => {
   const sentKey = intl.formatMessage(messages.sentKey);
-  const receivedKey = intl.formatMessage(messages.receivedKey); 
+  const receivedKey = intl.formatMessage(messages.receivedKey);
 
   const displayData = data.map(s => ({
     name: intl.formatMessage(messages.dayMonthDisplay, { value: s.time }),
     legendName: intl.formatMessage(messages.fullDayDisplay, { value: s.time }),
-    [sentKey]: s.sent,
-    [receivedKey]: s.received, 
+    [sentKey]: s.sent ? s.sent : 0,
+    [receivedKey]: s.received ? s.received : 0,
   }));
 
 
