@@ -69,32 +69,28 @@ class Index extends React.Component {
             value = ` hcctl ${value}`;
         }
 
-
-        // 执行命令行，如果命令不需要路径，或就是项目根目录，则不需要cwd参数：
+ 
         let workerProcess = child_process.exec(value, { cwd: this.getCwdPath(), encoding: 'GBK' });
         let results = this.state.result ? this.state.result : [];
         if (results.length != 0) {
             results.push(`<br/><text class="terminal_resultDividingLine">========================================================</text><br/>`)
         }
-
-        //.replace(/\n/g, "----------------")
+ 
 
         // results.push(`Run: ${value}`);
-        // results.push(`<br/>`);
-
-        // 打印正常的后台可执行程序输出 
+        // results.push(`<br/>`); 
         workerProcess.stdout.on('data', (data) => {
             results.push(iconv.decode(data, 'GBK'));
             //arr.push(data); 
         });
-        // 打印错误的后台可执行程序输出
+ 
         workerProcess.stderr.on('data', (data) => {
             results.push(`<text class='terminal_resultErr'>${iconv.decode(data, 'GBK')}</text>`)
             this.setState({ result: results })
             this.onScrollTop();
         });
 
-        // 退出之后的输出
+ 
         workerProcess.on('close', (code) => {
             this.setState({ result: results })
             this.onScrollTop();
@@ -198,11 +194,11 @@ class Index extends React.Component {
 
     componentWillMount() {
 
-        // 执行命令行，如果命令不需要路径，或就是项目根目录，则不需要cwd参数：
-        let workerProcess = child_process.exec(`hcctl -l  --rpccert ${getWalletCfgPath(this.props.isTestNet, this.props.walletName)}\\rpc.cert `, { cwd: this.getCwdPath(), encoding: 'GBK' });
+      
+        let workerProcess = child_process.exec(`hcctl -l  --rpccert ${getWalletCfgPath(this.props.isTestNet, this.props.walletName.replace(/['(']/g,"\\(").replace(/[')']/g,"\\)"))}/rpc.cert `, { cwd: this.getCwdPath(), encoding: 'GBK' });
 
         let results = [];
-        // 打印正常的后台可执行程序输出 
+ 
         workerProcess.stdout.on('data', (data) => {
 
             const dataArr = iconv.decode(data, 'GBK').split("\n").filter((r) => {
@@ -230,13 +226,13 @@ class Index extends React.Component {
             })
             results = [...results, ...afterDataArr];
         });
-        // 打印错误的后台可执行程序输出
+       
         workerProcess.stderr.on('data', (data) => {
             this.setState({ result: `<text class='terminal_resultErr'>${iconv.decode(data, 'GBK')}</text>` })
             //results.push(`<text class='terminal_resultErr'>${iconv.decode(data, 'GBK')}</text>`) 
         });
 
-        // 退出之后的输出
+     
         workerProcess.on('close', (code) => {
             if (results) {
                 this.setState({
