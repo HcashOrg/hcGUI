@@ -6240,3 +6240,68 @@ msgctxt "home.sentBalanceLabel"
 msgid "Sent"
 msgstr "已发送"
 
+ 
+#. [menu.terminal]
+#. defaultMessage is:
+#. Terminal
+#: app/i18n/extracted/app/components/views/HomePage/tabs/Transactions.json
+msgctxt "menu.terminal"
+msgid "Terminal"
+msgstr "命令"
+
+#. [terminal.title]
+#. defaultMessage is:
+#. Terminal
+#: app/i18n/extracted/app/components/views/HomePage/tabs/Transactions.json
+msgctxt "terminal.title"
+msgid "Terminal"
+msgstr "命令"
+
+#. [terminal.result]
+#. defaultMessage is:
+#. Result
+#: app/i18n/extracted/app/components/views/HomePage/tabs/Transactions.json
+msgctxt "terminal.result"
+msgid "Result"
+msgstr "结果"
+
+#. [terminal.button.run]
+#. defaultMessage is:
+#. Run
+#: app/i18n/extracted/app/components/views/HomePage/tabs/Transactions.json
+msgctxt "terminal.button.run"
+msgid "Run"
+msgstr "运行"
+
+#. [terminal.method]
+#. defaultMessage is:
+#. Method
+#: app/i18n/extracted/app/components/views/HomePage/tabs/Transactions.json
+msgctxt "terminal.method"
+msgid "Method"
+msgstr "方法"
+
+#. [terminal.parameter]
+#. defaultMessage is:
+#. Parameters (multiple parameters separated by spaces)
+#: app/i18n/extracted/app/components/views/HomePage/tabs/Transactions.json
+msgctxt "terminal.parameter"
+msgid "Parameters (multiple parameters separated by spaces)"
+msgstr "参数（多个参数用空格隔开）"
+
+#. [terminal.tip]
+#. defaultMessage is:
+#. Parametric format：
+#: app/i18n/extracted/app/components/views/HomePage/tabs/Transactions.json
+msgctxt "terminal.tip"
+msgid "Parametric format："
+msgstr "参数格式："
+
+#. [terminal.method.placeholder]
+#. defaultMessage is:
+#. Select method
+#: app/i18n/extracted/app/components/views/HomePage/tabs/Transactions.json
+msgctxt "terminal.method.placeholder"
+msgid "Select method"
+msgstr "请选择方法"
+

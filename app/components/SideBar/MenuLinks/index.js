@@ -15,6 +15,7 @@ const linkList = [
   "omni",
   //// hide for now
   // "security",
+  "terminal",
   "settings",
   // "help"
 ];

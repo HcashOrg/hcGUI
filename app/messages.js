@@ -50,6 +50,8 @@ export default defineMessages({
   "security.tab.verify":                      { id: "security.tab.verify",                   defaultMessage: "Verify Message" },
   "security.tab.validate":                    { id: "security.tab.validate",                 defaultMessage: "Validate Address" },
 
+   
+
   "settings.title":                           { id: "settings.title",                        defaultMessage: "Settings" },
   "settings.description":                     { id: "settings.description",                  defaultMessage: "Changing network settings requires a restart" },
 
@@ -64,6 +66,8 @@ export default defineMessages({
   "walletError.title":                        { id: "walletError.title",                     defaultMessage: "An error has occured" },
   "invalidRPCVersion.title":                  { id: "invalidRPCVersion.title",               defaultMessage: "Invalid RPC Version" },
 
+  "terminal.title":                           { id: "terminal.title",                        defaultMessage: "Terminal" }, 
+
   "menu.home":                                { id: "menu.home",                             defaultMessage: "Overview"},
   "menu.accounts":                            { id: "menu.accounts",                         defaultMessage: "Accounts"},
   "menu.transactions":                        { id: "menu.transactions",                     defaultMessage: "Transactions"},
@@ -73,5 +77,6 @@ export default defineMessages({
   "menu.help":                                { id: "menu.help",                             defaultMessage: "Help"},
   "menu.omni":                                { id: "menu.omni",                             defaultMessage: "Omni Token"},
   "menu.governance":                          { id: "menu.governance",                       defaultMessage: "Governance"},
+  "menu.terminal":                            { id: "menu.terminal",                         defaultMessage: "Terminal"},
 
 });
