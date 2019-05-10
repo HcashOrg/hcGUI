@@ -46,7 +46,7 @@ class Index extends React.Component {
 
         let value = ` ${this.state.methodName} ${this.state.parameter} `;   //" -l ";  
         if (value.indexOf("--rpccert") == -1) {
-            value = `${value} --rpccert ${getWalletCfgPath(this.props.isTestNet, this.props.walletName)}\\rpc.cert`;
+            value = `${value}  ${this.getCertPath()} `;
         }
 
         if (value.indexOf("--wallet") == -1) {
@@ -191,11 +191,14 @@ class Index extends React.Component {
         }
     }
 
+    getCertPath=()=>{
+        return ` --rpccert ${getWalletCfgPath(this.props.isTestNet, this.props.walletName.replace(/['(']/g,"\\(").replace(/[')']/g,"\\)"))}/rpc.cert `
+    }
 
     componentWillMount() {
 
       
-        let workerProcess = child_process.exec(`hcctl -l  --rpccert ${getWalletCfgPath(this.props.isTestNet, this.props.walletName.replace(/['(']/g,"\\(").replace(/[')']/g,"\\)"))}/rpc.cert `, { cwd: this.getCwdPath(), encoding: 'GBK' });
+        let workerProcess = child_process.exec(`hcctl -l  ${this.getCertPath()} `, { cwd: this.getCwdPath(), encoding: 'GBK' });
 
         let results = [];
  
