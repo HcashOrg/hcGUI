@@ -192,13 +192,14 @@ class Index extends React.Component {
     }
 
     getCertPath=()=>{
-        return ` --rpccert ${getWalletCfgPath(this.props.isTestNet, this.props.walletName.replace(/['(']/g,"\\(").replace(/[')']/g,"\\)"))}/rpc.cert `
-    }
+        return ` --rpccert="${getWalletCfgPath(this.props.isTestNet, this.props.walletName)}/rpc.cert" `
+    } 
 
     componentWillMount() {
 
       
-        let workerProcess = child_process.exec(`hcctl -l  ${this.getCertPath()} `, { cwd: this.getCwdPath(), encoding: 'GBK' });
+        console.log(this.getCertPath())
+        let workerProcess = child_process.exec(` hcctl -l `, { cwd: this.getCwdPath(), encoding: 'GBK' });
 
         let results = [];
  
@@ -231,8 +232,7 @@ class Index extends React.Component {
         });
        
         workerProcess.stderr.on('data', (data) => {
-            this.setState({ result: `<text class='terminal_resultErr'>${iconv.decode(data, 'GBK')}</text>` })
-            //results.push(`<text class='terminal_resultErr'>${iconv.decode(data, 'GBK')}</text>`) 
+            this.setState({ result:[`<text class='terminal_resultErr'>${iconv.decode(data, 'GBK')}</text>`] }) 
         });
 
      
@@ -246,13 +246,7 @@ class Index extends React.Component {
                 })
             }
         });
-
-        // const fristMethod = this.props.command_methods ? this.props.command_methods[0] : null;
-        // this.setState({
-        //     methodName: fristMethod.method,
-        //     parameter: "",
-        //     hasParameter: fristMethod.hasParameter,
-        // })
+ 
     }
 
 
