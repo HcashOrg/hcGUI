@@ -1,5 +1,7 @@
 import { Input } from "inputs";
 import child_process from "child_process";
+import node_process from "process";
+import { validataOS } from "helpers";
 import iconv from "iconv-lite";
 import { TabbedHeader } from "shared";
 import { InputSelect } from "inputs";
@@ -66,16 +68,16 @@ class Index extends React.Component {
         }
 
         if (value.indexOf("hcctl") == -1) {
-            value = ` hcctl ${value}`;
+            value = ` ${this.getHcctlPath()} ${value}`;
         }
 
- 
+
         let workerProcess = child_process.exec(value, { cwd: this.getCwdPath(), encoding: 'GBK' });
         let results = this.state.result ? this.state.result : [];
         if (results.length != 0) {
             results.push(`<br/><text class="terminal_resultDividingLine">========================================================</text><br/>`)
         }
- 
+
 
         // results.push(`Run: ${value}`);
         // results.push(`<br/>`); 
@@ -83,14 +85,14 @@ class Index extends React.Component {
             results.push(iconv.decode(data, 'GBK'));
             //arr.push(data); 
         });
- 
+
         workerProcess.stderr.on('data', (data) => {
             results.push(`<text class='terminal_resultErr'>${iconv.decode(data, 'GBK')}</text>`)
             this.setState({ result: results })
             this.onScrollTop();
         });
 
- 
+
         workerProcess.on('close', (code) => {
             this.setState({ result: results })
             this.onScrollTop();
@@ -187,22 +189,32 @@ class Index extends React.Component {
         if (process.env.NODE_ENV === "development") {
             return "./bin";
         } else {
+            if (validataOS() == "Mac") {
+                const execPath = node_process.execPath.split("Frameworks");
+                if (execPath.length > 1) {
+                    return execPath[0] + "resources/bin"
+                }
+            }
             return "./resources/bin";
         }
     }
 
-    getCertPath=()=>{
+    getCertPath = () => {
         return ` --rpccert="${getWalletCfgPath(this.props.isTestNet, this.props.walletName)}/rpc.cert" `
-    } 
+    }
+
+    getHcctlPath=()=>{
+        if (validataOS() == "Mac") {
+            return "./hcctl"
+        }
+        return "hcctl"
+    }
 
     componentWillMount() {
-
-      
-        console.log(this.getCertPath())
-        let workerProcess = child_process.exec(` hcctl -l `, { cwd: this.getCwdPath(), encoding: 'GBK' });
+        let workerProcess = child_process.exec(` ${this.getHcctlPath()} -l `, { cwd: this.getCwdPath(), encoding: 'GBK' });
 
         let results = [];
- 
+
         workerProcess.stdout.on('data', (data) => {
 
             const dataArr = iconv.decode(data, 'GBK').split("\n").filter((r) => {
@@ -230,12 +242,12 @@ class Index extends React.Component {
             })
             results = [...results, ...afterDataArr];
         });
-       
+
         workerProcess.stderr.on('data', (data) => {
-            this.setState({ result:[`<text class='terminal_resultErr'>${iconv.decode(data, 'GBK')}</text>`] }) 
+            this.setState({ result: [`<text class='terminal_resultErr'>${iconv.decode(data, 'GBK')}</text>`] })
         });
 
-     
+
         workerProcess.on('close', (code) => {
             if (results) {
                 this.setState({
@@ -246,7 +258,7 @@ class Index extends React.Component {
                 })
             }
         });
- 
+
     }
 
 
