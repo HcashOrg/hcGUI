@@ -39,9 +39,9 @@ class Index extends React.Component {
     }
     onChangeMethod = (e) => {
         if (e && this.state.methodName != e.method) {
-            this.setState({ methodName: e.method, hasParameter: e.hasParameter, desc: e.desc })
+            this.setState({ methodName: e.method, hasParameter: e.hasParameter,parameter:'', desc: e.desc })
         } else if (!e) {
-            this.setState({ methodName: '', hasParameter: false, desc: '' })
+            this.setState({ methodName: '', hasParameter: false,parameter:'', desc: '' })
         }
     }
     onRun = () => {
@@ -194,6 +194,11 @@ class Index extends React.Component {
                 if (execPath.length > 1) {
                     return execPath[0] + "resources/bin"
                 }
+            }else if (validataOS() == "Linux") {
+                const execPath = node_process.execPath.split("hcgui");
+                if (execPath.length > 1) {
+                    return execPath[0] + "resources/bin"
+                }
             }
             return "./resources/bin";
         }
@@ -204,7 +209,7 @@ class Index extends React.Component {
     }
 
     getHcctlPath=()=>{
-        if (validataOS() == "Mac") {
+        if (validataOS() == "Mac" || validataOS() == "Linux") {
             return "./hcctl"
         }
         return "hcctl"
