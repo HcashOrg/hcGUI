@@ -5,6 +5,7 @@ import ErrorScreen from "ErrorScreen";
 import { FormattedMessage as T } from "react-intl";
 import { spring, presets } from "react-motion";
 import OutputRow from "./OutputRow";
+import balanceConnector from "connectors/balance";
 
 const BASE_OUTPUT = { destination: "", amount: null };
 
@@ -22,8 +23,12 @@ class Send extends React.Component {
       isSendSelf: false,
       hastAttemptedConstruct: false,
       account: this.props.defaultSpendingAccount,
-      outputs: [{ key: "output_0", data:{...BASE_OUTPUT} }],
+      outputs: [{ key: "output_0", data: { ...BASE_OUTPUT } }],
       outputAccount: this.props.defaultSpendingAccount,
+      hasAiTransaction: false,
+      destination:"",
+      amount:null
+
     };
   }
 
@@ -31,8 +36,8 @@ class Send extends React.Component {
     const { nextAddress } = this.props;
     const { isSendSelf, outputs } = this.state;
     if (isSendSelf && (nextAddress != nextProps.nextAddress)) {
-      let newOutputs = outputs.map(o => ({...o, data:{...o.data, destination: nextProps.nextAddress}}));
-      this.setState({outputs: newOutputs}, this.onAttemptConstructTransaction);
+      let newOutputs = outputs.map(o => ({ ...o, data: { ...o.data, destination: nextProps.nextAddress } }));
+      this.setState({ outputs: newOutputs }, this.onAttemptConstructTransaction);
     }
   }
 
@@ -40,6 +45,10 @@ class Send extends React.Component {
     this.onClearTransaction();
   }
 
+  componentWillMount() {
+    const hasAiTransaction = this.props.location.pathname === "/aiTransactions/send";
+    this.setState({ hasAiTransaction: hasAiTransaction })
+  }
   render() {
     const {
       onChangeAccount,
@@ -96,7 +105,7 @@ class Send extends React.Component {
   }
 
   getDefaultStyles() {
-    return this.state.outputs.map(output => ({...output, style: {height: 0, opacity: 1}}));
+    return this.state.outputs.map(output => ({ ...output, style: { height: 0, opacity: 1 } }));
   }
 
   getStyles() {
@@ -131,7 +140,7 @@ class Send extends React.Component {
   willLeave() {
     return {
       height: spring(0),
-      opacity: spring(0, {stiffness: 210, damping: 20}),
+      opacity: spring(0, { stiffness: 210, damping: 20 }),
     };
   }
 
@@ -139,13 +148,18 @@ class Send extends React.Component {
     this.setState({ account }, this.onAttemptConstructTransaction);
   }
 
-  onAttemptSignTransaction(privpass) {
-    const { unsignedTransaction, onAttemptSignTransaction,
-      getNextAddressAttempt, nextAddressAccount } = this.props;
-    if (!privpass || !this.getIsValid()) return;
-    onAttemptSignTransaction && onAttemptSignTransaction(privpass, unsignedTransaction);
-    getNextAddressAttempt && nextAddressAccount && getNextAddressAttempt(nextAddressAccount.value);
-    this.onClearTransaction();
+  onAttemptSignTransaction(privpass) { 
+    if (this.state.hasAiTransaction) { 
+      this.props.onAisendtoaddressAttempt && this.props.onAisendtoaddressAttempt(this.state.amount, this.state.destination);
+      this.onClearTransaction();
+    } else { 
+      const { unsignedTransaction, onAttemptSignTransaction,
+        getNextAddressAttempt, nextAddressAccount } = this.props;
+      if (!privpass || !this.getIsValid()) return;
+      onAttemptSignTransaction && onAttemptSignTransaction(privpass, unsignedTransaction);
+      getNextAddressAttempt && nextAddressAccount && getNextAddressAttempt(nextAddressAccount.value);
+      this.onClearTransaction();
+    }
   }
 
   onClearTransaction() {
@@ -154,13 +168,13 @@ class Send extends React.Component {
   }
   onShowSendAll() {
     const { account, outputs } = this.state;
-    const newOutputs = [{...outputs[0], data:{...outputs[0].data, amount: account.spendable}}];
+    const newOutputs = [{ ...outputs[0], data: { ...outputs[0].data, amount: account.spendable } }];
     this.setState({ isSendAll: true, outputs: newOutputs }, this.onAttemptConstructTransaction);
   }
   onHideSendAll() {
     const { outputs } = this.state;
-    const newOutputs = [{...outputs[0], data:{ ...outputs[0].data, amount: null}}];
-    this.setState({ isSendAll: false, outputs: newOutputs}, this.onAttemptConstructTransaction);
+    const newOutputs = [{ ...outputs[0], data: { ...outputs[0].data, amount: null } }];
+    this.setState({ isSendAll: false, outputs: newOutputs }, this.onAttemptConstructTransaction);
   }
   onShowConfirm() {
     if (!this.getIsValid()) return;
@@ -168,12 +182,12 @@ class Send extends React.Component {
   }
   onShowSendSelf() {
     const { outputs } = this.state;
-    let newOutputs = [{...outputs[0], data:{destination: this.props.nextAddress, amount: null}}];
-    this.setState({ isSendSelf: true, outputs:newOutputs }, this.onAttemptConstructTransaction);
+    let newOutputs = [{ ...outputs[0], data: { destination: this.props.nextAddress, amount: null } }];
+    this.setState({ isSendSelf: true, outputs: newOutputs }, this.onAttemptConstructTransaction);
   }
   onShowSendOthers() {
     const { outputs } = this.state;
-    let newOutputs = [{...outputs[0], data:{...BASE_OUTPUT} }];
+    let newOutputs = [{ ...outputs[0], data: { ...BASE_OUTPUT } }];
     this.setState({ isSendSelf: false, outputs: newOutputs }, this.onAttemptConstructTransaction);
   }
 
@@ -189,7 +203,7 @@ class Send extends React.Component {
         this.state.account.value,
         confirmations,
         this.state.outputs.map(({ data }) =>
-          ({amount: data.amount, destination: data.destination })
+          ({ amount: data.amount, destination: data.destination })
         )
       );
     } else {
@@ -204,7 +218,7 @@ class Send extends React.Component {
 
   onAddOutput() {
     const { outputs } = this.state;
-    this.setState({ outputs: [...outputs, { key: "output_"+outputs.length, data: {...BASE_OUTPUT} }] });
+    this.setState({ outputs: [...outputs, { key: "output_" + outputs.length, data: { ...BASE_OUTPUT } }] });
   }
 
   onRebroadcastUnmined() {
@@ -224,6 +238,7 @@ class Send extends React.Component {
       let destinationInvalid = false;
       let updateDestinationState = () => {
         this.setState({
+          destination: destination,
           outputs: this.state.outputs.map(o => (o.key === `output_${key}`) ? {
             ...o,
             data: {
@@ -235,11 +250,11 @@ class Send extends React.Component {
       };
 
       this.props.validateAddress(destination)
-        .then( resp => {
+        .then(resp => {
           destinationInvalid = !resp.getIsValid();
           updateDestinationState();
         })
-        .catch( () => {
+        .catch(() => {
           destinationInvalid = false;
           updateDestinationState();
         });
@@ -248,14 +263,16 @@ class Send extends React.Component {
 
   getOnChangeOutputAmount(key) {
     return newAmount => {
+      const { unitDivisor } = this.props;
       let reconstruct = false;
       return this.setState({
+        amount: (newAmount / unitDivisor),
         outputs: this.state.outputs.map(o => {
           if (o.key !== `output_${key}`) return o;
           reconstruct = newAmount !== o.data.amount;
           return {
             ...o,
-            data:{
+            data: {
               ...o.data,
               amount: newAmount
             },
@@ -298,11 +315,11 @@ class Send extends React.Component {
   }
 
   getAmountError(key) {
-    const { outputs, isSendAll} = this.state;
+    const { outputs, isSendAll } = this.state;
     const { amount } = outputs[key].data;
-    if (isNaN(amount) && !isSendAll) return <T id="send.errors.invalidAmount" m="*Please enter a valid amount" /> ;
+    if (isNaN(amount) && !isSendAll) return <T id="send.errors.invalidAmount" m="*Please enter a valid amount" />;
     if (amount <= 0 && !isSendAll) return <T id="send.errors.negativeAmount" m="*Please enter a valid amount (> 0)" />;
   }
 }
 
-export default service(settings(send(Send)));
+export default service(settings(send(balanceConnector(Send))));

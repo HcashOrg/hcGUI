@@ -10,6 +10,7 @@ const linkList = [
   "home",
   "accounts",
   "transactions",
+  "aiTransactions",
   "governance",
   "tickets",
   "omni",

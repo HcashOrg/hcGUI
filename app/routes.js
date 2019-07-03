@@ -76,6 +76,14 @@ export default (
       <Route path="history" component={HistoryTab} balance />
       {/* <Route path="terminal" component={Terminal} balance /> */}
       
+    </Route> 
+    <Route path="aiTransactions" component={TabbedPage} tabDesc>
+      <IndexRedirect to="send" />
+      <Route path="send" component={SendTab} testNet /> 
+      <Route path="receive" component={ReceiveTab} />
+      <Route path="history" component={HistoryTab} balance />
+      {/* <Route path="terminal" component={Terminal} balance /> */}
+      
     </Route>
     <Route path="tickets" component={TabbedPage} desc ticketprice>
       <IndexRedirect to="purchase" />

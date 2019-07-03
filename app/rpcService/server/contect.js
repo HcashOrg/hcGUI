@@ -23,3 +23,7 @@
     gettrade:"omni_gettrade",
  }
 
+ export const aiMethod={
+   aisendtoaddress:'aisendtoaddress'
+ }
+

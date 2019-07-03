@@ -107,7 +107,7 @@ export const isInputRequest = or(
 export const isOpenWalletPublicInputRequest = get(["walletLoader", "openWalletPublicInputRequest"]);
 export const isOpenWalletPrivateInputRequest = get(["walletLoader", "openWalletPrivateInputRequest"]);
 
-export const omniService = get(["rpc", "omniService"]);
+export const rpcRequestService = get(["rpc", "rpcRequestService"]);
 export const walletAddressBalances = get(["rpc", "walletAddressBalances"]);
 export const walletAssetsBalances = get(["rpc", "walletAssetsBalances"]);
 export const listproperties = get(["rpc", "listproperties"]);

@@ -47,4 +47,7 @@ export const PassphraseModalButton = mbb(null, PassphraseModal, KeyBlueButton);
 export const PassphraseModalSwitch = mbb(null, PassphraseModal, AutoBuyerSwitch);
 export const RemoveStakePoolButton = mbb(null, ConfirmModal, DangerButton);
 export const RemoveWalletButton = mbb(null, ConfirmModal, KeyDestructionButton);
-export const QRCodeModalButton = mbb("qrcode",QRCodeModel)
+export const QRCodeModalButton = mbb("qrcode",QRCodeModel);
+
+export const ConfirmModalButton = mbb(null, ConfirmModal, KeyBlueButton);
+

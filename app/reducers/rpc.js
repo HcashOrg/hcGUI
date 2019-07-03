@@ -26,7 +26,7 @@ export default function rpc(state = {}, action) {
                 ...state,
                 getOmniServiceError: null,
                 getOmniServiceRequestAttempt: false,
-                omniService: action.omniService,
+                rpcRequestService: action.rpcRequestService,
             };
         case OMNIGETWALLETADDRESSBALANCES_SUCCESS:
             return {

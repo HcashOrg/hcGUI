@@ -3,7 +3,8 @@ import * as wallet from "wallet";
 import * as sel from "selectors";
 import { isValidAddress } from "helpers";
 import { getStartupWalletInfo, getStakeInfoAttempt } from "./ClientActions";
-import { ChangePassphraseRequest, RenameAccountRequest,  RescanRequest,
+import {
+  ChangePassphraseRequest, RenameAccountRequest, RescanRequest,
   NextAccountRequest, NextAddressRequest, ImportPrivateKeyRequest, ImportScriptRequest,
   ConstructTransactionRequest, SignTransactionRequest,
   PublishTransactionRequest, PurchaseTicketsRequest, RevokeTicketsRequest, LoadActiveDataFiltersRequest,
@@ -13,6 +14,9 @@ import { ChangePassphraseRequest, RenameAccountRequest,  RescanRequest,
   SetMaxPerBlockRequest,
 } from "../middleware/walletrpc/api_pb";
 import { getWalletCfg } from "../config.js";
+import {
+  ai_sendtoaddress
+} from '../rpcService/server';
 
 export const GETNEXTADDRESS_ATTEMPT = "GETNEXTADDRESS_ATTEMPT";
 export const GETNEXTADDRESS_FAILED = "GETNEXTADDRESS_FAILED";
@@ -26,13 +30,13 @@ const ADDR_KIND__BLISS = 2;
 export function getNextAddressAttempt(accountNum, accountType) {
   var request = new NextAddressRequest();
   request.setAccount(accountNum);
-  request.setKind(accountType === ACCOUNT_TYPE__BLISS ? ADDR_KIND__BLISS: ADDR_KIND__REG);
+  request.setKind(accountType === ACCOUNT_TYPE__BLISS ? ADDR_KIND__BLISS : ADDR_KIND__REG);
   request.setGapPolicy(NextAddressRequest.GapPolicy.GAP_POLICY_WRAP);
   return (dispatch, getState) => {
     dispatch({ type: GETNEXTADDRESS_ATTEMPT });
     const { walletService } = getState().grpc;
     walletService.nextAddress(request,
-      function(error, getNextAddressResponse) {
+      function (error, getNextAddressResponse) {
         if (error) {
           dispatch({ error, type: GETNEXTADDRESS_FAILED });
         } else {
@@ -55,12 +59,12 @@ export function renameAccountAttempt(accountNumber, newName) {
     dispatch({ type: RENAMEACCOUNT_ATTEMPT });
     const { walletService } = getState().grpc;
     walletService.renameAccount(request,
-      function(error, renameAccountResponse) {
+      function (error, renameAccountResponse) {
         if (error) {
           dispatch({ error, type: RENAMEACCOUNT_FAILED });
         } else {
           var successMsg = "You have successfully updated the account name.";
-          setTimeout( () => dispatch({ renameAccountSuccess: successMsg, renameAccountResponse: renameAccountResponse, type: RENAMEACCOUNT_SUCCESS }), 1000);
+          setTimeout(() => dispatch({ renameAccountSuccess: successMsg, renameAccountResponse: renameAccountResponse, type: RENAMEACCOUNT_SUCCESS }), 1000);
         }
       });
   };
@@ -80,15 +84,15 @@ export function rescanAttempt(beginHeight) {
       dispatch({ request: request, type: RESCAN_ATTEMPT });
       const { walletService } = getState().grpc;
       var rescanCall = walletService.rescan(request);
-      rescanCall.on("data", function(response) {
+      rescanCall.on("data", function (response) {
         dispatch({ rescanCall: rescanCall, rescanResponse: response, type: RESCAN_PROGRESS });
       });
-      rescanCall.on("end", function() {
+      rescanCall.on("end", function () {
         dispatch({ type: RESCAN_COMPLETE });
         resolve()
         //dispatch(getStartupWalletInfo());
       });
-      rescanCall.on("error", function(status) {
+      rescanCall.on("error", function (status) {
         status = status + "";
         if (status.indexOf("Cancelled") < 0) {
           console.error("Rescan error", status);
@@ -105,7 +109,7 @@ export function rescanCancel() {
   return (dispatch, getState) => {
     const { rescanCall } = getState().control;
     rescanCall.cancel();
-    dispatch({type: RESCAN_CANCEL});
+    dispatch({ type: RESCAN_CANCEL });
   };
 }
 
@@ -121,12 +125,12 @@ export function getNextAccountAttempt(passphrase, accountName) {
     dispatch({ type: GETNEXTACCOUNT_ATTEMPT });
     const { walletService } = getState().grpc;
     walletService.nextAccount(request,
-      function(error, getNextAccountResponse) {
+      function (error, getNextAccountResponse) {
         if (error) {
           dispatch({ error, type: GETNEXTACCOUNT_FAILED });
         } else {
           var success = "Account - " + accountName + " - has been successfully created.";
-          setTimeout( () => dispatch({getNextAccountResponse: getNextAccountResponse, type: GETNEXTACCOUNT_SUCCESS, successMessage: success }), 1000);
+          setTimeout(() => dispatch({ getNextAccountResponse: getNextAccountResponse, type: GETNEXTACCOUNT_SUCCESS, successMessage: success }), 1000);
         }
       });
   };
@@ -147,7 +151,7 @@ export function importPrivateKeyAttempt(passphrase, accountNum, wif, rescan, sca
     dispatch({ type: IMPORTPRIVKEY_ATTEMPT });
     const { walletService } = getState().grpc;
     walletService.importPrivateKey(request,
-      function(error, importPrivateKeyResponse) {
+      function (error, importPrivateKeyResponse) {
         if (error) {
           dispatch({ error, type: IMPORTPRIVKEY_FAILED });
         } else {
@@ -187,7 +191,7 @@ export function importScriptAttempt(passphrase, script, rescan, scanFrom, voting
     dispatch({ type: IMPORTSCRIPT_ATTEMPT });
     const { walletService } = getState().grpc;
     walletService.importScript(request,
-      function(error, importScriptResponse) {
+      function (error, importScriptResponse) {
         if (error) {
           dispatch({ error, type: IMPORTSCRIPT_FAILED });
           if (votingAddress || cb) {
@@ -234,7 +238,7 @@ export function changePassphraseAttempt(oldPass, newPass, priv) {
     dispatch({ type: CHANGEPASSPHRASE_ATTEMPT });
     const { walletService } = getState().grpc;
     walletService.changePassphrase(request,
-      function(error, changePassphraseResponse) {
+      function (error, changePassphraseResponse) {
         if (error) {
           dispatch({ error, type: CHANGEPASSPHRASE_FAILED });
         } else {
@@ -245,7 +249,7 @@ export function changePassphraseAttempt(oldPass, newPass, priv) {
 }
 
 export const LOADACTIVEDATAFILTERS_ATTEMPT = "LOADACTIVEDATAFILTERS_ATTEMPT";
-export const LOADACTIVEDATAFILTERS_FAILED= "LOADACTIVEDATAFILTERS_FAILED";
+export const LOADACTIVEDATAFILTERS_FAILED = "LOADACTIVEDATAFILTERS_FAILED";
 export const LOADACTIVEDATAFILTERS_SUCCESS = "LOADACTIVEDATAFILTERS_SUCCESS";
 
 export function loadActiveDataFiltersAttempt() {
@@ -254,11 +258,11 @@ export function loadActiveDataFiltersAttempt() {
     dispatch({ type: LOADACTIVEDATAFILTERS_ATTEMPT });
     const { walletService } = getState().grpc;
     walletService.loadActiveDataFilters(request,
-      function(error, response) {
+      function (error, response) {
         if (error) {
           dispatch({ error, type: LOADACTIVEDATAFILTERS_FAILED });
         } else {
-          dispatch({response: response, type: LOADACTIVEDATAFILTERS_SUCCESS });
+          dispatch({ response: response, type: LOADACTIVEDATAFILTERS_SUCCESS });
         }
       });
   };
@@ -267,14 +271,14 @@ export function loadActiveDataFiltersAttempt() {
 export const CLEARTX = "CLEARTX";
 
 export function clearTransaction() {
-  return{ type: CLEARTX };
+  return { type: CLEARTX };
 }
 
 export const SIGNTX_ATTEMPT = "SIGNTX_ATTEMPT";
 export const SIGNTX_FAILED = "SIGNTX_FAILED";
 export const SIGNTX_SUCCESS = "SIGNTX_SUCCESS";
 
-export function signTransactionAttempt(passphrase, rawTx) {
+export function signTransactionAttempt(passphrase, rawTx, hasInstant) {
   var request = new SignTransactionRequest();
   request.setPassphrase(new Uint8Array(Buffer.from(passphrase)));
   request.setSerializedTransaction(new Uint8Array(Buffer.from(rawTx)));
@@ -282,11 +286,11 @@ export function signTransactionAttempt(passphrase, rawTx) {
     dispatch({ type: SIGNTX_ATTEMPT });
     const { walletService } = getState().grpc;
     walletService.signTransaction(request,
-      function(error, signTransactionResponse) {
+      function (error, signTransactionResponse) {
         if (error) {
           dispatch({ error, type: SIGNTX_FAILED });
         } else {
-          dispatch({signTransactionResponse: signTransactionResponse, type: SIGNTX_SUCCESS });
+          dispatch({ signTransactionResponse: signTransactionResponse, type: SIGNTX_SUCCESS });
           dispatch(publishTransactionAttempt(signTransactionResponse.getTransaction()));
         }
       });
@@ -304,7 +308,7 @@ export function publishTransactionAttempt(tx) {
     dispatch({ type: PUBLISHTX_ATTEMPT });
     const { walletService } = getState().grpc;
     walletService.publishTransaction(request,
-      function(error, publishTransactionResponse) {
+      function (error, publishTransactionResponse) {
         if (error) {
           dispatch({ error, type: PUBLISHTX_FAILED });
         } else {
@@ -324,7 +328,7 @@ export function purchaseTicketsAttempt(passphrase, accountNum, spendLimit, requi
     wallet.log("info", "Purchasing tickets", accountNum, spendLimit, requiredConf,
       numTickets, expiry, ticketFee, txFee, stakepool.TicketAddress,
       stakepool.PoolAddress, stakepool.PoolFees);
-    const {currentBlockHeight} = getState().grpc;
+    const { currentBlockHeight } = getState().grpc;
     var request = new PurchaseTicketsRequest();
     request.setPassphrase(new Uint8Array(Buffer.from(passphrase)));
     request.setAccount(accountNum);
@@ -339,8 +343,8 @@ export function purchaseTicketsAttempt(passphrase, accountNum, spendLimit, requi
     } else {
       request.setExpiry(expiry);
     }
-    request.setTxFee(txFee*1e8);
-    request.setTicketFee(ticketFee*1e8);
+    request.setTxFee(txFee * 1e8);
+    request.setTicketFee(ticketFee * 1e8);
     dispatch({ type: PURCHASETICKETS_ATTEMPT });
     dispatch(importScriptAttempt(passphrase, stakepool.Script, false, 0, stakepool.TicketAddress, (error) => {
       if (error) {
@@ -356,7 +360,7 @@ function purchaseTicketsAction(request) {
   return (dispatch, getState) => {
     const { walletService } = getState().grpc;
     walletService.purchaseTickets(request,
-      function(error, purchaseTicketsResponse) {
+      function (error, purchaseTicketsResponse) {
         if (error) {
           dispatch({ error, type: PURCHASETICKETS_FAILED });
         } else {
@@ -377,7 +381,7 @@ export function revokeTicketsAttempt(passphrase) {
     dispatch({ type: REVOKETICKETS_ATTEMPT });
     const { walletService } = getState().grpc;
     walletService.revokeTickets(request,
-      function(error, revokeTicketsResponse) {
+      function (error, revokeTicketsResponse) {
         if (error) {
           dispatch({ error, type: REVOKETICKETS_FAILED });
         } else {
@@ -433,39 +437,39 @@ export function setTicketBuyerConfigAttempt(account, balanceToMaintain, maxFee, 
         }
       });
     }
-    if (balanceToMaintain*1e8 != getTicketBuyerConfigResponse.getBalanceToMaintain()) {
+    if (balanceToMaintain * 1e8 != getTicketBuyerConfigResponse.getBalanceToMaintain()) {
       request = new SetBalanceToMaintainRequest();
-      request.setBalanceToMaintain(balanceToMaintain*1e8);
+      request.setBalanceToMaintain(balanceToMaintain * 1e8);
       ticketBuyerService.setBalanceToMaintain(request, function (error) {
         if (error) {
           hitError += error + ". ";
         } else {
           cfg.set("balancetomaintain", balanceToMaintain);
-          dispatch({balanceToMaintain: balanceToMaintain, type: SETBALANCETOMAINTAIN});
+          dispatch({ balanceToMaintain: balanceToMaintain, type: SETBALANCETOMAINTAIN });
         }
       });
     }
-    if (maxFee*1e8 != getTicketBuyerConfigResponse.getMaxFee()) {
+    if (maxFee * 1e8 != getTicketBuyerConfigResponse.getMaxFee()) {
       request = new SetMaxFeeRequest();
-      request.setMaxFeePerKb(maxFee*1e8);
+      request.setMaxFeePerKb(maxFee * 1e8);
       ticketBuyerService.setMaxFee(request, function (error) {
         if (error) {
           hitError += error + ". ";
         } else {
           cfg.set("maxfee", maxFee);
-          dispatch({maxFee: maxFee, type: SETMAXFEE});
+          dispatch({ maxFee: maxFee, type: SETMAXFEE });
         }
       });
     }
-    if (maxPriceAbsolute*1e8 != getTicketBuyerConfigResponse.getMaxPriceAbsolute()) {
+    if (maxPriceAbsolute * 1e8 != getTicketBuyerConfigResponse.getMaxPriceAbsolute()) {
       request = new SetMaxPriceAbsoluteRequest();
-      request.setMaxPriceAbsolute(maxPriceAbsolute*1e8);
+      request.setMaxPriceAbsolute(maxPriceAbsolute * 1e8);
       ticketBuyerService.setMaxPriceAbsolute(request, function (error) {
         if (error) {
           hitError += error + ". ";
         } else {
-          cfg.set("maxpriceabsolute",maxPriceAbsolute);
-          dispatch({maxPriceAbsolute: maxPriceAbsolute, type: SETMAXPRICEABSOLUTE});
+          cfg.set("maxpriceabsolute", maxPriceAbsolute);
+          dispatch({ maxPriceAbsolute: maxPriceAbsolute, type: SETMAXPRICEABSOLUTE });
         }
       });
     }
@@ -476,8 +480,8 @@ export function setTicketBuyerConfigAttempt(account, balanceToMaintain, maxFee, 
         if (error) {
           hitError += error + ". ";
         } else {
-          cfg.set("maxpricerelative",maxPriceRelative);
-          dispatch({maxPriceRelative: maxPriceRelative, type: SETMAXPRICERELATIVE});
+          cfg.set("maxpricerelative", maxPriceRelative);
+          dispatch({ maxPriceRelative: maxPriceRelative, type: SETMAXPRICERELATIVE });
         }
       });
     }
@@ -515,8 +519,8 @@ export function setTicketBuyerConfigAttempt(account, balanceToMaintain, maxFee, 
         if (error) {
           hitError += error + ". ";
         } else {
-          cfg.set("maxperblock",maxPerBlock);
-          dispatch({maxPerBlock: maxPerBlock, type: SETMAXPERBLOCK});
+          cfg.set("maxperblock", maxPerBlock);
+          dispatch({ maxPerBlock: maxPerBlock, type: SETMAXPERBLOCK });
         }
       });
     }
@@ -538,10 +542,10 @@ export function startAutoBuyerAttempt(passphrase, accountNum, balanceToMaintain,
   var request = new StartAutoBuyerRequest();
   request.setPassphrase(new Uint8Array(Buffer.from(passphrase)));
   request.setAccount(accountNum);
-  request.setBalanceToMaintain(balanceToMaintain*1e8);
-  request.setMaxFeePerKb(maxFeePerKb*1e8);
+  request.setBalanceToMaintain(balanceToMaintain * 1e8);
+  request.setMaxFeePerKb(maxFeePerKb * 1e8);
   request.setMaxPriceRelative(maxPriceRelative);
-  request.setMaxPriceAbsolute(maxPriceAbsolute*1e8);
+  request.setMaxPriceAbsolute(maxPriceAbsolute * 1e8);
   request.setVotingAddress(stakepool.TicketAddress);
   request.setPoolAddress(stakepool.PoolAddress);
   request.setPoolFees(stakepool.PoolFees);
@@ -552,19 +556,20 @@ export function startAutoBuyerAttempt(passphrase, accountNum, balanceToMaintain,
     });
     const { ticketBuyerService } = getState().grpc;
     ticketBuyerService.startAutoBuyer(request,
-      function(error, startAutoBuyerResponse) {
+      function (error, startAutoBuyerResponse) {
         if (error) {
           dispatch({ error, type: STARTAUTOBUYER_FAILED });
         } else {
           var success = "You successfully started the auto ticket buyer.";
-          dispatch({ success: success, startAutoBuyerResponse: startAutoBuyerResponse, type: STARTAUTOBUYER_SUCCESS,
+          dispatch({
+            success: success, startAutoBuyerResponse: startAutoBuyerResponse, type: STARTAUTOBUYER_SUCCESS,
             balanceToMaintain: balanceToMaintain,
-            maxFeePerKb: maxFeePerKb*1e8,
+            maxFeePerKb: maxFeePerKb * 1e8,
             maxPriceRelative: maxPriceRelative,
             maxPriceAbsolute: maxPriceAbsolute,
             maxPerBlock: maxPerBlock,
           });
-          setTimeout(()=>dispatch(getTicketBuyerConfigAttempt(), 1000));
+          setTimeout(() => dispatch(getTicketBuyerConfigAttempt(), 1000));
         }
       });
   };
@@ -580,7 +585,7 @@ export function stopAutoBuyerAttempt() {
     dispatch({ type: STOPAUTOBUYER_ATTEMPT });
     const { ticketBuyerService } = getState().grpc;
     ticketBuyerService.stopAutoBuyer(request,
-      function(error, stopAutoBuyerResponse) {
+      function (error, stopAutoBuyerResponse) {
         if (error) {
           // The only error that can be returned here is if the autobuyer is not running when requested to stop.
           // We're currently issuing a stop auto buyer request on startup, so to avoid that error being shown,
@@ -599,6 +604,7 @@ export const CONSTRUCTTX_FAILED = "CONSTRUCTTX_FAILED";
 export const CONSTRUCTTX_SUCCESS = "CONSTRUCTTX_SUCCESS";
 
 export function constructTransactionAttempt(account, confirmations, outputs, all) {
+
   var request = new ConstructTransactionRequest();
   request.setSourceAccount(parseInt(account));
   request.setRequiredConfirmations(parseInt(parseInt(confirmations)));
@@ -636,7 +642,7 @@ export function constructTransactionAttempt(account, confirmations, outputs, all
     dispatch({ type: CONSTRUCTTX_ATTEMPT });
     const { walletService } = getState().grpc;
     walletService.constructTransaction(request,
-      function(error, constructTxResponse) {
+      function (error, constructTxResponse) {
         if (error) {
           dispatch({ error, type: CONSTRUCTTX_FAILED });
         } else {
@@ -645,37 +651,49 @@ export function constructTransactionAttempt(account, confirmations, outputs, all
           } else {
             constructTxResponse.totalAmount = constructTxResponse.getTotalOutputAmount();
           }
-          dispatch({constructTxResponse: constructTxResponse, type: CONSTRUCTTX_SUCCESS });
+          dispatch({ constructTxResponse: constructTxResponse, type: CONSTRUCTTX_SUCCESS });
         }
       });
   };
 }
 
+
+export const AISENDTOADDRESSATTEMPT_FAILED = "AISENDTOADDRESSATTEMPT_FAILED";
+export const aisendtoaddressAttempt = (amount, destination) => async (dispatch, getState) => {
+  try { 
+    const { rpcRequestService } = getState().rpc;
+    const result = await ai_sendtoaddress(rpcRequestService, { destination, amount });
+  } catch (error) { 
+    dispatch({ type: AISENDTOADDRESSATTEMPT_FAILED, error });
+  }
+
+}
+
+
 export const VALIDATEADDRESS_ATTEMPT = "VALIDATEADDRESS_ATTEMPT";
 export const VALIDATEADDRESS_FAILED = "VALIDATEADDRESS_FAILED";
 export const VALIDATEADDRESS_SUCCESS = "VALIDATEADDRESS_SUCCESS";
-export const VALIDATEADDRESS_CLEANSTORE ="VALIDATEADDRESS_CLEANSTORE";
+export const VALIDATEADDRESS_CLEANSTORE = "VALIDATEADDRESS_CLEANSTORE";
 
 export const validateAddress = address => async (dispatch, getState) => {
   try {
     const { network } = getState().daemon;
     const validationErr = isValidAddress(address, network);
-    if (validationErr) {
-      dispatch({type: VALIDATEADDRESS_FAILED});
-      return { isValid: false, error: validationErr, getIsValid () { return false; } };
+    if (validationErr) { 
+      return { isValid: false, error: validationErr, getIsValid() { return false; } };
     }
     dispatch({ type: VALIDATEADDRESS_ATTEMPT });
     let response = await wallet.validateAddress(sel.walletService(getState()), address);
     dispatch({ response, type: VALIDATEADDRESS_SUCCESS });
-    return { isValid: response.getIsValid(), error: null, getIsValid () { return response.getIsValid(); },isMine:response.getIsMine() };
+    return { isValid: response.getIsValid(), error: null, getIsValid() { return response.getIsValid(); }, isMine: response.getIsMine() };
   } catch (error) {
-    dispatch({type: VALIDATEADDRESS_FAILED});
-    return { isValid: false, error, getIsValid () { return false; } };
+    dispatch({ type: VALIDATEADDRESS_FAILED });
+    return { isValid: false, error, getIsValid() { return false; } };
   }
 };
 
 export const validateAddressCleanStore = () => async (dispatch) => {
-  dispatch({type: VALIDATEADDRESS_CLEANSTORE});
+  dispatch({ type: VALIDATEADDRESS_CLEANSTORE });
 };
 
 export const SIGNMESSAGE_ATTEMPT = "SIGNMESSAGE_ATTEMPT";
@@ -683,7 +701,7 @@ export const SIGNMESSAGE_FAILED = "SIGNMESSAGE_FAILED";
 export const SIGNMESSAGE_SUCCESS = "SIGNMESSAGE_SUCCESS";
 export const SIGNMESSAGE_CLEANSTORE = "SIGNMESSAGE_CLEANSTORE";
 
-export function signMessageAttempt(address, message, passphrase ) {
+export function signMessageAttempt(address, message, passphrase) {
   return (dispatch, getState) => {
     dispatch({ type: SIGNMESSAGE_ATTEMPT });
     wallet.signMessage(sel.walletService(getState()), address, message, passphrase)
@@ -718,9 +736,9 @@ export const PUBLISHUNMINEDTRANSACTIONS_SUCCESS = "PUBLISHUNMINEDTRANSACTIONS_SU
 export const PUBLISHUNMINEDTRANSACTIONS_FAILED = "PUBLISHUNMINEDTRANSACTIONS_FAILED";
 
 export const publishUnminedTransactionsAttempt = () => (dispatch, getState) => {
-  dispatch({type: PUBLISHUNMINEDTRANSACTIONS_ATTEMPT});
+  dispatch({ type: PUBLISHUNMINEDTRANSACTIONS_ATTEMPT });
 
   wallet.publishUnminedTransactions(sel.walletService(getState()))
-    .then(() => dispatch({type: PUBLISHUNMINEDTRANSACTIONS_SUCCESS}))
-    .catch(error => dispatch({error, type: PUBLISHUNMINEDTRANSACTIONS_FAILED}));
+    .then(() => dispatch({ type: PUBLISHUNMINEDTRANSACTIONS_SUCCESS }))
+    .catch(error => dispatch({ error, type: PUBLISHUNMINEDTRANSACTIONS_FAILED }));
 };

@@ -2,7 +2,7 @@ import https from 'https'
 import {rpcOptions} from '../../config'
 
 
-export const getOmnitService = (isTestNet,host) => (method,params=[],methodType='POST')=>{
+export const rpcRequestService = (isTestNet,host) => (method,params=[],methodType='POST')=>{
 
     const postData = JSON.stringify({
         "jsonrpc":rpcOptions.jsonrpc,
@@ -16,8 +16,8 @@ export const getOmnitService = (isTestNet,host) => (method,params=[],methodType=
         port: rpcOptions.port(isTestNet),    
         path: '/',    
         method: methodType,    
-        requestCert:true,  //请求客户端证书   
-        rejectUnauthorized: false, //不拒绝不受信任的证书    
+        requestCert:true,     
+        rejectUnauthorized: false,     
         headers: {
             'Authorization': 'Basic '+new Buffer(rpcOptions.username+':'+rpcOptions.password).toString('base64')
         }, 

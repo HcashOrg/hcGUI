@@ -1,38 +1,38 @@
-import { omniMethod } from './contect';
+import { omniMethod,aiMethod } from './contect';
 import { categories } from '../datas'
 
 function objToArray(obj) {
     return obj ? Object.values(obj) : obj;
 }
 
-export function omni_listProperties(omniService) {
-    return omniService(omniMethod.listproperties);
+export function omni_listProperties(rpcRequestService) {
+    return rpcRequestService(omniMethod.listproperties);
 }
 
 /** 
- * @param {*} omniService 
+ * @param {*} rpcRequestService 
  * @param {	number	required	the identifier of the tokens or property} propertyid 
  */
-export function omni_getProperty(omniService, params) {
-    return omniService(omniMethod.getproperty, objToArray(params));
+export function omni_getProperty(rpcRequestService, params) {
+    return rpcRequestService(omniMethod.getproperty, objToArray(params));
 }
 
-export function omni_getInfo(omniService) {
-    return omniService(omniMethod.getinfo);
+export function omni_getInfo(rpcRequestService) {
+    return rpcRequestService(omniMethod.getinfo);
 }
 
-export function omni_getWalletBalances(omniService) {
-    return omniService(omniMethod.getwalletbalances);
+export function omni_getWalletBalances(rpcRequestService) {
+    return rpcRequestService(omniMethod.getwalletbalances);
 }
 
-export function omni_getWalletAddressBalances(omniService) {
-    return omniService(omniMethod.getwalletaddressbalances);
+export function omni_getWalletAddressBalances(rpcRequestService) {
+    return rpcRequestService(omniMethod.getwalletaddressbalances);
 }
 /**
  * @param {	string	required	the hash of the transaction to lookup} txid
 */
-export function omni_getTransaction(omniService, params) {
-    return omniService(omniMethod.gettransaction, objToArray(params));
+export function omni_getTransaction(rpcRequestService, params) {
+    return rpcRequestService(omniMethod.gettransaction, objToArray(params));
 }
 /**
  * 
@@ -42,20 +42,20 @@ export function omni_getTransaction(omniService, params) {
  * @param {	number	optional	first block to begin the search (default: 0)} startblock
  * @param {	number	optional	last block to include in the search (default: 999999999)} endblock
  */
-export function omni_listTransactions(omniService, params) {
-    return omniService(omniMethod.listtransactions, objToArray(params));
+export function omni_listTransactions(rpcRequestService, params) {
+    return rpcRequestService(omniMethod.listtransactions, objToArray(params));
 }
 
-export function omni_getTradeHistoryForPair(omniService, params) {
-    return omniService(omniMethod.gettradehistoryforpair, objToArray(params));
+export function omni_getTradeHistoryForPair(rpcRequestService, params) {
+    return rpcRequestService(omniMethod.gettradehistoryforpair, objToArray(params));
 }
 /** 
  * @param {	string	required	address to retrieve history for} address
  * @param {	number	optional	number of orders to retrieve (default: 10)} count
  * @param {	number	optional	filter by propertyid transacted (default: no filter)} propertyid
 */
-export function omni_getTradeHistoryForAddress(omniService, params) {
-    return omniService(omniMethod.gettradehistoryforaddress, objToArray(params));
+export function omni_getTradeHistoryForAddress(rpcRequestService, params) {
+    return rpcRequestService(omniMethod.gettradehistoryforaddress, objToArray(params));
 }
 
 /**
@@ -66,9 +66,9 @@ export function omni_getTradeHistoryForAddress(omniService, params) {
  * @param {	string	optional	an address that can spend the transaction dust (sender by default)} redeemaddress
  * @param {	string	optional	a bitcoin amount that is sent to the receiver (minimal by default)} referenceamount
 */
-export function omni_send(omniService, params) {
+export function omni_send(rpcRequestService, params) {
 
-    return omniService(omniMethod.send, objToArray(params));
+    return rpcRequestService(omniMethod.send, objToArray(params));
 }
 /** 
  * @param {	string	required	the address to send from} fromaddress
@@ -82,8 +82,8 @@ export function omni_send(omniService, params) {
  * @param {	string	required	a description for the new tokens (can be "")} data
  * @param {	string	required	the number of tokens to create }  amount
  */
-export function omni_sendIssuanceFixed(omniService, params) {
-    return omniService(omniMethod.sendissuancefixed, objToArray(params));
+export function omni_sendIssuanceFixed(rpcRequestService, params) {
+    return rpcRequestService(omniMethod.sendissuancefixed, objToArray(params));
 }
 
 /**
@@ -97,16 +97,16 @@ export function omni_sendIssuanceFixed(omniService, params) {
 * @param {	string	required	an URL for further information about the new tokens (can be "")} url
 * @param {	string	required	a description for the new tokens (can be "")} data
  */
-export function omni_sendIssuanceManaged(omniService, params) {
-    return omniService(omniMethod.sendissuancemanaged, objToArray(params));
+export function omni_sendIssuanceManaged(rpcRequestService, params) {
+    return rpcRequestService(omniMethod.sendissuancemanaged, objToArray(params));
 }
 /**
  * @param {	string	required	the address associated with the tokens} fromaddress
  * @param {	string	required	the address to transfer administrative control to} toaddress
  * @param {	number	required	the identifier of the tokens} propertyid
  */
-export function omni_sendChangeIssuer(omniService, params) {
-    return omniService(omniMethod.sendchangeissuer, objToArray(params));
+export function omni_sendChangeIssuer(rpcRequestService, params) {
+    return rpcRequestService(omniMethod.sendchangeissuer, objToArray(params));
 }
 
 /**
@@ -116,8 +116,8 @@ export function omni_sendChangeIssuer(omniService, params) {
  * @param {	string	required	the amount of tokens to create} amount
  * @param {	string	optional	a text note attached to this transaction (none by default)} memo
  */
-export function omni_sendGrant(omniService, params) {
-    return omniService(omniMethod.sendgrant, objToArray(params));
+export function omni_sendGrant(rpcRequestService, params) {
+    return rpcRequestService(omniMethod.sendgrant, objToArray(params));
 }
 
 /**
@@ -127,8 +127,8 @@ export function omni_sendGrant(omniService, params) {
  * @param {	string	required	the amount of tokens to revoke} amount
  * @param {	string	optional	a text note attached to this transaction (none by default)}  memo
  */
-export function omni_sendRevoke(omniService, params) {
-    return omniService(omniMethod.sendrevoke, objToArray(params));
+export function omni_sendRevoke(rpcRequestService, params) {
+    return rpcRequestService(omniMethod.sendrevoke, objToArray(params));
 }
 
 /**
@@ -148,21 +148,21 @@ export function omni_sendRevoke(omniService, params) {
  *@param {	number	required	an early bird bonus for participants in percent per week} earlybonus
  *@param {  number	required	a percentage of tokens that will be granted to the issuer} issuerpercentage
  */
-export function omni_sendIssuanceCrowdsale(omniService, params) {
-    return omniService(omniMethod.sendissuancecrowdsale, objToArray(params));
+export function omni_sendIssuanceCrowdsale(rpcRequestService, params) {
+    return rpcRequestService(omniMethod.sendissuancecrowdsale, objToArray(params));
 }
 
 /**
  * 
- * @param {*} omniService 
+ * @param {*} rpcRequestService 
  * @param {*} params 
  */
-export function omni_getActiveCrowdsales(omniService){
-    return omniService(omniMethod.getactivecrowdsales)
+export function omni_getActiveCrowdsales(rpcRequestService){
+    return rpcRequestService(omniMethod.getactivecrowdsales)
 }
 
-export function omni_getCrowdsale(omniService,params){
-    return omniService(omniMethod.getcrowdsale,objToArray(params));
+export function omni_getCrowdsale(rpcRequestService,params){
+    return rpcRequestService(omniMethod.getcrowdsale,objToArray(params));
 }
 
 /**
@@ -172,16 +172,16 @@ export function omni_getCrowdsale(omniService,params){
  * @param {	number	required	the identifier of the tokens desired in exchange} propertiddesired
  * @param {	string	required	the amount of tokens desired in exchange} amountdesired 
  */
-export function omni_sendtrade(omniService,params){
-    return omniService(omniMethod.sendtrade,objToArray(params));
+export function omni_sendtrade(rpcRequestService,params){
+    return rpcRequestService(omniMethod.sendtrade,objToArray(params));
 }
 
 /**
  * @param {	string	required	the address associated with the crowdsale to close} fromaddress
  * @param {	number	required	the identifier of the crowdsale to close} propertyid 
  */
-export function omni_sendCloseCrowdsale(omniService,params){
-    return omniService(omniMethod.sendclosecrowdsale,objToArray(params));
+export function omni_sendCloseCrowdsale(rpcRequestService,params){
+    return rpcRequestService(omniMethod.sendclosecrowdsale,objToArray(params));
 }
 
 /**
@@ -189,18 +189,23 @@ export function omni_sendCloseCrowdsale(omniService,params){
  * @param {	number	required	the identifier of the tokens listed for sale } propertyidforsale
  * @param {	number	required	the identifier of the tokens desired in exchange } propertiddesired
  */
-export function omni_sendCancelTradesByPair(omniService,params){
-    return omniService(omniMethod.sendcanceltradesbypair,objToArray(params));
+export function omni_sendCancelTradesByPair(rpcRequestService,params){
+    return rpcRequestService(omniMethod.sendcanceltradesbypair,objToArray(params));
 }
 
 /** 
  *@param {	string	required	the hash of the order to lookup } txid
  */
-export function omni_getTrade(omniService,params){
-    return omniService(omniMethod.gettrade,objToArray(params));
+export function omni_getTrade(rpcRequestService,params){
+    return rpcRequestService(omniMethod.gettrade,objToArray(params));
 }
 
 export function omni_getCategories() {
     return categories;
+}
+
+
+export function ai_sendtoaddress(rpcRequestService,params){
+    return rpcRequestService(aiMethod.aisendtoaddress,objToArray(params));
 }
 

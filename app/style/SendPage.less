@@ -368,3 +368,40 @@
 // }
 
 
+.proposal-vote-option{
+  padding: 7px 0px;
+  cursor:pointer;
+  input[type="radio"]{
+      display:none
+  }
+  .radio-label{
+      display: inline-block;
+      border: 1px solid #ccc;
+      width: 16px;
+      height: 16px;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-right: 5px;
+      position: relative;
+  }
+  .radio-label:before{
+      content: '';
+      font-size: 0;
+      width: 10px;
+      height: 10px;
+      background:#8839d1;
+      position: absolute;
+      left:50%;
+      top:50%;
+      margin-left: -5px;
+      margin-top: -5px;
+      border-radius: 2px;
+      display: none;
+  }
+  input[type="radio"]:checked~.radio-label:before{
+      display: block;
+  } 
+
+}
+
+

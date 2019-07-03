@@ -1,12 +1,13 @@
 import { AccountsSelect } from "inputs";
 import { FormattedMessage as T } from "react-intl";
 import { Balance, Tooltip, TransitionMotionWrapper } from "shared";
-import { PassphraseModalButton, KeyBlueButton } from "buttons";
+import { PassphraseModalButton, ConfirmModalButton } from "buttons";
 import OutputAccountRow from "./OutputAccountRow";
+import ConfirmAiSendModal from './confirmAiSendModal'
 import "style/SendPage.less";
 import "style/MiscComponents.less";
 
-const wrapperComponent = props => <div className="output-row" { ...props } />;
+const wrapperComponent = props => <div className="output-row" {...props} />;
 
 const SendPage = ({
   account,
@@ -30,16 +31,19 @@ const SendPage = ({
   willEnter,
   hasUnminedTransactions,
   onRebroadcastUnmined,
-  ...props
+  ...props,
+  destination,
+  amount,
+  hasAiTransaction
 }) => (
-  <Aux>
-    <div className="tab-card">
-      <div className="send-flex-height">
-        <div className="send-select-account-area">
-          <div className="send-label" style={{ paddingTop: '5px' }}><T id="send.from" m="From" />:</div>
-          <AccountsSelect className="send-select-account-input"
-            {...{account}} onChange={onChangeAccount} showAccountsButton={false} />
-          {/* <div className="send-send-all-input">
+    <Aux>
+      <div className="tab-card">
+        <div className="send-flex-height">
+          <div className="send-select-account-area">
+            <div className="send-label" style={{ paddingTop: '5px' }}><T id="send.from" m="From" />:</div>
+            <AccountsSelect className="send-select-account-input"
+              {...{ account }} onChange={onChangeAccount} showAccountsButton={false} />
+            {/* <div className="send-send-all-input">
             {!isSendSelf ?
               <Tooltip text={<T id="send.sendSelfTitle" m="Send funds to another account"/>}>
                 <a className="send-self-wallet-icon" onClick={onShowSendSelf}/>
@@ -57,55 +61,71 @@ const SendPage = ({
               </Tooltip>
             }
           </div> */}
-        </div>
-        <div className="send-amount-area">
-          {
-            !isSendSelf
-              ? <TransitionMotionWrapper {...{ styles: getStyles(), willLeave, willEnter, wrapperComponent }} />
-              : <OutputAccountRow
-                {...{ index: 0, ...props, ...outputs[0].data, isSendAll, totalSpent }}
-                amountError={getAmountError(0)} />
-          }
-        </div>
-      </div>
-      <div className="send-button-area">
-        <div className="estimation-area-send">
-          <div className="total-amount-send">
-            <div className="total-amount-send-text">
-              <T id="send.totalAmountEstimation" m="Total amount sending" />
-                  :
-            </div>
-            <div className="total-amount-send-amount">
-              <Balance amount={totalSpent} />
-            </div>
           </div>
-          <div className="total-amount-send">
-            <div className="total-amount-send-text">
-              <T id="send.feeEstimation" m="Estimated Fee" />
-                  :
-            </div>
-            <div className="total-amount-send-amount">
-              <Balance amount={estimatedFee} />
-            </div>
-          </div>
-          <div className="total-amount-send">
-            <div className="total-amount-send-text">
-              <T id="send.sizeEstimation" m="Estimated Size" />
-                  :
-            </div>
-            <div className="total-amount-send-amount">{estimatedSignedSize} bytes</div>
+          <div className="send-amount-area">
+            {
+              !isSendSelf
+                ? <TransitionMotionWrapper {...{ styles: getStyles(), willLeave, willEnter, wrapperComponent }} />
+                : <OutputAccountRow
+                  {...{ index: 0, ...props, ...outputs[0].data, isSendAll, totalSpent }}
+                  amountError={getAmountError(0)} />
+            }
           </div>
         </div>
-        <div className="send-actions">
-            <PassphraseModalButton
-              modalTitle={<T id="send.sendConfirmations" m="Transaction Confirmation" />}
-              modalDescription={<Aux><T id="send.confirmAmountLabel" m="Please confirm your transaction for" />:  <Balance amount={totalSpent} /></Aux>}
+        <div className="send-button-area">
+          <div className="estimation-area-send">
+            <div className="total-amount-send">
+              <div className="total-amount-send-text">
+                <T id="send.totalAmountEstimation" m="Total amount sending" />
+                :
+            </div>
+              <div className="total-amount-send-amount">
+                <Balance amount={totalSpent} />
+              </div>
+            </div>
+            <div className="total-amount-send">
+              <div className="total-amount-send-text">
+                <T id="send.feeEstimation" m="Estimated Fee" />
+                :
+            </div>
+              <div className="total-amount-send-amount">
+                <Balance amount={estimatedFee} />
+              </div>
+            </div>
+            <div className="total-amount-send">
+              <div className="total-amount-send-text">
+                <T id="send.sizeEstimation" m="Estimated Size" />
+                :
+            </div>
+              <div className="total-amount-send-amount">{estimatedSignedSize} bytes</div>
+            </div>
+          </div>
+          <div className="send-actions">
+
+
+            {hasAiTransaction ? <ConfirmModalButton
+              modalTitle={<T id="send.aiSendConfirmations" m="AITransaction Confirmation" />}
               disabled={!isValid}
               className="content-send"
+              buttonLabel={<T id="send.sendBtn" m="Send" />}
               onSubmit={onAttemptSignTransaction}
               loading={isSendingTransaction}
-              buttonLabel={<T id="send.sendBtn" m="Send" />}
-            />
+              modalContent={<ConfirmAiSendModal
+                {...{
+                  destination,
+                  amount
+                }}
+              />}
+            /> : <PassphraseModalButton
+                modalTitle={<T id="send.sendConfirmations" m="Transaction Confirmation" />}
+                modalDescription={<Aux><T id="send.confirmAmountLabel" m="Please confirm your transaction for" />:  <Balance amount={totalSpent} /></Aux>}
+                disabled={!isValid}
+                className="content-send"
+                onSubmit={onAttemptSignTransaction}
+                loading={isSendingTransaction}
+                buttonLabel={<T id="send.sendBtn" m="Send" />}
+              />}
+
             {/* <Aux show={hasUnminedTransactions}>
               <Tooltip md text={<T id="send.rebroadcastTooltip" m="Rebroadcasting transactions may help in situations when a transaction has been sent to a node that had poor connectivity to the general HC network."/>}>
                 <KeyBlueButton onClick={onRebroadcastUnmined}>
@@ -113,10 +133,10 @@ const SendPage = ({
                 </KeyBlueButton>
               </Tooltip>
             </Aux> */}
+          </div>
         </div>
       </div>
-    </div>
-  </Aux>
-);
+    </Aux>
+  );
 
 export default SendPage;

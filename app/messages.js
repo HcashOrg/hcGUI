@@ -20,6 +20,15 @@ export default defineMessages({
   "transactions.tab.receive":                 { id: "transactions.tab.receive",              defaultMessage: "Receive" },
   "transactions.tab.history":                 { id: "transactions.tab.history",              defaultMessage: "History" },
 
+  "aiTransactions.title":                       { id: "aiTransactions.title",                    defaultMessage: "AI Transactions" },
+  "aiTransactions.description.send.testnet":    { id: "aiTransactions.description.send.testnet", defaultMessage: "Testnet HC addresses always begin with letter T and contain 26-35 alphanumeric characters\n(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)." },
+  "aiTransactions.description.send.mainnet":    { id: "aiTransactions.description.send.mainnet", defaultMessage: "Mainnet HC addresses always begin with letter H and contain 26-35 alphanumeric characters\n(e.g. HxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)." },
+  "aiTransactions.tab.send":                    { id: "aiTransactions.tab.send",                 defaultMessage: "Send" },
+  "aiTransactions.description.receive":         { id: "aiTransactions.description.receive",      defaultMessage: "Each time you request a payment, create a new address to protect your privacy." },
+  "aiTransactions.description.history":         { id: "aiTransactions.description.history",      defaultMessage: "Total Balance:" }, 
+  "aiTransactions.tab.receive":                 { id: "aiTransactions.tab.receive",              defaultMessage: "Receive" },
+  "aiTransactions.tab.history":                 { id: "aiTransactions.tab.history",              defaultMessage: "History" },
+
   "tickets.title":                            { id: "tickets.title",                         defaultMessage: "Tickets" },
   "tickets.description":                      { id: "tickets.description",                   defaultMessage: "Current Price:" },
   "tickets.tab.purchase":                     { id: "tickets.tab.purchase",                  defaultMessage: "Purchase Tickets" },
@@ -78,5 +87,6 @@ export default defineMessages({
   "menu.omni":                                { id: "menu.omni",                             defaultMessage: "Omni Token"},
   "menu.governance":                          { id: "menu.governance",                       defaultMessage: "Governance"},
   "menu.terminal":                            { id: "menu.terminal",                         defaultMessage: "Terminal"},
+  "menu.aiTransactions":                                { id: "menu.aiTransactions",                             defaultMessage: "AI Transactions"},
 
 });

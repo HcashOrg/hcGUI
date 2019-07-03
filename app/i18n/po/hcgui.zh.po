@@ -3919,7 +3919,7 @@ msgstr "交易"
 #: app/i18n/extracted/app/messages.json
 msgctxt "menu.transactions"
 msgid "Transactions"
-msgstr "交易"
+msgstr "普通交易"
 
 #. [notifications.type.transfer]
 #. defaultMessage is:
@@ -6305,3 +6305,98 @@ msgctxt "terminal.method.placeholder"
 msgid "Select method"
 msgstr "请选择方法"
 
+#. [aiTransactions.tab.send]
+#. defaultMessage is:
+#. aiTransactions.tab.send
+#: app/i18n/extracted/app/components/views/HomePage/tabs/Transactions.json
+msgctxt "aiTransactions.tab.send"
+msgid "Send"
+msgstr "发送"
+
+#. [menu.aiTransactions]
+#. defaultMessage is:
+#. aiTransactions
+#: app/i18n/extracted/app/messages.json
+msgctxt "menu.aiTransactions"
+msgid "AI Transactions"
+msgstr "AI闪电交易"
+
+#. [aiTransactions.description.send.testnet]
+#. defaultMessage is:
+#. aiTransactions
+#: app/i18n/extracted/app/messages.json
+msgctxt "aiTransactions.description.send.testnet"
+msgid ""
+"Testnet HC addresses always begin with letter T and contain 26-35 "
+"alphanumeric characters\n"
+"(e.g. TxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0)."
+msgstr ""
+"Testnet HC地址总是以字母T开头，包含26-35字母数字字符。\n"
+"（如TXXXXXXXXXXXXXXXXXXXXXXXXXXX0）。"
+
+
+#. [aiTransactions.title]
+#. defaultMessage is:
+#. aiTransactions
+#: app/i18n/extracted/app/messages.json
+msgctxt "aiTransactions.title"
+msgid "AI Transactions"
+msgstr "AI 闪电交易"
+
+
+#. [aiTransactions.description.send.mainnet]
+#. defaultMessage is:
+#. Mainnet HC addresses always begin with letter H and contain 26-35 alphanumeric characters
+#. (e.g. HxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X).
+#: app/i18n/extracted/app/messages.json
+msgctxt "aiTransactions.description.send.mainnet"
+msgid ""
+"Mainnet HC addresses always begin with letter H and contain 26-35 "
+"alphanumeric characters\n"
+"(e.g. HxxXXXXXxXXXxXXXXxxx0XxXXXxxXxXxX0X)."
+msgstr ""
+"主网地址总是以字母H开头，包含26-35字母数字字符。\n"
+"（如HXXXXXXXXXXXXXXXXXXXXXXXXXXX0X）。"
+
+#. [aiTransactions.description.receive]
+#. defaultMessage is:
+#. Each time you request a payment, create a new address to protect your privacy.
+#: app/i18n/extracted/app/messages.json
+msgctxt "aiTransactions.description.receive"
+msgid ""
+"Each time you request a payment, create a new address to protect your "
+"privacy."
+msgstr "每次发起支付时，请创建一个新地址以保护您的隐私。"
+
+#. [aiTransactions.tab.history]
+#. defaultMessage is:
+#. History
+#: app/i18n/extracted/app/messages.json
+msgctxt "aiTransactions.tab.history"
+msgid "History"
+msgstr "历史"
+
+#. [aiTransactions.tab.receive]
+#. defaultMessage is:
+#. Receive
+#: app/i18n/extracted/app/messages.json
+msgctxt "aiTransactions.tab.receive"
+msgid "Receive"
+msgstr "接收"
+
+#. [aiTransactions.description.history]
+#. defaultMessage is:
+#. Total Balance:
+#: app/i18n/extracted/app/messages.json
+msgctxt "aiTransactions.description.history"
+msgid "Total Balance:"
+msgstr "总余额"
+
+
+#. [send.aiSendConfirmations]
+#. defaultMessage is:
+#. AITransaction Confirmation
+#: app/i18n/extracted/app/messages.json
+msgctxt "send.aiSendConfirmations"
+msgid "AITransaction Confirmation"
+msgstr "AI闪电交易确认"

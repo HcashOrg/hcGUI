@@ -68,7 +68,7 @@ var initialState = {
   rpc:{
     getOmniServiceError: null,
     getOmniServiceRequestAttempt: false,
-    omniService:null,
+    rpcRequestService:null,
     tradeHistory: null,
     getTradeHistoryForAddressRequestAttempt: false,
     getTradeHistoryForAddressRequestError:null,

@@ -25,7 +25,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   onClearTransaction: ca.clearTransaction,
   getNextAddressAttempt: ca.getNextAddressAttempt,
   validateAddress: ca.validateAddress,
-  publishUnminedTransactions: ca.publishUnminedTransactionsAttempt
+  publishUnminedTransactions: ca.publishUnminedTransactionsAttempt,
+  onAisendtoaddressAttempt:ca.aisendtoaddressAttempt
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps);
