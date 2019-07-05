@@ -25,7 +25,7 @@ class Send extends React.Component {
       account: this.props.defaultSpendingAccount,
       outputs: [{ key: "output_0", data: { ...BASE_OUTPUT } }],
       outputAccount: this.props.defaultSpendingAccount,
-      hasAiTransaction: false,
+      hasAiTransaction: this.props.location.pathname === "/aiTransactions/send",
       destination:"",
       amount:null
 
@@ -45,10 +45,10 @@ class Send extends React.Component {
     this.onClearTransaction();
   }
 
-  componentWillMount() {
-    const hasAiTransaction = this.props.location.pathname === "/aiTransactions/send";
-    this.setState({ hasAiTransaction: hasAiTransaction })
-  }
+  // componentWillMount() {
+  //   const hasAiTransaction = this.props.location.pathname === "/aiTransactions/send";
+  //   this.setState({ hasAiTransaction: hasAiTransaction })
+  // }
   render() {
     const {
       onChangeAccount,
