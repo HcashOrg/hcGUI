@@ -10,7 +10,7 @@ class Accounts extends React.Component {
     };
   }
 
-  render() {
+  render() { 
     return (
       <AccountsList
         {...{

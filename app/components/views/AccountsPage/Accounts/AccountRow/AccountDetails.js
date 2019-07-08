@@ -52,6 +52,12 @@ const AccountsList = ({
           </div>
           <div className="account-row-details-bottom-spec-value"><Balance amount={account.immatureStakeGeneration} /></div>
         </div>
+        <div className="account-row-details-bottom-spec account-row-details-bottom-spec-name-ai">
+          <div className="account-row-details-bottom-spec-name">
+            <T id="accounts.aiTxConfirmed" m="AI Confirmed" /> 
+          </div>
+          <div className="account-row-details-bottom-spec-value account-row-details-bottom-spec-name-ai"><Balance amount={account.aiTxConfirmed} /></div>
+        </div>
       </div>
       <div className="account-row-details-bottom-column-right">
         <div className="account-row-details-bottom-title">

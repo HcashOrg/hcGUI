@@ -242,7 +242,7 @@ const getAccountsBalances = (accounts) => (dispatch, getState) => {
       HDPath = "m / 44' / " + chainParams.HDCoinType + "' / " + account.getAccountNumber() + "'";
     }
     wallet.getBalance(sel.walletService(getState()), account.getAccountNumber(), 0)
-      .then(resp => {
+      .then(resp => { 
         const accountEntry = {
           accountNumber: account.getAccountNumber(),
           accountName: account.getAccountName(),
@@ -258,6 +258,7 @@ const getAccountsBalances = (accounts) => (dispatch, getState) => {
           immatureStakeGeneration: resp.getImmatureStakeGeneration(),
           lockedByTickets: resp.getLockedByTickets(),
           votingAuthority: resp.getVotingAuthority(),
+          aiTxConfirmed:resp.getAiTxConfirmed()
         };
         balances.push(accountEntry);
       })
@@ -288,6 +289,7 @@ const getBalanceUpdateSuccess = (accountNumber, getBalanceResponse) => (dispatch
   updatedBalance.immatureStakeGeneration = getBalanceResponse.getImmatureStakeGeneration();
   updatedBalance.lockedByTickets = getBalanceResponse.getLockedByTickets();
   updatedBalance.votingAuthority = getBalanceResponse.getVotingAuthority();
+  updatedBalance.aiTxConfirmed = getBalanceResponse.getAiTxConfirmed();
 
   const updatedBalances = balances.map(balance =>
     (balance.accountNumber === accountNumber) ? updatedBalance : balance);

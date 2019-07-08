@@ -6400,3 +6400,11 @@ msgstr "总余额"
 msgctxt "send.aiSendConfirmations"
 msgid "AITransaction Confirmation"
 msgstr "AI闪电交易确认"
+
+#. [accounts.aiTxConfirmed]
+#. defaultMessage is:
+#. AI Confirmed
+#: app/i18n/extracted/app/components/views/AccountsPage/Accounts/AccountRow/AccountDetails.json
+msgctxt "accounts.aiTxConfirmed"
+msgid "AI Confirmed"
+msgstr "AI闪电确认"
