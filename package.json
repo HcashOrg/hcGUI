@@ -186,7 +186,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.18.1",
     "css-loader": "^0.28.4",
     "electron-builder": "^20.29.0",
     "electron-devtools-installer": "^2.2.4",
