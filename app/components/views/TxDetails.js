@@ -4,33 +4,41 @@ import { transactionDetails } from "connectors";
 import { SlateGrayButton } from "buttons";
 import { addSpacingAroundText, tsToDate, reverseHash } from "helpers";
 import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
-import { DecodedTransaction }  from "middleware/walletrpc/api_pb"; 
+import { DecodedTransaction } from "middleware/walletrpc/api_pb";
 import "style/TxDetails.less";
 import "style/Fonts.less";
 
 const messages = defineMessages({
-  Ticket:     { id: "transaction.type.ticket", defaultMessage: "Ticket" },
-  Vote:       { id: "transaction.type.vote",   defaultMessage: "Vote" },
+  Ticket: { id: "transaction.type.ticket", defaultMessage: "Ticket" },
+  Vote: { id: "transaction.type.vote", defaultMessage: "Vote" },
   Revocation: { id: "transaction.type.revoke", defaultMessage: "Revoke" }
 });
 
 const headerIcons = {
-  in:         "plusBig",
-  out:        "minusBig",
-  transfer:   "walletGray",
-  Ticket:     "ticketSmall",
-  Vote:       "ticketSmall",
+  in: "plusBig",
+  out: "minusBig",
+  transfer: "walletGray",
+  Ticket: "ticketSmall",
+  Vote: "ticketSmall",
   Revocation: "ticketSmall",
 };
 
 function mapNonWalletOutput(output) {
-  const address = output.getAddressesList()[0] || "[script]";
+  const outputScript = Buffer.from(output.getScript()).toString('hex');
+  const outputScriptAIType = outputScript.slice(4, 26);
+  const outputScriptBody = outputScript.slice(4);
+
+  let address = output.getAddressesList()[0] || "[script]";
+  //AI Transaction identifier  6863617368416953656e64  6863617368496e7374616e7453656e64 
+  if (outputScriptAIType === "6863617368416953656e64") {
+    address = "OP_RETURN " + outputScriptBody;
+  }
 
   const amount = output.getScriptClass() === DecodedTransaction.Output.ScriptClass.NULL_DATA
     ? "[null data]"
     : <Balance amount={output.getValue()} />;
 
-  return {address, amount};
+  return { address, amount };
 }
 
 function mapNonWalletInput(input) {
@@ -41,7 +49,7 @@ function mapNonWalletInput(input) {
 
   const amount = input.getAmountIn();
 
-  return {address, amount};
+  return { address, amount };
 }
 
 const TxDetails = ({ routes, router,
@@ -66,7 +74,7 @@ const TxDetails = ({ routes, router,
 }) => {
   const isConfirmed = !!txTimestamp;
   const icon = headerIcons[txType || txDirection];
-  const subtitle = isConfirmed ? <T id="txDetails.timestamp" m="{timestamp, date, medium} {timestamp, time, medium}" values={{ timestamp: tsToDate(txTimestamp) }}/> : <T id="txDetails.unConfirmed" m="Unconfirmed"/>;
+  const subtitle = isConfirmed ? <T id="txDetails.timestamp" m="{timestamp, date, medium} {timestamp, time, medium}" values={{ timestamp: tsToDate(txTimestamp) }} /> : <T id="txDetails.unConfirmed" m="Unconfirmed" />;
   const goBack = () => router.goBack();
   const openTxUrl = () => shell.openExternal(txUrl);
   const openBlockUrl = () => shell.openExternal(txBlockUrl);
@@ -75,7 +83,7 @@ const TxDetails = ({ routes, router,
       <span className="bold">
         {txDirection === "in" ? "" : "-"}
       </span>
-      <Balance title bold amount={txAmount}/>
+      <Balance title bold amount={txAmount} />
     </div>;
 
   let nonWalletInputs = [];
@@ -92,11 +100,10 @@ const TxDetails = ({ routes, router,
       .map(mapNonWalletOutput);
   }
   const hasNonWalletIO = nonWalletInputs.length || nonWalletOutputs.length;
-
   return (
     <Aux>
       <TabbedHeader {...{ routes, icon, title, subtitle }}>
-        <SlateGrayButton onClick={ goBack }>
+        <SlateGrayButton onClick={goBack}>
           <T id="txDetails.backBtn" m="Back" />
         </SlateGrayButton>
       </TabbedHeader>
@@ -107,7 +114,7 @@ const TxDetails = ({ routes, router,
               <T id="txDetails.transactionLabel" m="Transaction" />:
             </div>
             <div className="txdetails-value">
-              <a onClick={ openTxUrl } style={{ cursor: "pointer" }}>{txHash}</a>
+              <a onClick={openTxUrl} style={{ cursor: "pointer" }}>{txHash}</a>
             </div>
             <div className="txdetails-name">
               {isConfirmed ? (<div className="txdetails-indicator-confirmed">
@@ -119,7 +126,7 @@ const TxDetails = ({ routes, router,
               <span className="txdetails-value-text">
                 <T id="transaction.confirmationHeight"
                   m="{confirmations, plural, =0 {pending} one {# confirmation} other {# confirmations}}"
-                  values={{confirmations: (isConfirmed ? currentBlockHeight - txHeight : 0)}} />
+                  values={{ confirmations: (isConfirmed ? currentBlockHeight - txHeight : 0) }} />
               </span>
             </div>
             <div className="txdetails-overview">
@@ -177,10 +184,10 @@ const TxDetails = ({ routes, router,
               </Aux> : null}
 
             {txDirection !== "in" && txType !== "Vote" &&
-            <Aux>
-              <div className="txdetails-name"><T id="txDetails.transactionFeeLabel" m="Transaction fee" />:</div>
-              <div className="txdetails-value"><Balance amount={txFee} /></div>
-            </Aux> }
+              <Aux>
+                <div className="txdetails-name"><T id="txDetails.transactionFeeLabel" m="Transaction fee" />:</div>
+                <div className="txdetails-value"><Balance amount={txFee} /></div>
+              </Aux>}
           </div>
           <div className="txdetails-details">
             <div className="txdetails-title"><T id="txDetails.properties" m="Properties" /></div>
@@ -188,13 +195,13 @@ const TxDetails = ({ routes, router,
               <Aux>
                 <div className="txdetails-name"><T id="txDetails.blockLabel" m="Block" />:</div>
                 <div className="txdetails-value">
-                  <a onClick={ openBlockUrl } style={{ cursor: "pointer" }}>{txBlockHash}</a>
+                  <a onClick={openBlockUrl} style={{ cursor: "pointer" }}>{txBlockHash}</a>
                 </div>
                 <div className="txdetails-name"><T id="txDetails.blockHeightLabel" m="Height" /> :</div>
                 <div className="txdetails-value">{txHeight}</div>
               </Aux>
             }
-          <div className="txdetails-name"><T id="txDetails.rawTransactionLabel" m="Raw Transaction" />:</div>
+            <div className="txdetails-name"><T id="txDetails.rawTransactionLabel" m="Raw Transaction" />:</div>
             <div className="txdetails-value">
               <div className="txdetails-value-card">
                 <div className="txdetails-value-rawtx">{rawTx}</div><CopyToClipboard textToCopy={rawTx} className="receive-content-nest-copy-to-clipboard-icon" />

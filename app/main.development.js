@@ -654,13 +654,19 @@ const readExesVersion = () => {
 
   return versions;
 };
-
-let primaryInstance = !app.makeSingleInstance(function () {
+const primaryInstance = app.requestSingleInstanceLock()
+if(primaryInstance){
   if (mainWindow) {
     if (mainWindow.isMinimized()) mainWindow.restore();
     mainWindow.focus();
   }
-});
+}
+// let primaryInstance = !app.makeSingleInstance(function () {
+//   if (mainWindow) {
+//     if (mainWindow.isMinimized()) mainWindow.restore();
+//     mainWindow.focus();
+//   }
+// });
 
 if (!primaryInstance) {
   logger.log("error", "Another instance of hcGUI is already running");
