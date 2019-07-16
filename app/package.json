@@ -1,7 +1,7 @@
 {
   "name": "hcgui",
   "productName": "HcGui",
-  "version": "2.2.0beta",
+  "version": "2.2.1beta",
   "description": "Cross-platform hc gui based on Electron and React",
   "main": "./main.js",
   "author": {
