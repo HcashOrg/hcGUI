@@ -258,6 +258,7 @@ message BalanceResponse {
 	int64 locked_by_tickets = 5;
 	int64 voting_authority = 6;
 	int64 unconfirmed = 7;
+	int64 aitxconfirmed = 8；
 }
 
 message GetTransactionRequest {

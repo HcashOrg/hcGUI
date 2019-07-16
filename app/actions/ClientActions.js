@@ -591,6 +591,7 @@ export const getTransactions = () => async (dispatch, getState) => {
     unminedTransactions, minedTransactions,
     noMoreTransactions, lastTransaction, recentRegularTransactions, recentStakeTransactions, type: GETTRANSACTIONS_COMPLETE
   };
+ 
   dispatch(stateChange);
   return stateChange;
 };

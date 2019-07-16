@@ -1,4 +1,4 @@
-import { ConfirmModal } from "modals";
+import { Balance } from "shared";
 import { FormattedMessage as T } from "react-intl";
 
 export default ({ destination,amount }) => (<div className="confirmAssetsModal-content">
@@ -8,7 +8,7 @@ export default ({ destination,amount }) => (<div className="confirmAssetsModal-c
     </div>
     <div>
     <div><T id="send.confirmAmountLabel" m="Please confirm your transaction for" />：</div>
-    <div>   {amount}</div>
+    <div>  <Balance amount={amount} /> </div>
     </div>
 
 </div>)

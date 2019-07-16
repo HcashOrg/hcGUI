@@ -43,12 +43,7 @@ class Send extends React.Component {
 
   componentWillUnmount() {
     this.onClearTransaction();
-  }
-
-  // componentWillMount() {
-  //   const hasAiTransaction = this.props.location.pathname === "/aiTransactions/send";
-  //   this.setState({ hasAiTransaction: hasAiTransaction })
-  // }
+  } 
   render() {
     const {
       onChangeAccount,
@@ -150,7 +145,8 @@ class Send extends React.Component {
 
   onAttemptSignTransaction(privpass) { 
     if (this.state.hasAiTransaction) { 
-      this.props.onAisendtoaddressAttempt && this.props.onAisendtoaddressAttempt(this.state.amount, this.state.destination);
+       const { unitDivisor } = this.props;
+      this.props.onAisendtoaddressAttempt && this.props.onAisendtoaddressAttempt((this.state.amount / unitDivisor), this.state.destination);
       this.onClearTransaction();
     } else { 
       const { unsignedTransaction, onAttemptSignTransaction,
@@ -262,11 +258,10 @@ class Send extends React.Component {
   }
 
   getOnChangeOutputAmount(key) {
-    return newAmount => {
-      const { unitDivisor } = this.props;
+    return newAmount => { 
       let reconstruct = false;
       return this.setState({
-        amount: (newAmount / unitDivisor),
+        amount: newAmount,
         outputs: this.state.outputs.map(o => {
           if (o.key !== `output_${key}`) return o;
           reconstruct = newAmount !== o.data.amount;

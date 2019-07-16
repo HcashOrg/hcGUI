@@ -14,7 +14,6 @@ function transactionNtfnsData(response) {
   return (dispatch, getState) => {
     const attachedBlocks = response.getAttachedBlocksList();
     const unminedTxList = response.getUnminedTransactionsList();
-
     // Block was mined
     if (attachedBlocks.length > 0) {
       var currentBlockTimestamp = attachedBlocks[attachedBlocks.length-1].getTimestamp();

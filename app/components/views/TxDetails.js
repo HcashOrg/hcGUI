@@ -29,7 +29,7 @@ function mapNonWalletOutput(output) {
   const outputScriptBody = outputScript.slice(4);
 
   let address = output.getAddressesList()[0] || "[script]";
-  //AI Transaction identifier  6863617368416953656e64  6863617368496e7374616e7453656e64 
+  //AI Transaction identifier  6863617368416953656e64 
   if (outputScriptAIType === "6863617368416953656e64") {
     address = "OP_RETURN " + outputScriptBody;
   }

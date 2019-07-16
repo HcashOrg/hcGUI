@@ -89,7 +89,7 @@ const SendPage = ({
                 :
             </div>
               <div className="total-amount-send-amount">
-                <Balance amount={estimatedFee} />
+                <Balance amount={ hasAiTransaction?((amount*0.001) + estimatedFee):estimatedFee} />
               </div>
             </div>
             <div className="total-amount-send">

@@ -7313,21 +7313,7 @@ proto.walletrpc.BalanceResponse.prototype.getLockedByTickets = function () {
 proto.walletrpc.BalanceResponse.prototype.setLockedByTickets = function (value) {
   jspb.Message.setField(this, 5, value);
 };
-
-/**
- * optional int64 locked_by_tickets = 5;
- * @return {number}
- */
-proto.walletrpc.BalanceResponse.prototype.getAiTxConfirmed = function () {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
-};
-
-
-/** @param {number} value */
-proto.walletrpc.BalanceResponse.prototype.setAiTxConfirmed = function (value) {
-  jspb.Message.setField(this, 8, value);
-};
-
+ 
 /**
  * optional int64 voting_authority = 6;
  * @return {number}
@@ -7354,6 +7340,20 @@ proto.walletrpc.BalanceResponse.prototype.getUnconfirmed = function () {
 
 /** @param {number} value */
 proto.walletrpc.BalanceResponse.prototype.setUnconfirmed = function (value) {
+  jspb.Message.setField(this, 7, value);
+};
+
+/**
+ * optional int64 aitxconfirmed = 8;
+ * @return {number}
+ */
+proto.walletrpc.BalanceResponse.prototype.getAiTxConfirmed = function () {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/** @param {number} value */
+proto.walletrpc.BalanceResponse.prototype.setAiTxConfirmed = function (value) {
   jspb.Message.setField(this, 7, value);
 };
 
