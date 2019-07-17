@@ -2076,7 +2076,8 @@ proto.walletrpc.TransactionDetails.TransactionType = {
   COINBASE: 4,
   TICKET_PURCHASE: 1,
   VOTE: 2,
-  REVOCATION: 3
+  REVOCATION: 3,
+  AITX: 5,
 };
 
 

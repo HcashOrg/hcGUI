@@ -129,6 +129,7 @@ message TransactionDetails {
 		TICKET_PURCHASE = 1;
 		VOTE = 2;
 		REVOCATION = 3;
+		AITX = 5;
 	}
 	TransactionType transaction_type = 7;
 }

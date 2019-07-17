@@ -1,5 +1,6 @@
 import { RegularTxRowOfClass as regular } from "./RegularTxRow";
 import { StakeTxRowOfType as stake } from "./StakeTxRow";
+import * as wallet from "wallet";
 import "style/TxHistory.less";
 
 const TxRowByType = { // TODO: use constants instead of string
@@ -12,8 +13,11 @@ const TxRowByType = { // TODO: use constants instead of string
 };
 
 const TxRow = ({ tx }, { router }) => {
-  const rowType = tx.txType || tx.txDirection;
-  const Component = TxRowByType[rowType]; 
+  let rowType = tx.txType || tx.txDirection;
+  if (tx.txType==wallet.TRANSACTION_TYPE_AITX) {
+    rowType = tx.txDirection;
+  } 
+  const Component = TxRowByType[rowType];
 
   return Component ? (
     <Component

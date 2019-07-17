@@ -6408,3 +6408,11 @@ msgstr "AI闪电交易确认"
 msgctxt "accounts.aiTxConfirmed"
 msgid "AI Confirmed"
 msgstr "AI闪电确认"
+
+#. [transaction.type.aitx]
+#. defaultMessage is:
+#. AI Regular
+#: app/i18n/extracted/app/components/views/TransactionsPage/HistoryTab/index.json
+msgctxt "transaction.type.aitx"
+msgid "AI Regular"
+msgstr "AI 规则"

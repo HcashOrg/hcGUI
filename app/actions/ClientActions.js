@@ -501,9 +501,9 @@ export const GETTRANSACTIONS_COMPLETE = "GETTRANSACTIONS_COMPLETE";
 //   transactions (sent/received/transfered)
 //
 // If empty, all transactions are accepted.
-function filterTransactions(transactions, filter) {
+function filterTransactions(transactions, filter) { 
   return transactions
-    .filter(v => filter.types.length ? filter.types.indexOf(v.type) > -1 : true)
+    .filter(v => filter.types.length ? filter.types.indexOf(v.type) > -1 : true )
     .filter(v => filter.direction ? filter.direction === v.direction : true);
 }
 
@@ -539,8 +539,8 @@ export const getTransactions = () => async (dispatch, getState) => {
   let filtered = [];
 
   // first, request unmined transactions. They always come first in hcgui.
-  let { unmined } = await walletGetTransactions(walletService, -1, -1, 0);
-  let unminedTransactions = filterTransactions(unmined, transactionsFilter);
+  let { unmined } = await walletGetTransactions(walletService, -1, -1, 0); 
+  let unminedTransactions = filterTransactions(unmined, transactionsFilter); 
 
   // now, request a batch of mined transactions until `maximumTransactionCount`
   // transactions have been obtained (after filtering)
@@ -577,7 +577,7 @@ export const getTransactions = () => async (dispatch, getState) => {
 
   minedTransactions = [...minedTransactions, ...filtered];
 
-  if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.REGULAR) > -1) {
+  if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.REGULAR) > -1 || transactionsFilter.types.indexOf(TransactionDetails.TransactionType.AITX) > -1) {
     recentRegularTransactions = [...unminedTransactions, ...minedTransactions];
     recentRegularTransactions = recentRegularTransactions.slice(0, recentTransactionCount);
   } else if (transactionsFilter.types.indexOf(TransactionDetails.TransactionType.TICKET_PURCHASE) > -1
@@ -650,7 +650,7 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
 
   const regularTransactionFilter = {
     listDirection: "desc",
-    types: [TransactionDetails.TransactionType.REGULAR],
+    types: [TransactionDetails.TransactionType.REGULAR,TransactionDetails.TransactionType.AITX],
     direction: null,
   };
 
@@ -714,7 +714,7 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
 export const getMostRecentRegularTransactions = () => dispatch => {
   const defaultFilter = {
     listDirection: "desc",
-    types: [TransactionDetails.TransactionType.REGULAR],
+    types: [TransactionDetails.TransactionType.REGULAR,TransactionDetails.TransactionType.AITX],
     direction: null,
   };
   return dispatch(changeTransactionsFilter(defaultFilter));

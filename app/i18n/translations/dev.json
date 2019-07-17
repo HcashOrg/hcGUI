@@ -693,6 +693,7 @@
   "transaction.sortby.newest": "Mais Novas",
   "transaction.sortby.oldest": "Mais Velhas",
   "transaction.timestamp": "{timestamp, date, medium} {timestamp, time, medium}",
+  "transaction.type.aitx": "AI Regular",
   "transaction.type.all": "Todos",
   "transaction.type.received": "Recebidos",
   "transaction.type.regular": "Regularrrrr",

@@ -54,6 +54,7 @@ class History extends React.Component {
       {key: "sent",     value: {types: [types.REGULAR],         direction: TRANSACTION_DIR_SENT},       label: (<T id="transaction.type.sent" m="Sent"/>)},
       {key: "receiv",   value: {types: [types.REGULAR],         direction: TRANSACTION_DIR_RECEIVED},   label: (<T id="transaction.type.received" m="Received"/>)},
       {key: "transf",   value: {types: [types.REGULAR],         direction: TRANSACTION_DIR_TRANSFERED}, label: (<T id="transaction.type.transfered" m="Transfered"/>)},
+      {key: "aiRegular",  value: {types: [types.AITX],         direction: null},  label: (<T id="transaction.type.aitx" m="AI Regular"/>)},
     ];
   }
 

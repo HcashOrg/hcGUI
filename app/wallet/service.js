@@ -73,7 +73,8 @@ export const TRANSACTION_TYPES = {
   [TransactionDetails.TransactionType.TICKET_PURCHASE]: "Ticket",
   [TransactionDetails.TransactionType.VOTE]: "Vote",
   [TransactionDetails.TransactionType.REVOCATION]: "Revocation",
-  [TransactionDetails.TransactionType.COINBASE]: "Coinbase"
+  [TransactionDetails.TransactionType.COINBASE]: "Coinbase",
+  [TransactionDetails.TransactionType.AITX]: "AiTx"
 };
 
 
@@ -92,6 +93,7 @@ export function formatTransaction(block, transaction, index) {
   const amount = outputAmounts - inputAmounts;
   const fee = transaction.getFee();
   const type = transaction.getTransactionType();
+ 
   let direction = "";
 
   let debitAccounts = [];
@@ -100,7 +102,7 @@ export function formatTransaction(block, transaction, index) {
   let creditAddresses = [];
   transaction.getCreditsList().forEach((credit) => creditAddresses.push(credit.getAddress()));
 
-  if (type === api.TransactionDetails.TransactionType.REGULAR) {
+  if (type === api.TransactionDetails.TransactionType.REGULAR || type === api.TransactionDetails.TransactionType.AITX) {
     if (amount > 0) {
       direction = TRANSACTION_DIR_RECEIVED;
     } else if (amount < 0 && (fee == Math.abs(amount))) {
@@ -109,7 +111,7 @@ export function formatTransaction(block, transaction, index) {
       direction = TRANSACTION_DIR_SENT;
     }
   }
-
+ 
   return {
     timestamp: block.getTimestamp(),
     height: block.getHeight(),
@@ -187,6 +189,7 @@ export const TRANSACTION_TYPE_REGULAR = "Regular";
 export const TRANSACTION_TYPE_TICKET_PURCHASE = "Ticket";
 export const TRANSACTION_TYPE_VOTE = "Vote";
 export const TRANSACTION_TYPE_REVOCATION = "Revocation";
+export const TRANSACTION_TYPE_AITX = "AiTx";
 export const TRANSACTION_TYPE_COINBASE = "Coinbase";
 
 export const decodeTransactionLocal = (rawTx) => {

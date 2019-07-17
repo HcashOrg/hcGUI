@@ -396,6 +396,7 @@ const txBalancesDelta = async (tx, maturingTxs, liveTickets, walletService, chai
     break;
   case wallet.TRANSACTION_TYPE_COINBASE:
   case wallet.TRANSACTION_TYPE_REGULAR:
+  case wallet.TRANSACTION_TYPE_AITX:
     delta = { spendable: +tx.amount, locked: 0, lockedNonWallet: 0, voted: 0,
       revoked: 0, sent: tx.amount < 0 ? tx.amount : 0,
       received: tx.amount > 0 ? tx.amount : 0, ticket: 0, immature: 0,

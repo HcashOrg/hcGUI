@@ -5,6 +5,7 @@ import { SlateGrayButton } from "buttons";
 import { addSpacingAroundText, tsToDate, reverseHash } from "helpers";
 import { FormattedMessage as T, injectIntl, defineMessages } from "react-intl";
 import { DecodedTransaction } from "middleware/walletrpc/api_pb";
+import * as wallet from "wallet";
 import "style/TxDetails.less";
 import "style/Fonts.less";
 
@@ -78,7 +79,7 @@ const TxDetails = ({ routes, router,
   const goBack = () => router.goBack();
   const openTxUrl = () => shell.openExternal(txUrl);
   const openBlockUrl = () => shell.openExternal(txBlockUrl);
-  const title = txType ? intl.formatMessage(messages[txType]) :
+  const title = (txType && txType != wallet.TRANSACTION_TYPE_AITX) ? intl.formatMessage(messages[txType]) :
     <div className="txdetails-header-title">
       <span className="bold">
         {txDirection === "in" ? "" : "-"}
@@ -111,7 +112,7 @@ const TxDetails = ({ routes, router,
         <div className="txdetails-content-nest">
           <div className="txdetails-top">
             <div className="txdetails-name">
-              <T id="txDetails.transactionLabel" m="Transaction" />:
+              {txType == wallet.TRANSACTION_TYPE_AITX ? "AI " : null}<T id="txDetails.transactionLabel" m="Transaction" />:
             </div>
             <div className="txdetails-value">
               <a onClick={openTxUrl} style={{ cursor: "pointer" }}>{txHash}</a>
