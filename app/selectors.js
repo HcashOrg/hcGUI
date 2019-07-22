@@ -3,7 +3,7 @@ import {
   createSelectorEager as createSelector
 } from "./fp";
 import { reverseHash } from "./helpers/byteActions";
-import { validataOS,dateToUTC,dateToLocal } from "./helpers";
+import { validataOS, dateToUTC, dateToLocal } from "./helpers";
 import { TRANSACTION_TYPES } from "wallet/service";
 import { MainNetParams, TestNetParams } from "wallet/constants";
 import { TicketTypes, decodeVoteScript } from "./helpers/tickets";
@@ -27,7 +27,7 @@ export const isPrepared = and(
 export const getCredentials = get(["daemon", "credentials"]);
 
 
-export const dailyBalancesStats = get([ "statistics", "dailyBalances" ]);
+export const dailyBalancesStats = get(["statistics", "dailyBalances"]);
 
 const START_STEP_OPEN = 2;
 const START_STEP_RPC1 = 3;
@@ -516,15 +516,15 @@ export const ticketsPerStatus = createSelector(
 
 //fake data for ticket tab on overview Page
 export const totalValueOfLiveTickets = createSelector(
-  [ dailyBalancesStats ],
+  [dailyBalancesStats],
   (balances) => {
     if (!balances) return 0;
-    const lastBalance = balances[balances.length-1];
+    const lastBalance = balances[balances.length - 1];
     if (!lastBalance) return 0;
     return lastBalance.series.locked;
   }
 );
- 
+
 // export const earnedStakingReward = createSelector(
 //   [ticketNormalizer, get(["grpc", "tickets"])],
 //   (normalizer, tickets) => tickets.map(normalizer).reduce((total, cur) => {
@@ -626,6 +626,7 @@ const signTransactionRequestAttempt = get(["control", "signTransactionRequestAtt
 export const signTransactionError = get(["control", "signTransactionError"]);
 const publishTransactionResponse = get(["control", "publishTransactionResponse"]);
 const publishTransactionRequestAttempt = get(["control", "publishTransactionRequestAttempt"]);
+export const ifainoderegisted = get(["control", "ifainoderegisted"]);
 const totalOutputAmount = compose(r => r ? r.getTotalOutputAmount() : 0, constructTxResponse);
 const totalAmount = compose(res => res ? res.totalAmount : 0, constructTxResponse);
 const totalPreviousOutputAmount = compose(
@@ -882,7 +883,7 @@ export const lastVersion = get(["github", "tag_name"]);
 export const advertising_space = get(["github", "advertising_space"]);
 export const releaseAssets = get(["github", "assets"]);
 export const releaseBody = get(["github", "body"]);
-export const getDataConfigAttempt = get(["github","getDataConfigAttempt"])
+export const getDataConfigAttempt = get(["github", "getDataConfigAttempt"])
 
 
 export const hasUpdateApp = createSelector(
@@ -899,7 +900,7 @@ export const hasUpdateApp = createSelector(
 export const downloadLink = createSelector(
   [releaseAssets],
   (releaseAssets) => {
-    if(!releaseAssets){
+    if (!releaseAssets) {
       return "";
     }
     if (validataOS() == "Mac")
@@ -921,8 +922,8 @@ export const downloadLink = createSelector(
 
 
 export const ticketDataChart = createSelector(
-  [ dailyBalancesStats, unitDivisor ],
-  ( stats, unitDivisor ) => stats.map(s => ({
+  [dailyBalancesStats, unitDivisor],
+  (stats, unitDivisor) => stats.map(s => ({
     time: s.time,
     voted: s.series.voted / unitDivisor,
     revoked: s.series.revoked / unitDivisor,
@@ -932,31 +933,31 @@ export const ticketDataChart = createSelector(
   })));
 
 
-  export const spendableAndLockedBalance = createSelector(
-    [ dailyBalancesStats, unitDivisor ],
-    ( stats, unitDivisor ) => stats.map(s => ({
-      time: s.time,
-      available: s.series.spendable / unitDivisor,
-      locked: (s.series.locked + s.series.immature) / unitDivisor,
-    })));
+export const spendableAndLockedBalance = createSelector(
+  [dailyBalancesStats, unitDivisor],
+  (stats, unitDivisor) => stats.map(s => ({
+    time: s.time,
+    available: s.series.spendable / unitDivisor,
+    locked: (s.series.locked + s.series.immature) / unitDivisor,
+  })));
 
-    export const sentAndReceivedTransactions = createSelector(
-      [ dailyBalancesStats, unitDivisor ],
-      ( stats, unitDivisor ) => stats.map(s => ({
-        time: s.time,
-        sent: s.series.sent / unitDivisor,
-        received: s.series.received / unitDivisor
-      })));
-  
+export const sentAndReceivedTransactions = createSelector(
+  [dailyBalancesStats, unitDivisor],
+  (stats, unitDivisor) => stats.map(s => ({
+    time: s.time,
+    sent: s.series.sent / unitDivisor,
+    received: s.series.received / unitDivisor
+  })));
 
-      //fake data for transactions tab on overview Page
-      export const balanceReceived = createSelector(
-        [ dailyBalancesStats ],
-        (balances) => balances.reduce((s, b) => s + b.series.received, 0)
-      );
-      
-      
-      export const balanceSent = createSelector(
-        [ dailyBalancesStats ],
-        (balances) => balances.reduce((s, b) => s + b.series.sent, 0)
-      );
+
+//fake data for transactions tab on overview Page
+export const balanceReceived = createSelector(
+  [dailyBalancesStats],
+  (balances) => balances.reduce((s, b) => s + b.series.received, 0)
+);
+
+
+export const balanceSent = createSelector(
+  [dailyBalancesStats],
+  (balances) => balances.reduce((s, b) => s + b.series.sent, 0)
+);

@@ -1,9 +1,7 @@
 import { omniMethod,aiMethod } from './contect';
 import { categories } from '../datas'
 
-function objToArray(obj) {
-    return obj ? Object.values(obj) : obj;
-}
+import { objToArray } from "helpers";
 
 export function omni_listProperties(rpcRequestService) {
     return rpcRequestService(omniMethod.listproperties);
@@ -203,9 +201,6 @@ export function omni_getTrade(rpcRequestService,params){
 export function omni_getCategories() {
     return categories;
 }
+ 
 
-
-export function ai_sendtoaddress(rpcRequestService,params){
-    return rpcRequestService(aiMethod.aisendtoaddress,objToArray(params));
-}
 

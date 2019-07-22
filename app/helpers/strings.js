@@ -87,3 +87,8 @@ export function hasImg(n) {
   }
   return true;
 }
+
+
+export function objToArray(obj) {
+  return obj ? Object.values(obj) : obj;
+}

@@ -54,7 +54,7 @@ const StakePoolsAddForm = ({
               - If you had previously used a 'voting account', for your ticket purchases, please go to the Accounts page and create a new account.  This may now allow you to successfully import your script for your stakepool.
               `}
             values={{
-              stakePoolLink: <a className="stakepool-link" onClick={function(x){shell.openExternal(x);}.bind(null, selectedUnconfigured.label)}>{selectedUnconfigured.label}</a>,
+              stakePoolLink: <a className="stakepool-link" onClick={function(x){shell.openExternal(x);}.bind(null, selectedUnconfigured?selectedUnconfigured.label:null)}>{selectedUnconfigured?selectedUnconfigured.label:null}</a>,
               noticeSpan: <span className="stakepool-highligh-text-orange">
                 <T id="stake.addPool.notice" m="Notice!" />
               </span>

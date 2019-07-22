@@ -60,4 +60,5 @@ export { default as network } from "./network";
 export { default as updateInformation } from "./updateInformation";
 
 export { default as terminal } from  "./terminal";
+export { default as purchaseAiPage } from "./purchaseAiPage"
 

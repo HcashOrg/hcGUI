@@ -16,6 +16,7 @@ import SignTab from "./components/views/SecurityPage/SignMessage";
 import VerifyTab from "./components/views/SecurityPage/VerifyMessage";
 import ValidateTab from "./components/views/SecurityPage/ValidateAddress";
 import PurchaseTab from "./components/views/TicketsPage/PurchaseTab";
+// import PurchaseAiTab from "./components/views/TicketsPage/PurchaseAITab";
 import MyTicketsTab from "./components/views/TicketsPage/MyTicketsTab";
 import MyTicketsOverview from "./components/views/TicketsPage/MyTicketsTab/TicketsOverview";
 import MyTicketsList from "./components/views/TicketsPage/MyTicketsTab/TicketListPage";
@@ -92,6 +93,7 @@ export default (
         <IndexRoute component={MyTicketsOverview} />
         <Route path=":status" component={MyTicketsList} />
       </Route>
+      {/* <Route path="aipurchase" component={PurchaseAiTab} />  */}
       {/* <Route path="governance" component={GovernanceTab} /> */}
       {/* <Route path="statistics"                  component={StatisticsTab}/> */}
     </Route>

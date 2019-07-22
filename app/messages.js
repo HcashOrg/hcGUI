@@ -33,6 +33,7 @@ export default defineMessages({
   "tickets.description":                      { id: "tickets.description",                   defaultMessage: "Current Price:" },
   "tickets.tab.purchase":                     { id: "tickets.tab.purchase",                  defaultMessage: "Purchase Tickets" },
   "tickets.tab.mytickets":                    { id: "tickets.tab.mytickets",                 defaultMessage: "My Tickets" },
+  "tickets.tab.aipurchase":                    { id: "tickets.tab.aipurchase",                 defaultMessage: "AI Purchase" },
   "tickets.tab.governance":                   { id: "tickets.tab.governance",                defaultMessage: "Governance" },
   "tickets.tab.statistics":                   { id: "tickets.tab.statistics",                defaultMessage: "Statistics" },
 

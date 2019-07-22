@@ -21,6 +21,8 @@ import {
   SETBALANCETOMAINTAIN, SETMAXFEE, SETMAXPRICEABSOLUTE, SETMAXPRICERELATIVE, SETMAXPERBLOCK,
   VALIDATEADDRESS_ATTEMPT, VALIDATEADDRESS_SUCCESS, VALIDATEADDRESS_FAILED, VALIDATEADDRESS_CLEANSTORE
 } from "../actions/ControlActions";
+
+import {AI_IFAINODEREGISTED_SETTINGS} from "../actions/AIActions"
 import { WALLET_AUTOBUYER_SETTINGS } from "actions/DaemonActions";
 
 export default function control(state = {}, action) {
@@ -452,6 +454,11 @@ export default function control(state = {}, action) {
         maxPriceRelative: action.maxPriceRelative,
         maxPerBlock: action.maxPerBlock,
       };
+      case AI_IFAINODEREGISTED_SETTINGS:
+        return {
+          ...state,
+          ifainoderegisted:action.ifainoderegisted
+        }
     default:
       return state;
   }

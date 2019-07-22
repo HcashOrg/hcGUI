@@ -21,8 +21,7 @@ export const rpcRequestService = (isTestNet,host) => (method,params=[],methodTyp
         headers: {
             'Authorization': 'Basic '+new Buffer(rpcOptions.username+':'+rpcOptions.password).toString('base64')
         }, 
-    }; 
-
+    };  
     let stringData="";
     return new Promise((resolve, reject)=>{
         const req = https.request(options, (res) => {    

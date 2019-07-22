@@ -16,7 +16,7 @@ import {
 import { getWalletCfg } from "../config.js";
 import {
   ai_sendtoaddress
-} from '../rpcService/server';
+} from '../rpcService/server/aiServer';
 
 export const GETNEXTADDRESS_ATTEMPT = "GETNEXTADDRESS_ATTEMPT";
 export const GETNEXTADDRESS_FAILED = "GETNEXTADDRESS_FAILED";
@@ -662,6 +662,7 @@ export const AISENDTOADDRESSATTEMPT_FAILED = "AISENDTOADDRESSATTEMPT_FAILED";
 export const aisendtoaddressAttempt = (amount, destination) => async (dispatch, getState) => {
   try { 
     const { rpcRequestService } = getState().rpc;
+   
     const result = await ai_sendtoaddress(rpcRequestService, { destination, amount });
   } catch (error) { 
     dispatch({ type: AISENDTOADDRESSATTEMPT_FAILED, error });
