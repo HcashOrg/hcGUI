@@ -26,7 +26,9 @@ class Purchase extends React.Component {
       this.setState({stakePool: nextProps.stakePool});
     }
   }
-
+  componentWillMount(){
+    this.props.initStakePoolInfo && this.props.initStakePoolInfo();
+  }
   render() {
     return (!this.props.walletService || !this.props.ticketBuyerService) ? <ErrorScreen /> : (
       <PurchasePage

@@ -27,6 +27,7 @@ class StakePools extends React.Component {
     }
   }
 
+  
   render() {
     return this.getNoAvailableStakepools() ? (
       <T

@@ -10,13 +10,13 @@ const mapStateToProps = selectorMap({
   defaultStakePool: sel.defaultStakePool,
   stakePool: sel.selectedStakePool,
   rescanRequest: sel.rescanRequest,
-  isTestNet:sel.isTestNet
+  isTestNet:sel.isTestNet,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   onSetStakePoolInfo: spa.setStakePoolInformation,
   onRemoveStakePool: spa.removeStakePoolConfig,
-  discoverAvailableStakepools: spa.discoverAvailableStakepools
+  discoverAvailableStakepools: spa.discoverAvailableStakepools,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps);
