@@ -342,6 +342,7 @@ export function newWalletConfigCreation(testnet, walletPath) {
       testnet: testnet ? "1" : "0",
       username: rpcOptions.username,
       password: rpcOptions.password,
+      enableaivoting:false
     },
   };
   fs.writeFileSync(hcwalletCfg(getWalletPath(testnet, walletPath)), ini.stringify(hcwConf));
