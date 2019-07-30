@@ -142,10 +142,11 @@ export const setStakePoolInformation = (privpass, poolHost, apiKey, accountNum, 
 
 export const initStakePoolInformation = () =>
   (dispatch, getState) => {
-
     const currentStakePoolConfig = sel.currentStakePoolConfig(getState())
+    if(!currentStakePoolConfig) return;
+    
     const isTestNet = sel.isTestNet(getState())
-
+ 
     let currentStakePool = null;
     if (isTestNet) {
       currentStakePool = currentStakePoolConfig.find(item => item.Network === "testnet");
