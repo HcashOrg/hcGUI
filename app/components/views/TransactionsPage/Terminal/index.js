@@ -39,9 +39,9 @@ class Index extends React.Component {
     }
     onChangeMethod = (e) => {
         if (e && this.state.methodName != e.method) {
-            this.setState({ methodName: e.method, hasParameter: e.hasParameter,parameter:'', desc: e.desc })
+            this.setState({ methodName: e.method, hasParameter: e.hasParameter, parameter: '', desc: e.desc })
         } else if (!e) {
-            this.setState({ methodName: '', hasParameter: false,parameter:'', desc: '' })
+            this.setState({ methodName: '', hasParameter: false, parameter: '', desc: '' })
         }
     }
     onRun = () => {
@@ -102,6 +102,10 @@ class Index extends React.Component {
         setTimeout(() => {
             document.getElementById('result').scrollTop = document.getElementById('result').scrollHeight
         }, 100)
+    }
+
+    onClearRuslt = () => {
+        this.setState({ result: [] })
     }
 
     render() {
@@ -167,8 +171,10 @@ class Index extends React.Component {
                     <div className="omni-sendForm">
                         <div className="sendForm-row">
                             <div className="sendForm-col col-12">
-                                <div>
-                                    <T id="terminal.result" m="Result" />
+                                <div className="terminal_result-head">
+                                    <T id="terminal.result" m="Result" />  <div onClick={() => { this.onClearRuslt() }}>
+                                        <T id="terminal.result.clear" m="Clear" />
+                                    </div>
                                 </div>
                                 <div id="result" className="terminal_result" dangerouslySetInnerHTML={{
                                     __html: `<pre>${this.state.result.join('')}</pre>`
@@ -194,7 +200,7 @@ class Index extends React.Component {
                 if (execPath.length > 1) {
                     return execPath[0] + "resources/bin"
                 }
-            }else if (validataOS() == "Linux") {
+            } else if (validataOS() == "Linux") {
                 const execPath = node_process.execPath.split("hcgui");
                 if (execPath.length > 1) {
                     return execPath[0] + "resources/bin"
@@ -208,7 +214,7 @@ class Index extends React.Component {
         return ` --rpccert="${getWalletCfgPath(this.props.isTestNet, this.props.walletName)}/rpc.cert" `
     }
 
-    getHcctlPath=()=>{
+    getHcctlPath = () => {
         if (validataOS() == "Mac" || validataOS() == "Linux") {
             return "./hcctl"
         }

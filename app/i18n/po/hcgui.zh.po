@@ -6416,3 +6416,11 @@ msgstr "AI闪电确认"
 msgctxt "transaction.type.aitx"
 msgid "AI Regular"
 msgstr "AI 规则"
+
+#. [terminal.result.clear]
+#. defaultMessage is:
+#. Clear
+#: app/i18n/extracted/app/components/views/TransactionsPage/HistoryTab/index.json
+msgctxt "terminal.result.clear"
+msgid "Clear"
+msgstr "清空"
