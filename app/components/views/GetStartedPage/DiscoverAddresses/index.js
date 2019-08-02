@@ -24,7 +24,7 @@ class DiscoverAddressesBody extends React.Component {
   render() {
     const { passPhrase, hasAttemptedDiscover } = this.state;
     const { onSetPassPhrase, onDiscoverAddresses, onKeyDown } = this;
-
+    
     return (
       <DiscoverAddressesFormBody
         {...{

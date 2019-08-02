@@ -52,6 +52,8 @@ export const versionInvalidError = createSelector(
   (invalid, error) => invalid ? error || "Unknown Error" : null
 );
 
+export const discoverAddressRequestAttempt = get(["walletLoader", "discoverAddressRequestAttempt"]);
+
 const isStartStepOpen = compose(eq(START_STEP_OPEN), startStepIndex);
 const isStartStepDiscover = compose(eq(START_STEP_DISCOVER), startStepIndex);
 const isStartStepRPC = compose(or(eq(START_STEP_RPC1), eq(START_STEP_RPC2)), startStepIndex);

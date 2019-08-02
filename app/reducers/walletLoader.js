@@ -179,6 +179,7 @@ export default function walletLoader(state = {}, action) {
   case DISCOVERADDRESS_FAILED_INPUT:
     return {...state,
       discoverAddressInputRequest: true,
+      discoverAddressRequestAttempt: false,
       discoverAddressError: String(action.error),
     };
   case DISCOVERADDRESS_ATTEMPT:

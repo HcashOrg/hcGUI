@@ -31,6 +31,7 @@ const mapStateToProps = selectorMap({
   availableWallets: sel.availableWalletsSelect,
   walletName: sel.getWalletName,
   previousWallet: sel.previousWallet,
+  discoverAddressRequestAttempt:sel.discoverAddressRequestAttempt
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -45,7 +46,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   onCreateWallet: da.createWallet,
   onRemoveWallet: da.removeWallet,
   setCredentialsAppdataError: da.setCredentialsAppdataError,
-  onGetAvailableWallets: da.getAvailableWallets
+  onGetAvailableWallets: da.getAvailableWallets,  
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps);
