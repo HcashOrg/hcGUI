@@ -6424,3 +6424,11 @@ msgstr "AI 规则"
 msgctxt "terminal.result.clear"
 msgid "Clear"
 msgstr "清空"
+
+#. [send.AITransaction.prompt]
+#. defaultMessage is:
+#. *Send AI transaction, the block must reach {number} height
+#: app/i18n/extracted/app/components/views/TransactionsPage/HistoryTab/index.json
+msgctxt "send.AITransaction.prompt"
+msgid "*Send AI transaction, the block must reach {number} height"
+msgstr "*发送闪电交易，区块必须达到{number}高度"

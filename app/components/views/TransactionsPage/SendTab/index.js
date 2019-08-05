@@ -26,8 +26,8 @@ class Send extends React.Component {
       outputs: [{ key: "output_0", data: { ...BASE_OUTPUT } }],
       outputAccount: this.props.defaultSpendingAccount,
       hasAiTransaction: this.props.location.pathname === "/aiTransactions/send",
-      destination:"",
-      amount:null
+      destination: "",
+      amount: null
 
     };
   }
@@ -43,7 +43,7 @@ class Send extends React.Component {
 
   componentWillUnmount() {
     this.onClearTransaction();
-  } 
+  }
   render() {
     const {
       onChangeAccount,
@@ -69,6 +69,11 @@ class Send extends React.Component {
     } = this;
     const isValid = this.getIsValid();
 
+    let disabledSendBtn = true;
+    const targetHeight = this.props.isTestNet ? (366560 + 1024) : (216666 + 1024)
+    if (this.state.hasAiTransaction) {
+      disabledSendBtn = this.props.getNeededBlocks - targetHeight >= 0;
+    }
     return !this.props.walletService ? <ErrorScreen /> : (
       <SendPage
         {...{ ...this.props, ...this.state }}
@@ -94,6 +99,8 @@ class Send extends React.Component {
           willLeave,
           getStyles,
           getDefaultStyles,
+          disabledSendBtn,
+          targetHeight
         }}
       />
     );
@@ -143,12 +150,12 @@ class Send extends React.Component {
     this.setState({ account }, this.onAttemptConstructTransaction);
   }
 
-  onAttemptSignTransaction(privpass) { 
-    if (this.state.hasAiTransaction) { 
-       const { unitDivisor } = this.props;
+  onAttemptSignTransaction(privpass) {
+    if (this.state.hasAiTransaction) {
+      const { unitDivisor } = this.props;
       this.props.onAisendtoaddressAttempt && this.props.onAisendtoaddressAttempt((this.state.amount / unitDivisor), this.state.destination);
       this.onClearTransaction();
-    } else { 
+    } else {
       const { unsignedTransaction, onAttemptSignTransaction,
         getNextAddressAttempt, nextAddressAccount } = this.props;
       if (!privpass || !this.getIsValid()) return;
@@ -258,7 +265,7 @@ class Send extends React.Component {
   }
 
   getOnChangeOutputAmount(key) {
-    return newAmount => { 
+    return newAmount => {
       let reconstruct = false;
       return this.setState({
         amount: newAmount,

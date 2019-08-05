@@ -34,7 +34,9 @@ const SendPage = ({
   ...props,
   destination,
   amount,
-  hasAiTransaction
+  hasAiTransaction,
+  disabledSendBtn,
+  targetHeight
 }) => (
     <Aux>
       <div className="tab-card">
@@ -74,6 +76,9 @@ const SendPage = ({
         </div>
         <div className="send-button-area">
           <div className="estimation-area-send">
+            {(hasAiTransaction && !disabledSendBtn) ? <div className="total-amount-send" style={{ color: "red" }}>
+              <T id="send.AITransaction.prompt" m="*Send AI transaction, the block must reach {number} height" values={{ number: targetHeight }} />
+            </div> : null}
             <div className="total-amount-send">
               <div className="total-amount-send-text">
                 <T id="send.totalAmountEstimation" m="Total amount sending" />
@@ -105,7 +110,7 @@ const SendPage = ({
 
             {hasAiTransaction ? <ConfirmModalButton
               modalTitle={<T id="send.aiSendConfirmations" m="AITransaction Confirmation" />}
-              disabled={!isValid}
+              disabled={(!isValid || !disabledSendBtn)}
               className="content-send"
               buttonLabel={<T id="send.sendBtn" m="Send" />}
               onSubmit={onAttemptSignTransaction}

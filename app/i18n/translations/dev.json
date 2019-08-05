@@ -523,6 +523,7 @@
   "seedType.label": "Seed type",
   "selectStakepool.placeholder": "Selecione a pool...",
   "selectWallet.placeholder": "Select Wallet...",
+  "send.AITransaction.prompt": "*Send AI transaction, the block must reach {number} height",
   "send.aiSendConfirmations": "AITransaction Confirmation",
   "send.amount": "Valor",
   "send.amountPlaceholder": "Valor",
