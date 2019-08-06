@@ -153,7 +153,7 @@ class Send extends React.Component {
   onAttemptSignTransaction(privpass) {
     if (this.state.hasAiTransaction) {
       const { unitDivisor } = this.props;
-      this.props.onAisendtoaddressAttempt && this.props.onAisendtoaddressAttempt((this.state.amount / unitDivisor), this.state.destination);
+      this.props.onAisendtoaddressAttempt && this.props.onAisendtoaddressAttempt(privpass,(this.state.amount / unitDivisor), this.state.destination);
       this.onClearTransaction();
     } else {
       const { unsignedTransaction, onAttemptSignTransaction,

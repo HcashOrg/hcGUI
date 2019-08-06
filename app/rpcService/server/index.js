@@ -1,4 +1,4 @@
-import { omniMethod,aiMethod } from './contect';
+import { omniMethod } from './contect';
 import { categories } from '../datas'
 
 import { objToArray } from "helpers";

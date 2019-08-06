@@ -41,7 +41,7 @@ const SendPage = ({
     <Aux>
       <div className="tab-card">
         <div className="send-flex-height">
-          <div className="send-select-account-area">
+          {hasAiTransaction ? null : <div className="send-select-account-area">
             <div className="send-label" style={{ paddingTop: '5px' }}><T id="send.from" m="From" />:</div>
             <AccountsSelect className="send-select-account-input"
               {...{ account }} onChange={onChangeAccount} showAccountsButton={false} />
@@ -63,7 +63,7 @@ const SendPage = ({
               </Tooltip>
             }
           </div> */}
-          </div>
+          </div>}
           <div className="send-amount-area">
             {
               !isSendSelf
@@ -107,8 +107,22 @@ const SendPage = ({
           </div>
           <div className="send-actions">
 
-
-            {hasAiTransaction ? <ConfirmModalButton
+          <PassphraseModalButton
+                modalTitle={hasAiTransaction?<T id="send.aiSendConfirmations" m="AITransaction Confirmation" />:<T id="send.sendConfirmations" m="Transaction Confirmation" />}
+                modalDescription={hasAiTransaction?<ConfirmAiSendModal
+                  {...{
+                    destination,
+                    amount
+                  }}
+                />:<Aux><T id="send.confirmAmountLabel" m="Please confirm your transaction for" />:  <Balance amount={totalSpent} /></Aux>}
+                disabled={!isValid}
+                className="content-send"
+                onSubmit={onAttemptSignTransaction}
+                loading={isSendingTransaction}
+                buttonLabel={<T id="send.sendBtn" m="Send" />}
+              />
+            
+            {/* {hasAiTransaction ? <ConfirmModalButton
               modalTitle={<T id="send.aiSendConfirmations" m="AITransaction Confirmation" />}
               disabled={(!isValid || !disabledSendBtn)}
               className="content-send"
@@ -129,7 +143,7 @@ const SendPage = ({
                 onSubmit={onAttemptSignTransaction}
                 loading={isSendingTransaction}
                 buttonLabel={<T id="send.sendBtn" m="Send" />}
-              />}
+              />} */}
 
             {/* <Aux show={hasUnminedTransactions}>
               <Tooltip md text={<T id="send.rebroadcastTooltip" m="Rebroadcasting transactions may help in situations when a transaction has been sent to a node that had poor connectivity to the general HC network."/>}>

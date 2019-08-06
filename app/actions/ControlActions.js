@@ -17,6 +17,9 @@ import { getWalletCfg } from "../config.js";
 import {
   ai_sendtoaddress
 } from '../rpcService/server/aiServer';
+import {
+  wallet_spassphrase
+} from '../rpcService/server/walletServer';
 
 export const GETNEXTADDRESS_ATTEMPT = "GETNEXTADDRESS_ATTEMPT";
 export const GETNEXTADDRESS_FAILED = "GETNEXTADDRESS_FAILED";
@@ -659,12 +662,12 @@ export function constructTransactionAttempt(account, confirmations, outputs, all
 
 
 export const AISENDTOADDRESSATTEMPT_FAILED = "AISENDTOADDRESSATTEMPT_FAILED";
-export const aisendtoaddressAttempt = (amount, destination) => async (dispatch, getState) => {
-  try { 
+export const aisendtoaddressAttempt = (privpass, amount, destination) => async (dispatch, getState) => {
+  try {
     const { rpcRequestService } = getState().rpc;
-   
-    const result = await ai_sendtoaddress(rpcRequestService, { destination, amount });
-  } catch (error) { 
+    await wallet_spassphrase(rpcRequestService, { privpass, timeout: 1 });
+    await ai_sendtoaddress(rpcRequestService, { destination, amount });
+  } catch (error) {
     dispatch({ type: AISENDTOADDRESSATTEMPT_FAILED, error });
   }
 
@@ -680,7 +683,7 @@ export const validateAddress = address => async (dispatch, getState) => {
   try {
     const { network } = getState().daemon;
     const validationErr = isValidAddress(address, network);
-    if (validationErr) { 
+    if (validationErr) {
       return { isValid: false, error: validationErr, getIsValid() { return false; } };
     }
     dispatch({ type: VALIDATEADDRESS_ATTEMPT });

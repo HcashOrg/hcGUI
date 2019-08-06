@@ -30,3 +30,7 @@ export const aiMethod = {
   ifainoderegisted: 'ifainoderegisted'
 }
 
+export const walletMethod ={
+  passphrase:'walletpassphrase'
+}
+
