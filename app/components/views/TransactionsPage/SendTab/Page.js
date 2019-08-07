@@ -115,7 +115,7 @@ const SendPage = ({
                     amount
                   }}
                 />:<Aux><T id="send.confirmAmountLabel" m="Please confirm your transaction for" />:  <Balance amount={totalSpent} /></Aux>}
-                disabled={!isValid}
+                disabled={(!isValid || !disabledSendBtn)}
                 className="content-send"
                 onSubmit={onAttemptSignTransaction}
                 loading={isSendingTransaction}

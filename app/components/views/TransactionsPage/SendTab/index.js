@@ -70,7 +70,7 @@ class Send extends React.Component {
     const isValid = this.getIsValid();
 
     let disabledSendBtn = true;
-    const targetHeight = this.props.isTestNet ? (366560 + 1024) : (216666 + 1024)
+    const targetHeight = this.props.isTestNet ? (366560 + 288) : (216666 + 1024)
     if (this.state.hasAiTransaction) {
       disabledSendBtn = this.props.getNeededBlocks - targetHeight >= 0;
     }
