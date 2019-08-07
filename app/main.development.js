@@ -1,13 +1,13 @@
 import { app, BrowserWindow, Menu, shell, dialog } from "electron";
 import { concat, isString } from "lodash";
-import { initGlobalCfg, appDataDirectory, getHcdPath, validateGlobalCfgFile, setMustOpenForm, clearPreviousWallet} from "./config.js";
-import { hcctlCfg, hcdCfg, hcwalletCfg, initWalletCfg, getWalletCfg, newWalletConfigCreation, readHcdConfig, getWalletPath} from "./config.js";
+import { initGlobalCfg, appDataDirectory, getHcdPath, validateGlobalCfgFile, setMustOpenForm, clearPreviousWallet } from "./config.js";
+import { hcctlCfg, hcdCfg, hcwalletCfg, initWalletCfg, getWalletCfg, newWalletConfigCreation, readHcdConfig, getWalletPath } from "./config.js";
 import path from "path";
 import fs from "fs-extra";
 import os from "os";
 import parseArgs from "minimist";
 import stringArgv from "string-argv";
-import { appLocaleFromElectronLocale, default as locales} from "./i18n/locales";
+import { appLocaleFromElectronLocale, default as locales } from "./i18n/locales";
 import { createLogger } from "./logging";
 import { Buffer } from "buffer";
 
@@ -15,7 +15,7 @@ let menu;
 let template;
 let mainWindow = null;
 let versionWin = null;
-let grpcVersions = {requiredVersion: null, walletVersion: null};
+let grpcVersions = { requiredVersion: null, walletVersion: null };
 let debug = false;
 let hcdPID;
 let hcwPID;
@@ -102,13 +102,13 @@ if (process.env.NODE_ENV === "development") {
 app.setPath("userData", appDataDirectory());
 
 // Check that wallets directory has been created, if not, make it.
-let walletsDirectory = path.join(app.getPath("userData"),"wallets");
+let walletsDirectory = path.join(app.getPath("userData"), "wallets");
 fs.pathExistsSync(walletsDirectory) || fs.mkdirsSync(walletsDirectory);
 fs.pathExistsSync(path.join(walletsDirectory, "mainnet")) || fs.mkdirsSync(path.join(walletsDirectory, "mainnet"));
 fs.pathExistsSync(path.join(walletsDirectory, "testnet")) || fs.mkdirsSync(path.join(walletsDirectory, "testnet"));
 
 let defaultMainnetWalletDirectory = path.join(walletsDirectory, "mainnet", "default-wallet");
-if (!fs.pathExistsSync(defaultMainnetWalletDirectory)){
+if (!fs.pathExistsSync(defaultMainnetWalletDirectory)) {
   fs.mkdirsSync(defaultMainnetWalletDirectory);
 
   // check for existing mainnet directories
@@ -129,7 +129,7 @@ if (!fs.pathExistsSync(defaultMainnetWalletDirectory)){
 }
 
 let defaultTestnetWalletDirectory = path.join(walletsDirectory, "testnet", "default-wallet");
-if (!fs.pathExistsSync(defaultTestnetWalletDirectory)){
+if (!fs.pathExistsSync(defaultTestnetWalletDirectory)) {
   fs.mkdirsSync(defaultTestnetWalletDirectory);
 
   // check for existing testnet2 directories
@@ -194,9 +194,9 @@ function closeHCD() {
 function closeClis() {
   // shutdown daemon and wallet.
   // Don't try to close if not running.
-  if(hcdPID && hcdPID !== -1)
+  if (hcdPID && hcdPID !== -1)
     closeHCD();
-  if(hcwPID && hcwPID !== -1)
+  if (hcwPID && hcwPID !== -1)
     closeHCW();
 }
 
@@ -210,7 +210,7 @@ function cleanShutdown() {
   setTimeout(function () { closeClis(); }, cliShutDownPause * 1000);
   logger.log("info", "Closing HcGui.");
 
-  let shutdownTimer = setInterval(function(){
+  let shutdownTimer = setInterval(function () {
     const stillRunning = (require("is-running")(hcdPID) && os.platform() != "win32");
 
     if (!stillRunning) {
@@ -218,7 +218,7 @@ function cleanShutdown() {
       clearInterval(shutdownTimer);
       if (mainWindow) {
         mainWindow.webContents.send("daemon-stopped");
-        setTimeout(() => {mainWindow.close(); app.quit();}, 1000);
+        setTimeout(() => { mainWindow.close(); app.quit(); }, 1000);
       } else {
         app.quit();
       }
@@ -226,7 +226,7 @@ function cleanShutdown() {
     }
     logger.log("info", "Daemon still running in final shutdown pause. Waiting.");
 
-  }, shutDownPause*1000);
+  }, shutDownPause * 1000);
 }
 
 const installExtensions = async () => {
@@ -254,14 +254,14 @@ ipcMain.on("get-available-wallets", (event) => {// Attempt to find all currently
 
   for (var i in mainnetWalletDirectories) {
     if (fs.pathExistsSync(path.join(walletsDirectory, "mainnet", mainnetWalletDirectories[i].toString(), "mainnet", "wallet.db"))) {
-      availableWallets.push({network: "mainnet", wallet: mainnetWalletDirectories[i] });
+      availableWallets.push({ network: "mainnet", wallet: mainnetWalletDirectories[i] });
     }
   }
   var testnetWalletDirectories = fs.readdirSync(path.join(walletsDirectory, "testnet"));
 
   for (var j in testnetWalletDirectories) {
     if (fs.pathExistsSync(path.join(walletsDirectory, "testnet", testnetWalletDirectories[j].toString(), "testnet2", "wallet.db"))) {
-      availableWallets.push({network: "testnet", wallet: testnetWalletDirectories[j] });
+      availableWallets.push({ network: "testnet", wallet: testnetWalletDirectories[j] });
     }
   }
   event.returnValue = availableWallets;
@@ -273,7 +273,7 @@ ipcMain.on("start-daemon", (event, walletPath, appData, testnet) => {
     event.returnValue = hcdConfig;
     return;
   }
-  if(appData){
+  if (appData) {
     logger.log("info", "launching hcd with different appdata directory");
   }
   if (hcdPID && hcdConfig) {
@@ -290,13 +290,13 @@ ipcMain.on("start-daemon", (event, walletPath, appData, testnet) => {
   event.returnValue = hcdConfig;
 });
 
-ipcMain.on("create-wallet", (event, walletPath, testnet) => {
+ipcMain.on("create-wallet", (event, walletPath, testnet, enableomni) => {
   let newWalletDirectory = path.join(walletsDirectory, testnet ? "testnet" : "mainnet", walletPath);
-  if (!fs.pathExistsSync(newWalletDirectory)){
+  if (!fs.pathExistsSync(newWalletDirectory)) {
     fs.mkdirsSync(newWalletDirectory);
 
     // create new configs for new wallet
-    initWalletCfg(testnet, walletPath);
+    initWalletCfg(testnet, walletPath, enableomni);
     newWalletConfigCreation(testnet, walletPath);
   }
   event.returnValue = true;
@@ -304,7 +304,7 @@ ipcMain.on("create-wallet", (event, walletPath, testnet) => {
 
 ipcMain.on("remove-wallet", (event, walletPath, testnet) => {
   let removeWalletDirectory = path.join(walletsDirectory, testnet ? "testnet" : "mainnet", walletPath);
-  if (fs.pathExistsSync(removeWalletDirectory)){
+  if (fs.pathExistsSync(removeWalletDirectory)) {
     fs.removeSync(removeWalletDirectory);
   }
   event.returnValue = true;
@@ -313,7 +313,7 @@ ipcMain.on("remove-wallet", (event, walletPath, testnet) => {
 ipcMain.on("start-wallet", (event, walletPath, testnet) => {
   newWalletConfigCreation(testnet, walletPath);
   if (hcwPID) {
-    logger.log("info", "hcwallet already started " + hcwPID +hcwPort);
+    logger.log("info", "hcwallet already started " + hcwPID + hcwPort);
     mainWindow.webContents.send("hcwallet-port", hcwPort);
     event.returnValue = hcwPID;
     return;
@@ -329,7 +329,7 @@ ipcMain.on("start-wallet", (event, walletPath, testnet) => {
 ipcMain.on("check-daemon", (event, walletPath, rpcCreds, testnet) => {
   let args = ["getblockcount"];
   let host, port;
-  if (!rpcCreds){
+  if (!rpcCreds) {
     args.push(`--configfile=${hcctlCfg(getWalletPath(testnet, walletPath))}`);
   } else if (rpcCreds) {
     if (rpcCreds.rpc_user) {
@@ -407,7 +407,7 @@ ipcMain.on("get-hcgui-logs", (event) => {
 const AddToLog = (destIO, destLogBuffer, data) => {
   var dataBuffer = Buffer.from(data);
   if (destLogBuffer.length + dataBuffer.length > MAX_LOG_LENGTH) {
-    destLogBuffer = destLogBuffer.slice(destLogBuffer.indexOf(os.EOL,dataBuffer.length)+1);
+    destLogBuffer = destLogBuffer.slice(destLogBuffer.indexOf(os.EOL, dataBuffer.length) + 1);
   }
   debug && destIO.write(data);
   return Buffer.concat([destLogBuffer, dataBuffer]);
@@ -422,11 +422,11 @@ const DecodeDaemonIPCData = (data, cb) => {
   while (i < data.length) {
     if (data[i++] !== 0x01) throw "Wrong protocol version when decoding IPC data";
     const mtypelen = data[i++];
-    const mtype = data.slice(i, i+mtypelen).toString("utf-8");
+    const mtype = data.slice(i, i + mtypelen).toString("utf-8");
     i += mtypelen;
     const psize = data.readUInt32LE(i);
     i += 4;
-    const payload = data.slice(i, i+psize);
+    const payload = data.slice(i, i + psize);
     i += psize;
     cb(mtype, payload);
   }
@@ -436,7 +436,7 @@ const launchHCD = (walletPath, appdata, testnet) => {
   var spawn = require("child_process").spawn;
   let args = [];
   let newConfig = {};
-  if(appdata){
+  if (appdata) {
     args = [`--appdata=${appdata}`];
     newConfig = readHcdConfig(appdata, testnet);
     newConfig.rpc_cert = path.resolve(appdata, "rpc.cert");
@@ -451,7 +451,7 @@ const launchHCD = (walletPath, appdata, testnet) => {
 
   // Check to make sure that the rpcuser and rpcpass were set in the config
   if (!newConfig.rpc_user || !newConfig.rpc_password) {
-    const errorMessage =  "No " + `${!newConfig.rpc_user ? "rpcuser " : "" }` + `${!newConfig.rpc_user && !newConfig.rpc_password ? "and " : "" }` + `${!newConfig.rpc_password ? "rpcpass " : "" }` + "set in " + `${appdata ? appdata : getWalletPath(testnet, walletPath)}` + "/hcd.conf.  Please set them and restart.";
+    const errorMessage = "No " + `${!newConfig.rpc_user ? "rpcuser " : ""}` + `${!newConfig.rpc_user && !newConfig.rpc_password ? "and " : ""}` + `${!newConfig.rpc_password ? "rpcpass " : ""}` + "set in " + `${appdata ? appdata : getWalletPath(testnet, walletPath)}` + "/hcd.conf.  Please set them and restart.";
     logger.log("error", errorMessage);
     mainWindow.webContents.executeJavaScript("alert(\"" + `${errorMessage}` + "\");");
     mainWindow.webContents.executeJavaScript("window.close();");
@@ -578,9 +578,9 @@ const launchHCWallet = (walletPath, testnet) => {
   });
 
   hcwallet.on("close", (code) => {
-    if(daemonIsAdvanced)
+    if (daemonIsAdvanced)
       return;
-    if (code !== 0 && require("is-running")(hcwPID)) { 
+    if (code !== 0 && require("is-running")(hcwPID)) {
       logger.log("error", "hcwallet closed due to an error.  Check hcwallet logs and contact support if the issue persists.");
       mainWindow.webContents.executeJavaScript("alert(\"hcwallet closed due to an error.  Check hcwallet logs and contact support if the issue persists.\");");
       mainWindow.webContents.executeJavaScript("window.close();");
@@ -655,7 +655,7 @@ const readExesVersion = () => {
   return versions;
 };
 const primaryInstance = app.requestSingleInstanceLock()
-if(primaryInstance){
+if (primaryInstance) {
   if (mainWindow) {
     if (mainWindow.isMinimized()) mainWindow.restore();
     mainWindow.focus();
@@ -694,8 +694,10 @@ app.on("ready", async () => {
     page: "app.html",
   };
   if (!primaryInstance) {
-    windowOpts = {show: true, width: 575, height: 275, autoHideMenuBar: true,
-      resizable: false, page: "staticPages/secondInstance.html"};
+    windowOpts = {
+      show: true, width: 575, height: 275, autoHideMenuBar: true,
+      resizable: false, page: "staticPages/secondInstance.html"
+    };
   } else {
     await installExtensions();
   }
@@ -729,16 +731,16 @@ app.on("ready", async () => {
   mainWindow.webContents.on("context-menu", (e, props) => {
     const { selectionText, isEditable, x, y } = props;
     let inputMenu = [
-      {role: "cut"},
-      {role: "copy"},
-      {role: "paste"},
-      {type: "separator"},
-      {role: "selectall"}
+      { role: "cut" },
+      { role: "copy" },
+      { role: "paste" },
+      { type: "separator" },
+      { role: "selectall" }
     ];
     let selectionMenu = [
-      {role: "copy"},
-      {type: "separator"},
-      {role: "selectall"}
+      { role: "copy" },
+      { type: "separator" },
+      { role: "selectall" }
     ];
     if (process.env.NODE_ENV === "development") {
       let inspectElement = {
@@ -854,7 +856,7 @@ app.on("ready", async () => {
     template = [{
       label: locale.messages["appMenu.file"],
       submenu: [{
-        label:  locale.messages["appMenu.close"],
+        label: locale.messages["appMenu.close"],
         accelerator: "Ctrl+W",
         click() {
           mainWindow.close();
@@ -905,48 +907,48 @@ app.on("ready", async () => {
           shell.openExternal("http://wiki.h.cash/");
         }
       },
-      // {
-      //   label: locale.messages["appMenu.documentation"],
-      //   click() {
-      //     shell.openExternal("https://github.com/HcashOrg/hcGUI");
-      //   }
-      // }, {
-      //   label: locale.messages["appMenu.communityDiscussions"],
-      //   click() {
-      //     shell.openExternal("https://forum.h.cash");
-      //   }
-      // }, {
-      //   label: locale.messages["appMenu.searchIssues"],
-      //   click() {
-      //     shell.openExternal("https://github.com/HcashOrg/hcGUI/issues");
-      //   }
-      // }, {
-      //   label: locale.messages["appMenu.about"],
-      //   click() {
-      //     if (!versionWin) {
-      //       versionWin = new BrowserWindow({ width: 575, height: 275, show: false, autoHideMenuBar: true, resizable: false });
-      //       versionWin.on("closed", () => {
-      //         versionWin = null;
-      //       });
-      //
-      //       // Load a remote URL
-      //       versionWin.loadURL(`file://${__dirname}/staticPages/version.html`);
-      //
-      //       versionWin.once("ready-to-show", () => {
-      //         versionWin.webContents.send("exes-versions", readExesVersion());
-      //         versionWin.show();
-      //       });
-      //     }
-      //   }
-      // }
-    ]
+        // {
+        //   label: locale.messages["appMenu.documentation"],
+        //   click() {
+        //     shell.openExternal("https://github.com/HcashOrg/hcGUI");
+        //   }
+        // }, {
+        //   label: locale.messages["appMenu.communityDiscussions"],
+        //   click() {
+        //     shell.openExternal("https://forum.h.cash");
+        //   }
+        // }, {
+        //   label: locale.messages["appMenu.searchIssues"],
+        //   click() {
+        //     shell.openExternal("https://github.com/HcashOrg/hcGUI/issues");
+        //   }
+        // }, {
+        //   label: locale.messages["appMenu.about"],
+        //   click() {
+        //     if (!versionWin) {
+        //       versionWin = new BrowserWindow({ width: 575, height: 275, show: false, autoHideMenuBar: true, resizable: false });
+        //       versionWin.on("closed", () => {
+        //         versionWin = null;
+        //       });
+        //
+        //       // Load a remote URL
+        //       versionWin.loadURL(`file://${__dirname}/staticPages/version.html`);
+        //
+        //       versionWin.once("ready-to-show", () => {
+        //         versionWin.webContents.send("exes-versions", readExesVersion());
+        //         versionWin.show();
+        //       });
+        //     }
+        //   }
+        // }
+      ]
     });
   menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 });
 
 app.on("before-quit", (event) => {
-  logger.log("info","Caught before-quit. Set hcGUI as was closed");
+  logger.log("info", "Caught before-quit. Set hcGUI as was closed");
   event.preventDefault();
   cleanShutdown();
   setMustOpenForm(true);

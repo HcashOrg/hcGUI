@@ -14,7 +14,7 @@ export const GETOMNISERVICE_ATTEMPT = "GETOMNISERVICE_ATTEMPT";
 export const GETOMNISERVICE_SUCCESS = "GETOMNISERVICE_SUCCESS";
 export const GETOMNISERVICE_FAILED = "GETOMNISERVICE_FAILED";
 export const getOmniServiceAttempt = () => (dispatch, getState) => {
-  const { grpc: { address, port } } = getState();
+  const { grpc: { address, port } } = getState(); 
   dispatch({ rpcRequestService: rpcRequestService(sel.isTestNet(getState()), address), type: GETOMNISERVICE_SUCCESS });
 
   loadOmniDataAttempt(dispatch, getState);
@@ -22,6 +22,8 @@ export const getOmniServiceAttempt = () => (dispatch, getState) => {
 
 
 const loadOmniDataAttempt = async (dispatch, getState) => {
+  const enableomni = sel.enableomni(getState());
+  if (!enableomni) return;
   await dispatch(listproperties_func());
   setTimeout(() => { dispatch(getwalletAddressBalances_func()); }, 1000);
   setTimeout(() => { dispatch(listTransactions_func({ txid: "*", indexPage: 0 })); }, 1000);
@@ -45,13 +47,13 @@ export const getwalletAddressBalances_func = () => async (dispatch, getState) =>
             let itemData = walletAssetsBalances.get(item.propertyid);
             itemData.balance = parseFloat(itemData.balance) + parseFloat(item.balance);
             itemData.propertyid = item.propertyid;
-            itemData.frozen= parseFloat(itemData.frozen) + parseFloat(item.frozen);
-            itemData.reserved=parseFloat(itemData.reserved) + parseFloat(item.reserved);
+            itemData.frozen = parseFloat(itemData.frozen) + parseFloat(item.frozen);
+            itemData.reserved = parseFloat(itemData.reserved) + parseFloat(item.reserved);
             itemData.addressData.push({
               address: data.address,
               balance: item.balance,
-              frozen:item.frozen,
-              reserved:item.reserved,
+              frozen: item.frozen,
+              reserved: item.reserved,
             })
             walletAssetsBalances.set(item.propertyid, itemData);
           } else {
@@ -61,13 +63,13 @@ export const getwalletAddressBalances_func = () => async (dispatch, getState) =>
               propertyid: item.propertyid,
               ecosystem: item.propertyid < TEST_ECO_PROPERTY ? 1 : 2,
               frozen: parseFloat(item.frozen),
-              reserved:parseFloat(item.reserved),
+              reserved: parseFloat(item.reserved),
               addressData: [
                 {
                   address: data.address,
                   balance: item.balance,
-                  frozen:item.frozen,
-                  reserved:item.reserved,
+                  frozen: item.frozen,
+                  reserved: item.reserved,
                 }
               ]
             };
@@ -375,7 +377,7 @@ export const getCrowdsale_fun = propertyid => async (dispatch, getState) => {
     dispatch({ type: OMNIGETCROWDSALE_SUCCESS, crowdsale })
     return crowdsale;
   } catch (error) {
-    console.error(error, ' getCrowdsale_fun  error '); 
+    console.error(error, ' getCrowdsale_fun  error ');
     dispatch({ type: OMNIGETCROWDSALE_FAILED, error })
     return null;
   }

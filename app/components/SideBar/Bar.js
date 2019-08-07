@@ -21,13 +21,14 @@ const Bar = ({
   rescanRequest,
   rescanAttempt,
   showingSidebarMenu,
+  enableomni
 }) => (
   <div className={"sidebar-menu " + (isTestNet ? "sidebar-testnet" : "sidebar-mainnet")}>
     <Logo {...{ isTestNet }}/>
     <Aux show={ showingSidebarMenu }>
       <div className="sidebar-main">
         <div className="sidebar-scroll">
-          <MenuLinks/>
+          <MenuLinks {...{enableomni}}/>
         </div>
         <div className="sidebar-menu-total-balance-extended" style={{ display: isShowingAccounts ? "flex" : "none" }}>
           <div className="sidebar-menu-total-balance-extended-bottom">

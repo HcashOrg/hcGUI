@@ -12,6 +12,7 @@ const mapStateToProps = selectorMap({
   totalBalance: sel.totalBalance,
   showingSidebar: sel.showingSidebar,
   showingSidebarMenu: sel.showingSidebarMenu,
+  enableomni: sel.enableomni,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

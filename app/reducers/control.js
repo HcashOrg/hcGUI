@@ -22,8 +22,9 @@ import {
   VALIDATEADDRESS_ATTEMPT, VALIDATEADDRESS_SUCCESS, VALIDATEADDRESS_FAILED, VALIDATEADDRESS_CLEANSTORE
 } from "../actions/ControlActions";
 
-import {AI_IFAINODEREGISTED_SETTINGS} from "../actions/AIActions"
+import { AI_IFAINODEREGISTED_SETTINGS } from "../actions/AIActions"
 import { WALLET_AUTOBUYER_SETTINGS } from "actions/DaemonActions";
+import { ActionSchedule } from "material-ui/svg-icons";
 
 export default function control(state = {}, action) {
   switch (action.type) {
@@ -453,12 +454,13 @@ export default function control(state = {}, action) {
         maxPriceAbsolute: action.maxPriceAbsolute,
         maxPriceRelative: action.maxPriceRelative,
         maxPerBlock: action.maxPerBlock,
+        enableomni: action.enableomni
       };
-      case AI_IFAINODEREGISTED_SETTINGS:
-        return {
-          ...state,
-          ifainoderegisted:action.ifainoderegisted
-        }
+    case AI_IFAINODEREGISTED_SETTINGS:
+      return {
+        ...state,
+        ifainoderegisted: action.ifainoderegisted
+      }
     default:
       return state;
   }

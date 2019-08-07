@@ -23,36 +23,43 @@ const linkList = [
 
 @autobind
 class MenuLinks extends React.Component {
-  constructor (props) { super(props); }
+  constructor(props) { super(props); }
   _nodes = new Map();
   state = { top: 0 };
 
-  componentDidMount(){ 
+  componentDidMount() {
     this.menuLinkActive(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {  
+  componentWillReceiveProps(nextProps) {
     this.menuLinkActive(nextProps);
-  } 
+  }
 
-  menuLinkActive=(Props)=>{
+  menuLinkActive = (Props) => {
     const activeLink = getPage(Props.routes);
-    const basePage = activeLink.split("/")[0];  
+    const basePage = activeLink.split("/")[0];
     const newTop = this._nodes.get(basePage).offsetTop;
     this.setState({ top: spring(newTop, theme("springs.sideBar")) });
   }
 
-  render () { 
-    return ( 
-        <Aux>
-          { linkList.map(link =>
-            <MenuLink to={ "/" + link } linkRef={ ref => this._nodes.set(link, ref) } key={ link }>
-              { this.props.intl.formatMessage(messages["menu." + link]) }
-            </MenuLink> )}
-          <Motion style={ this.state }>
-            { style => <div className="menu-caret" {...{ style }}/> }
-          </Motion> 
-        </Aux> 
+  render() {
+    const { enableomni } = this.props;
+    const linkLists = linkList.filter(link => {
+      if (!enableomni) {
+        return link !== "omni"
+      }
+      return true
+    })
+    return (
+      <Aux>
+        {linkLists.map(link =>
+          <MenuLink to={"/" + link} linkRef={ref => this._nodes.set(link, ref)} key={link}>
+            {this.props.intl.formatMessage(messages["menu." + link])}
+          </MenuLink>)}
+        <Motion style={this.state}>
+          {style => <div className="menu-caret" {...{ style }} />}
+        </Motion>
+      </Aux>
     );
   }
 }

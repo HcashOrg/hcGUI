@@ -55,6 +55,7 @@ class SideBar extends React.Component {
       <Bar
         {...{
           isTestNet: this.props.isTestNet,
+          enableomni:this.props.enableomni,
           balances: this.props.balances,
           synced: this.props.synced,
           currentHeight: this.props.currentBlockHeight,

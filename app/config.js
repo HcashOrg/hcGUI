@@ -11,15 +11,15 @@ export function getGlobalCfg() {
 }
 
 export function getWalletCfg(testnet, walletPath) {
-  const config = new Store({ cwd: getWalletCfgPath(testnet, walletPath) });
+  const config = new Store({ cwd: getWalletCfgPath(testnet, walletPath) }); 
   return (config);
 }
 
-export function initWalletCfg(testnet, walletPath) {
+export function initWalletCfg(testnet, walletPath,enableomni) {
   const config = new Store({ cwd: getWalletCfgPath(testnet, walletPath) });
   if (!config.has("wallet_start_advanced")) {
     config.set("wallet_start_advanced", false);
-  }
+  } 
   if (!config.has("enableticketbuyer")) {
     config.set("enableticketbuyer", "0");
   }
@@ -66,8 +66,10 @@ export function initWalletCfg(testnet, walletPath) {
   }
   if (!config.has("autonomy_last_access_block")) {
     config.set("autonomy_last_access_block", 0);
+  } 
+  if (!config.has("enableomni")) {
+    config.set("enableomni", !!enableomni);
   }
-
   stakePoolInfo(testnet, function (foundStakePoolConfigs) {
     if (foundStakePoolConfigs !== null) {
       updateStakePoolConfig(config, foundStakePoolConfigs);
@@ -330,6 +332,9 @@ export function newWalletConfigCreation(testnet, walletPath) {
     }
   };
   fs.writeFileSync(hcctlCfg(getWalletPath(testnet, walletPath)), ini.stringify(hcctlConf));
+   
+  const config= getWalletCfg(testnet, walletPath);
+
   //nolegacyrpc: "1",
   var hcwConf = {
     "Application Options":
@@ -342,9 +347,11 @@ export function newWalletConfigCreation(testnet, walletPath) {
       testnet: testnet ? "1" : "0",
       username: rpcOptions.username,
       password: rpcOptions.password,
-      enableaivoting:false
+      enableaivoting:false,
+      enableomni:config.get("enableomni",true)
     },
   };
+  
   fs.writeFileSync(hcwalletCfg(getWalletPath(testnet, walletPath)), ini.stringify(hcwConf));
 }
 export function hcctlCfg(configPath) {

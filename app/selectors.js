@@ -629,6 +629,7 @@ export const signTransactionError = get(["control", "signTransactionError"]);
 const publishTransactionResponse = get(["control", "publishTransactionResponse"]);
 const publishTransactionRequestAttempt = get(["control", "publishTransactionRequestAttempt"]);
 export const ifainoderegisted = get(["control", "ifainoderegisted"]);
+export const enableomni = get(["control", "enableomni"]);
 const totalOutputAmount = compose(r => r ? r.getTotalOutputAmount() : 0, constructTxResponse);
 const totalAmount = compose(res => res ? res.totalAmount : 0, constructTxResponse);
 const totalPreviousOutputAmount = compose(

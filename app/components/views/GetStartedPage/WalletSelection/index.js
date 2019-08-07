@@ -16,6 +16,7 @@ class WalletSelectionBody extends React.Component {
       newWalletName: "",
       newWalletNetwork: "mainnet",
       sideActive: false,
+      enableomni:false,
       selectedWallet: this.props.availableWallets ? this.props.availableWallets[0] : null
     };
   }
@@ -37,7 +38,8 @@ class WalletSelectionBody extends React.Component {
       onShowCreateWallet,
       onShowSelectWallet,
       onChangeCreateWalletName,
-      onChangeCreateWalletNetwork
+      onChangeCreateWalletNetwork,
+      onChangeCreateWalletOpenOmni
     } = this;
     const {
       selectedWallet,
@@ -54,6 +56,7 @@ class WalletSelectionBody extends React.Component {
           onChangeAvailableWallets,
           onChangeCreateWalletName,
           onChangeCreateWalletNetwork,
+          onChangeCreateWalletOpenOmni,
           startWallet,
           createWallet,
           selectedWallet,
@@ -91,14 +94,21 @@ class WalletSelectionBody extends React.Component {
     }
     this.setState({ newWalletNetwork: updatedNetwork });
   }
+
+  onChangeCreateWalletOpenOmni(){
+    const { enableomni } = this.state;
+    this.setState({ enableomni: !enableomni });
+  }
+
   createWallet() {
-    const { newWalletName, newWalletNetwork } = this.state;
+    const { newWalletName, newWalletNetwork,enableomni } = this.state;
     if (newWalletName == "" || (newWalletNetwork !== "mainnet" && newWalletNetwork !== "testnet")) {
       return;
-    }
+    } 
     this.props.onCreateWallet({
       label: newWalletName + " (" + newWalletNetwork + ")",
       network: newWalletNetwork,
+      enableomni:enableomni,
       value: {wallet: newWalletName, network: newWalletNetwork
       }});
   }

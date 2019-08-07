@@ -93,7 +93,7 @@ export const removeWallet = (selectedWallet) => (dispatch) => {
 };
 
 export const createWallet = (selectedWallet) => (dispatch) => {
-  wallet.createNewWallet(selectedWallet.value.wallet, selectedWallet.network == "testnet")
+  wallet.createNewWallet(selectedWallet.value.wallet, selectedWallet.network == "testnet",selectedWallet.enableomni)
     .then(() => {
       dispatch({type: WALLETCREATED});
       dispatch(startWallet(selectedWallet));
@@ -131,10 +131,11 @@ export const startWallet = (selectedWallet) => (dispatch) => {
       var maxPriceRelative = walletCfg.get("maxpricerelative");
       var maxPerBlock = walletCfg.get("maxperblock");
       var discoverAccountsComplete = walletCfg.get("discoveraccounts");
+      var enableomni = walletCfg.get("enableomni",true); 
       var activeStakePoolConfig = foundStakePoolConfig;
       var selectedStakePool = firstConfiguredStakePool;
       dispatch({type: WALLETREADY, walletName: selectedWallet.value.wallet, network: selectedWallet.network, hiddenAccounts, port});
-      dispatch({type: WALLET_AUTOBUYER_SETTINGS, balanceToMaintain, maxFee, maxPriceAbsolute, maxPriceRelative, maxPerBlock});
+      dispatch({type: WALLET_AUTOBUYER_SETTINGS, balanceToMaintain, maxFee, maxPriceAbsolute, maxPriceRelative, maxPerBlock,enableomni:enableomni});
       dispatch({type: WALLET_SETTINGS, currencyDisplay});
       dispatch({type: WALLET_STAKEPOOL_SETTINGS, activeStakePoolConfig, selectedStakePool, currentStakePoolConfig});
       //// ignore discoverAccountsComplete local wallet settings saved value
