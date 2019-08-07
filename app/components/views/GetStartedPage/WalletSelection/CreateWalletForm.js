@@ -56,7 +56,7 @@ const CreateWalletForm = ({
         </div>
         <div className="advanced-daemon-row advanced-daemon-row--with-flex">
           <div className="dvanced-daemon-column advanced-daemon-column--30p">
-            <span className="advanced-daemon-network">{!enableomni ? "关闭OMNI" : "开启OMNI"}</span>
+            <span className="advanced-daemon-network">{!enableomni ? "Close Omni" : "Open Omni"}</span>
           </div>
           <div className="advanced-daemon-column advanced-daemon-column--70p">
             <NetworkSwitch
