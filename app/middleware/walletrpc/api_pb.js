@@ -16072,7 +16072,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.walletrpc.TransactionNotificationsResponse.repeatedFields_ = [1, 2, 3, 4];
+proto.walletrpc.TransactionNotificationsResponse.repeatedFields_ = [1, 2, 3, 4, 5];
 
 
 
@@ -16108,7 +16108,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       detachedBlocksList: msg.getDetachedBlocksList_asB64(),
       unminedTransactionsList: jspb.Message.toObjectList(msg.getUnminedTransactionsList(),
         proto.walletrpc.TransactionDetails.toObject, includeInstance),
-      unminedTransactionHashesList: msg.getUnminedTransactionHashesList_asB64()
+      unminedTransactionHashesList: msg.getUnminedTransactionHashesList_asB64(),
+       removeTransactionHashesList: msg.getRemoveTransactionHashesList_asB64()
     };
 
     if (includeInstance) {
@@ -16163,6 +16164,10 @@ proto.walletrpc.TransactionNotificationsResponse.deserializeBinaryFromReader = f
         var value = /** @type {!Uint8Array} */ (reader.readBytes());
         msg.addUnminedTransactionHashes(value);
         break;
+        case 5:
+          var value = /** @type {!Uint8Array} */ (reader.readBytes());
+          msg.addRemoveTransactionHashes(value);
+          break;
       default:
         reader.skipField();
         break;
@@ -16219,6 +16224,13 @@ proto.walletrpc.TransactionNotificationsResponse.serializeBinaryToWriter = funct
   if (f.length > 0) {
     writer.writeRepeatedBytes(
       4,
+      f
+    );
+  }
+  f = message.getRemoveTransactionHashesList_asU8();
+  if (f.length > 0) {
+    writer.writeRepeatedBytes(
+      5,
       f
     );
   }
@@ -16390,6 +16402,59 @@ proto.walletrpc.TransactionNotificationsResponse.prototype.addUnminedTransaction
 
 proto.walletrpc.TransactionNotificationsResponse.prototype.clearUnminedTransactionHashesList = function () {
   this.setUnminedTransactionHashesList([]);
+};
+
+
+/**
+ * repeated bytes remove_transaction_hashes = 5;
+ * @return {!(Array<!Uint8Array>|Array<string>)}
+ */
+proto.walletrpc.TransactionNotificationsResponse.prototype.getRemoveTransactionHashesList = function () {
+  return /** @type {!(Array<!Uint8Array>|Array<string>)} */ (jspb.Message.getRepeatedField(this, 5));
+};
+
+
+/**
+ * repeated bytes remove_transaction_hashes = 5;
+ * This is a type-conversion wrapper around `getRemoveTransactionHashesList()`
+ * @return {!Array.<string>}
+ */
+proto.walletrpc.TransactionNotificationsResponse.prototype.getRemoveTransactionHashesList_asB64 = function () {
+  return /** @type {!Array.<string>} */ (jspb.Message.bytesListAsB64(
+    this.getRemoveTransactionHashesList()));
+};
+
+
+/**
+ * repeated bytes remove_transaction_hashes = 5;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getRemoveTransactionHashesList()`
+ * @return {!Array.<!Uint8Array>}
+ */
+proto.walletrpc.TransactionNotificationsResponse.prototype.getRemoveTransactionHashesList_asU8 = function () {
+  return /** @type {!Array.<!Uint8Array>} */ (jspb.Message.bytesListAsU8(
+    this.getRemoveTransactionHashesList()));
+};
+
+
+/** @param {!(Array<!Uint8Array>|Array<string>)} value */
+proto.walletrpc.TransactionNotificationsResponse.prototype.setRemoveTransactionHashesList = function (value) {
+  jspb.Message.setField(this, 5, value || []);
+};
+
+
+/**
+ * @param {!(string|Uint8Array)} value
+ * @param {number=} opt_index
+ */
+proto.walletrpc.TransactionNotificationsResponse.prototype.addRemoveTransactionHashes = function (value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 5, value, opt_index);
+};
+
+
+proto.walletrpc.TransactionNotificationsResponse.prototype.clearRemoveTransactionHashesList = function () {
+  this.setRemoveTransactionHashesList([]);
 };
 
 

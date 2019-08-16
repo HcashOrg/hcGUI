@@ -535,6 +535,8 @@ message TransactionNotificationsResponse {
 	// Instead of notifying all of the removed unmined transactions,
 	// just send all of the current hashes.
 	repeated bytes unmined_transaction_hashes = 4;
+
+	repeated bytes remove_transaction_hashes = 5; 
 }
 
 message AccountNotificationsRequest {}

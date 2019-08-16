@@ -19,7 +19,8 @@ import {
   GETAGENDAS_ATTEMPT, GETAGENDAS_FAILED, GETAGENDAS_SUCCESS,
   GETVOTECHOICES_ATTEMPT, GETVOTECHOICES_FAILED, GETVOTECHOICES_SUCCESS,
   SETVOTECHOICES_ATTEMPT, SETVOTECHOICES_FAILED, SETVOTECHOICES_SUCCESS,
-  UPDATEHIDDENACCOUNTS, MATURINGHEIGHTS_CHANGED, GETTREASURY_BALANCE_SUCCESS
+  UPDATEHIDDENACCOUNTS, MATURINGHEIGHTS_CHANGED, GETTREASURY_BALANCE_SUCCESS,
+  REMOVE_TRANSACTIONS_AIRECEIVED
 } from "../actions/ClientActions";
 import { STARTUPBLOCK, WALLETREADY } from "../actions/DaemonActions";
 import { NEWBLOCKCONNECTED } from "../actions/NotificationActions";
@@ -287,6 +288,11 @@ export default function grpc(state = {}, action) {
         transactions: [...action.unminedTransactions, ...action.minedTransactions],
         recentRegularTransactions: action.recentRegularTransactions,
         recentStakeTransactions: action.recentStakeTransactions,
+      };
+    case REMOVE_TRANSACTIONS_AIRECEIVED:
+      return {
+        ...state,
+        recentRegularTransactions: action.recentRegularTransactions,
       };
     case CHANGE_TRANSACTIONS_FILTER:
       return {

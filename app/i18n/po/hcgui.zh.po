@@ -1678,11 +1678,11 @@ msgid ""
 "      {rewardLabel}: {reward}\n"
 "      ROI: {roi, number, precise-percent}"
 msgstr ""
-"投资：{投资}\n"
+"投资：{investment}\n"
 "       交易费用：{txFee}\n"
 "       泳池费用：{poolFee}\n"
 "       {rewardLabel}：{reward}\n"
-"       投资回报率：{roi，number，exact-percent}"
+"       投资回报率：{roi, number, precise-percent}"
 
 #. [accounts.keys]
 #. defaultMessage is:
@@ -4662,7 +4662,7 @@ msgstr "{timestamp, date, medium} {timestamp, time, medium}"
 #: app/i18n/extracted/app/components/views/TicketsPage/MyTicketsTab/TicketInfoCard.json
 msgctxt "ticket.daysToLeave"
 msgid "~ {days, plural, one {# day} other {# days}} from buying until {status}"
-msgstr ~ {days, plural, one {# day} other {# days}} from buying until {status}
+msgstr "~ {days, plural, one {# day} other {# days}} from buying until {status}"
 
 #. [getStarted.enterWallet]
 #. defaultMessage is:

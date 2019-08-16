@@ -1,8 +1,9 @@
 // @flow
 import * as wallet from "wallet";
 import { getTicketPriceAttempt, updateAccount, getAccountNumbersBalances } from "./ClientActions";
-import { newTransactionsReceived } from "./ClientActions";
+import { newTransactionsReceived, removeTransactionsAiReceived } from "./ClientActions";
 import { TransactionNotificationsRequest, AccountNotificationsRequest } from "middleware/walletrpc/api_pb";
+import { reverseRawHash} from "helpers/byteActions";
 
 export const TRANSACTIONNTFNS_START = "TRANSACTIONNTFNS_START";
 export const TRANSACTIONNTFNS_FAILED = "TRANSACTIONNTFNS_FAILED";
@@ -10,17 +11,22 @@ export const TRANSACTIONNTFNS_END = "TRANSACTIONNTFNS_END";
 
 export const NEWBLOCKCONNECTED = "NEWBLOCKCONNECTED";
 
-function transactionNtfnsData(response) {
+function transactionNtfnsData(response) { 
+   
   return (dispatch, getState) => {
     const attachedBlocks = response.getAttachedBlocksList();
     const unminedTxList = response.getUnminedTransactionsList();
+
+    if (response.getRemoveTransactionHashesList() && response.getRemoveTransactionHashesList().length > 0) {
+      dispatch(removeTransactionsAiReceived(response.getRemoveTransactionHashesList()));
+    } 
     // Block was mined
     if (attachedBlocks.length > 0) {
-      var currentBlockTimestamp = attachedBlocks[attachedBlocks.length-1].getTimestamp();
-      var currentBlockHeight = attachedBlocks[attachedBlocks.length-1].getHeight();
+      var currentBlockTimestamp = attachedBlocks[attachedBlocks.length - 1].getTimestamp();
+      var currentBlockHeight = attachedBlocks[attachedBlocks.length - 1].getHeight();
       const { maturingBlockHeights } = getState().grpc;
-      dispatch({currentBlockHeight, currentBlockTimestamp, type: NEWBLOCKCONNECTED });
-      setTimeout( () => {dispatch(getTicketPriceAttempt());}, 1000);
+      dispatch({ currentBlockHeight, currentBlockTimestamp, type: NEWBLOCKCONNECTED });
+      setTimeout(() => { dispatch(getTicketPriceAttempt()); }, 1000);
 
       const maturedHeights = Object.keys(maturingBlockHeights).filter(h => h <= currentBlockHeight);
       if (maturedHeights.length > 0) {
@@ -32,7 +38,7 @@ function transactionNtfnsData(response) {
       }
 
       const newlyMined = attachedBlocks.reduce((l, b) => {
-        b.getTransactionsList().forEach((t, i) => { 
+        b.getTransactionsList().forEach((t, i) => {
           const tx = wallet.formatTransaction(b, t, i);
           l.push(tx);
         });
@@ -49,7 +55,7 @@ function transactionNtfnsData(response) {
 }
 
 export const transactionNtfnsStart = () => (dispatch, getState) => {
-  var request = new TransactionNotificationsRequest();
+  var request = new TransactionNotificationsRequest(); 
   const { walletService } = getState().grpc;
   let transactionNtfns = walletService.transactionNotifications(request);
   dispatch({ transactionNtfns, type: TRANSACTIONNTFNS_START });
@@ -73,7 +79,7 @@ export const accountNtfnsStart = () => (dispatch, getState) => {
   let accountNtfns = walletService.accountNotifications(request);
   dispatch({ accountNtfns, type: ACCOUNTNTFNS_START });
   accountNtfns.on("data", data => {
-    let account = {accountNumber: data.getAccountNumber(), accountName: data.getAccountName(), externalKeys: data.getExternalKeyCount(), internalKeys: data.getInternalKeyCount(), importedKeys: data.getImportedKeyCount()};
+    let account = { accountNumber: data.getAccountNumber(), accountName: data.getAccountName(), externalKeys: data.getExternalKeyCount(), internalKeys: data.getInternalKeyCount(), importedKeys: data.getImportedKeyCount() };
     dispatch(updateAccount(account));
   });
   accountNtfns.on("end", () => {

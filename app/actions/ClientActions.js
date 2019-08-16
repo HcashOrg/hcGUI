@@ -15,6 +15,7 @@ import { getTransactions as walletGetTransactions } from "wallet/service";
 import { TransactionDetails } from "middleware/walletrpc/api_pb";
 import { clipboard } from "electron";
 import { getStartupStats } from "./StatisticsActions";
+import { reverseRawHash} from "helpers/byteActions";
 // import * as da from "../httpService/server/hcDataApi";
 // import { getVettedProposals } from "./GovernanceActions";
 
@@ -193,7 +194,7 @@ export const findImmatureTransactions = () => async (dispatch, getState) => {
 
 };
 
-export const getWalletServiceAttempt = () => (dispatch, getState) => { 
+export const getWalletServiceAttempt = () => (dispatch, getState) => {
   const { grpc: { address, port } } = getState();
   const { daemon: { walletName } } = getState();
   dispatch({ type: GETWALLETSERVICE_ATTEMPT });
@@ -242,7 +243,7 @@ const getAccountsBalances = (accounts) => (dispatch, getState) => {
       HDPath = "m / 44' / " + chainParams.HDCoinType + "' / " + account.getAccountNumber() + "'";
     }
     wallet.getBalance(sel.walletService(getState()), account.getAccountNumber(), 0)
-      .then(resp => { 
+      .then(resp => {
         const accountEntry = {
           accountNumber: account.getAccountNumber(),
           accountName: account.getAccountName(),
@@ -258,7 +259,7 @@ const getAccountsBalances = (accounts) => (dispatch, getState) => {
           immatureStakeGeneration: resp.getImmatureStakeGeneration(),
           lockedByTickets: resp.getLockedByTickets(),
           votingAuthority: resp.getVotingAuthority(),
-          aiTxConfirmed:resp.getAiTxConfirmed()
+          aiTxConfirmed: resp.getAiTxConfirmed()
         };
         balances.push(accountEntry);
       })
@@ -297,10 +298,11 @@ const getBalanceUpdateSuccess = (accountNumber, getBalanceResponse) => (dispatch
   dispatch({ balances: updatedBalances, type: GETBALANCE_SUCCESS });
 };
 
-export const getBalanceUpdateAttempt = (accountNumber, requiredConfs) => (dispatch, getState) =>
+export const getBalanceUpdateAttempt = (accountNumber, requiredConfs) => (dispatch, getState) =>{ 
   wallet.getBalance(sel.walletService(getState()), accountNumber, requiredConfs)
     .then(resp => dispatch(getBalanceUpdateSuccess(accountNumber, resp)))
     .catch(error => dispatch({ error, type: GETBALANCE_FAILED }));
+}
 
 export const GETACCOUNTNUMBER_ATTEMPT = "GETACCOUNTNUMBER_ATTEMPT";
 export const GETACCOUNTNUMBER_FAILED = "GETACCOUNTNUMBER_FAILED";
@@ -483,7 +485,7 @@ export const getTicketsInfoAttempt = () => (dispatch, getState) => {
   let startRequestHeight = 0;
   let endRequestHeight = -1;
 
-  dispatch({ type: GETTICKETS_ATTEMPT }); 
+  dispatch({ type: GETTICKETS_ATTEMPT });
   wallet.getTickets(sel.walletService(getState()), startRequestHeight, endRequestHeight)
     .then(tickets => setTimeout(() => dispatch({ tickets, type: GETTICKETS_COMPLETE }), 1000))
     .catch(error => console.error(error + " Please try again"));
@@ -501,9 +503,9 @@ export const GETTRANSACTIONS_COMPLETE = "GETTRANSACTIONS_COMPLETE";
 //   transactions (sent/received/transfered)
 //
 // If empty, all transactions are accepted.
-function filterTransactions(transactions, filter) { 
+function filterTransactions(transactions, filter) {
   return transactions
-    .filter(v => filter.types.length ? filter.types.indexOf(v.type) > -1 : true )
+    .filter(v => filter.types.length ? filter.types.indexOf(v.type) > -1 : true)
     .filter(v => filter.direction ? filter.direction === v.direction : true);
 }
 
@@ -539,8 +541,8 @@ export const getTransactions = () => async (dispatch, getState) => {
   let filtered = [];
 
   // first, request unmined transactions. They always come first in hcgui.
-  let { unmined } = await walletGetTransactions(walletService, -1, -1, 0); 
-  let unminedTransactions = filterTransactions(unmined, transactionsFilter); 
+  let { unmined } = await walletGetTransactions(walletService, -1, -1, 0);
+  let unminedTransactions = filterTransactions(unmined, transactionsFilter);
 
   // now, request a batch of mined transactions until `maximumTransactionCount`
   // transactions have been obtained (after filtering)
@@ -591,7 +593,7 @@ export const getTransactions = () => async (dispatch, getState) => {
     unminedTransactions, minedTransactions,
     noMoreTransactions, lastTransaction, recentRegularTransactions, recentStakeTransactions, type: GETTRANSACTIONS_COMPLETE
   };
- 
+
   dispatch(stateChange);
   return stateChange;
 };
@@ -636,9 +638,9 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
   const unminedDupeCheck = newlyUnminedTransactions.filter(tx => !minedMap[tx.hash] && !unminedMap[tx.hash]);
 
   var accountsToUpdate = new Array();
-  accountsToUpdate = checkAccountsToUpdate(unminedDupeCheck, accountsToUpdate);
-  accountsToUpdate = checkAccountsToUpdate(newlyMinedTransactions, accountsToUpdate);
-  accountsToUpdate = Array.from(new Set(accountsToUpdate));
+  accountsToUpdate = checkAccountsToUpdate(unminedDupeCheck, accountsToUpdate); 
+  accountsToUpdate = checkAccountsToUpdate(newlyMinedTransactions, accountsToUpdate); 
+  accountsToUpdate = Array.from(new Set(accountsToUpdate)); 
   accountsToUpdate.forEach(v => dispatch(getBalanceUpdateAttempt(v, 0)));
 
   if (checkForStakeTransactions(unminedDupeCheck) || checkForStakeTransactions(newlyMinedTransactions)) dispatch(getStakeInfoAttempt());
@@ -650,7 +652,7 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
 
   const regularTransactionFilter = {
     listDirection: "desc",
-    types: [TransactionDetails.TransactionType.REGULAR,TransactionDetails.TransactionType.AITX],
+    types: [TransactionDetails.TransactionType.REGULAR, TransactionDetails.TransactionType.AITX],
     direction: null,
   };
 
@@ -664,8 +666,7 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
     listDirection: "desc",
     types: [TransactionDetails.TransactionType.TICKET_PURCHASE, TransactionDetails.TransactionType.VOTE, TransactionDetails.TransactionType.REVOCATION],
     direction: null,
-  };
-
+  }; 
   recentStakeTransactions = filterTransactions([
     ...newlyUnminedTransactions,
     ...newlyMinedTransactions,
@@ -693,20 +694,34 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
   }
   minedTransactions = filterTransactions(minedTransactions, transactionsFilter);
 
+  
   dispatch({
     unminedTransactions, minedTransactions, newlyUnminedTransactions,
     newlyMinedTransactions, recentRegularTransactions, recentStakeTransactions, type: NEW_TRANSACTIONS_RECEIVED
   });
 
-  if(newlyMinedTransactions.length>0){
-    const { startupStatsEndCalcTime ,startupStatsCalcSeconds } = getState().statistics;
-    const secFromLastStats = (new Date() - startupStatsEndCalcTime)/1000;
-    if(secFromLastStats > 5*startupStatsCalcSeconds){
+  if (newlyMinedTransactions.length > 0) {
+    const { startupStatsEndCalcTime, startupStatsCalcSeconds } = getState().statistics;
+    const secFromLastStats = (new Date() - startupStatsEndCalcTime) / 1000;
+    if (secFromLastStats > 5 * startupStatsCalcSeconds) {
       dispatch(getStartupStats());
     }
   }
 
 };
+export const REMOVE_TRANSACTIONS_AIRECEIVED = "REMOVE_TRANSACTIONS_AIRECEIVED";
+
+export const removeTransactionsAiReceived = (removeTransactionHashesList) => (dispatch, getState) => {
+  if (!removeTransactionHashesList.length) return;
+  let { recentRegularTransactions } = getState().grpc; 
+  const hashlist=removeTransactionHashesList.map(m=>reverseRawHash(m))
+ 
+  recentRegularTransactions=recentRegularTransactions.filter(tx => !hashlist.includes(tx.txHash));
+  dispatch(getBalanceUpdateAttempt(0, 0));
+  dispatch({
+    recentRegularTransactions, type: REMOVE_TRANSACTIONS_AIRECEIVED
+  });
+}
 
 // getMostRecentRegularTransactions clears the transaction filter and refetches
 // the first page of transactions. This is used to get and store the initial
@@ -714,7 +729,7 @@ export const newTransactionsReceived = (newlyMinedTransactions, newlyUnminedTran
 export const getMostRecentRegularTransactions = () => dispatch => {
   const defaultFilter = {
     listDirection: "desc",
-    types: [TransactionDetails.TransactionType.REGULAR,TransactionDetails.TransactionType.AITX],
+    types: [TransactionDetails.TransactionType.REGULAR, TransactionDetails.TransactionType.AITX],
     direction: null,
   };
   return dispatch(changeTransactionsFilter(defaultFilter));
