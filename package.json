@@ -169,7 +169,7 @@
     "json-loader": "^0.5.4",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.6",
     "mocha": "^3.1.2",
     "node-loader": "^0.6.0",
     "react-intl-translations-manager": "^5.0.0",
